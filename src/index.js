@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
 
-const HelloWorld = _ => <h1>Whatsapp Web</h1>;
+import { App } from "./app";
 
-render(<HelloWorld />, document.querySelector("#root"));
+render(<App />, document.querySelector("#root"));
