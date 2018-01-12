@@ -1,23 +1,27 @@
 import React from "react";
 import { Div } from "glamorous";
 
+import Profile from "./profile";
+
 const App = _ => {
-  const style = {
+  const wrapperStyle = {
     display: "grid",
     gridTemplateColumns: "30% 70%",
-    gridTemplateAreas: "friendsList chatBox"
+    height: "100%",
+    boxShadow: "0px 0px 4px #222"
+    // gridTemplateAreas: "friendsList chatBox"
   };
 
   const friendsListStyle = {
-    gridArea: "friendsList"
+    background: "green"
   };
 
   const chatBoxStyle = {
-    gridArea: "chatBox"
+    background: "red"
   };
 
   return (
-    <Div css={style}>
+    <Div css={wrapperStyle}>
       <Div css={friendsListStyle}> List</Div>
       <Div css={chatBoxStyle}> ChatBox</Div>
     </Div>
