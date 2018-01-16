@@ -18,7 +18,7 @@ const FriendsList = ({ searchBarValue: searchBarValue }) => {
   return (
     <Div css={wrapperStyle}>
       {listOfFriends.filter(({ props: props }) =>
-        props.name.includes(searchBarValue.trim())
+        props.name.toLowerCase().includes(searchBarValue.toLowerCase().trim())
       )}
     </Div>
   );
