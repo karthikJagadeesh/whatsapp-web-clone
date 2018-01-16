@@ -3,8 +3,8 @@ import { Div } from "glamorous";
 
 const ProfileHeader = _ => {
   const style = {
-    height: "80px",
-    background: "#eee"
+    background: "#eee",
+    height: "100%"
   };
 
   return <Div css={style}>Profile Header</Div>;

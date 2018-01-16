@@ -8,7 +8,7 @@ const App = _ => {
     display: "grid",
     gridTemplateColumns: "30% 70%",
     height: "100%",
-    boxShadow: "0px 0px 2px #222"
+    boxShadow: "0px 0px 8px #c4c4c4"
     // gridTemplateAreas: "friendsList chatBox"
   };
 
@@ -17,7 +17,7 @@ const App = _ => {
   };
 
   const chatBoxStyle = {
-    background: "#F7F9FA"
+    background: "#E5DDD5"
   };
 
   return (
