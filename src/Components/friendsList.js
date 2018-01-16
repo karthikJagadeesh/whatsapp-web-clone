@@ -6,7 +6,8 @@ import { range } from "./utils";
 
 const FriendsList = _ => {
   const wrapperStyle = {
-    overflowY: "scroll"
+    overflowY: "scroll",
+    height: "100%"
   };
 
   return (

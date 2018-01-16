@@ -3,28 +3,28 @@ import { Div, Input } from "glamorous";
 
 const SearchBar = _ => {
   const wrapperStyle = {
-    height: "60px",
     background: "#fbfbfb",
     textAlign: "center",
     display: "grid",
-    gridTemplateColumns: "100%"
+    gridTemplateColumns: "100%",
+    height: "100%"
   };
 
   const searchBarStyle = {
-    width: "80%",
-    border: "none",
-    height: "50%",
+    width: "85%",
+    border: "1px solid rgba(0, 0, 0, 0.05)",
+    borderRadius: "6px",
+    height: "70%",
     padding: "0px 15px",
     justifySelf: "center",
     alignSelf: "center",
-    textAlign: "center",
+    textAlign: "left",
     background: "#fff",
     color: "#7f7f7f",
     ":focus": {
       "::placeholder": {
         color: "transparent"
-      },
-      textAlign: "left"
+      }
     }
   };
 
