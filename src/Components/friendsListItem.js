@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Div, Label, Img } from "glamorous";
 
-const FriendsListItem = props => {
+const FriendsListItem = ({ name: name }) => {
   const labelNameStyle = {
     ":hover": {
       cursor: "pointer"
@@ -25,7 +25,7 @@ const FriendsListItem = props => {
   return (
     <Div css={wrapperStyle}>
       <Img alt="image" />
-      <Label css={labelNameStyle}>{props.name}</Label>
+      <Label css={labelNameStyle}>{name}</Label>
       <Label css={timestampStyle}>timestamp</Label>
     </Div>
   );

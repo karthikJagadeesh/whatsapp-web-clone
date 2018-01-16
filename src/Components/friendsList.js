@@ -4,18 +4,22 @@ import { Div } from "glamorous";
 import { FriendsListItem } from "./friendsListItem";
 import { range } from "./utils";
 
-const FriendsList = _ => {
+const FriendsList = ({ searchBarValue: searchBarValue }) => {
   const wrapperStyle = {
     overflowY: "scroll",
     height: "100%"
   };
 
+  const listOfFriends = range(15, index => {
+    let name = `Friend ${index + 1}`;
+    return <FriendsListItem key={name} name={name} />;
+  });
+
   return (
     <Div css={wrapperStyle}>
-      {range(15, index => {
-        let name = `Friend ${index + 1}`;
-        return <FriendsListItem key={name} name={name} />;
-      })}
+      {listOfFriends.filter(({ props: props }) =>
+        props.name.includes(searchBarValue.trim())
+      )}
     </Div>
   );
 };

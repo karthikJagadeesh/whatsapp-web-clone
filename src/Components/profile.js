@@ -5,33 +5,49 @@ import { ProfileHeader } from "./profileHeader";
 import { SearchBar } from "./searchBar";
 import { FriendsList } from "./friendsList";
 
-const Profile = _ => {
-  const wrapperStyle = {
+class Profile extends Component {
+  constructor(context) {
+    super(context);
+    this.state = {
+      searchBarValue: ""
+    };
+  }
+
+  wrapperStyle = {
     display: "grid",
     gridTemplateRows: "8% 6% 86%",
     height: "94vh",
     borderRight: "1px solid rgba(0, 0, 0, 0.05)"
   };
 
-  const profileHeaderWrapperStyle = {
+  profileHeaderWrapperStyle = {
     borderBottom: "1px solid rgba(0, 0, 0, 0.05)"
   };
 
-  const searchBarWrapperStyle = Object.assign({}, profileHeaderWrapperStyle);
+  searchBarWrapperStyle = Object.assign({}, this.profileHeaderWrapperStyle);
 
-  return (
-    <Div css={wrapperStyle}>
-      <Div css={profileHeaderWrapperStyle}>
-        <ProfileHeader />
+  handleInputChange = ({ target: target }) => {
+    this.setState({ searchBarValue: target.value });
+  };
+
+  render() {
+    return (
+      <Div css={this.wrapperStyle}>
+        <Div css={this.profileHeaderWrapperStyle}>
+          <ProfileHeader />
+        </Div>
+        <Div css={this.searchBarWrapperStyle}>
+          <SearchBar
+            handleInputChange={this.handleInputChange}
+            searchBarValue={this.state.searchBarValue}
+          />
+        </Div>
+        <Div>
+          <FriendsList searchBarValue={this.state.searchBarValue} />
+        </Div>
       </Div>
-      <Div css={searchBarWrapperStyle}>
-        <SearchBar />
-      </Div>
-      <Div>
-        <FriendsList />
-      </Div>
-    </Div>
-  );
-};
+    );
+  }
+}
 
 export { Profile };
