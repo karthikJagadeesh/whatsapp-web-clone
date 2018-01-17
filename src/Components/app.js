@@ -1,8 +1,8 @@
 import React from "react";
 import { Div } from "glamorous";
 
-import { Profile } from "./profile";
-import { ChatBox } from "./chatbox";
+import { Profile } from "./Profile/profile";
+import { ChatBox } from "./ChatBox/chatbox";
 
 const App = _ => {
   const wrapperStyle = {
