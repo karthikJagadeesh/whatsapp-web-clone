@@ -14,6 +14,7 @@ const FriendsListItem = ({ name: name }) => {
     padding: "25px 10px",
     borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
     background: "#fff",
+    wordWrap: "break-word",
     display: "grid",
     gridTemplateColumns: "25% 50% 25%",
     ":hover": {
