@@ -2,7 +2,6 @@ import React from "react";
 import { Div } from "glamorous";
 
 import { Profile } from "./profile";
-import { ChatBox } from "./chatbox";
 
 const App = _ => {
   const wrapperStyle = {
@@ -25,9 +24,7 @@ const App = _ => {
       <Div css={friendsListStyle}>
         <Profile />
       </Div>
-      <Div css={chatBoxStyle}>
-        <ChatBox />
-      </Div>
+      <Div css={chatBoxStyle}> ChatBox</Div>
     </Div>
   );
 };
