@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Div } from "glamorous";
 
 import { FriendsListItem } from "./friendsListItem";
-import { range } from "./utils";
+import { range } from "../utils";
 
 const FriendsList = ({ searchBarValue: searchBarValue }) => {
   const wrapperStyle = {
