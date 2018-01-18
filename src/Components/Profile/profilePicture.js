@@ -8,7 +8,10 @@ const ProfilePicture = ({ profilePicture: profilePicture }) => {
     width: "20%",
     height: "20%",
     display: "grid",
-    gridTemplateColumns: "100%"
+    gridTemplateColumns: "100%",
+    ":hover": {
+      cursor: "pointer"
+    }
   };
 
   const wrapperStyle = {

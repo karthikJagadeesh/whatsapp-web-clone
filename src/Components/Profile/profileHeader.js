@@ -17,10 +17,7 @@ const ProfileHeader = props => {
 
   const profilePictureWrapperStyle = {
     alignSelf: "center",
-    justifySelf: "start",
-    ":hover": {
-      cursor: "pointer"
-    }
+    justifySelf: "start"
   };
   const profileStatusWrapperStyle = {
     alignSelf: "center",
