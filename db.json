@@ -1,0 +1,16 @@
+{
+  "profile": {
+    "id": 1,
+    "name": "Karthik",
+    "picture": "./assets/profile_pic.png",
+    "status": "available",
+    "friends": [
+      {
+        "id": 1,
+        "name": "Alex",
+        "picture": "",
+        "latest_timestamp": "10:00"
+      }
+    ]
+  }
+}

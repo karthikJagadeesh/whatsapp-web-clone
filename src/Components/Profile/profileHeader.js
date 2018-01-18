@@ -6,7 +6,7 @@ import { ProfileStatus } from "./profileStatus";
 import { ProfileNewChat } from "./profileNewChat";
 import { ProfileMenu } from "./profileMenu";
 
-const ProfileHeader = _ => {
+const ProfileHeader = props => {
   const wrapperStyle = {
     background: "#eee",
     padding: "0px 15px",
@@ -38,7 +38,7 @@ const ProfileHeader = _ => {
   return (
     <Div css={wrapperStyle}>
       <Div css={profilePictureWrapperStyle}>
-        <ProfilePicture />
+        <ProfilePicture profilePicture={props.profileData.picture} />
       </Div>
       <Div css={profileStatusWrapperStyle}>
         <ProfileStatus />
