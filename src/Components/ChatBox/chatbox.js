@@ -8,7 +8,7 @@ import { ChatBoxFooter } from "./chatBoxFooter";
 const ChatBox = _ => {
   const wrapperStyle = {
     display: "grid",
-    gridTemplateRows: "8% 82% 10%",
+    gridTemplateRows: "10% 80% 10%",
     height: "94vh"
   };
 

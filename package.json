@@ -27,7 +27,8 @@
     "webpack-dev-server": "^2.10.1"
   },
   "scripts": {
-    "start": "webpack-dev-server --inline --hot",
+    "start": "start yarn start-server && webpack-dev-server --inline --hot",
+    "start-server": "json-server --watch db.json --port 7070",
     "build": "webpack -p"
   }
 }

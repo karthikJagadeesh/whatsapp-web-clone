@@ -15,7 +15,7 @@ class Profile extends Component {
 
   wrapperStyle = {
     display: "grid",
-    gridTemplateRows: "8% 6% 86%",
+    gridTemplateRows: "10% 6% 84%",
     height: "94vh",
     borderRight: "1px solid rgba(0, 0, 0, 0.05)"
   };
@@ -34,7 +34,7 @@ class Profile extends Component {
     return (
       <Div css={this.wrapperStyle}>
         <Div css={this.profileHeaderWrapperStyle}>
-          <ProfileHeader />
+          <ProfileHeader profileData={this.props.profileData} />
         </Div>
         <Div css={this.searchBarWrapperStyle}>
           <SearchBar
