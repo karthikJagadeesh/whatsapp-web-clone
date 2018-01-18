@@ -4,16 +4,22 @@ import { Div } from "glamorous";
 import { FriendsListItem } from "./friendsListItem";
 import { range } from "../utils";
 
-const FriendsList = ({ searchBarValue: searchBarValue }) => {
+const FriendsList = ({
+  searchBarValue: searchBarValue,
+  friendsList: friendsList = []
+}) => {
   const wrapperStyle = {
     overflowY: "scroll",
     height: "100%"
   };
 
-  const listOfFriends = range(15, index => {
-    let name = `Friend ${index + 1}`;
-    return <FriendsListItem key={name} name={name} />;
-  });
+  const listOfFriends = friendsList.map(friend => (
+    <FriendsListItem
+      key={friend.id}
+      name={friend.name}
+      timestamp={friend.latest_timestamp}
+    />
+  ));
 
   return (
     <Div css={wrapperStyle}>
