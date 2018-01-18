@@ -9,7 +9,85 @@
         "id": 1,
         "name": "Alex",
         "picture": "",
-        "latest_timestamp": "10:00"
+        "latest_timestamp": "10:00 AM"
+      },
+      {
+        "id": 2,
+        "name": "Bob",
+        "picture": "",
+        "latest_timestamp": "12:30 AM"
+      },
+      {
+        "id": 3,
+        "name": "Luke",
+        "picture": "",
+        "latest_timestamp": "4:12 PM"
+      },
+      {
+        "id": 4,
+        "name": "Bane",
+        "picture": "",
+        "latest_timestamp": "7:53 PM"
+      },
+      {
+        "id": 5,
+        "name": "Darth Vader",
+        "picture": "",
+        "latest_timestamp": "1:09 PM"
+      },
+      {
+        "id": 6,
+        "name": "Zach",
+        "picture": "",
+        "latest_timestamp": "Yesterday"
+      },
+      {
+        "id": 7,
+        "name": "Katie",
+        "picture": "",
+        "latest_timestamp": "Yesterday"
+      },
+      {
+        "id": 8,
+        "name": "Chloe",
+        "picture": "",
+        "latest_timestamp": "Wednesday"
+      },
+      {
+        "id": 9,
+        "name": "Kennith",
+        "picture": "",
+        "latest_timestamp": "Wednesday"
+      },
+      {
+        "id": 10,
+        "name": "Tara",
+        "picture": "",
+        "latest_timestamp": "Monday"
+      },
+      {
+        "id": 11,
+        "name": "Gary",
+        "picture": "",
+        "latest_timestamp": "Sunday"
+      },
+      {
+        "id": 12,
+        "name": "Zoey",
+        "picture": "",
+        "latest_timestamp": "8/12/2017"
+      },
+      {
+        "id": 13,
+        "name": "Ash",
+        "picture": "",
+        "latest_timestamp": "6/12/2017"
+      },
+      {
+        "id": 14,
+        "name": "Zen",
+        "picture": "",
+        "latest_timestamp": "19/11/2017"
       }
     ]
   }

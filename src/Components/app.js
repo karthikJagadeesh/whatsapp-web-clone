@@ -12,7 +12,13 @@ class App extends Component {
     };
   }
 
-  profileDataUrl = "http://localhost:7070/profile";
+  profileDataUrl = `
+  https://my-json-server.typicode.com/karthikJagadeesh/fake-chat-api/profile
+  `;
+
+  // profileDataUrl = `
+  // http://localhost:7070/profile
+  // `;
 
   wrapperStyle = {
     display: "grid",

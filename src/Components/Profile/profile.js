@@ -43,7 +43,10 @@ class Profile extends Component {
           />
         </Div>
         <Div>
-          <FriendsList searchBarValue={this.state.searchBarValue} />
+          <FriendsList
+            searchBarValue={this.state.searchBarValue}
+            friendsList={this.props.profileData.friends}
+          />
         </Div>
       </Div>
     );
