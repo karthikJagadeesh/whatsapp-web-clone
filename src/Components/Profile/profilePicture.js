@@ -4,19 +4,23 @@ import path from "path";
 
 const ProfilePicture = ({ profilePicture: profilePicture = "" }) => {
   const profilePictureStyle = {
-    borderRadius: "25px",
-    width: "20%",
-    height: "20%",
+    borderRadius: "50%",
+    width: "60%",
+    // height: "20%",
     display: "grid",
     gridTemplateColumns: "100%",
     ":hover": {
       cursor: "pointer"
-    }
+    },
+    alignSelf: "center",
+    justifySelf: "center"
   };
 
   const wrapperStyle = {
     alignSelf: "center",
-    justifySelf: "center"
+    justifySelf: "center",
+    width: "30%",
+    display: "grid"
   };
 
   const profilePicturePath = path.join("../../../", profilePicture);

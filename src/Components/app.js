@@ -22,7 +22,7 @@ class App extends Component {
 
   wrapperStyle = {
     display: "grid",
-    gridTemplateColumns: "30% 70%",
+    gridTemplateColumns: "3fr 7fr",
     height: "100%",
     boxShadow: "0px 0px 8px #c4c4c4"
   };

@@ -9,7 +9,7 @@ import { ProfileMenu } from "./profileMenu";
 const ProfileHeader = props => {
   const wrapperStyle = {
     background: "#eee",
-    padding: "0px 15px",
+    // padding: "0px 15px",
     height: "100%",
     display: "grid",
     gridTemplateColumns: "55% 15% 15% 15%"
@@ -21,7 +21,7 @@ const ProfileHeader = props => {
   };
   const profileStatusWrapperStyle = {
     alignSelf: "center",
-    justifySelf: "center",
+    justifySelf: "start",
     ":hover": {
       cursor: "pointer"
     }

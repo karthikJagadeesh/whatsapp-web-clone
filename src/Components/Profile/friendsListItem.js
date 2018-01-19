@@ -35,7 +35,6 @@ const FriendsListItem = ({
   lastChat
 }) => {
   const wrapperStyle = {
-    padding: "0px 15px",
     borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
     background: "#fff",
     wordWrap: "break-word",
@@ -80,7 +79,7 @@ const FriendsListItem = ({
     width: "75%",
     height: "70%",
     alignSelf: "center",
-    justifySelf: "start"
+    justifySelf: "center"
   };
 
   const friendProfilePicturePath = path.join("../../../", picture);
