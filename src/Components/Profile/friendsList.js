@@ -18,6 +18,8 @@ const FriendsList = ({
       key={friend.id}
       name={friend.name}
       timestamp={friend.latest_timestamp}
+      picture={friend.picture}
+      lastChat={friend.lastChat}
     />
   ));
 
