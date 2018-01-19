@@ -28,18 +28,14 @@ const NameAndLastChat = ({ name, lastChat }) => {
   );
 };
 
-const FriendsListItem = ({
-  name,
-  timestamp,
-  picture: picture = "",
-  lastChat
-}) => {
+const FriendsListItem = ({...props, picture: picture = ""}) => {
   const wrapperStyle = {
     borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
     background: "#fff",
     wordWrap: "break-word",
     display: "grid",
-    height: "70px",
+    height: "80px",
+    zIndex: "10",
     gridTemplateColumns: "20% 55% 25%",
     ":hover": {
       background: "#F4F5F5",
@@ -84,18 +80,16 @@ const FriendsListItem = ({
 
   const friendProfilePicturePath = path.join("../../../", picture);
 
-  const handleListItemClick = _ => console.log("CLICKED!")
-
   return (
-    <Div css={wrapperStyle} onClick={handleListItemClick}>
+    <Div css={wrapperStyle} data-id={props.id} onClickCapture={props.handleListItemClick}>
       <Div css={wrapperImageStyle}>
         <Img css={imageStyle} alt="image" src={friendProfilePicturePath} />
       </Div>
       <Div css={nameAndLastChatStyle}>
-        <NameAndLastChat name={name} lastChat={lastChat} />
+        <NameAndLastChat name={props.name} lastChat={props.lastChat} />
       </Div>
       <Div css={timestampWrapperStyle}>
-        <Label css={timestampStyle}>{timestamp}</Label>
+        <Label css={timestampStyle}>{props.timestamp}</Label>
       </Div>
     </Div>
   );

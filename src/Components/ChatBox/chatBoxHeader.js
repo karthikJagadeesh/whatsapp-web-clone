@@ -1,12 +1,30 @@
 import React from "react";
-import { Div } from "glamorous";
+import { Div, Label } from "glamorous";
 
 import { Picture } from "./picture";
 import { Search } from "./search";
 import { Attach } from "./attach";
 import { Menu } from "./menu";
 
-const ChatBoxHeader = _ => {
+const Name = ({ name }) => {
+  const wrapperStyle = {
+    display: "grid",
+    gridTemplateColumns: "100%",
+    width: "300px",
+    marginLeft: "20px"
+  };
+  const labelStyle = {
+    alignSelf: "center",
+    justifySelf: "start"
+  };
+  return (
+    <Div css={wrapperStyle}>
+      <Label css={labelStyle}>{name}</Label>
+    </Div>
+  );
+};
+
+const ChatBoxHeader = ({ currentFriend, chatBoxContext }) => {
   const wrapperStyle = {
     background: "#eee",
     padding: "0px 15px",
@@ -17,7 +35,10 @@ const ChatBoxHeader = _ => {
   };
 
   const pictureWrapperStyle = {
+    display: "flex",
     alignSelf: "center",
+    height: "100%",
+    width: "90%",
     justifySelf: "start",
     ":hover": {
       cursor: "pointer"
@@ -34,11 +55,11 @@ const ChatBoxHeader = _ => {
 
   const attachWrapperStyle = Object.assign({}, searchWrapperStyle);
   const menuWrapperStyle = Object.assign({}, searchWrapperStyle);
-
   return (
     <Div css={wrapperStyle}>
       <Div css={pictureWrapperStyle}>
-        <Picture />
+        <Picture currentFriend={chatBoxContext.picture} />
+        <Name name={chatBoxContext.name} />
       </Div>
       <Div css={searchWrapperStyle}>
         <Search />
