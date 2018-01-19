@@ -2,7 +2,7 @@ import React from "react";
 import { Div, Img } from "glamorous";
 import path from "path";
 
-const ProfilePicture = ({ profilePicture: profilePicture }) => {
+const ProfilePicture = ({ profilePicture: profilePicture = "" }) => {
   const profilePictureStyle = {
     borderRadius: "25px",
     width: "20%",
@@ -19,9 +19,7 @@ const ProfilePicture = ({ profilePicture: profilePicture }) => {
     justifySelf: "center"
   };
 
-  const profilePicturePath = profilePicture
-    ? path.join("../../../", profilePicture)
-    : "";
+  const profilePicturePath = path.join("../../../", profilePicture);
 
   return (
     <Div css={wrapperStyle}>

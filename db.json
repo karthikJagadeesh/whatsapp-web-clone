@@ -6,88 +6,102 @@
     "status": "available",
     "friends": [
       {
-        "id": 1,
-        "name": "Alex",
-        "picture": "",
-        "latest_timestamp": "10:00 AM"
-      },
-      {
         "id": 2,
-        "name": "Bob",
-        "picture": "",
-        "latest_timestamp": "12:30 AM"
+        "name": "Alex",
+        "picture": "./assets/friends/alex_1.jpg",
+        "latest_timestamp": "10:00 AM",
+        "lastChat": "Did you recieve the package I sent you the other day?"
       },
       {
         "id": 3,
-        "name": "Luke",
-        "picture": "",
-        "latest_timestamp": "4:12 PM"
+        "name": "Bob",
+        "picture": "./assets/friends/bob_1.jpg",
+        "latest_timestamp": "12:30 AM",
+        "lastChat": "Alright"
       },
       {
         "id": 4,
-        "name": "Bane",
-        "picture": "",
-        "latest_timestamp": "7:53 PM"
+        "name": "Luke",
+        "picture": "./assets/friends/luke_1.jpg",
+        "latest_timestamp": "4:12 PM",
+        "lastChat": "I will look into it"
       },
       {
         "id": 5,
-        "name": "Darth Vader",
-        "picture": "",
-        "latest_timestamp": "1:09 PM"
+        "name": "Bane",
+        "picture": "./assets/friends/bane_1.jpg",
+        "latest_timestamp": "7:53 PM",
+        "lastChat": "Exactly my point!"
       },
       {
         "id": 6,
-        "name": "Zach",
-        "picture": "",
-        "latest_timestamp": "Yesterday"
+        "name": "Darth Vader",
+        "picture": "./assets/friends/darth_vader_1.png",
+        "latest_timestamp": "1:09 PM",
+        "lastChat": "Not quite the same."
       },
       {
         "id": 7,
-        "name": "Katie",
-        "picture": "",
-        "latest_timestamp": "Yesterday"
+        "name": "Zach",
+        "picture": "./assets/friends/zach_1.jpg",
+        "latest_timestamp": "Yesterday",
+        "lastChat": "I thought that the event was over long ago"
       },
       {
         "id": 8,
-        "name": "Chloe",
-        "picture": "",
-        "latest_timestamp": "Wednesday"
+        "name": "Katie",
+        "picture": "./assets/friends/katie_1.jpg",
+        "latest_timestamp": "Yesterday",
+        "lastChat": "nothing"
       },
       {
         "id": 9,
-        "name": "Kennith",
-        "picture": "",
-        "latest_timestamp": "Wednesday"
+        "name": "Chloe",
+        "picture": "./assets/friends/chloe_1.jpg",
+        "latest_timestamp": "Wednesday",
+        "lastChat": "sure i'll take it from you"
       },
       {
         "id": 10,
-        "name": "Tara",
-        "picture": "",
-        "latest_timestamp": "Monday"
+        "name": "Kennith",
+        "picture": "./assets/friends/kennith_1.jpg",
+        "latest_timestamp": "Wednesday",
+        "lastChat": "Take care, bye"
       },
       {
         "id": 11,
-        "name": "Gary",
-        "picture": "",
-        "latest_timestamp": "Sunday"
+        "name": "Tara",
+        "picture": "./assets/friends/tara_1.jpg",
+        "latest_timestamp": "Monday",
+        "lastChat": "Not today"
       },
       {
         "id": 12,
-        "name": "Zoey",
-        "picture": "",
-        "latest_timestamp": "8/12/2017"
+        "name": "Gary",
+        "picture": "./assets/friends/gary_1.jpg",
+        "latest_timestamp": "Sunday",
+        "lastChat": "Whatever works for you!"
       },
       {
         "id": 13,
-        "name": "Ash",
-        "picture": "",
-        "latest_timestamp": "6/12/2017"
+        "name": "Zoey",
+        "picture": "./assets/friends/zoey_1.jpg",
+        "latest_timestamp": "8/12/2017",
+        "lastChat": "Will get in touch"
       },
       {
         "id": 14,
+        "name": "Ash",
+        "picture": "./assets/friends/ash_1.jpg",
+        "latest_timestamp": "6/12/2017",
+        "lastChat": "Ok"
+      },
+      {
+        "id": 15,
         "name": "Zen",
-        "picture": "",
-        "latest_timestamp": "19/11/2017"
+        "picture": "./assets/friends/zen_1.jpg",
+        "latest_timestamp": "19/11/2017",
+        "lastChat": "Lol"
       }
     ]
   }
