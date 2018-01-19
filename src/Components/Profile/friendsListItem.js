@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Div, Label, Img, P } from "glamorous";
 import path from "path";
 
-const NameAndLastChat = ({ name: name, lastChat: lastChat }) => {
+const NameAndLastChat = ({ name, lastChat }) => {
   const wrapperStyle = {};
   const lastChatStyle = {
     width: "100%",
@@ -29,10 +29,10 @@ const NameAndLastChat = ({ name: name, lastChat: lastChat }) => {
 };
 
 const FriendsListItem = ({
-  name: name,
-  timestamp: timestamp,
+  name,
+  timestamp,
   picture: picture = "",
-  lastChat: lastChat
+  lastChat
 }) => {
   const wrapperStyle = {
     padding: "0px 15px",
@@ -68,7 +68,7 @@ const FriendsListItem = ({
 
   const timestampStyle = {
     alignSelf: "start"
-  }
+  };
 
   const wrapperImageStyle = {
     display: "grid",
