@@ -104,5 +104,161 @@
         "lastChat": "Lol"
       }
     ]
-  }
+  },
+  "friends": [
+    {
+      "id": 2,
+      "name": "Alex",
+      "picture": "./assets/friends/alex_1.jpg",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Bob",
+      "picture": "./assets/friends/bob_1.jpg",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Luke",
+      "picture": "./assets/friends/luke_1.jpg",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Bane",
+      "picture": "./assets/friends/bane_1.jpg",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Darth Vader",
+      "picture": "./assets/friends/darth_vader_1.png",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Zach",
+      "picture": "./assets/friends/zach_1.jpg",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Katie",
+      "picture": "./assets/friends/katie_1.jpg",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Chloe",
+      "picture": "./assets/friends/chloe_1.jpg",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Kennith",
+      "picture": "./assets/friends/kennith_1.jpg",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Tara",
+      "picture": "./assets/friends/tara_1.jpg",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Gary",
+      "picture": "./assets/friends/gary_1.jpg",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Zoey",
+      "picture": "./assets/friends/zoey_1.jpg",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Ash",
+      "picture": "./assets/friends/ash_1.jpg",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Zen",
+      "picture": "./assets/friends/zen_1.jpg",
+      "chatlog": [
+        {
+          "text": "",
+          "timestamp": ""
+        }
+      ]
+    }
+  ]
 }

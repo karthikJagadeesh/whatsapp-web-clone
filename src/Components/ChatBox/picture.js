@@ -1,10 +1,25 @@
 import React from "react";
 import { Div, Img } from "glamorous";
+import path from "path";
 
-const Picture = _ => {
+const Picture = ({ currentFriend: currentFriend = "" }) => {
+  const friendPicturePath = path.join("../../../", currentFriend);
+  const imageStyle = {
+    width: "100%",
+    height: "60%",
+    borderRadius: "50%",
+    alignSelf: "center"
+  };
+  const wrapperStyle = {
+    display: "grid",
+    gridTemplateColumns: "100%",
+    width: "50px",
+    height: "100%"
+  };
+
   return (
-    <Div>
-      <Img alt="Image" />
+    <Div css={wrapperStyle}>
+      <Img css={imageStyle} alt="Image" src={friendPicturePath} />
     </Div>
   );
 };

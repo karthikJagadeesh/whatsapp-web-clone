@@ -8,13 +8,13 @@ class App extends Component {
   constructor(context) {
     super(context);
     this.state = {
-      profileData: {}
+      profileData: {},
+      chatBoxContext: {}
     };
   }
 
-  profileDataUrl = `
-  https://my-json-server.typicode.com/karthikJagadeesh/fake-chat-api/profile
-  `;
+  profileDataUrl = "https://my-json-server.typicode.com/karthikJagadeesh/fake-chat-api/profile";
+  friendDataUrl = "https://my-json-server.typicode.com/karthikJagadeesh/fake-chat-api/friends/";
 
   // profileDataUrl = `
   // http://localhost:7070/profile
@@ -35,15 +35,24 @@ class App extends Component {
     background: "#E5DDD5"
   };
 
-  async fetchProfileData() {
-    const response = await fetch(this.profileDataUrl);
+  handleListItemClick = ({ currentTarget }) => {
+    (async _ => {
+      const id = currentTarget.dataset.id;
+      const url = this.friendDataUrl + id;
+      const chatBoxContext = await this.fetchData(url);
+      this.setState({ chatBoxContext });
+    })();
+  };
+
+  async fetchData(url) {
+    const response = await fetch(url);
     const json = await response.json();
     return json;
   }
 
   componentWillMount() {
     (async _ => {
-      const profileData = await this.fetchProfileData();
+      const profileData = await this.fetchData(this.profileDataUrl);
       this.setState({ profileData });
     })();
   }
@@ -52,10 +61,16 @@ class App extends Component {
     return (
       <Div css={this.wrapperStyle}>
         <Div css={this.friendsListStyle}>
-          <Profile profileData={this.state.profileData} />
+          <Profile
+            profileData={this.state.profileData}
+            handleListItemClick={this.handleListItemClick}
+          />
         </Div>
         <Div css={this.chatBoxStyle}>
-          <ChatBox />
+          <ChatBox
+            currentFriend={this.handleListItemClick}
+            chatBoxContext={this.state.chatBoxContext}
+          />
         </Div>
       </Div>
     );

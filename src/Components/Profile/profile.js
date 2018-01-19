@@ -46,6 +46,7 @@ class Profile extends Component {
           <FriendsList
             searchBarValue={this.state.searchBarValue}
             friendsList={this.props.profileData.friends}
+            handleListItemClick={this.props.handleListItemClick}
           />
         </Div>
       </Div>

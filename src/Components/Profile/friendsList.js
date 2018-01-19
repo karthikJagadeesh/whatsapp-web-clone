@@ -4,7 +4,11 @@ import { Div } from "glamorous";
 import { FriendsListItem } from "./friendsListItem";
 import { range } from "../utils";
 
-const FriendsList = ({ searchBarValue, friendsList: friendsList = [] }) => {
+const FriendsList = ({
+  handleListItemClick,
+  searchBarValue,
+  friendsList: friendsList = []
+}) => {
   const wrapperStyle = {
     overflowY: "scroll",
     height: "100%"
@@ -13,10 +17,12 @@ const FriendsList = ({ searchBarValue, friendsList: friendsList = [] }) => {
   const listOfFriends = friendsList.map(friend => {
     const props = {
       key: friend.id,
+      id: friend.id,
       name: friend.name,
       timestamp: friend.latest_timestamp,
       picture: friend.picture,
-      lastChat: friend.lastChat
+      lastChat: friend.lastChat,
+      handleListItemClick
     };
     return <FriendsListItem {...props} />;
   });
