@@ -84,8 +84,10 @@ const FriendsListItem = ({
 
   const friendProfilePicturePath = path.join("../../../", picture);
 
+  const handleListItemClick = _ => console.log("CLICKED!")
+
   return (
-    <Div css={wrapperStyle}>
+    <Div css={wrapperStyle} onClick={handleListItemClick}>
       <Div css={wrapperImageStyle}>
         <Img css={imageStyle} alt="image" src={friendProfilePicturePath} />
       </Div>
