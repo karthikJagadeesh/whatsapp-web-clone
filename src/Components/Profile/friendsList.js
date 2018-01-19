@@ -5,7 +5,7 @@ import { FriendsListItem } from "./friendsListItem";
 import { range } from "../utils";
 
 const FriendsList = ({
-  searchBarValue: searchBarValue,
+  searchBarValue,
   friendsList: friendsList = []
 }) => {
   const wrapperStyle = {
@@ -25,7 +25,7 @@ const FriendsList = ({
 
   return (
     <Div css={wrapperStyle}>
-      {listOfFriends.filter(({ props: props }) =>
+      {listOfFriends.filter(({ props }) =>
         props.name.toLowerCase().includes(searchBarValue.toLowerCase().trim())
       )}
     </Div>
