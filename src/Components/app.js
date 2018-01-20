@@ -9,7 +9,7 @@ class App extends Component {
     super(context);
     this.state = {
       profileData: {},
-      chatBoxContext: {}
+      chatBoxContext: null
     };
   }
 
@@ -32,7 +32,7 @@ class App extends Component {
   };
 
   chatBoxStyle = {
-    background: "#E5DDD5"
+    background: "#F7F9FA"
   };
 
   handleListItemClick = ({ currentTarget }) => {

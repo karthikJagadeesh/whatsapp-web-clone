@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Div } from "glamorous";
 
 import { ChatBoxHeader } from "./chatBoxHeader";
-// import { ChatBoxDisplay } from "./chatBoxDisplay";
+import { ChatBoxDisplay } from "./chatBoxDisplay";
 import { ChatBoxFooter } from "./chatBoxFooter";
 
 const ChatBox = ({ currentFriend, chatBoxContext }) => {
@@ -15,11 +15,17 @@ const ChatBox = ({ currentFriend, chatBoxContext }) => {
   return (
     <Div css={wrapperStyle}>
       <Div>
-        <ChatBoxHeader chatBoxContext={chatBoxContext} />
+        {chatBoxContext ? (
+          <ChatBoxHeader chatBoxContext={chatBoxContext} />
+        ) : null}
       </Div>
-      <Div />
+      <Div>{chatBoxContext ? <ChatBoxDisplay /> : null}</Div>
       <Div>
-        <ChatBoxFooter />
+        {chatBoxContext ? (
+          <ChatBoxFooter isInitialScreen={false} />
+        ) : (
+          <ChatBoxFooter isInitialScreen={true} />
+        )}
       </Div>
     </Div>
   );

@@ -1,7 +1,12 @@
 import React from "react";
+import { Div } from "glamorous";
 
 const ChatBoxDisplay = _ => {
-  return <div>Display </div>;
+  const wrapperStyle = {
+    background: "#E4DED3",
+    height: "100%"
+  };
+  return <Div css={wrapperStyle}> </Div>;
 };
 
 export { ChatBoxDisplay };
