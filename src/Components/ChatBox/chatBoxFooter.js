@@ -5,7 +5,24 @@ import { SmilieBoard } from "./smilieBoard";
 import { ChatMessageInput } from "./chatMessageInput";
 import { ChatAudioMessage } from "./chatAudioMessage";
 
-const ChatBoxFooter = _ => {
+const ChatBoxFooter = ({ isInitialScreen }) => {
+  if (isInitialScreen) {
+    const wrapperStyle = {
+      height: "100%",
+      width: "100%",
+      display: "grid"
+    }
+    const greenBarStyle = {
+      height: "10%",
+      background: "#58e870",
+      alignSelf: "end"
+    }
+    return (
+      <Div css={wrapperStyle}>
+        <Div css={greenBarStyle}></Div>
+      </Div>
+    );
+  }
   const wrapperStyle = {
     background: "#F5F1EE",
     padding: "0px 15px",
