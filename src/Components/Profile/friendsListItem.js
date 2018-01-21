@@ -3,9 +3,11 @@ import { Div, Label, Img, P } from "glamorous";
 import path from "path";
 
 const NameAndLastChat = ({ name, lastChat }) => {
-  const wrapperStyle = {};
+  const wrapperStyle = {
+    paddingLeft: "10px"
+  };
   const lastChatStyle = {
-    width: "100%",
+    width: "240px",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
     overflow: "hidden",
@@ -72,10 +74,10 @@ const FriendsListItem = ({...props, picture: picture = ""}) => {
 
   const imageStyle = {
     borderRadius: "50%",
-    width: "75%",
+    width: "85%",
     height: "70%",
     alignSelf: "center",
-    justifySelf: "center"
+    justifySelf: "end"
   };
 
   const friendProfilePicturePath = path.join("../../../", picture);

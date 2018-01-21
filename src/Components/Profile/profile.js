@@ -24,7 +24,7 @@ class Profile extends Component {
     borderBottom: "1px solid rgba(0, 0, 0, 0.05)"
   };
 
-  searchBarWrapperStyle = Object.assign({}, this.profileHeaderWrapperStyle);
+  searchBarWrapperStyle = { ...this.profileHeaderWrapperStyle };
 
   handleInputChange = ({ target }) => {
     this.setState({ searchBarValue: target.value });

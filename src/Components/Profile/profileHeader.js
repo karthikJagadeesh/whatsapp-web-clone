@@ -26,11 +26,8 @@ const ProfileHeader = props => {
       cursor: "pointer"
     }
   };
-  const profileNewChatWrapperStyle = Object.assign(
-    {},
-    profileStatusWrapperStyle
-  );
-  const profileMenuWrapperStyle = Object.assign({}, profileStatusWrapperStyle);
+  const profileNewChatWrapperStyle = { ...profileStatusWrapperStyle };
+  const profileMenuWrapperStyle = { ...profileStatusWrapperStyle };
 
   return (
     <Div css={wrapperStyle}>
