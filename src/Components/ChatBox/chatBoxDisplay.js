@@ -1,23 +1,27 @@
 import React from "react";
 import { Div } from "glamorous";
 
-const ChatBoxDisplay = ({ messages }) => {
+const ChatBoxDisplay = ({ messages, chatlog: chatlog = [] }) => {
   const wrapperStyle = {
     background: "#E4DED3",
     height: "100%",
     overflowY: "scroll",
     display: "flex",
-    alignItems: "flex-end",
     flexFlow: "column-reverse"
   };
-  const messagesListWrapperStyle = {
+
+  const messagesListWrapperStyleLeft = {
     padding: "2px 70px",
-    maxWidth: "400px"
-    // display: grid",
-    // templateGridColumns: "1fr"
+    maxWidth: "400px",
+    alignSelf: "flex-start"
   };
-  const messageStyle = {
-    // justifySelf: "end",
+
+  const messagesListWrapperStyleRight = {
+    ...messagesListWrapperStyleLeft,
+    alignSelf: "flex-end"
+  };
+
+  const messageStyleLeft = {
     wordWrap: "break-word",
     overflow: "hidden",
     border: "1px solid rgba(0, 0, 0, 0.1)",
@@ -26,13 +30,32 @@ const ChatBoxDisplay = ({ messages }) => {
     borderRadius: "8px",
     color: "rgb(38, 38, 38)",
     padding: "8px 6px",
+    background: "#FFF"
+  };
+
+  const messageStyleRight = {
+    ...messageStyleLeft,
     background: "rgb(220, 248, 198)"
   };
-  const messagesList = messages.map(msg => (
-    <Div css={messagesListWrapperStyle}>
-      <Div css={messageStyle}>{msg}</Div>
-    </Div>
-  ));
+
+  const fullChatLog = [...messages, ...chatlog];
+
+  const messagesList = fullChatLog.map(msg => {
+    let messagesListWrapperStyle;
+    let messageStyle;
+    if (msg.side === "left") {
+      messagesListWrapperStyle = messagesListWrapperStyleLeft;
+      messageStyle = messageStyleLeft;
+    } else {
+      messagesListWrapperStyle = messagesListWrapperStyleRight;
+      messageStyle = messageStyleRight;
+    }
+    return (
+      <Div css={messagesListWrapperStyle}>
+        <Div css={messageStyle}>{msg.text}</Div>
+      </Div>
+    );
+  });
 
   return <Div css={wrapperStyle}>{messagesList}</Div>;
 };

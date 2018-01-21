@@ -36,7 +36,10 @@ class ChatBox extends Component {
         </Div>
         <Div css={this.wrapperChatBoxDisplay}>
           {chatBoxContext ? (
-            <ChatBoxDisplay messages={this.state.messages} />
+            <ChatBoxDisplay
+              chatlog={chatBoxContext.chatlog}
+              messages={this.state.messages}
+            />
           ) : null}
         </Div>
         <Div>

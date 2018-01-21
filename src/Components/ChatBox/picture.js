@@ -6,7 +6,7 @@ const Picture = ({ currentFriend: currentFriend = "" }) => {
   const friendPicturePath = path.join("../../../", currentFriend);
   const imageStyle = {
     width: "100%",
-    height: "60%",
+    height: "70%",
     borderRadius: "50%",
     alignSelf: "center"
   };

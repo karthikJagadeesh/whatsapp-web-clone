@@ -10,7 +10,8 @@
         "name": "Alex",
         "picture": "./assets/friends/alex_1.jpg",
         "latest_timestamp": "10:00 AM",
-        "lastChat": "Did you recieve the package I sent you the other day?"
+        "lastChat":
+          "Or maybe not, let me check logistics and call you. Give me sometime"
       },
       {
         "id": 3,
@@ -112,6 +113,17 @@
       "picture": "./assets/friends/alex_1.jpg",
       "chatlog": [
         {
+          "text":
+            "Or maybe not, let me check logistics and call you. Give me sometime",
+          "timestamp": "10:03 AM",
+          "side": "left"
+        },
+        {
+          "text": "I believe they must have misplaced it elsewhere?!",
+          "timestamp": "10:02 AM",
+          "side": "left"
+        },
+        {
           "text": "Did you recieve the package I sent you the other day?",
           "timestamp": "10:00 AM",
           "side": "left"
@@ -122,144 +134,79 @@
       "id": 3,
       "name": "Bob",
       "picture": "./assets/friends/bob_1.jpg",
-      "chatlog": [
-        {
-          "text": "",
-          "timestamp": ""
-        }
-      ]
+      "chatlog": []
     },
     {
       "id": 4,
       "name": "Luke",
       "picture": "./assets/friends/luke_1.jpg",
-      "chatlog": [
-        {
-          "text": "",
-          "timestamp": ""
-        }
-      ]
+      "chatlog": []
     },
     {
       "id": 5,
       "name": "Bane",
       "picture": "./assets/friends/bane_1.jpg",
-      "chatlog": [
-        {
-          "text": "",
-          "timestamp": ""
-        }
-      ]
+      "chatlog": []
     },
     {
       "id": 6,
       "name": "Darth Vader",
       "picture": "./assets/friends/darth_vader_1.png",
-      "chatlog": [
-        {
-          "text": "",
-          "timestamp": ""
-        }
-      ]
+      "chatlog": []
     },
     {
       "id": 7,
       "name": "Zach",
       "picture": "./assets/friends/zach_1.jpg",
-      "chatlog": [
-        {
-          "text": "",
-          "timestamp": ""
-        }
-      ]
+      "chatlog": []
     },
     {
       "id": 8,
       "name": "Katie",
       "picture": "./assets/friends/katie_1.jpg",
-      "chatlog": [
-        {
-          "text": "",
-          "timestamp": ""
-        }
-      ]
+      "chatlog": []
     },
     {
       "id": 9,
       "name": "Chloe",
       "picture": "./assets/friends/chloe_1.jpg",
-      "chatlog": [
-        {
-          "text": "",
-          "timestamp": ""
-        }
-      ]
+      "chatlog": []
     },
     {
       "id": 10,
       "name": "Kennith",
       "picture": "./assets/friends/kennith_1.jpg",
-      "chatlog": [
-        {
-          "text": "",
-          "timestamp": ""
-        }
-      ]
+      "chatlog": []
     },
     {
       "id": 11,
       "name": "Tara",
       "picture": "./assets/friends/tara_1.jpg",
-      "chatlog": [
-        {
-          "text": "",
-          "timestamp": ""
-        }
-      ]
+      "chatlog": []
     },
     {
       "id": 12,
       "name": "Gary",
       "picture": "./assets/friends/gary_1.jpg",
-      "chatlog": [
-        {
-          "text": "",
-          "timestamp": ""
-        }
-      ]
+      "chatlog": []
     },
     {
       "id": 13,
       "name": "Zoey",
       "picture": "./assets/friends/zoey_1.jpg",
-      "chatlog": [
-        {
-          "text": "",
-          "timestamp": ""
-        }
-      ]
+      "chatlog": []
     },
     {
       "id": 14,
       "name": "Ash",
       "picture": "./assets/friends/ash_1.jpg",
-      "chatlog": [
-        {
-          "text": "",
-          "timestamp": ""
-        }
-      ]
+      "chatlog": []
     },
     {
       "id": 15,
       "name": "Zen",
       "picture": "./assets/friends/zen_1.jpg",
-      "chatlog": [
-        {
-          "text": "",
-          "timestamp": ""
-        }
-      ]
+      "chatlog": []
     }
   ]
 }

@@ -53,8 +53,8 @@ const ChatBoxHeader = ({ currentFriend, chatBoxContext }) => {
     }
   };
 
-  const attachWrapperStyle = Object.assign({}, searchWrapperStyle);
-  const menuWrapperStyle = Object.assign({}, searchWrapperStyle);
+  const attachWrapperStyle = { ...searchWrapperStyle };
+  const menuWrapperStyle = { ...searchWrapperStyle };
   return (
     <Div css={wrapperStyle}>
       <Div css={pictureWrapperStyle}>
