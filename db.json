@@ -112,8 +112,9 @@
       "picture": "./assets/friends/alex_1.jpg",
       "chatlog": [
         {
-          "text": "",
-          "timestamp": ""
+          "text": "Did you recieve the package I sent you the other day?",
+          "timestamp": "10:00 AM",
+          "side": "left"
         }
       ]
     },

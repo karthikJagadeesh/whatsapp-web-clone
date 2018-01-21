@@ -5,24 +5,25 @@ import { SmilieBoard } from "./smilieBoard";
 import { ChatMessageInput } from "./chatMessageInput";
 import { ChatAudioMessage } from "./chatAudioMessage";
 
-const ChatBoxFooter = ({ isInitialScreen }) => {
+const ChatBoxFooter = ({ isInitialScreen, handleChatSend }) => {
   if (isInitialScreen) {
     const wrapperStyle = {
       height: "100%",
       width: "100%",
       display: "grid"
-    }
+    };
     const greenBarStyle = {
       height: "10%",
       background: "#58e870",
       alignSelf: "end"
-    }
+    };
     return (
       <Div css={wrapperStyle}>
-        <Div css={greenBarStyle}></Div>
+        <Div css={greenBarStyle} />
       </Div>
     );
   }
+
   const wrapperStyle = {
     background: "#F5F1EE",
     padding: "0px 15px",
@@ -57,7 +58,7 @@ const ChatBoxFooter = ({ isInitialScreen }) => {
         <SmilieBoard />
       </Div>
       <Div css={chatMessageWrapperStyle}>
-        <ChatMessageInput />
+        <ChatMessageInput handleChatSend={handleChatSend} />
       </Div>
       <Div css={chatAudioMessageWrapperStyle}>
         <ChatAudioMessage />

@@ -29,7 +29,7 @@ const ProfilePicture = ({ profilePicture: profilePicture = "" }) => {
     <Div css={wrapperStyle}>
       <Img
         css={profilePictureStyle}
-        alt="Profile Pic"
+        alt=""
         src={profilePicturePath}
       />
     </Div>
