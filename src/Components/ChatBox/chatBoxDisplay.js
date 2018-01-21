@@ -12,7 +12,7 @@ const ChatBoxDisplay = ({ messages }) => {
   };
   const messagesListWrapperStyle = {
     padding: "2px 70px",
-    maxWidth: "60%"
+    maxWidth: "400px"
     // display: grid",
     // templateGridColumns: "1fr"
   };

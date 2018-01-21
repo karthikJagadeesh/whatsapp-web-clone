@@ -13,12 +13,11 @@ class App extends Component {
     };
   }
 
-  profileDataUrl = "https://my-json-server.typicode.com/karthikJagadeesh/fake-chat-api/profile";
-  friendDataUrl = "https://my-json-server.typicode.com/karthikJagadeesh/fake-chat-api/friends/";
+  // profileDataUrl = "https://my-json-server.typicode.com/karthikJagadeesh/fake-chat-api/profile";
+  // friendDataUrl = "https://my-json-server.typicode.com/karthikJagadeesh/fake-chat-api/friends/";
 
-  // profileDataUrl = `
-  // http://localhost:7070/profile
-  // `;
+  profileDataUrl = "http://localhost:7070/profile";
+  friendDataUrl = "http://localhost:7070/friends/";
 
   wrapperStyle = {
     display: "grid",
