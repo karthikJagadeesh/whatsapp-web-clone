@@ -33,8 +33,10 @@ class ChatMessageInput extends Component {
   };
 
   handleInputKeyDown = event => {
-    if (event.keyCode == 13) {
-      this.props.handleChatSend(this.state.value);
+    const enterKeyCode = 13;
+    const { handleChatSend } = this.props;
+    if (event.keyCode === enterKeyCode) {
+      handleChatSend(this.state.value);
       this.setState({ value: "" });
     }
   };

@@ -9,7 +9,7 @@ class ChatBox extends Component {
   constructor(context) {
     super(context);
     this.state = {
-      message: ""
+      messages: []
     };
   }
 
@@ -18,9 +18,11 @@ class ChatBox extends Component {
     gridTemplateRows: "10% 80% 10%",
     height: "94vh"
   };
+  wrapperChatBoxDisplay = {};
 
   handleChatSend = message => {
-    this.setState({ message });
+    const freshMessages = [message, ...this.state.messages];
+    this.setState({ messages: freshMessages });
   };
 
   render() {
@@ -32,9 +34,9 @@ class ChatBox extends Component {
             <ChatBoxHeader chatBoxContext={chatBoxContext} />
           ) : null}
         </Div>
-        <Div>
+        <Div css={this.wrapperChatBoxDisplay}>
           {chatBoxContext ? (
-            <ChatBoxDisplay message={this.state.message} />
+            <ChatBoxDisplay messages={this.state.messages} />
           ) : null}
         </Div>
         <Div>
