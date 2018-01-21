@@ -22,7 +22,7 @@ class ChatBox extends Component {
 
   handleChatSend = message => {
     const freshMessages = [message, ...this.state.messages];
-    this.setState({ messages: freshMessages });
+    if (message) this.setState({ messages: freshMessages });
   };
 
   render() {

@@ -7,17 +7,17 @@ const ChatBoxDisplay = ({ messages }) => {
     height: "100%",
     overflowY: "scroll",
     display: "flex",
-    flexDirection: "column-reverse",
-    paddingBottom: "50px"
+    alignItems: "flex-end",
+    flexFlow: "column-reverse"
   };
   const messagesListWrapperStyle = {
     padding: "2px 70px",
-    display: "grid",
-    templateGridColumns: "1fr"
+    maxWidth: "60%"
+    // display: grid",
+    // templateGridColumns: "1fr"
   };
   const messageStyle = {
-    maxWidth: "70%",
-    justifySelf: "end",
+    // justifySelf: "end",
     wordWrap: "break-word",
     overflow: "hidden",
     border: "1px solid rgba(0, 0, 0, 0.1)",
