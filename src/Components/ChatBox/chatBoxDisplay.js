@@ -51,7 +51,7 @@ const ChatBoxDisplay = ({ messages, chatlog: chatlog = [] }) => {
       messageStyle = messageStyleRight;
     }
     return (
-      <Div css={messagesListWrapperStyle}>
+      <Div key={msg.message_id} css={messagesListWrapperStyle}>
         <Div css={messageStyle}>{msg.text}</Div>
       </Div>
     );

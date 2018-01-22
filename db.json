@@ -116,17 +116,20 @@
           "text":
             "Or maybe not, let me check logistics and call you. Give me sometime",
           "timestamp": "10:03 AM",
-          "side": "left"
+          "side": "left",
+          "message_id": 1
         },
         {
           "text": "I believe they must have misplaced it elsewhere?!",
           "timestamp": "10:02 AM",
-          "side": "left"
+          "side": "left",
+          "message_id": 2
         },
         {
           "text": "Did you recieve the package I sent you the other day?",
           "timestamp": "10:00 AM",
-          "side": "left"
+          "side": "left",
+          "message_id": 3
         }
       ]
     },
