@@ -122,7 +122,7 @@ arr-union@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/arr-union/-/arr-union-3.1.0.tgz#e39b09aea9def866a8f206e288af63919bae39c4"
 
-array-find-index@^1.0.1:
+array-find-index@1.0.2, array-find-index@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/array-find-index/-/array-find-index-1.0.2.tgz#df010aa1287e164bbda6f9723b0a96a1ec4187a1"
 
@@ -745,7 +745,7 @@ babel-register@^6.26.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.15"
 
-babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0:
+babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   dependencies:
@@ -1246,6 +1246,14 @@ constants-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/constants-browserify/-/constants-browserify-1.0.0.tgz#c20b96d8c617748aaf1c16021760cd27fcb8cb75"
 
+contain-by-screen@^1.0.4:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/contain-by-screen/-/contain-by-screen-1.2.0.tgz#618f34b547781f4c59f103e7506abfbc141f6136"
+  dependencies:
+    babel-runtime "^6.23.0"
+    envify "^4.1.0"
+    lodash "^4.6.1"
+
 content-disposition@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/content-disposition/-/content-disposition-0.5.2.tgz#0cf68bb9ddf5f2be7961c3a85178cb85dba78cb4"
@@ -1607,6 +1615,13 @@ entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
+envify@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/envify/-/envify-4.1.0.tgz#f39ad3db9d6801b4e6b478b61028d3f0b6819f7e"
+  dependencies:
+    esprima "^4.0.0"
+    through "~2.3.4"
+
 errno@^0.1.3:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/errno/-/errno-0.1.6.tgz#c386ce8a6283f14fc09563b71560908c9bf53026"
@@ -1706,6 +1721,10 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
+esprima@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.0.tgz#4499eddcd1110e0b218bacf2fa7f7f59f55ca804"
+
 esrecurse@^4.1.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/esrecurse/-/esrecurse-4.2.0.tgz#fa9568d98d3823f9a41d91e902dcab9ea6e5b163"
@@ -1731,6 +1750,10 @@ event-emitter@~0.3.5:
   dependencies:
     d "1"
     es5-ext "~0.10.14"
+
+event-listener-with-options@^1.0.2:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/event-listener-with-options/-/event-listener-with-options-1.0.3.tgz#e8e80cae4f69ef86c18cdeda2c9f162b680d0577"
 
 eventemitter3@1.x.x:
   version "1.2.0"
@@ -2752,6 +2775,20 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+kefir-bus@^2.2.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/kefir-bus/-/kefir-bus-2.2.1.tgz#481f18ba274fc5580175db5cc67ce7a8228ea250"
+
+kefir-stopper@^2.1.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/kefir-stopper/-/kefir-stopper-2.1.1.tgz#9bb4504371b90beeb0b654b009317e7f8ee6dc38"
+
+kefir@^3.5.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/kefir/-/kefir-3.8.1.tgz#6b202bc78c01ed4aa1c329e885b43631bf62ec0c"
+  dependencies:
+    symbol-observable "1.0.4"
+
 killable@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/killable/-/killable-1.0.0.tgz#da8b84bd47de5395878f95d64d02f2449fe05e6b"
@@ -2843,7 +2880,7 @@ lodash-es@^4.2.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.4.tgz#dcc1d7552e150a0640073ba9cb31d70f032950e7"
 
-lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.5.1:
+lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.5.1, lodash@^4.6.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -3617,6 +3654,18 @@ react-dom@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
+react-float-anchor@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-float-anchor/-/react-float-anchor-2.0.1.tgz#b52c17ad448ba8e8506ce066605c94471246b80a"
+  dependencies:
+    babel-runtime "^6.23.0"
+    contain-by-screen "^1.0.4"
+    event-listener-with-options "^1.0.2"
+    kefir "^3.5.1"
+    kefir-bus "^2.2.0"
+    lodash "^4.6.1"
+    prop-types "^15.6.0"
+
 react-html-attributes@^1.3.0:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/react-html-attributes/-/react-html-attributes-1.4.1.tgz#97b5ec710da68833598c8be6f89ac436216840a5"
@@ -3632,6 +3681,18 @@ react-icons@^2.2.7:
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-2.2.7.tgz#d7860826b258557510dac10680abea5ca23cf650"
   dependencies:
     react-icon-base "2.1.0"
+
+react-menu-list@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-menu-list/-/react-menu-list-5.0.0.tgz#896b3e8070b8b16e37a22a8a8e07237da89defb7"
+  dependencies:
+    array-find-index "1.0.2"
+    babel-runtime "^6.23.0"
+    kefir "^3.5.1"
+    kefir-bus "^2.2.0"
+    kefir-stopper "^2.1.0"
+    prop-types "^15.6.0"
+    react-float-anchor "^2.0.1"
 
 react-redux@^5.0.6:
   version "5.0.6"
@@ -4296,6 +4357,10 @@ svg-tag-names@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/svg-tag-names/-/svg-tag-names-1.1.1.tgz#9641b29ef71025ee094c7043f7cdde7d99fbd50a"
 
+symbol-observable@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.0.4.tgz#29bf615d4aa7121bdd898b22d4b3f9bc4e2aa03d"
+
 symbol-observable@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.1.0.tgz#5c68fd8d54115d9dfb72a84720549222e8db9b32"
@@ -4325,7 +4390,7 @@ tar@^2.2.1:
     fstream "^1.0.2"
     inherits "2"
 
-through@^2.3.8:
+through@^2.3.8, through@~2.3.4:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 

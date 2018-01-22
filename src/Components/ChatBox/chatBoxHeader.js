@@ -68,7 +68,15 @@ const ChatBoxHeader = ({ currentFriend, chatBoxContext }) => {
         <Attach />
       </Div>
       <Div css={menuWrapperStyle}>
-        <Menu />
+        <Menu
+          labels={[
+            "Contact Info",
+            "Select Messages",
+            "Cancel Mute",
+            "Clear messages",
+            "Delete chat"
+          ]}
+        />
       </Div>
     </Div>
   );

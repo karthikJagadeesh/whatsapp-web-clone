@@ -40,7 +40,8 @@ class ChatMessageInput extends Component {
         handleChatSend({
           text: this.state.value,
           timestamp: new Date(),
-          side: "right"
+          side: "right",
+          message_id: Math.round(Math.random() * Math.pow(10, 10)) // dummy placeholder
         });
       }
       this.setState({ value: "" });
