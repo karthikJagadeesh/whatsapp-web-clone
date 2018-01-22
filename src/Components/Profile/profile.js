@@ -16,7 +16,7 @@ class Profile extends Component {
   wrapperStyle = {
     display: "grid",
     gridTemplateRows: "10% 6% 84%",
-    height: "94vh",
+    height: "100vh",
     borderRight: "1px solid rgba(0, 0, 0, 0.05)"
   };
 

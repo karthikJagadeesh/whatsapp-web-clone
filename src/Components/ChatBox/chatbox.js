@@ -16,7 +16,7 @@ class ChatBox extends Component {
   wrapperStyle = {
     display: "grid",
     gridTemplateRows: "10% 80% 10%",
-    height: "94vh"
+    height: "100vh"
   };
   wrapperChatBoxDisplay = {};
 
@@ -27,11 +27,15 @@ class ChatBox extends Component {
 
   render() {
     const { chatBoxContext } = this.props;
+    const { handleSearchClick } = this.props;
     return (
       <Div css={this.wrapperStyle}>
         <Div>
           {chatBoxContext ? (
-            <ChatBoxHeader chatBoxContext={chatBoxContext} />
+            <ChatBoxHeader
+              chatBoxContext={chatBoxContext}
+              handleSearchClick={handleSearchClick}
+            />
           ) : null}
         </Div>
         <Div css={this.wrapperChatBoxDisplay}>
