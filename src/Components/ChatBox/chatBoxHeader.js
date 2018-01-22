@@ -24,7 +24,11 @@ const Name = ({ name }) => {
   );
 };
 
-const ChatBoxHeader = ({ currentFriend, chatBoxContext }) => {
+const ChatBoxHeader = ({
+  currentFriend,
+  chatBoxContext,
+  handleSearchClick
+}) => {
   const wrapperStyle = {
     background: "#eee",
     padding: "0px 15px",
@@ -62,7 +66,7 @@ const ChatBoxHeader = ({ currentFriend, chatBoxContext }) => {
         <Name name={chatBoxContext.name} />
       </Div>
       <Div css={searchWrapperStyle}>
-        <Search />
+        <Search handleSearchClick={handleSearchClick} />
       </Div>
       <Div css={attachWrapperStyle}>
         <Attach />

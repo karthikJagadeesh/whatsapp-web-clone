@@ -5,7 +5,7 @@ const ChatBoxDisplay = ({ messages, chatlog: chatlog = [] }) => {
   const wrapperStyle = {
     background: "#E4DED3",
     height: "100%",
-    overflowY: "scroll",
+    overflowY: "auto",
     display: "flex",
     flexFlow: "column-reverse"
   };

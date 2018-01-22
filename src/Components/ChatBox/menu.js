@@ -5,7 +5,9 @@ import MdMoveVert from "react-icons/lib/md/more-vert";
 
 const MenuItems = ({ labels }) => {
   const wrapperStyle = {
-    padding: "0px 20px"
+    padding: "0px 20px",
+    width: "140px",
+    textAlign: "left"
   };
   const wrapperMenuItemStyle = {
     padding: "10px 0px"
@@ -35,7 +37,9 @@ const Menu = ({ labels }) => {
   const menuButtonStyle = {
     border: "none",
     borderRadius: "50%",
-    cursor: "pointer"
+    cursor: "pointer",
+    outline: "none",
+    background: "transparent"
   };
   return (
     <Div css={wrapperButtonStyle}>
