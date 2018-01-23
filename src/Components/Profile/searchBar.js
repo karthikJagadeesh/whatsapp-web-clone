@@ -38,7 +38,7 @@ class SearchBar extends Component {
         <Input
           css={this.searchBarStyle}
           type="text"
-          placeholder="Search or start new chat"
+          placeholder={this.props.placeholder || "Search or start new chat"}
           autofocus
           onChange={this.props.handleInputChange}
           value={this.props.searchBarValue}

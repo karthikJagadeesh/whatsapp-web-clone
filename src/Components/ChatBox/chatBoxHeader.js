@@ -35,7 +35,8 @@ const ChatBoxHeader = ({
     height: "100%",
     display: "grid",
     gridTemplateColumns: "85% 5% 5% 5%",
-    boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.05)"
+    boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.05)",
+    borderRight: "1px solid rgba(0, 0, 0, 0.05)"
   };
 
   const pictureWrapperStyle = {

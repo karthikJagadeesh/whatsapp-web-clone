@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Div } from "glamorous";
 import "babel-polyfill";
 
-import { Profile } from "./Profile/profile";
-import { ChatBox } from "./ChatBox/chatbox";
+import { Profile } from "./Profile";
+import { ChatBox } from "./ChatBox";
 import { ContextBox } from "./ContextBox/searchContextBox";
 
 class App extends Component {
@@ -32,15 +32,12 @@ class App extends Component {
     ...this.wrapperStyleWithContextBox,
     gridTemplateColumns: "3fr 7fr"
   };
-
   friendsListStyle = {
     background: "#eee"
   };
-
   chatBoxStyle = {
     background: "#F7F9FA"
   };
-
   contextBoxStyle = {};
 
   handleSearchClick = _ => {
@@ -70,11 +67,9 @@ class App extends Component {
   }
 
   render() {
-    let wrapperStyle;
+    let wrapperStyle = this.wrapperStyleWithoutContextBox;
     if (this.state.isContextBoxActive) {
       wrapperStyle = this.wrapperStyleWithContextBox;
-    } else {
-      wrapperStyle = this.wrapperStyleWithoutContextBox;
     }
     return (
       <Div css={wrapperStyle}>
