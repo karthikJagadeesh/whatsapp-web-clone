@@ -41,7 +41,10 @@ class App extends Component {
   contextBoxStyle = {};
 
   handleSearchClick = _ => {
-    this.setState({ isContextBoxActive: !this.state.isContextBoxActive });
+    this.setState({ isContextBoxActive: true });
+  };
+  handleCancelClick = _ => {
+    this.setState({ isContextBoxActive: false });
   };
 
   handleListItemClick = ({ currentTarget }) => {
@@ -88,7 +91,7 @@ class App extends Component {
         </Div>
         {this.state.isContextBoxActive ? (
           <Div css={this.contextBoxStyle}>
-            <ContextBox />
+            <ContextBox handleCancelClick={this.handleCancelClick} />
           </Div>
         ) : null}
       </Div>
