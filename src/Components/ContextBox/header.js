@@ -2,7 +2,7 @@ import React from "react";
 import { Div } from "glamorous";
 import MdCancel from "react-icons/lib/md/cancel";
 
-const Header = _ => {
+const Header = ({ handleCancelClick }) => {
   const wrapperStyle = {
     height: "100%",
     background: "#eee",
@@ -11,7 +11,10 @@ const Header = _ => {
   };
   const wrapperCancelButtonStyle = {
     alignSelf: "center",
-    justifySelf: "center"
+    justifySelf: "center",
+    ":hover": {
+      cursor: "pointer"
+    }
   };
   const wrapperHeadingStyle = {
     ...wrapperCancelButtonStyle,
@@ -19,7 +22,7 @@ const Header = _ => {
   };
   return (
     <Div css={wrapperStyle}>
-      <Div css={wrapperCancelButtonStyle}>
+      <Div css={wrapperCancelButtonStyle} onClick={handleCancelClick}>
         <MdCancel size={30} color="#666" />
       </Div>
       <Div css={wrapperHeadingStyle}>Search Messages</Div>

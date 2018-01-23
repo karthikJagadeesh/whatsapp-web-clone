@@ -4,7 +4,7 @@ import { Div } from "glamorous";
 import { Header } from "./header";
 import { SearchBar } from "../Profile/searchBar";
 
-const ContextBox = _ => {
+const ContextBox = ({ handleCancelClick }) => {
   const wrapperStyle = {
     height: "100%",
     display: "grid",
@@ -20,7 +20,7 @@ const ContextBox = _ => {
   return (
     <Div css={wrapperStyle}>
       <Div css={wrapperHeaderStyle}>
-        <Header />
+        <Header handleCancelClick={handleCancelClick} />
       </Div>
       <Div css={wrapperSearchBarStyle}>
         <SearchBar placeholder={"Search..."} />
