@@ -7,7 +7,7 @@ const NameAndLastChat = ({ name, lastChat }) => {
     paddingLeft: "10px"
   };
   const lastChatStyle = {
-    width: "240px",
+    width: "260px",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
     overflow: "hidden",
@@ -74,10 +74,10 @@ const FriendsListItem = ({...props, picture: picture = ""}) => {
 
   const imageStyle = {
     borderRadius: "50%",
-    width: "85%",
+    width: "70%",
     height: "70%",
     alignSelf: "center",
-    justifySelf: "end"
+    justifySelf: "center"
   };
 
   const friendProfilePicturePath = path.join("../../../", picture);

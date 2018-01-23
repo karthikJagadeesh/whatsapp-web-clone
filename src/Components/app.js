@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Div } from "glamorous";
+import "babel-polyfill";
 
 import { Profile } from "./Profile/profile";
 import { ChatBox } from "./ChatBox/chatbox";

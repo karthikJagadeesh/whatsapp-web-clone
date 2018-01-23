@@ -9,7 +9,6 @@ import { ProfileMenu } from "./profileMenu";
 const ProfileHeader = props => {
   const wrapperStyle = {
     background: "#eee",
-    // padding: "0px 15px",
     height: "100%",
     display: "grid",
     gridTemplateColumns: "55% 15% 15% 15%"

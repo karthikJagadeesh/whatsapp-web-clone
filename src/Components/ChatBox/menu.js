@@ -20,7 +20,7 @@ const MenuItems = ({ labels }) => {
   return (
     <Div css={wrapperStyle}>
       {labels.map(label => (
-        <MenuItem style={wrapperMenuItemStyle}>
+        <MenuItem key={label} style={wrapperMenuItemStyle}>
           <Label css={menuItemStyle}>{label}</Label>
         </MenuItem>
       ))}

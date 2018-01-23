@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Div, Input } from "glamorous";
-import "babel-polyfill";
 
 class SearchBar extends Component {
   constructor(context) {

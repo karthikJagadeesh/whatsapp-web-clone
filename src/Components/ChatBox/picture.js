@@ -13,7 +13,7 @@ const Picture = ({ currentFriend: currentFriend = "" }) => {
   const wrapperStyle = {
     display: "grid",
     gridTemplateColumns: "100%",
-    width: "50px",
+    width: "60px",
     height: "100%"
   };
 
