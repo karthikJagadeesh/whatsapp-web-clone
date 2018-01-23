@@ -4,7 +4,7 @@ import { Div } from "glamorous";
 import { Header } from "./header";
 import { SearchBar } from "../Profile/searchBar";
 import { SearchResults } from "./searchResults";
-//messagesLog
+
 class ContextBox extends Component {
   constructor(context) {
     super(context);
@@ -47,7 +47,11 @@ class ContextBox extends Component {
           />
         </Div>
         <Div css={this.wrapperSearchResults}>
-          <SearchResults name={this.props.name} />
+          <SearchResults
+            name={this.props.name}
+            searchValue={this.state.value}
+            messagesLog={this.props.messagesLog}
+          />
         </Div>
       </Div>
     );
