@@ -4,7 +4,7 @@ import "babel-polyfill";
 
 import { Profile } from "./Profile";
 import { ChatBox } from "./ChatBox";
-import { ContextBox } from "./ContextBox/searchContextBox";
+import { ContextBox } from "./ContextBox/";
 
 class App extends Component {
   constructor(context) {
@@ -94,6 +94,7 @@ class App extends Component {
             <ContextBox
               handleCancelClick={this.handleCancelClick}
               name={this.state.chatBoxContext.name}
+              messagesLog={this.state.chatBoxContext.chatlog}
             />
           </Div>
         ) : null}
