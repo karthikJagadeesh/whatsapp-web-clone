@@ -17,7 +17,7 @@ const Header = ({ handleCancelClick }) => {
     }
   };
   const wrapperHeadingStyle = {
-    ...wrapperCancelButtonStyle,
+    alignSelf: "center",
     justifySelf: "start"
   };
   return (

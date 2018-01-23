@@ -91,7 +91,10 @@ class App extends Component {
         </Div>
         {this.state.isContextBoxActive ? (
           <Div css={this.contextBoxStyle}>
-            <ContextBox handleCancelClick={this.handleCancelClick} />
+            <ContextBox
+              handleCancelClick={this.handleCancelClick}
+              name={this.state.chatBoxContext.name}
+            />
           </Div>
         ) : null}
       </Div>
