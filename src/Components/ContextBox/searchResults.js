@@ -41,25 +41,35 @@ const SearchResults = ({ name, searchValue, messagesLog }) => {
       .filter(({ text }) =>
         text.toLowerCase().includes(searchValue.toLowerCase().trim())
       )
-      .map(({ text }) => {
-        const afterSplit = text.toLowerCase().split(searchValue.toLowerCase());
+      .map(msg => {
+        const afterSplit = msg.text
+          .toLowerCase()
+          .split(searchValue.toLowerCase());
 
         const highlightedResult = [];
         afterSplit.forEach((text, index) => {
           if (index % 2 === 0 && index) {
             highlightedResult.push(
-              <Span css={highlightValue}>{searchValue}</Span>
+              <Span key={text + index} css={highlightValue}>
+                {searchValue}
+              </Span>
             );
           }
           if (index === 1) {
             highlightedResult.push(
-              <Span css={highlightValue}>{searchValue}</Span>
+              <Span key={text + index} css={highlightValue}>
+                {searchValue}
+              </Span>
             );
           }
           highlightedResult.push(text);
         });
 
-        return <P css={resultsStyle}>{highlightedResult}</P>;
+        return (
+          <P key={msg.message_id} css={resultsStyle}>
+            {highlightedResult}
+          </P>
+        );
       });
 
     if (resultMessagesLog.length > 0) {
