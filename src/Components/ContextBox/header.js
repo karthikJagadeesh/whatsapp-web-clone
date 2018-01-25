@@ -2,7 +2,7 @@ import React from "react";
 import { Div } from "glamorous";
 import MdCancel from "react-icons/lib/md/cancel";
 
-const Header = ({ handleCancelClick }) => {
+const Header = ({ handleCancelClick, text }) => {
   const wrapperStyle = {
     height: "100%",
     background: "#eee",
@@ -25,7 +25,7 @@ const Header = ({ handleCancelClick }) => {
       <Div css={wrapperCancelButtonStyle} onClick={handleCancelClick}>
         <MdCancel size={30} color="#666" />
       </Div>
-      <Div css={wrapperHeadingStyle}>Search Messages</Div>
+      <Div css={wrapperHeadingStyle}>{text}</Div>
     </Div>
   );
 };

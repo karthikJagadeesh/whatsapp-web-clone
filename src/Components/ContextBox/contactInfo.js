@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import { Div } from "glamorous";
-// import MdInsertEmoticon from "react-icons/lib/md/insert-emoticon";
 
-const ContactInfo = _ => {
+import { Header } from "./header";
+import { ContactInfoResults } from "./contactInfoResults";
+
+const ContactInfo = ({ handleCancelClick, picturePath, name }) => {
   const wrapperStyle = {
-    background: "red",
-    height: "100%"
+    height: "100%",
+    display: "grid",
+    gridTemplateRows: "1fr 9fr",
+    borderLeft: "1px solid rgba(0, 0, 0, 0.05)",
+    background: "#FFF"
   };
-  return <Div css={wrapperStyle} />;
+  return (
+    <Div css={wrapperStyle}>
+      <Header text={"Contact Info"} handleCancelClick={handleCancelClick} />
+      <ContactInfoResults picturePath={picturePath} name={name} />
+    </Div>
+  );
 };
 
 export { ContactInfo };

@@ -16,7 +16,7 @@ class ContextBox extends Component {
   wrapperStyle = {
     height: "100%",
     display: "grid",
-    gridTemplateRows: "10% 6% 84%",
+    gridTemplateRows: "1fr 0.6fr 8.4fr",
     borderLeft: "1px solid rgba(0, 0, 0, 0.05)",
     background: "#FFF"
   };
@@ -35,14 +35,30 @@ class ContextBox extends Component {
   };
 
   contextBoxDisplay = _ => {
-    const { isContactInfoContextBoxActive } = this.props;
+    const {
+      isContactInfoContextBoxActive,
+      handleCancelClick,
+      messagesLog,
+      name,
+      picturePath
+    } = this.props;
+
     if (isContactInfoContextBoxActive) {
-      return <ContactInfo />;
+      return (
+        <ContactInfo
+          handleCancelClick={handleCancelClick}
+          picturePath={picturePath}
+          name={name}
+        />
+      );
     } else {
       return (
         <Div css={this.wrapperStyle}>
           <Div css={this.wrapperHeaderStyle}>
-            <Header handleCancelClick={this.props.handleCancelClick} />
+            <Header
+              text={"Search Messages"}
+              handleCancelClick={handleCancelClick}
+            />
           </Div>
           <Div css={this.wrapperSearchBarStyle}>
             <SearchBar
@@ -53,9 +69,9 @@ class ContextBox extends Component {
           </Div>
           <Div css={this.wrapperSearchResults}>
             <SearchResults
-              name={this.props.name}
+              name={name}
               searchValue={this.state.value}
-              messagesLog={this.props.messagesLog}
+              messagesLog={messagesLog}
             />
           </Div>
         </Div>

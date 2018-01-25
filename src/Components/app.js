@@ -112,6 +112,7 @@ class App extends Component {
               handleCancelClick={this.handleCancelClick}
               name={this.state.chatBoxContext.name}
               messagesLog={this.state.chatBoxContext.chatlog}
+              picturePath={this.state.chatBoxContext.picture}
             />
           </Div>
         ) : null}
