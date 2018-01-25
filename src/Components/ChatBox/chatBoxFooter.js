@@ -1,30 +1,30 @@
-import React from "react";
+import React, { Component } from "react";
 import { Div } from "glamorous";
 
 import { SmilieBoard } from "./smilieBoard";
 import { ChatMessageInput } from "./chatMessageInput";
-import { ChatAudioMessage } from "./chatAudioMessage";
+import { ChatAudioOrSend } from "./chatAudioOrSend";
 
-const ChatBoxFooter = ({ isInitialScreen, handleChatSend }) => {
-  if (isInitialScreen) {
-    const wrapperStyle = {
-      height: "100%",
-      width: "100%",
-      display: "grid"
+class ChatBoxFooter extends Component {
+  constructor(context) {
+    super(context);
+    this.state = {
+      inputValue: ""
     };
-    const greenBarStyle = {
-      height: "10%",
-      background: "#58e870",
-      alignSelf: "end"
-    };
-    return (
-      <Div css={wrapperStyle}>
-        <Div css={greenBarStyle} />
-      </Div>
-    );
   }
 
-  const wrapperStyle = {
+  greenBarWrapperStyle = {
+    height: "100%",
+    width: "100%",
+    display: "grid"
+  };
+  greenBarStyle = {
+    height: "10%",
+    background: "#58e870",
+    alignSelf: "end"
+  };
+
+  wrapperStyle = {
     background: "#F5F1EE",
     padding: "0px 15px",
     height: "100%",
@@ -32,19 +32,19 @@ const ChatBoxFooter = ({ isInitialScreen, handleChatSend }) => {
     gridTemplateColumns: "5% 90% 5%"
   };
 
-  const smilieBoardWrapperStyle = {
+  smilieBoardWrapperStyle = {
     alignSelf: "center",
     justifySelf: "center",
     ":hover": {
       cursor: "pointer"
     }
   };
-  const chatMessageWrapperStyle = {
+  chatMessageWrapperStyle = {
     alignSelf: "center",
     justifySelf: "center",
     width: "100%"
   };
-  const chatAudioMessageWrapperStyle = {
+  chatAudioMessageWrapperStyle = {
     alignSelf: "center",
     justifySelf: "center",
     ":hover": {
@@ -52,19 +52,53 @@ const ChatBoxFooter = ({ isInitialScreen, handleChatSend }) => {
     }
   };
 
-  return (
-    <Div css={wrapperStyle}>
-      <Div css={smilieBoardWrapperStyle}>
-        <SmilieBoard />
-      </Div>
-      <Div css={chatMessageWrapperStyle}>
-        <ChatMessageInput handleChatSend={handleChatSend} />
-      </Div>
-      <Div css={chatAudioMessageWrapperStyle}>
-        <ChatAudioMessage />
-      </Div>
-    </Div>
-  );
-};
+  handleInputChange = ({ target }) => {
+    this.setState({ inputValue: target.value });
+  };
+
+  handleInputKeyDown = event => {
+    const enterKeyCode = 13;
+    const { handleChatSend } = this.props;
+    if (event.keyCode === enterKeyCode) {
+      if (this.state.inputValue) {
+        handleChatSend({
+          text: this.state.inputValue,
+          timestamp: new Date(),
+          side: "right",
+          message_id: Math.round(Math.random() * Math.pow(10, 10)) // dummy placeholder
+        });
+      }
+      this.setState({ inputValue: "" });
+    }
+  };
+
+  render() {
+    if (this.props.isInitialScreen) {
+      return (
+        <Div css={this.greenBarWrapperStyle}>
+          <Div css={this.greenBarStyle} />
+        </Div>
+      );
+    } else {
+      return (
+        <Div css={this.wrapperStyle}>
+          <Div css={this.smilieBoardWrapperStyle}>
+            <SmilieBoard />
+          </Div>
+          <Div css={this.chatMessageWrapperStyle}>
+            <ChatMessageInput
+              inputValue={this.state.inputValue}
+              handleInputChange={this.handleInputChange}
+              handleInputKeyDown={this.handleInputKeyDown}
+            />
+          </Div>
+          <Div css={this.chatAudioMessageWrapperStyle}>
+            <ChatAudioOrSend inputValue={this.state.inputValue} />
+          </Div>
+        </Div>
+      );
+    }
+  }
+}
 
 export { ChatBoxFooter };

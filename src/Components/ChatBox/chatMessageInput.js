@@ -5,9 +5,6 @@ import MdInsertEmoticon from "react-icons/lib/md/insert-emoticon";
 class ChatMessageInput extends Component {
   constructor(context) {
     super(context);
-    this.state = {
-      value: ""
-    };
   }
 
   inputStyle = {
@@ -28,26 +25,6 @@ class ChatMessageInput extends Component {
     textAlign: "center"
   };
 
-  handleInputChange = ({ target }) => {
-    this.setState({ value: target.value });
-  };
-
-  handleInputKeyDown = event => {
-    const enterKeyCode = 13;
-    const { handleChatSend } = this.props;
-    if (event.keyCode === enterKeyCode) {
-      if (this.state.value) {
-        handleChatSend({
-          text: this.state.value,
-          timestamp: new Date(),
-          side: "right",
-          message_id: Math.round(Math.random() * Math.pow(10, 10)) // dummy placeholder
-        });
-      }
-      this.setState({ value: "" });
-    }
-  };
-
   render() {
     return (
       <Div css={this.wrapperStyle}>
@@ -55,9 +32,9 @@ class ChatMessageInput extends Component {
           css={this.inputStyle}
           type="text"
           placeholder="Type a message"
-          value={this.state.value}
-          onChange={this.handleInputChange}
-          onKeyDown={this.handleInputKeyDown}
+          value={this.props.inputValue}
+          onChange={this.props.handleInputChange}
+          onKeyDown={this.props.handleInputKeyDown}
         />
       </Div>
     );
