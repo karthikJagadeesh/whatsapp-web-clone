@@ -4,6 +4,7 @@ import { Div } from "glamorous";
 import { Header } from "./header";
 import { SearchBar } from "../Profile/searchBar";
 import { SearchResults } from "./searchResults";
+import { ContactInfo } from "./contactInfo";
 
 class ContextBox extends Component {
   constructor(context) {
@@ -33,28 +34,37 @@ class ContextBox extends Component {
     this.setState({ value: target.value });
   };
 
+  contextBoxDisplay = _ => {
+    const { isContactInfoContextBoxActive } = this.props;
+    if (isContactInfoContextBoxActive) {
+      return <ContactInfo />;
+    } else {
+      return (
+        <Div css={this.wrapperStyle}>
+          <Div css={this.wrapperHeaderStyle}>
+            <Header handleCancelClick={this.props.handleCancelClick} />
+          </Div>
+          <Div css={this.wrapperSearchBarStyle}>
+            <SearchBar
+              placeholder={"Search..."}
+              handleInputChange={this.handleInputChange}
+              searchBarValue={this.state.value}
+            />
+          </Div>
+          <Div css={this.wrapperSearchResults}>
+            <SearchResults
+              name={this.props.name}
+              searchValue={this.state.value}
+              messagesLog={this.props.messagesLog}
+            />
+          </Div>
+        </Div>
+      );
+    }
+  };
+
   render() {
-    return (
-      <Div css={this.wrapperStyle}>
-        <Div css={this.wrapperHeaderStyle}>
-          <Header handleCancelClick={this.props.handleCancelClick} />
-        </Div>
-        <Div css={this.wrapperSearchBarStyle}>
-          <SearchBar
-            placeholder={"Search..."}
-            handleInputChange={this.handleInputChange}
-            searchBarValue={this.state.value}
-          />
-        </Div>
-        <Div css={this.wrapperSearchResults}>
-          <SearchResults
-            name={this.props.name}
-            searchValue={this.state.value}
-            messagesLog={this.props.messagesLog}
-          />
-        </Div>
-      </Div>
-    );
+    return this.contextBoxDisplay();
   }
 }
 

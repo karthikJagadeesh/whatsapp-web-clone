@@ -26,8 +26,12 @@ class ChatBox extends Component {
   };
 
   render() {
-    const { chatBoxContext } = this.props;
-    const { handleSearchClick } = this.props;
+    const {
+      chatBoxContext,
+      handleSearchClick,
+      friendChatHeaderClick
+    } = this.props;
+
     return (
       <Div css={this.wrapperStyle}>
         <Div>
@@ -35,6 +39,7 @@ class ChatBox extends Component {
             <ChatBoxHeader
               chatBoxContext={chatBoxContext}
               handleSearchClick={handleSearchClick}
+              friendChatHeaderClick={friendChatHeaderClick}
             />
           ) : null}
         </Div>
