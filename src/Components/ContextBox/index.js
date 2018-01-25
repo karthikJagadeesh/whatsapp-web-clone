@@ -4,6 +4,7 @@ import { Div } from "glamorous";
 import { Header } from "./header";
 import { SearchBar } from "../Profile/searchBar";
 import { SearchResults } from "./searchResults";
+import { ContactInfo } from "./contactInfo";
 
 class ContextBox extends Component {
   constructor(context) {
@@ -15,7 +16,7 @@ class ContextBox extends Component {
   wrapperStyle = {
     height: "100%",
     display: "grid",
-    gridTemplateRows: "10% 6% 84%",
+    gridTemplateRows: "1fr 0.6fr 8.4fr",
     borderLeft: "1px solid rgba(0, 0, 0, 0.05)",
     background: "#FFF"
   };
@@ -33,28 +34,53 @@ class ContextBox extends Component {
     this.setState({ value: target.value });
   };
 
+  contextBoxDisplay = _ => {
+    const {
+      isContactInfoContextBoxActive,
+      handleCancelClick,
+      messagesLog,
+      name,
+      picturePath
+    } = this.props;
+
+    if (isContactInfoContextBoxActive) {
+      return (
+        <ContactInfo
+          handleCancelClick={handleCancelClick}
+          picturePath={picturePath}
+          name={name}
+        />
+      );
+    } else {
+      return (
+        <Div css={this.wrapperStyle}>
+          <Div css={this.wrapperHeaderStyle}>
+            <Header
+              text={"Search Messages"}
+              handleCancelClick={handleCancelClick}
+            />
+          </Div>
+          <Div css={this.wrapperSearchBarStyle}>
+            <SearchBar
+              placeholder={"Search..."}
+              handleInputChange={this.handleInputChange}
+              searchBarValue={this.state.value}
+            />
+          </Div>
+          <Div css={this.wrapperSearchResults}>
+            <SearchResults
+              name={name}
+              searchValue={this.state.value}
+              messagesLog={messagesLog}
+            />
+          </Div>
+        </Div>
+      );
+    }
+  };
+
   render() {
-    return (
-      <Div css={this.wrapperStyle}>
-        <Div css={this.wrapperHeaderStyle}>
-          <Header handleCancelClick={this.props.handleCancelClick} />
-        </Div>
-        <Div css={this.wrapperSearchBarStyle}>
-          <SearchBar
-            placeholder={"Search..."}
-            handleInputChange={this.handleInputChange}
-            searchBarValue={this.state.value}
-          />
-        </Div>
-        <Div css={this.wrapperSearchResults}>
-          <SearchResults
-            name={this.props.name}
-            searchValue={this.state.value}
-            messagesLog={this.props.messagesLog}
-          />
-        </Div>
-      </Div>
-    );
+    return this.contextBoxDisplay();
   }
 }
 

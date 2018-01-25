@@ -15,7 +15,10 @@ const Name = ({ name }) => {
   };
   const labelStyle = {
     alignSelf: "center",
-    justifySelf: "start"
+    justifySelf: "start",
+    ":hover": {
+      cursor: "pointer"
+    }
   };
   return (
     <Div css={wrapperStyle}>
@@ -27,7 +30,8 @@ const Name = ({ name }) => {
 const ChatBoxHeader = ({
   currentFriend,
   chatBoxContext,
-  handleSearchClick
+  handleSearchClick,
+  friendChatHeaderClick
 }) => {
   const wrapperStyle = {
     background: "#eee",
@@ -62,7 +66,7 @@ const ChatBoxHeader = ({
   const menuWrapperStyle = { ...searchWrapperStyle };
   return (
     <Div css={wrapperStyle}>
-      <Div css={pictureWrapperStyle}>
+      <Div css={pictureWrapperStyle} onClick={friendChatHeaderClick}>
         <Picture currentFriend={chatBoxContext.picture} />
         <Name name={chatBoxContext.name} />
       </Div>

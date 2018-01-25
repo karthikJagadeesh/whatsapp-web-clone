@@ -56,19 +56,23 @@ class ChatBoxFooter extends Component {
     this.setState({ inputValue: target.value });
   };
 
+  postChatMessage = _ => {
+    const { handleChatSend } = this.props;
+    handleChatSend({
+      text: this.state.inputValue,
+      timestamp: new Date(),
+      side: "right",
+      message_id: Math.round(Math.random() * Math.pow(10, 10)) // dummy placeholder
+    });
+    this.setState({ inputValue: "" });
+  };
+
   handleInputKeyDown = event => {
     const enterKeyCode = 13;
-    const { handleChatSend } = this.props;
     if (event.keyCode === enterKeyCode) {
       if (this.state.inputValue) {
-        handleChatSend({
-          text: this.state.inputValue,
-          timestamp: new Date(),
-          side: "right",
-          message_id: Math.round(Math.random() * Math.pow(10, 10)) // dummy placeholder
-        });
+        this.postChatMessage();
       }
-      this.setState({ inputValue: "" });
     }
   };
 
@@ -93,7 +97,10 @@ class ChatBoxFooter extends Component {
             />
           </Div>
           <Div css={this.chatAudioMessageWrapperStyle}>
-            <ChatAudioOrSend inputValue={this.state.inputValue} />
+            <ChatAudioOrSend
+              inputValue={this.state.inputValue}
+              handleChatSend={this.postChatMessage}
+            />
           </Div>
         </Div>
       );

@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       profileData: {},
       chatBoxContext: null,
-      isContextBoxActive: false
+      isContextBoxActive: false,
+      isContactInfoContextBoxActive: false
     };
   }
 
@@ -40,11 +41,23 @@ class App extends Component {
   };
   contextBoxStyle = {};
 
+  friendChatHeaderClick = _ => {
+    this.setState({
+      isContactInfoContextBoxActive: true,
+      isContextBoxActive: true
+    });
+  };
   handleSearchClick = _ => {
-    this.setState({ isContextBoxActive: true });
+    this.setState({
+      isContextBoxActive: true,
+      isContactInfoContextBoxActive: false
+    });
   };
   handleCancelClick = _ => {
-    this.setState({ isContextBoxActive: false });
+    this.setState({
+      isContextBoxActive: false,
+      isContactInfoContextBoxActive: false
+    });
   };
 
   handleListItemClick = ({ currentTarget }) => {
@@ -87,14 +100,19 @@ class App extends Component {
             currentFriend={this.handleListItemClick}
             chatBoxContext={this.state.chatBoxContext}
             handleSearchClick={this.handleSearchClick}
+            friendChatHeaderClick={this.friendChatHeaderClick}
           />
         </Div>
         {this.state.isContextBoxActive ? (
           <Div css={this.contextBoxStyle}>
             <ContextBox
+              isContactInfoContextBoxActive={
+                this.state.isContactInfoContextBoxActive
+              }
               handleCancelClick={this.handleCancelClick}
               name={this.state.chatBoxContext.name}
               messagesLog={this.state.chatBoxContext.chatlog}
+              picturePath={this.state.chatBoxContext.picture}
             />
           </Div>
         ) : null}

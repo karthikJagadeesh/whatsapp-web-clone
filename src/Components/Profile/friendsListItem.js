@@ -30,7 +30,7 @@ const NameAndLastChat = ({ name, lastChat }) => {
   );
 };
 
-const FriendsListItem = ({...props, picture: picture = ""}) => {
+const FriendsListItem = ({ picture: picture = "", ...props }) => {
   const wrapperStyle = {
     borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
     background: "#fff",
@@ -64,7 +64,8 @@ const FriendsListItem = ({...props, picture: picture = ""}) => {
   };
 
   const timestampStyle = {
-    alignSelf: "start"
+    alignSelf: "start",
+    justifySelf: "center"
   };
 
   const wrapperImageStyle = {
@@ -83,7 +84,11 @@ const FriendsListItem = ({...props, picture: picture = ""}) => {
   const friendProfilePicturePath = path.join("../../../", picture);
 
   return (
-    <Div css={wrapperStyle} data-id={props.id} onClickCapture={props.handleListItemClick}>
+    <Div
+      css={wrapperStyle}
+      data-id={props.id}
+      onClickCapture={props.handleListItemClick}
+    >
       <Div css={wrapperImageStyle}>
         <Img css={imageStyle} alt="image" src={friendProfilePicturePath} />
       </Div>
