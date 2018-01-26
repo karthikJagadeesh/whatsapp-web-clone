@@ -2,13 +2,13 @@
   "profile": {
     "id": 1,
     "name": "Karthik",
-    "picture": "./assets/profile_pic.png",
+    "picture": "https://image.ibb.co/frJjww/profile_pic.jpg",
     "status": "available",
     "friends": [
       {
         "id": 2,
         "name": "Alex",
-        "picture": "./assets/friends/alex_1.jpg",
+        "picture": "https://image.ibb.co/cA2oOb/alex_1.jpg",
         "latest_timestamp": "10:00 AM",
         "lastChat":
           "Or maybe not, let me check logistics and call you. Give me sometime"
@@ -16,91 +16,91 @@
       {
         "id": 3,
         "name": "Bob",
-        "picture": "./assets/friends/bob_1.jpg",
+        "picture": "https://image.ibb.co/gSyTOb/bob_1.jpg",
         "latest_timestamp": "12:30 AM",
         "lastChat": "Alright"
       },
       {
         "id": 4,
         "name": "Luke",
-        "picture": "./assets/friends/luke_1.jpg",
+        "picture": "https://image.ibb.co/jOzeUG/luke_1.jpg",
         "latest_timestamp": "4:12 PM",
         "lastChat": "I will look into it"
       },
       {
         "id": 5,
         "name": "Bane",
-        "picture": "./assets/friends/bane_1.jpg",
+        "picture": "https://image.ibb.co/cBZPww/bane_1.jpg",
         "latest_timestamp": "7:53 PM",
         "lastChat": "Exactly my point!"
       },
       {
         "id": 6,
         "name": "Darth Vader",
-        "picture": "./assets/friends/darth_vader_1.png",
+        "picture": "https://image.ibb.co/j4Ov3b/darth_vader_1.png",
         "latest_timestamp": "1:09 PM",
         "lastChat": "Not quite the same."
       },
       {
         "id": 7,
         "name": "Zach",
-        "picture": "./assets/friends/zach_1.jpg",
+        "picture": "https://image.ibb.co/b4kxGw/zach_1.jpg",
         "latest_timestamp": "Yesterday",
         "lastChat": "I thought that the event was over long ago"
       },
       {
         "id": 8,
         "name": "Katie",
-        "picture": "./assets/friends/katie_1.jpg",
+        "picture": "https://image.ibb.co/eLVWbw/katie_1.jpg",
         "latest_timestamp": "Yesterday",
         "lastChat": "nothing"
       },
       {
         "id": 9,
         "name": "Chloe",
-        "picture": "./assets/friends/chloe_1.jpg",
+        "picture": "https://image.ibb.co/ncAa3b/chloe_1.jpg",
         "latest_timestamp": "Wednesday",
         "lastChat": "sure i'll take it from you"
       },
       {
         "id": 10,
         "name": "Kennith",
-        "picture": "./assets/friends/kennith_1.jpg",
+        "picture": "https://image.ibb.co/fQKPww/kennith_1.jpg",
         "latest_timestamp": "Wednesday",
         "lastChat": "Take care, bye"
       },
       {
         "id": 11,
         "name": "Tara",
-        "picture": "./assets/friends/tara_1.jpg",
+        "picture": "https://image.ibb.co/dM6hib/tara_1.jpg",
         "latest_timestamp": "Monday",
         "lastChat": "Not today"
       },
       {
         "id": 12,
         "name": "Gary",
-        "picture": "./assets/friends/gary_1.jpg",
+        "picture": "https://image.ibb.co/gsF8Ob/gary_1.jpg",
         "latest_timestamp": "Sunday",
         "lastChat": "Whatever works for you!"
       },
       {
         "id": 13,
         "name": "Zoey",
-        "picture": "./assets/friends/zoey_1.jpg",
+        "picture": "https://image.ibb.co/nd0Wbw/zoey_1.jpg",
         "latest_timestamp": "8/12/2017",
         "lastChat": "Will get in touch"
       },
       {
         "id": 14,
         "name": "Ash",
-        "picture": "./assets/friends/ash_1.jpg",
+        "picture": "https://image.ibb.co/iasYpG/ash_1.jpg",
         "latest_timestamp": "6/12/2017",
         "lastChat": "Ok"
       },
       {
         "id": 15,
         "name": "Zen",
-        "picture": "./assets/friends/zen_1.jpg",
+        "picture": "https://image.ibb.co/eeqWbw/zen_1.jpg",
         "latest_timestamp": "19/11/2017",
         "lastChat": "Lol"
       }
@@ -110,7 +110,7 @@
     {
       "id": 2,
       "name": "Alex",
-      "picture": "./assets/friends/alex_1.jpg",
+      "picture": "https://image.ibb.co/cA2oOb/alex_1.jpg",
       "chatlog": [
         {
           "text":
@@ -150,28 +150,32 @@
     {
       "id": 3,
       "name": "Bob",
-      "picture": "./assets/friends/bob_1.jpg",
+      "picture": "https://image.ibb.co/gSyTOb/bob_1.jpg",
       "chatlog": [
         {
-          "text": "It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable",
+          "text":
+            "It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable",
           "timestamp": "07:05 AM",
           "side": "left",
           "message_id": 4
         },
         {
-          "text": "The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
+          "text":
+            "The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
           "timestamp": "07:00 AM",
           "side": "left",
           "message_id": 3
         },
         {
-          "text": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested",
+          "text":
+            "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested",
           "timestamp": "06:58 AM",
           "side": "left",
           "message_id": 2
         },
         {
-          "text": "Sections 1.10.32 and 1.10.33 from 'de Finibus Bonorum et Malorum' by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham",
+          "text":
+            "Sections 1.10.32 and 1.10.33 from 'de Finibus Bonorum et Malorum' by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham",
           "timestamp": "06:55 AM",
           "side": "left",
           "message_id": 1
@@ -181,73 +185,73 @@
     {
       "id": 4,
       "name": "Luke",
-      "picture": "./assets/friends/luke_1.jpg",
+      "picture": "https://image.ibb.co/jOzeUG/luke_1.jpg",
       "chatlog": []
     },
     {
       "id": 5,
       "name": "Bane",
-      "picture": "./assets/friends/bane_1.jpg",
+      "picture": "https://image.ibb.co/cBZPww/bane_1.jpg",
       "chatlog": []
     },
     {
       "id": 6,
       "name": "Darth Vader",
-      "picture": "./assets/friends/darth_vader_1.png",
+      "picture": "https://image.ibb.co/j4Ov3b/darth_vader_1.png",
       "chatlog": []
     },
     {
       "id": 7,
       "name": "Zach",
-      "picture": "./assets/friends/zach_1.jpg",
+      "picture": "https://image.ibb.co/b4kxGw/zach_1.jpg",
       "chatlog": []
     },
     {
       "id": 8,
       "name": "Katie",
-      "picture": "./assets/friends/katie_1.jpg",
+      "picture": "https://image.ibb.co/eLVWbw/katie_1.jpg",
       "chatlog": []
     },
     {
       "id": 9,
       "name": "Chloe",
-      "picture": "./assets/friends/chloe_1.jpg",
+      "picture": "https://image.ibb.co/ncAa3b/chloe_1.jpg",
       "chatlog": []
     },
     {
       "id": 10,
       "name": "Kennith",
-      "picture": "./assets/friends/kennith_1.jpg",
+      "picture": "https://image.ibb.co/fQKPww/kennith_1.jpg",
       "chatlog": []
     },
     {
       "id": 11,
       "name": "Tara",
-      "picture": "./assets/friends/tara_1.jpg",
+      "picture": "https://image.ibb.co/dM6hib/tara_1.jpg",
       "chatlog": []
     },
     {
       "id": 12,
       "name": "Gary",
-      "picture": "./assets/friends/gary_1.jpg",
+      "picture": "https://image.ibb.co/gsF8Ob/gary_1.jpg",
       "chatlog": []
     },
     {
       "id": 13,
       "name": "Zoey",
-      "picture": "./assets/friends/zoey_1.jpg",
+      "picture": "https://image.ibb.co/nd0Wbw/zoey_1.jpg",
       "chatlog": []
     },
     {
       "id": 14,
       "name": "Ash",
-      "picture": "./assets/friends/ash_1.jpg",
+      "picture": "https://image.ibb.co/iasYpG/ash_1.jpg",
       "chatlog": []
     },
     {
       "id": 15,
       "name": "Zen",
-      "picture": "./assets/friends/zen_1.jpg",
+      "picture": "https://image.ibb.co/eeqWbw/zen_1.jpg",
       "chatlog": []
     }
   ]

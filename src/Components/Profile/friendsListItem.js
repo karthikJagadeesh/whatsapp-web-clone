@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Div, Label, Img, P } from "glamorous";
-import path from "path";
 
 const NameAndLastChat = ({ name, lastChat }) => {
   const wrapperStyle = {
@@ -81,8 +80,6 @@ const FriendsListItem = ({ picture: picture = "", ...props }) => {
     justifySelf: "center"
   };
 
-  const friendProfilePicturePath = path.join("../../../", picture);
-
   return (
     <Div
       css={wrapperStyle}
@@ -90,7 +87,7 @@ const FriendsListItem = ({ picture: picture = "", ...props }) => {
       onClickCapture={props.handleListItemClick}
     >
       <Div css={wrapperImageStyle}>
-        <Img css={imageStyle} alt="image" src={friendProfilePicturePath} />
+        <Img css={imageStyle} alt="" src={picture} />
       </Div>
       <Div css={nameAndLastChatStyle}>
         <NameAndLastChat name={props.name} lastChat={props.lastChat} />

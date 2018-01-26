@@ -1,9 +1,7 @@
 import React from "react";
 import { Div, Img } from "glamorous";
-import path from "path";
 
 const Picture = ({ currentFriend: currentFriend = "" }) => {
-  const friendPicturePath = path.join("../../../", currentFriend);
   const imageStyle = {
     width: "100%",
     height: "70%",
@@ -19,7 +17,7 @@ const Picture = ({ currentFriend: currentFriend = "" }) => {
 
   return (
     <Div css={wrapperStyle}>
-      <Img css={imageStyle} alt="Image" src={friendPicturePath} />
+      <Img css={imageStyle} alt="" src={currentFriend} />
     </Div>
   );
 };
