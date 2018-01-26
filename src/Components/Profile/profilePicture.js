@@ -1,6 +1,5 @@
 import React from "react";
 import { Div, Img } from "glamorous";
-import path from "path";
 
 const ProfilePicture = ({ profilePicture: profilePicture = "" }) => {
   const profilePictureStyle = {
@@ -23,15 +22,9 @@ const ProfilePicture = ({ profilePicture: profilePicture = "" }) => {
     display: "grid"
   };
 
-  const profilePicturePath = path.join("../../../", profilePicture);
-
   return (
     <Div css={wrapperStyle}>
-      <Img
-        css={profilePictureStyle}
-        alt=""
-        src={profilePicturePath}
-      />
+      <Img css={profilePictureStyle} alt="" src={profilePicture} />
     </Div>
   );
 };
