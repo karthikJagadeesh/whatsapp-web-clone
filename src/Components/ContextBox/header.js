@@ -1,6 +1,6 @@
 import React from "react";
 import { Div } from "glamorous";
-import MdCancel from "react-icons/lib/md/cancel";
+import MdClose from "react-icons/lib/md/close";
 
 export const Header = ({ handleCancelClick, text }) => {
   const wrapperStyle = {
@@ -23,7 +23,7 @@ export const Header = ({ handleCancelClick, text }) => {
   return (
     <Div css={wrapperStyle}>
       <Div css={wrapperCancelButtonStyle} onClick={handleCancelClick}>
-        <MdCancel size={30} color="#666" />
+        <MdClose size={30} color="#666" />
       </Div>
       <Div css={wrapperHeadingStyle}>{text}</Div>
     </Div>
