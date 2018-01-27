@@ -1,10 +1,14 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: "./src/index.html",
   filename: "index.html",
   inject: "body"
+});
+const ExtractTextPluginConfig = new ExtractTextPlugin({
+  filename: "index.css"
 });
 
 const config = {
@@ -20,10 +24,17 @@ const config = {
         loaders: ["react-hot-loader/webpack", "babel-loader"],
         exclude: /node_modules/
       },
-      { test: /\.jsx$/, loader: "babel-loader", exclude: /node_modules/ }
+      {
+        test: /\.html$/,
+        loader: "html-loader"
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract("css-loader")
+      }
     ]
   },
-  plugins: [HtmlWebpackPluginConfig],
+  plugins: [HtmlWebpackPluginConfig, ExtractTextPluginConfig],
   devtool: "cheap-module-eval-source-map"
 };
 

@@ -5,8 +5,9 @@ import "babel-polyfill";
 import { Profile } from "./Profile";
 import { ChatBox } from "./ChatBox";
 import { ContextBox } from "./ContextBox/";
+import { profileDataUrl, friendDataUrl, fetchData } from "../network";
 
-class App extends Component {
+export class App extends Component {
   constructor(context) {
     super(context);
     this.state = {
@@ -16,12 +17,6 @@ class App extends Component {
       isContactInfoContextBoxActive: false
     };
   }
-
-  profileDataUrl = "https://my-json-server.typicode.com/karthikJagadeesh/fake-chat-api/profile";
-  friendDataUrl = "https://my-json-server.typicode.com/karthikJagadeesh/fake-chat-api/friends/";
-
-  // profileDataUrl = "http://localhost:7070/profile";
-  // friendDataUrl = "http://localhost:7070/friends/";
 
   wrapperStyleWithContextBox = {
     display: "grid",
@@ -63,56 +58,55 @@ class App extends Component {
   handleListItemClick = ({ currentTarget }) => {
     (async _ => {
       const id = currentTarget.dataset.id;
-      const url = this.friendDataUrl + id;
-      const chatBoxContext = await this.fetchData(url);
+      const url = friendDataUrl + id;
+      const chatBoxContext = await fetchData(url);
       this.setState({ chatBoxContext });
     })();
   };
 
-  async fetchData(url) {
-    const response = await fetch(url);
-    const json = await response.json();
-    return json;
-  }
-
-  componentWillMount() {
+  componentDidMount() {
     (async _ => {
-      const profileData = await this.fetchData(this.profileDataUrl);
+      const profileData = await fetchData(profileDataUrl);
       this.setState({ profileData });
     })();
   }
 
   render() {
+    const {
+      profileData,
+      chatBoxContext,
+      isContextBoxActive,
+      isContactInfoContextBoxActive
+    } = this.state;
     let wrapperStyle = this.wrapperStyleWithoutContextBox;
-    if (this.state.isContextBoxActive) {
+    if (isContextBoxActive) {
       wrapperStyle = this.wrapperStyleWithContextBox;
     }
+
     return (
       <Div css={wrapperStyle}>
         <Div css={this.friendsListStyle}>
           <Profile
-            profileData={this.state.profileData}
+            profileData={profileData}
             handleListItemClick={this.handleListItemClick}
           />
         </Div>
         <Div css={this.chatBoxStyle}>
           <ChatBox
             currentFriend={this.handleListItemClick}
-            chatBoxContext={this.state.chatBoxContext}
+            chatBoxContext={chatBoxContext}
             handleSearchClick={this.handleSearchClick}
             friendChatHeaderClick={this.friendChatHeaderClick}
           />
         </Div>
-        {this.state.isContextBoxActive ? (
+        {isContextBoxActive ? (
           <Div css={this.contextBoxStyle}>
             <ContextBox
-              isContactInfoContextBoxActive={
-                this.state.isContactInfoContextBoxActive
-              }
+              isContactInfoContextBoxActive={isContactInfoContextBoxActive}
               handleCancelClick={this.handleCancelClick}
-              name={this.state.chatBoxContext.name}
-              messagesLog={this.state.chatBoxContext.chatlog}
-              picturePath={this.state.chatBoxContext.picture}
+              name={chatBoxContext.name}
+              messagesLog={chatBoxContext.chatlog}
+              picturePath={chatBoxContext.picture}
             />
           </Div>
         ) : null}
@@ -120,5 +114,3 @@ class App extends Component {
     );
   }
 }
-
-export { App };

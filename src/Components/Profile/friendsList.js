@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Div } from "glamorous";
 
 import { FriendsListItem } from "./friendsListItem";
-import { range } from "../utils";
 
 const FriendsList = ({
   handleListItemClick,
