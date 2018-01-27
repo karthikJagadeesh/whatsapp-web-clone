@@ -3,7 +3,7 @@ import { Div } from "glamorous";
 
 import { FriendsListItem } from "./friendsListItem";
 
-const FriendsList = ({
+export const FriendsList = ({
   handleListItemClick,
   searchBarValue,
   friendsList: friendsList = []
@@ -34,5 +34,3 @@ const FriendsList = ({
     </Div>
   );
 };
-
-export { FriendsList };

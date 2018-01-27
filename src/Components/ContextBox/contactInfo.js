@@ -4,7 +4,7 @@ import { Div } from "glamorous";
 import { Header } from "./header";
 import { ContactInfoResults } from "./contactInfoResults";
 
-const ContactInfo = ({ handleCancelClick, picturePath, name }) => {
+export const ContactInfo = ({ handleCancelClick, picturePath, name }) => {
   const wrapperStyle = {
     height: "100%",
     display: "grid",
@@ -19,5 +19,3 @@ const ContactInfo = ({ handleCancelClick, picturePath, name }) => {
     </Div>
   );
 };
-
-export { ContactInfo };

@@ -177,7 +177,7 @@ const MuteAndStarred = _ => {
   );
 };
 
-const ContactInfoResults = ({ picturePath, name }) => {
+export const ContactInfoResults = ({ picturePath, name }) => {
   const wrapperStyle = {
     height: "100%",
     overflowY: "scroll",
@@ -194,5 +194,3 @@ const ContactInfoResults = ({ picturePath, name }) => {
     </Div>
   );
 };
-
-export { ContactInfoResults };

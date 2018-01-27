@@ -6,7 +6,7 @@ import { SearchBar } from "../Profile/searchBar";
 import { SearchResults } from "./searchResults";
 import { ContactInfo } from "./contactInfo";
 
-class ContextBox extends Component {
+export class ContextBox extends Component {
   constructor(context) {
     super(context);
     this.state = {
@@ -83,5 +83,3 @@ class ContextBox extends Component {
     return this.contextBoxDisplay();
   }
 }
-
-export { ContextBox };

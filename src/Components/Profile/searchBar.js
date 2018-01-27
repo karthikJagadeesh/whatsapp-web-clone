@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Div, Input } from "glamorous";
 
-class SearchBar extends Component {
+export class SearchBar extends Component {
   constructor(context) {
     super(context);
   }
@@ -47,5 +47,3 @@ class SearchBar extends Component {
     );
   }
 }
-
-export { SearchBar };

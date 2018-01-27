@@ -29,7 +29,7 @@ const NameAndLastChat = ({ name, lastChat }) => {
   );
 };
 
-const FriendsListItem = ({ picture: picture = "", ...props }) => {
+export const FriendsListItem = ({ picture: picture = "", ...props }) => {
   const wrapperStyle = {
     borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
     background: "#fff",
@@ -98,5 +98,3 @@ const FriendsListItem = ({ picture: picture = "", ...props }) => {
     </Div>
   );
 };
-
-export { FriendsListItem };

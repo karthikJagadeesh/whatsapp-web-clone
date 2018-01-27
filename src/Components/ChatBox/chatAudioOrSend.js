@@ -3,7 +3,7 @@ import { Div } from "glamorous";
 import MdKeyboardVoice from "react-icons/lib/md/keyboard-voice";
 import MdSend from "react-icons/lib/md/send";
 
-const ChatAudioOrSend = ({ inputValue, handleChatSend }) => {
+export const ChatAudioOrSend = ({ inputValue, handleChatSend }) => {
   return (
     <Div>
       {inputValue ? (
@@ -14,5 +14,3 @@ const ChatAudioOrSend = ({ inputValue, handleChatSend }) => {
     </Div>
   );
 };
-
-export { ChatAudioOrSend };

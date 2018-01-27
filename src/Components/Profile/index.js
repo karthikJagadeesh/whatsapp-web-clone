@@ -5,7 +5,7 @@ import { ProfileHeader } from "./profileHeader";
 import { SearchBar } from "./searchBar";
 import { FriendsList } from "./friendsList";
 
-class Profile extends Component {
+export class Profile extends Component {
   constructor(context) {
     super(context);
     this.state = {
@@ -53,5 +53,3 @@ class Profile extends Component {
     );
   }
 }
-
-export { Profile };

@@ -4,7 +4,7 @@ import MdMoveVert from "react-icons/lib/md/more-vert";
 
 import { Menu } from "../ChatBox/menu";
 
-const ProfileMenu = _ => {
+export const ProfileMenu = _ => {
   return (
     <Div>
       <Menu
@@ -20,5 +20,3 @@ const ProfileMenu = _ => {
     </Div>
   );
 };
-
-export { ProfileMenu };

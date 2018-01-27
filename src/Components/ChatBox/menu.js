@@ -28,7 +28,7 @@ const MenuItems = ({ labels }) => {
   );
 };
 
-const Menu = ({ labels }) => {
+export const Menu = ({ labels }) => {
   const wrapperButtonStyle = {
     ":hover": {
       cursor: "pointer"
@@ -58,5 +58,3 @@ const Menu = ({ labels }) => {
     </Div>
   );
 };
-
-export { Menu };
