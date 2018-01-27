@@ -5,7 +5,7 @@ import { ChatBoxHeader } from "./chatBoxHeader";
 import { ChatBoxDisplay } from "./chatBoxDisplay";
 import { ChatBoxFooter } from "./chatBoxFooter";
 
-class ChatBox extends Component {
+export class ChatBox extends Component {
   constructor(context) {
     super(context);
     this.state = {
@@ -65,5 +65,3 @@ class ChatBox extends Component {
     );
   }
 }
-
-export { ChatBox };

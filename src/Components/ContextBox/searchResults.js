@@ -1,7 +1,7 @@
 import React from "react";
 import { Div, P, Span } from "glamorous";
 
-const SearchResults = ({ name, searchValue, messagesLog }) => {
+export const SearchResults = ({ name, searchValue, messagesLog }) => {
   const wrapperStyleInitialStyle = {
     marginTop: "50px",
     textAlign: "center",
@@ -81,5 +81,3 @@ const SearchResults = ({ name, searchValue, messagesLog }) => {
 
   return searchValue ? resultsDisplay() : templateDisplay("initialDisplay");
 };
-
-export { SearchResults };

@@ -1,7 +1,7 @@
 import React from "react";
 import { Div, Img } from "glamorous";
 
-const Picture = ({ currentFriend: currentFriend = "" }) => {
+export const Picture = ({ currentFriend: currentFriend = "" }) => {
   const imageStyle = {
     width: "100%",
     height: "70%",
@@ -21,5 +21,3 @@ const Picture = ({ currentFriend: currentFriend = "" }) => {
     </Div>
   );
 };
-
-export { Picture };

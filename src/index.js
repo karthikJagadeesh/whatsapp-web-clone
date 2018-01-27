@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 
 import { App } from "./Components/app";
+import "./index.css";
 
 const render = Component => {
   ReactDOM.render(

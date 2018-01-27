@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { Div } from "glamorous";
 
 import { FriendsListItem } from "./friendsListItem";
-import { range } from "../utils";
 
-const FriendsList = ({
+export const FriendsList = ({
   handleListItemClick,
   searchBarValue,
   friendsList: friendsList = []
@@ -35,5 +34,3 @@ const FriendsList = ({
     </Div>
   );
 };
-
-export { FriendsList };

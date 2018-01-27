@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Div, Input } from "glamorous";
 import MdInsertEmoticon from "react-icons/lib/md/insert-emoticon";
 
-class ChatMessageInput extends Component {
+export class ChatMessageInput extends Component {
   constructor(context) {
     super(context);
   }
@@ -40,5 +40,3 @@ class ChatMessageInput extends Component {
     );
   }
 }
-
-export { ChatMessageInput };

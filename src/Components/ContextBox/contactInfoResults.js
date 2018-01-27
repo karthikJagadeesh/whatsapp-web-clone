@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Div, Img, Label, Span } from "glamorous";
 import FaAngleRight from "react-icons/lib/fa/angle-right";
+import MdBlock from "react-icons/lib/md/block";
+import MdThumbDown from "react-icons/lib/md/thumb-down";
+import MdDelete from "react-icons/lib/md/delete";
 import Checkbox from "rc-checkbox";
 
 const ProfilePictureCard = ({ picturePath, name }) => {
@@ -75,7 +78,7 @@ const MediaLinksDocs = _ => {
     const wrapperStyle = {
       display: "grid",
       width: "100%",
-      gridTemplateColumns: "9fr 1fr",
+      gridTemplateColumns: "8fr 2fr",
       ":hover": {
         cursor: "pointer"
       }
@@ -89,7 +92,8 @@ const MediaLinksDocs = _ => {
       fontWeight: "100"
     };
     const wrapperIconStyle = {
-      alignSelf: "center"
+      alignSelf: "center",
+      justifySelf: "center"
     };
 
     return (
@@ -177,7 +181,122 @@ const MuteAndStarred = _ => {
   );
 };
 
-const ContactInfoResults = ({ picturePath, name }) => {
+const AboutAndPhoneNumber = _ => {
+  const wrapperStyle = {
+    height: "160px",
+    background: "#FFF",
+    display: "grid",
+    gridTemplateRows: "3fr 3.5fr 3.5fr",
+    marginTop: "1em",
+    boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.1)"
+  };
+
+  const Title = _ => {
+    const wrapperStyle = {
+      display: "grid",
+      gridTemplateColumns: "1fr",
+      width: "100%",
+      fontSize: "0.9em",
+      color: "#128C7E",
+      fontSize: "0.9em",
+      fontWeight: "100"
+    };
+    return (
+      <Div css={wrapperStyle}>
+        <Span
+          css={{ alignSelf: "center", width: "80%", justifySelf: "center" }}
+        >
+          About and phone number
+        </Span>
+      </Div>
+    );
+  };
+
+  const Status = ({ status: status = "Available" }) => {
+    const wrapperStyle = {
+      display: "grid",
+      gridTemplateColumns: "1fr",
+      width: "100%",
+      borderBottom: "1px solid rgba(0, 0, 0, 0.06)"
+    };
+    return (
+      <Div css={wrapperStyle}>
+        <Span
+          css={{ alignSelf: "center", width: "80%", justifySelf: "center" }}
+        >
+          {status}
+        </Span>
+      </Div>
+    );
+  };
+
+  const PhoneNumber = ({ phoneNumber: phoneNumber = "99999 10101" }) => {
+    const wrapperStyle = {
+      display: "grid",
+      gridTemplateColumns: "1fr",
+      width: "100%"
+    };
+    return (
+      <Div css={wrapperStyle}>
+        <Span
+          css={{ alignSelf: "center", width: "80%", justifySelf: "center" }}
+        >
+          {phoneNumber}
+        </Span>
+      </Div>
+    );
+  };
+
+  return (
+    <Div css={wrapperStyle}>
+      <Title />
+      <Status />
+      <PhoneNumber />
+    </Div>
+  );
+};
+
+const GroupsInCommon = _ => {
+  const wrapperStyle = {};
+  return <Div css={wrapperStyle} />;
+};
+
+const SingleDeckContainer = props => {
+  const wrapperStyle = {
+    height: "60px",
+    background: "#FFF",
+    display: "grid",
+    gridTemplateColumns: "2fr 8fr",
+    marginTop: "1em",
+    boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.1)",
+    ":hover": {
+      cursor: "pointer",
+      background: "#F4F5F5"
+    },
+    ...props.style
+  };
+  const wrapperIconStyle = {
+    alignSelf: "center",
+    justifySelf: "center"
+  };
+  const wrapperTextStyle = {
+    alignSelf: "center"
+  };
+  const { Icon } = props;
+
+  return (
+    <Div css={wrapperStyle}>
+      <Div css={wrapperIconStyle}>
+        <Icon {...props.iconStyle} />
+      </Div>
+      <Div css={wrapperTextStyle}>
+        <Span css={props.textStyle}>{props.text}</Span>
+      </Div>
+    </Div>
+  );
+};
+
+export const ContactInfoResults = ({ picturePath, name }) => {
   const wrapperStyle = {
     height: "100%",
     overflowY: "scroll",
@@ -190,9 +309,24 @@ const ContactInfoResults = ({ picturePath, name }) => {
         <ProfilePictureCard picturePath={picturePath} name={name} />
         <MediaLinksDocs />
         <MuteAndStarred />
+        <AboutAndPhoneNumber />
+        <SingleDeckContainer
+          Icon={MdBlock}
+          iconStyle={{ size: "25", color: "#666" }}
+          text={"Block Contact"}
+        />
+        <SingleDeckContainer
+          Icon={MdThumbDown}
+          iconStyle={{ size: "25", color: "#DF3333" }}
+          text={"Report spam"}
+        />
+        <SingleDeckContainer
+          style={{ marginBottom: "2em" }}
+          Icon={MdDelete}
+          iconStyle={{ size: "25", color: "#DF3333" }}
+          text={"Delete chat"}
+        />
       </Div>
     </Div>
   );
 };
-
-export { ContactInfoResults };

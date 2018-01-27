@@ -1,7 +1,7 @@
 import React from "react";
 import { Div, Img } from "glamorous";
 
-const ProfilePicture = ({ profilePicture: profilePicture = "" }) => {
+export const ProfilePicture = ({ profilePicture: profilePicture = "" }) => {
   const profilePictureStyle = {
     borderRadius: "50%",
     width: "60%",
@@ -28,5 +28,3 @@ const ProfilePicture = ({ profilePicture: profilePicture = "" }) => {
     </Div>
   );
 };
-
-export { ProfilePicture };

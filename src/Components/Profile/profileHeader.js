@@ -6,7 +6,7 @@ import { ProfileStatus } from "./profileStatus";
 import { ProfileNewChat } from "./profileNewChat";
 import { ProfileMenu } from "./profileMenu";
 
-const ProfileHeader = props => {
+export const ProfileHeader = props => {
   const wrapperStyle = {
     background: "#eee",
     height: "100%",
@@ -45,5 +45,3 @@ const ProfileHeader = props => {
     </Div>
   );
 };
-
-export { ProfileHeader };

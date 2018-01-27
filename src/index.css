@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: rgb(240, 240, 240);
+  font-family: "Roboto", "Open Sans", helvetica, sans-serif;
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+}

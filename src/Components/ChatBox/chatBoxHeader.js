@@ -27,7 +27,7 @@ const Name = ({ name }) => {
   );
 };
 
-const ChatBoxHeader = ({
+export const ChatBoxHeader = ({
   currentFriend,
   chatBoxContext,
   handleSearchClick,
@@ -90,5 +90,3 @@ const ChatBoxHeader = ({
     </Div>
   );
 };
-
-export { ChatBoxHeader };

@@ -5,7 +5,7 @@ import { SmilieBoard } from "./smilieBoard";
 import { ChatMessageInput } from "./chatMessageInput";
 import { ChatAudioOrSend } from "./chatAudioOrSend";
 
-class ChatBoxFooter extends Component {
+export class ChatBoxFooter extends Component {
   constructor(context) {
     super(context);
     this.state = {
@@ -107,5 +107,3 @@ class ChatBoxFooter extends Component {
     }
   }
 }
-
-export { ChatBoxFooter };
