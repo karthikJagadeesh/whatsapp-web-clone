@@ -5,18 +5,17 @@ import MdMoveVert from "react-icons/lib/md/more-vert";
 import { Menu } from "../ChatBox/menu";
 
 export const ProfileMenu = _ => {
+  const labelsAndContext = {
+    "New group": _ => {},
+    Profile: _ => {},
+    Archived: _ => {},
+    Starred: _ => {},
+    "Log out": _ => {}
+  };
+
   return (
     <Div>
-      <Menu
-        labels={[
-          "New group",
-          "Profile",
-          "Archived",
-          "Starred",
-          "Settings",
-          "Log out"
-        ]}
-      />
+      <Menu labelsAndContext={labelsAndContext} />
     </Div>
   );
 };
