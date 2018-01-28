@@ -61,9 +61,17 @@ export const ChatBoxHeader = ({
       cursor: "pointer"
     }
   };
-
   const attachWrapperStyle = { ...searchWrapperStyle };
   const menuWrapperStyle = { ...searchWrapperStyle };
+
+  const labelsAndContext = {
+    "Contact Info": friendChatHeaderClick,
+    "Select Messages": _ => {},
+    "Cancel Mute": _ => {},
+    "Clear messages": _ => {},
+    "Delete chat": _ => {}
+  };
+
   return (
     <Div css={wrapperStyle}>
       <Div css={pictureWrapperStyle} onClick={friendChatHeaderClick}>
@@ -77,15 +85,7 @@ export const ChatBoxHeader = ({
         <Attach />
       </Div>
       <Div css={menuWrapperStyle}>
-        <Menu
-          labels={[
-            "Contact Info",
-            "Select Messages",
-            "Cancel Mute",
-            "Clear messages",
-            "Delete chat"
-          ]}
-        />
+        <Menu labelsAndContext={labelsAndContext} />
       </Div>
     </Div>
   );
