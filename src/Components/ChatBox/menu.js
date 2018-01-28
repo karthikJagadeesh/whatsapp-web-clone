@@ -3,7 +3,7 @@ import { MenuList, MenuItem, MenuButton, Dropdown } from "react-menu-list";
 import { Div, Label } from "glamorous";
 import MdMoveVert from "react-icons/lib/md/more-vert";
 
-const MenuItems = ({ labels }) => {
+const MenuItems = ({ labelsAndContext }) => {
   const wrapperStyle = {
     padding: "0px 20px",
     width: "140px",
@@ -15,20 +15,23 @@ const MenuItems = ({ labels }) => {
   const menuItemStyle = {
     color: "rgb(68, 68, 68)",
     fontSize: "0.9em",
-    cursor: "pointer"
+    cursor: "pointer",
+    width: "100%"
   };
   return (
     <Div css={wrapperStyle}>
-      {labels.map(label => (
+      {Object.keys(labelsAndContext).map(label => (
         <MenuItem key={label} style={wrapperMenuItemStyle}>
-          <Label css={menuItemStyle}>{label}</Label>
+          <Label css={menuItemStyle} onClick={labelsAndContext[label]}>
+            {label}
+          </Label>
         </MenuItem>
       ))}
     </Div>
   );
 };
 
-export const Menu = ({ labels }) => {
+export const Menu = ({ labelsAndContext }) => {
   const wrapperButtonStyle = {
     ":hover": {
       cursor: "pointer"
@@ -41,6 +44,7 @@ export const Menu = ({ labels }) => {
     outline: "none",
     background: "transparent"
   };
+
   return (
     <Div css={wrapperButtonStyle}>
       <MenuButton
@@ -48,7 +52,7 @@ export const Menu = ({ labels }) => {
         menu={
           <Dropdown>
             <MenuList>
-              <MenuItems labels={[...labels]} />
+              <MenuItems labelsAndContext={labelsAndContext} />
             </MenuList>
           </Dropdown>
         }
