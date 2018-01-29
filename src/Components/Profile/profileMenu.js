@@ -4,10 +4,10 @@ import MdMoveVert from "react-icons/lib/md/more-vert";
 
 import { Menu } from "../ChatBox/menu";
 
-export const ProfileMenu = _ => {
+export const ProfileMenu = ({ handleProfileSettingsClick }) => {
   const labelsAndContext = {
     "New group": _ => {},
-    Profile: _ => {},
+    Profile: handleProfileSettingsClick,
     Archived: _ => {},
     Starred: _ => {},
     "Log out": _ => {}

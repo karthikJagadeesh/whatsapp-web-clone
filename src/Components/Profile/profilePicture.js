@@ -1,11 +1,13 @@
 import React from "react";
 import { Div, Img } from "glamorous";
 
-export const ProfilePicture = ({ profilePicture: profilePicture = "" }) => {
+export const ProfilePicture = ({
+  profilePicture: profilePicture = "",
+  handlePictureClick
+}) => {
   const profilePictureStyle = {
     borderRadius: "50%",
     width: "60%",
-    // height: "20%",
     display: "grid",
     gridTemplateColumns: "100%",
     ":hover": {
@@ -23,7 +25,7 @@ export const ProfilePicture = ({ profilePicture: profilePicture = "" }) => {
   };
 
   return (
-    <Div css={wrapperStyle}>
+    <Div css={wrapperStyle} onClick={handlePictureClick}>
       <Img css={profilePictureStyle} alt="" src={profilePicture} />
     </Div>
   );
