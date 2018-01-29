@@ -6,7 +6,11 @@ import { ProfileStatus } from "./profileStatus";
 import { ProfileNewChat } from "./profileNewChat";
 import { ProfileMenu } from "./profileMenu";
 
-export const ProfileHeader = props => {
+export const ProfileHeader = ({
+  handlePictureClick,
+  profileData,
+  handleProfileSettingsClick
+}) => {
   const wrapperStyle = {
     background: "#eee",
     height: "100%",
@@ -31,7 +35,10 @@ export const ProfileHeader = props => {
   return (
     <Div css={wrapperStyle}>
       <Div css={profilePictureWrapperStyle}>
-        <ProfilePicture profilePicture={props.profileData.picture} />
+        <ProfilePicture
+          handlePictureClick={handlePictureClick}
+          profilePicture={profileData.picture}
+        />
       </Div>
       <Div css={profileStatusWrapperStyle}>
         <ProfileStatus />
@@ -40,7 +47,7 @@ export const ProfileHeader = props => {
         <ProfileNewChat />
       </Div>
       <Div css={profileMenuWrapperStyle}>
-        <ProfileMenu />
+        <ProfileMenu handleProfileSettingsClick={handleProfileSettingsClick} />
       </Div>
     </Div>
   );
