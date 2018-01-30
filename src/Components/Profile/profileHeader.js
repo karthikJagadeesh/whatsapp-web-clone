@@ -47,7 +47,10 @@ export const ProfileHeader = ({
         <ProfileNewChat />
       </Div>
       <Div css={profileMenuWrapperStyle}>
-        <ProfileMenu handleProfileSettingsClick={handleProfileSettingsClick} />
+        <ProfileMenu
+          handleProfileClick={handlePictureClick}
+          handleProfileSettingsClick={handleProfileSettingsClick}
+        />
       </Div>
     </Div>
   );

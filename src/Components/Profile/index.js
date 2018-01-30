@@ -42,10 +42,19 @@ export class Profile extends Component {
     this.setState({ currentView: "profileSettings" });
   };
 
+  handleProfileInfoBackClick = _ => {
+    this.setState({ currentView: "friendList" });
+  };
+
   getCurrentProfileView = _ => {
     switch (this.state.currentView) {
       case "profileInfo":
-        return <ProfileInfo />;
+        return (
+          <ProfileInfo
+            handleProfileInfoBackClick={this.handleProfileInfoBackClick}
+            picturePath={this.props.profileData.picture}
+          />
+        );
 
       case "profileSettings":
         return <ProfileSettings />;
