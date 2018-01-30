@@ -51,6 +51,8 @@ export class Profile extends Component {
       case "profileInfo":
         return (
           <ProfileInfo
+            name={this.props.profileData.name}
+            status={this.props.profileData.status}
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
             picturePath={this.props.profileData.picture}
           />
