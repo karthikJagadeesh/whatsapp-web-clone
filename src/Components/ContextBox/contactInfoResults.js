@@ -6,8 +6,8 @@ import MdThumbDown from "react-icons/lib/md/thumb-down";
 import MdDelete from "react-icons/lib/md/delete";
 import Checkbox from "rc-checkbox";
 
-const ProfilePictureCard = ({ picturePath, name }) => {
-  const wrapperStyle = {
+export const ProfilePictureCard = ({ picturePath, name, style = {} }) => {
+  const wrapperStyleWithName = {
     height: "320px",
     textAlign: "center",
     background: "#FFF",
@@ -15,13 +15,19 @@ const ProfilePictureCard = ({ picturePath, name }) => {
     gridTemplateRows: "8fr 2fr",
     boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.1)"
   };
+  const wrapperStyleWithoutName = {
+    ...wrapperStyleWithName,
+    gridTemplateRows: "1fr",
+    height: "260px"
+  };
 
   const Picture = ({ picturePath }) => {
     const wrapperStyle = {
       display: "grid",
-      gridTemplateRows: "1fr"
+      gridTemplateRows: "1fr",
+      ...style
     };
-    const imageStyle = {
+    const imageStyleWithName = {
       justifySelf: "center",
       alignSelf: "center",
       width: "50%",
@@ -31,9 +37,17 @@ const ProfilePictureCard = ({ picturePath, name }) => {
         cursor: "pointer"
       }
     };
+    const imageStyleWithoutName = {
+      ...imageStyleWithName,
+      width: "55%"
+    }
+
     return (
       <Div css={wrapperStyle}>
-        <Img css={imageStyle} src={picturePath} />
+        <Img
+          css={name ? imageStyleWithName : imageStyleWithoutName}
+          src={picturePath}
+        />
       </Div>
     );
   };
@@ -57,9 +71,9 @@ const ProfilePictureCard = ({ picturePath, name }) => {
   };
 
   return (
-    <Div css={wrapperStyle}>
+    <Div css={name ? wrapperStyleWithName : wrapperStyleWithoutName}>
       <Picture picturePath={picturePath} />
-      <Name name={name} />
+      {name ? <Name name={name} /> : null}
     </Div>
   );
 };
