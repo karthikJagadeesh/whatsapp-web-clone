@@ -79,6 +79,7 @@ export class Profile extends Component {
             </Div>
             <Div>
               <FriendsList
+                selectedFriend={this.props.selectedFriend}
                 searchBarValue={this.state.searchBarValue}
                 friendsList={this.props.profileData.friends}
                 handleListItemClick={this.props.handleListItemClick}

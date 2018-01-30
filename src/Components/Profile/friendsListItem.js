@@ -43,6 +43,13 @@ export const FriendsListItem = ({ picture: picture = "", ...props }) => {
       cursor: "pointer"
     }
   };
+  const wrapperStyleSelected = {
+    ...wrapperStyle,
+    background: "#e9ebeb",
+    ":hover": {
+      cursor: "pointer"
+    }
+  };
 
   const nameAndLastChatStyle = {
     width: "100%",
@@ -82,7 +89,9 @@ export const FriendsListItem = ({ picture: picture = "", ...props }) => {
 
   return (
     <Div
-      css={wrapperStyle}
+      css={
+        props.selectedFriend === props.id ? wrapperStyleSelected : wrapperStyle
+      }
       data-id={props.id}
       onClickCapture={props.handleListItemClick}
     >

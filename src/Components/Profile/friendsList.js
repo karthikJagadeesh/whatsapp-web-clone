@@ -6,6 +6,7 @@ import { FriendsListItem } from "./friendsListItem";
 export const FriendsList = ({
   handleListItemClick,
   searchBarValue,
+  selectedFriend,
   friendsList: friendsList = []
 }) => {
   const wrapperStyle = {
@@ -21,7 +22,8 @@ export const FriendsList = ({
       timestamp: friend.latest_timestamp,
       picture: friend.picture,
       lastChat: friend.lastChat,
-      handleListItemClick
+      handleListItemClick,
+      selectedFriend
     };
     return <FriendsListItem {...props} />;
   });
