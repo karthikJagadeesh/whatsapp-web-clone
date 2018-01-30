@@ -60,7 +60,7 @@ export class App extends Component {
       const id = currentTarget.dataset.id;
       const url = friendDataUrl + id;
       const chatBoxContext = await fetchData(url);
-      this.setState({ chatBoxContext });
+      this.setState({ chatBoxContext, isContextBoxActive: false });
     })();
   };
 
@@ -89,6 +89,7 @@ export class App extends Component {
           <Profile
             profileData={profileData}
             handleListItemClick={this.handleListItemClick}
+            selectedFriend={chatBoxContext ? chatBoxContext.id : "0"}
           />
         </Div>
         <Div css={this.chatBoxStyle}>
