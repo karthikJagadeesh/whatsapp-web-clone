@@ -23,43 +23,43 @@ export class Profile extends Component {
     height: "100vh",
     borderRight: "1px solid rgba(0, 0, 0, 0.05)"
   };
-
   profileHeaderWrapperStyle = {
     borderBottom: "1px solid rgba(0, 0, 0, 0.05)"
   };
-
   searchBarWrapperStyle = { ...this.profileHeaderWrapperStyle };
 
   handleInputChange = ({ target }) => {
     this.setState({ searchBarValue: target.value });
   };
-
   handlePictureClick = _ => {
     this.setState({ currentView: "profileInfo" });
   };
-
   handleProfileSettingsClick = _ => {
     this.setState({ currentView: "profileSettings" });
   };
-
   handleProfileInfoBackClick = _ => {
     this.setState({ currentView: "friendList" });
   };
 
   getCurrentProfileView = _ => {
+    const propsForInfoAndSettings = {
+      name: this.props.profileData.name,
+      status: this.props.profileData.status,
+      handleProfileInfoBackClick: this.handleProfileInfoBackClick,
+      picturePath: this.props.profileData.picture
+    };
+
     switch (this.state.currentView) {
       case "profileInfo":
-        return (
-          <ProfileInfo
-            name={this.props.profileData.name}
-            status={this.props.profileData.status}
-            handleProfileInfoBackClick={this.handleProfileInfoBackClick}
-            picturePath={this.props.profileData.picture}
-          />
-        );
+        return <ProfileInfo {...propsForInfoAndSettings} />;
 
       case "profileSettings":
-        return <ProfileSettings />;
+        return (
+          <ProfileSettings
+            handlePictureNameClick={this.handlePictureClick}
+            {...propsForInfoAndSettings}
+          />
+        );
 
       case "friendList":
         return (

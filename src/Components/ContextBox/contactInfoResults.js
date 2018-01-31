@@ -40,7 +40,7 @@ export const ProfilePictureCard = ({ picturePath, name, style = {} }) => {
     const imageStyleWithoutName = {
       ...imageStyleWithName,
       width: "55%"
-    }
+    };
 
     return (
       <Div css={wrapperStyle}>
@@ -270,12 +270,7 @@ const AboutAndPhoneNumber = _ => {
   );
 };
 
-const GroupsInCommon = _ => {
-  const wrapperStyle = {};
-  return <Div css={wrapperStyle} />;
-};
-
-const SingleDeckContainer = props => {
+export const SingleDeckContainer = props => {
   const wrapperStyle = {
     height: "60px",
     background: "#FFF",
@@ -296,15 +291,15 @@ const SingleDeckContainer = props => {
   const wrapperTextStyle = {
     alignSelf: "center"
   };
-  const { Icon } = props;
+  const { Icon, iconStyle, textStyle, text } = props;
 
   return (
     <Div css={wrapperStyle}>
       <Div css={wrapperIconStyle}>
-        <Icon {...props.iconStyle} />
+        <Icon {...iconStyle} />
       </Div>
       <Div css={wrapperTextStyle}>
-        <Span css={props.textStyle}>{props.text}</Span>
+        <Span css={textStyle}>{text}</Span>
       </Div>
     </Div>
   );

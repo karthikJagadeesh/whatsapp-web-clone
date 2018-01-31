@@ -5,8 +5,8 @@ import MdEdit from "react-icons/lib/md/edit";
 
 import { ProfilePictureCard } from "../../ContextBox/contactInfoResults";
 
-const Header = ({ handleProfileInfoBackClick }) => {
-  const Title = ({ handleProfileInfoBackClick }) => {
+export const Header = ({ handleProfileInfoBackClick, title }) => {
+  const Title = ({ handleProfileInfoBackClick, title }) => {
     const wrapperStyle = {
       color: "white",
       fontSize: "1.1em",
@@ -30,7 +30,7 @@ const Header = ({ handleProfileInfoBackClick }) => {
         <Div css={wrapperIconStyle} onClick={handleProfileInfoBackClick}>
           <MdArrowBack size={25} color="white" />
         </Div>
-        <Span alignSelf="center">Profile</Span>
+        <Span alignSelf="center">{title}</Span>
       </Div>
     );
   };
@@ -50,7 +50,10 @@ const Header = ({ handleProfileInfoBackClick }) => {
   return (
     <Div css={wrapperStyle}>
       <Div css={wrapperTitleStyle}>
-        <Title handleProfileInfoBackClick={handleProfileInfoBackClick} />
+        <Title
+          handleProfileInfoBackClick={handleProfileInfoBackClick}
+          title={title}
+        />
       </Div>
     </Div>
   );
@@ -122,7 +125,10 @@ export const ProfileInfo = ({
 
   return (
     <Div css={wrapperStyle}>
-      <Header handleProfileInfoBackClick={handleProfileInfoBackClick} />
+      <Header
+        handleProfileInfoBackClick={handleProfileInfoBackClick}
+        title={"Profile"}
+      />
       <ProfilePictureCard
         style={{ background: "#f7f7f7" }}
         picturePath={picturePath}
