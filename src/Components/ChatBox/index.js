@@ -29,7 +29,8 @@ export class ChatBox extends Component {
     const {
       chatBoxContext,
       handleSearchClick,
-      friendChatHeaderClick
+      friendChatHeaderClick,
+      backgroundColor
     } = this.props;
 
     return (
@@ -48,6 +49,7 @@ export class ChatBox extends Component {
             <ChatBoxDisplay
               chatlog={chatBoxContext.chatlog}
               messages={this.state.messages}
+              backgroundColor={backgroundColor}
             />
           ) : null}
         </Div>

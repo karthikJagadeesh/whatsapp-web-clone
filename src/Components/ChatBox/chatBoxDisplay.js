@@ -1,9 +1,13 @@
 import React from "react";
 import { Div } from "glamorous";
 
-export const ChatBoxDisplay = ({ messages, chatlog: chatlog = [] }) => {
+export const ChatBoxDisplay = ({
+  backgroundColor,
+  messages,
+  chatlog: chatlog = []
+}) => {
   const wrapperStyle = {
-    background: "#E4DED3",
+    background: backgroundColor,
     height: "100%",
     overflowY: "auto",
     display: "flex",
