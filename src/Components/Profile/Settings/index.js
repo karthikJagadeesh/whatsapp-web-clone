@@ -9,6 +9,7 @@ import MdHelp from "react-icons/lib/md/help";
 
 import { Header } from "../ProfileInfo";
 import { SingleDeckContainer } from "../../ContextBox/contactInfoResults";
+import { ChatWallpaper } from "./chatWallpaper";
 
 const PictureAndName = ({
   status,
@@ -65,60 +66,91 @@ const PictureAndName = ({
   );
 };
 
-export const ProfileSettings = ({
-  handlePictureNameClick,
-  handleProfileInfoBackClick,
-  picturePath,
-  name,
-  status
-}) => {
-  const wrapperStyle = {
+export class ProfileSettings extends Component {
+  constructor(context) {
+    super(context);
+    this.state = {
+      currentView: "settings"
+    };
+  }
+
+  wrapperStyle = {
     height: "100%",
     background: "#fff"
   };
-  const singleDeckContainerData = [
+
+  handleChatWallpaperClick = _ => {
+    this.setState({ currentView: "chatWallpaper" });
+  };
+  handleProfileInfoBackClick = _ => {
+    this.setState({ currentView: "settings" });
+  };
+
+  singleDeckContainerData = [
     {
       icon: MdNotifications,
-      text: "Notifications"
+      text: "Notifications",
+      onClick: _ => {}
     },
     {
       icon: MdNowWallpaper,
-      text: "Chat Wallpaper"
+      text: "Chat Wallpaper",
+      onClick: this.handleChatWallpaperClick
     },
     {
       icon: MdBlock,
-      text: "Blocked"
+      text: "Blocked",
+      onClick: _ => {}
     },
     {
       icon: MdHelp,
-      text: "Help"
+      text: "Help",
+      onClick: _ => {}
     }
   ];
 
-  return (
-    <Div css={wrapperStyle}>
-      <Header
-        title={"Settings"}
-        handleProfileInfoBackClick={handleProfileInfoBackClick}
-      />
-      <PictureAndName
-        status={status}
-        name={name}
-        picturePath={picturePath}
-        handlePictureNameClick={handlePictureNameClick}
-      />
-      {singleDeckContainerData.map(data => (
-        <SingleDeckContainer
-          Icon={data.icon}
-          iconStyle={{ size: "22", color: "rgba(0,0,0,0.4)" }}
-          text={data.text}
-          style={{
-            marginTop: "0",
-            boxShadow: "0",
-            borderBottom: "1px solid rgba(0, 0, 0, 0.06)"
-          }}
-        />
-      ))}
-    </Div>
-  );
-};
+  getCurrentProfileView = _ => {
+    switch (this.state.currentView) {
+      case "settings":
+        return (
+          <Div css={this.wrapperStyle}>
+            <Header
+              title={"Settings"}
+              handleProfileInfoBackClick={this.props.handleProfileInfoBackClick}
+            />
+            <PictureAndName
+              status={this.props.status}
+              name={this.props.name}
+              picturePath={this.props.picturePath}
+              handlePictureNameClick={this.props.handlePictureNameClick}
+            />
+            {this.singleDeckContainerData.map((data, index) => (
+              <SingleDeckContainer
+                key={index}
+                OnClick={data.onClick}
+                Icon={data.icon}
+                IconStyle={{ size: "22", color: "rgba(0,0,0,0.4)" }}
+                Text={data.text}
+                Style={{
+                  marginTop: "0",
+                  boxShadow: "0",
+                  borderBottom: "1px solid rgba(0, 0, 0, 0.06)"
+                }}
+              />
+            ))}
+          </Div>
+        );
+
+      case "chatWallpaper":
+        return (
+          <ChatWallpaper
+            handleProfileInfoBackClick={this.handleProfileInfoBackClick}
+          />
+        );
+    }
+  };
+
+  render() {
+    return this.getCurrentProfileView();
+  }
+}

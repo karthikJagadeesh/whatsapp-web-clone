@@ -282,7 +282,7 @@ export const SingleDeckContainer = props => {
       cursor: "pointer",
       background: "#F4F5F5"
     },
-    ...props.style
+    ...props.Style
   };
   const wrapperIconStyle = {
     alignSelf: "center",
@@ -291,15 +291,15 @@ export const SingleDeckContainer = props => {
   const wrapperTextStyle = {
     alignSelf: "center"
   };
-  const { Icon, iconStyle, textStyle, text } = props;
+  const { Icon, IconStyle, TextStyle, Text, OnClick } = props;
 
   return (
-    <Div css={wrapperStyle}>
+    <Div css={wrapperStyle} onClick={OnClick}>
       <Div css={wrapperIconStyle}>
-        <Icon {...iconStyle} />
+        <Icon {...IconStyle} />
       </Div>
       <Div css={wrapperTextStyle}>
-        <Span css={textStyle}>{text}</Span>
+        <Span css={TextStyle}>{Text}</Span>
       </Div>
     </Div>
   );
@@ -321,19 +321,19 @@ export const ContactInfoResults = ({ picturePath, name }) => {
         <AboutAndPhoneNumber />
         <SingleDeckContainer
           Icon={MdBlock}
-          iconStyle={{ size: "25", color: "#666" }}
-          text={"Block Contact"}
+          IconStyle={{ size: "25", color: "#666" }}
+          Text={"Block Contact"}
         />
         <SingleDeckContainer
           Icon={MdThumbDown}
-          iconStyle={{ size: "25", color: "#DF3333" }}
-          text={"Report spam"}
+          IconStyle={{ size: "25", color: "#DF3333" }}
+          Text={"Report spam"}
         />
         <SingleDeckContainer
-          style={{ marginBottom: "2em" }}
+          Style={{ marginBottom: "2em" }}
           Icon={MdDelete}
-          iconStyle={{ size: "25", color: "#DF3333" }}
-          text={"Delete chat"}
+          IconStyle={{ size: "25", color: "#DF3333" }}
+          Text={"Delete chat"}
         />
       </Div>
     </Div>
