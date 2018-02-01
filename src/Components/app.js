@@ -14,7 +14,15 @@ export class App extends Component {
       profileData: {},
       chatBoxContext: null,
       isContextBoxActive: false,
-      isContactInfoContextBoxActive: false
+      isContactInfoContextBoxActive: false,
+      currentHovered: {
+        id: 100,
+        color: "#eeeae5"
+      },
+      currentSelected: {
+        id: 0,
+        color: "#eeeae5"
+      }
     };
   }
 
@@ -54,6 +62,39 @@ export class App extends Component {
       isContactInfoContextBoxActive: false
     });
   };
+  handleColorBoxClick = ({ currentTarget }) => {
+    this.setState({
+      currentSelected: {
+        id: currentTarget.dataset.id,
+        color: currentTarget.dataset.color
+      }
+    });
+  };
+  handleColorBoxHover = ({ currentTarget }) => {
+    this.setState({
+      // currentSelected: {
+      //   color: currentTarget.dataset.color,
+      //   id: this.state.currentSelected.id
+      // },
+      currentHovered: {
+        color: currentTarget.dataset.color,
+        id: currentTarget.dataset.id
+      }
+    });
+  };
+  handleColorBoxHoverOut = _ => {
+    console.log("mouse out");
+    this.setState({
+      currentSelected: {
+        color: this.state.currentSelected.color,
+        id: this.state.currentSelected.id
+      },
+      currentHovered: {
+        id: 100,
+        color: this.state.currentSelected.color
+      }
+    });
+  };
 
   handleListItemClick = ({ currentTarget }) => {
     (async _ => {
@@ -90,6 +131,11 @@ export class App extends Component {
             profileData={profileData}
             handleListItemClick={this.handleListItemClick}
             selectedFriend={chatBoxContext ? chatBoxContext.id : "0"}
+            handleColorBoxClick={this.handleColorBoxClick}
+            handleColorBoxHover={this.handleColorBoxHover}
+            handleColorBoxHoverOut={this.handleColorBoxHoverOut}
+            currentHovered={this.state.currentHovered.id}
+            currentSelected={this.state.currentSelected.id}
           />
         </Div>
         <Div css={this.chatBoxStyle}>
@@ -98,6 +144,7 @@ export class App extends Component {
             chatBoxContext={chatBoxContext}
             handleSearchClick={this.handleSearchClick}
             friendChatHeaderClick={this.friendChatHeaderClick}
+            backgroundColor={this.state.currentHovered.color}
           />
         </Div>
         {isContextBoxActive ? (

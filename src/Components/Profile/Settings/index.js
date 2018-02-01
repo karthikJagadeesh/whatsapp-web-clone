@@ -144,6 +144,11 @@ export class ProfileSettings extends Component {
       case "chatWallpaper":
         return (
           <ChatWallpaper
+            currentHovered={this.props.currentHovered}
+            currentSelected={this.props.currentSelected}
+            handleColorBoxHover={this.props.handleColorBoxHover}
+            handleColorBoxClick={this.props.handleColorBoxClick}
+            handleColorBoxHoverOut={this.props.handleColorBoxHoverOut}
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
           />
         );

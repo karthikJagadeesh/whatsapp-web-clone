@@ -56,6 +56,11 @@ export class Profile extends Component {
       case "profileSettings":
         return (
           <ProfileSettings
+            currentHovered={this.props.currentHovered}
+            currentSelected={this.props.currentSelected}
+            handleColorBoxClick={this.props.handleColorBoxClick}
+            handleColorBoxHover={this.props.handleColorBoxHover}
+            handleColorBoxHoverOut={this.props.handleColorBoxHoverOut}
             handlePictureNameClick={this.handlePictureClick}
             {...propsForInfoAndSettings}
           />
