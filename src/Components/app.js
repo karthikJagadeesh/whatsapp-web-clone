@@ -72,10 +72,6 @@ export class App extends Component {
   };
   handleColorBoxHover = ({ currentTarget }) => {
     this.setState({
-      // currentSelected: {
-      //   color: currentTarget.dataset.color,
-      //   id: this.state.currentSelected.id
-      // },
       currentHovered: {
         color: currentTarget.dataset.color,
         id: currentTarget.dataset.id
