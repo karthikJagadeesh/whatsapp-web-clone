@@ -1,30 +1,28 @@
+import "babel-polyfill";
 import React, { Component } from "react";
 import { Div } from "glamorous";
-import "babel-polyfill";
+import { object, boolean } from "prop-types";
 
-import { Profile } from "./Profile";
-import { ChatBox } from "./ChatBox";
-import { ContextBox } from "./ContextBox/";
+import Profile from "./Profile";
+import ChatBox from "./ChatBox";
+import ContextBox from "./ContextBox/";
 import { profileDataUrl, friendDataUrl, fetchData } from "../network";
 
-export class App extends Component {
-  constructor(context) {
-    super(context);
-    this.state = {
-      profileData: {},
-      chatBoxContext: null,
-      isContextBoxActive: false,
-      isContactInfoContextBoxActive: false,
-      currentHovered: {
-        id: 100,
-        color: "#eeeae5"
-      },
-      currentSelected: {
-        id: 0,
-        color: "#eeeae5"
-      }
-    };
-  }
+export default class App extends Component {
+  state = {
+    profileData: {},
+    chatBoxContext: null,
+    isContextBoxActive: false,
+    isContactInfoContextBoxActive: false,
+    currentHovered: {
+      id: 100,
+      color: "#eeeae5"
+    },
+    currentSelected: {
+      id: 0,
+      color: "#eeeae5"
+    }
+  };
 
   wrapperStyleWithContextBox = {
     display: "grid",
@@ -79,16 +77,17 @@ export class App extends Component {
     });
   };
   handleColorBoxHoverOut = _ => {
-    console.log("mouse out");
-    this.setState({
-      currentSelected: {
-        color: this.state.currentSelected.color,
-        id: this.state.currentSelected.id
-      },
-      currentHovered: {
-        id: 100,
-        color: this.state.currentSelected.color
-      }
+    this.setState(prevState => {
+      return {
+        currentSelected: {
+          color: prevState.currentSelected.color,
+          id: prevState.currentSelected.id
+        },
+        currentHovered: {
+          id: 100,
+          color: prevState.currentSelected.color
+        }
+      };
     });
   };
 
