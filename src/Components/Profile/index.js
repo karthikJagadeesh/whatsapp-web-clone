@@ -6,16 +6,13 @@ import { SearchBar } from "./searchBar";
 import { FriendsList } from "./friendsList";
 
 import { ProfileInfo } from "./ProfileInfo";
-import { ProfileSettings } from "./Settings";
+import ProfileSettings from "./Settings";
 
-export class Profile extends Component {
-  constructor(context) {
-    super(context);
-    this.state = {
-      searchBarValue: "",
-      currentView: "friendList"
-    };
-  }
+export default class Profile extends Component {
+  state = {
+    searchBarValue: "",
+    currentView: "friendList"
+  };
 
   wrapperStyle = {
     display: "grid",

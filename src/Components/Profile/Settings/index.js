@@ -66,13 +66,10 @@ const PictureAndName = ({
   );
 };
 
-export class ProfileSettings extends Component {
-  constructor(context) {
-    super(context);
-    this.state = {
-      currentView: "settings"
-    };
-  }
+export default class ProfileSettings extends Component {
+  state = {
+    currentView: "settings"
+  };
 
   wrapperStyle = {
     height: "100%",

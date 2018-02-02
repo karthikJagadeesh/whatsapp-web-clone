@@ -5,13 +5,10 @@ import { ChatBoxHeader } from "./chatBoxHeader";
 import { ChatBoxDisplay } from "./chatBoxDisplay";
 import { ChatBoxFooter } from "./chatBoxFooter";
 
-export class ChatBox extends Component {
-  constructor(context) {
-    super(context);
-    this.state = {
-      messages: []
-    };
-  }
+export default class ChatBox extends Component {
+  state = {
+    messages: []
+  };
 
   wrapperStyle = {
     display: "grid",

@@ -47,10 +47,13 @@ const ColorList = ({
   currentHovered
 }) => {
   const wrapperStyle = {
-    height: "78%",
+    height: "84%",
     maxWidth: "100%",
     overflowY: "scroll",
-    padding: "30px 80px"
+    padding: "0em 3em",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center"
   };
   return (
     <Div css={wrapperStyle}>

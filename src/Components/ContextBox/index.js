@@ -6,13 +6,11 @@ import { SearchBar } from "../Profile/searchBar";
 import { SearchResults } from "./searchResults";
 import { ContactInfo } from "./contactInfo";
 
-export class ContextBox extends Component {
-  constructor(context) {
-    super(context);
-    this.state = {
-      value: ""
-    };
-  }
+export default class ContextBox extends Component {
+  state = {
+    value: ""
+  };
+
   wrapperStyle = {
     height: "100%",
     display: "grid",

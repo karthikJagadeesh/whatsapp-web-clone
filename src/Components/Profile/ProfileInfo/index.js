@@ -120,7 +120,8 @@ export const ProfileInfo = ({
   status
 }) => {
   const wrapperStyle = {
-    height: "100%"
+    height: "100%",
+    overflowY: "auto"
   };
 
   return (
