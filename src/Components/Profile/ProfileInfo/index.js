@@ -5,7 +5,11 @@ import MdEdit from "react-icons/lib/md/edit";
 
 import { ProfilePictureCard } from "../../ContextBox/contactInfoResults";
 
-export const Header = ({ handleProfileInfoBackClick, title }) => {
+export const Header = ({
+  handleProfileInfoBackClick,
+  title,
+  StarredMessagesMenu = ""
+}) => {
   const Title = ({ handleProfileInfoBackClick, title }) => {
     const wrapperStyle = {
       color: "white",
@@ -38,12 +42,17 @@ export const Header = ({ handleProfileInfoBackClick, title }) => {
     background: "#00bfa5",
     height: "16%",
     display: "grid",
-    gridTemplateRows: "1fr"
+    gridTemplateColumns: "8fr 2fr"
   };
   const wrapperTitleStyle = {
     alignSelf: "center",
     display: "grid",
     height: "70%"
+  };
+  const wrapperStarredMessagesMenuStyle = {
+    alignSelf: "end",
+    display: "grid",
+    height: "40%"
   };
 
   return (
@@ -53,6 +62,9 @@ export const Header = ({ handleProfileInfoBackClick, title }) => {
           handleProfileInfoBackClick={handleProfileInfoBackClick}
           title={title}
         />
+      </Div>
+      <Div css={wrapperStarredMessagesMenuStyle}>
+        {StarredMessagesMenu ? <StarredMessagesMenu /> : null}
       </Div>
     </Div>
   );

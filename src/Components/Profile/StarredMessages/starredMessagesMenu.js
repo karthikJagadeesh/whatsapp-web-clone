@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Div } from "glamorous";
 
-import { Menu } from "../ChatBox/menu";
+import { Menu } from "../../ChatBox/menu";
 
 export const StarredMessagesMenu = _ => {
   const labelsAndContext = {
@@ -10,7 +10,10 @@ export const StarredMessagesMenu = _ => {
 
   return (
     <Fragment>
-      <Menu labelsAndContext={labelsAndContext} />
+      <Menu
+        labelsAndContext={labelsAndContext}
+        buttonStyle={{ color: "#FFF" }}
+      />
     </Fragment>
   );
 };
