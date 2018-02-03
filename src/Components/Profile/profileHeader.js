@@ -9,7 +9,9 @@ import { ProfileMenu } from "./profileMenu";
 export const ProfileHeader = ({
   handlePictureClick,
   profileData,
-  handleProfileSettingsClick
+  handleProfileSettingsClick,
+  handleStarredMessagesClick,
+  handleArchivedChatsClick
 }) => {
   const wrapperStyle = {
     background: "#eee",
@@ -49,6 +51,8 @@ export const ProfileHeader = ({
       <Div css={profileMenuWrapperStyle}>
         <ProfileMenu
           handleProfileClick={handlePictureClick}
+          handleStarredMessagesClick={handleStarredMessagesClick}
+          handleArchivedChatsClick={handleArchivedChatsClick}
           handleProfileSettingsClick={handleProfileSettingsClick}
         />
       </Div>

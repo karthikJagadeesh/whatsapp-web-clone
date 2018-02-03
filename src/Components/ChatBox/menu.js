@@ -31,7 +31,7 @@ const MenuItems = ({ labelsAndContext }) => {
   );
 };
 
-export const Menu = ({ labelsAndContext }) => {
+export const Menu = ({ labelsAndContext, buttonStyle }) => {
   const wrapperButtonStyle = {
     ":hover": {
       cursor: "pointer"
@@ -57,7 +57,7 @@ export const Menu = ({ labelsAndContext }) => {
           </Dropdown>
         }
       >
-        <MdMoveVert size={25} color="#666" />
+        <MdMoveVert size={25} color="#666" {...buttonStyle} />
       </MenuButton>
     </Div>
   );

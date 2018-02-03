@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Div, Span, Img } from "glamorous";
 
-import MdArrowBack from "react-icons/lib/md/arrow-back";
 import MdNotifications from "react-icons/lib/md/notifications";
 import MdNowWallpaper from "react-icons/lib/md/now-wallpaper";
 import MdBlock from "react-icons/lib/md/block";
