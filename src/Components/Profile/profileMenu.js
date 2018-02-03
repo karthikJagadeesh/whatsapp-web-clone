@@ -1,25 +1,25 @@
-import React, { Component } from "react";
-import { Div } from "glamorous";
-import MdMoveVert from "react-icons/lib/md/more-vert";
+import React, { Component, Fragment } from "react";
 
 import { Menu } from "../ChatBox/menu";
 
 export const ProfileMenu = ({
   handleProfileSettingsClick,
+  handleArchivedChatsClick,
+  handleStarredMessagesClick,
   handleProfileClick
 }) => {
   const labelsAndContext = {
     "New group": _ => {},
     Profile: handleProfileClick,
-    Archived: _ => {},
-    Starred: _ => {},
+    Archived: handleArchivedChatsClick,
+    Starred: handleStarredMessagesClick,
     Settings: handleProfileSettingsClick,
     "Log out": _ => {}
   };
 
   return (
-    <Div>
+    <Fragment>
       <Menu labelsAndContext={labelsAndContext} />
-    </Div>
+    </Fragment>
   );
 };

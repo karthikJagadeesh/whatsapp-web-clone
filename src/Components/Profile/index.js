@@ -7,6 +7,8 @@ import { FriendsList } from "./friendsList";
 
 import { ProfileInfo } from "./ProfileInfo";
 import ProfileSettings from "./Settings";
+import { ArchivedChats } from "./ArchivedChats";
+import { StarredMessages } from "./StarredMessages";
 
 export default class Profile extends Component {
   state = {
@@ -34,6 +36,12 @@ export default class Profile extends Component {
   handleProfileSettingsClick = _ => {
     this.setState({ currentView: "profileSettings" });
   };
+  handleArchivedChatsClick = _ => {
+    this.setState({ currentView: "archivedChats" });
+  };
+  handleStarredMessagesClick = _ => {
+    this.setState({ currentView: "starredMessages" });
+  };
   handleProfileInfoBackClick = _ => {
     this.setState({ currentView: "friendList" });
   };
@@ -47,6 +55,20 @@ export default class Profile extends Component {
     };
 
     switch (this.state.currentView) {
+      case "starredMessages":
+        return (
+          <StarredMessages
+            handleProfileInfoBackClick={this.handleProfileInfoBackClick}
+          />
+        );
+
+      case "archivedChats":
+        return (
+          <ArchivedChats
+            handleProfileInfoBackClick={this.handleProfileInfoBackClick}
+          />
+        );
+
       case "profileInfo":
         return <ProfileInfo {...propsForInfoAndSettings} />;
 
@@ -69,7 +91,9 @@ export default class Profile extends Component {
             <Div css={this.profileHeaderWrapperStyle}>
               <ProfileHeader
                 handlePictureClick={this.handlePictureClick}
+                handleStarredMessagesClick={this.handleStarredMessagesClick}
                 handleProfileSettingsClick={this.handleProfileSettingsClick}
+                handleArchivedChatsClick={this.handleArchivedChatsClick}
                 profileData={this.props.profileData}
               />
             </Div>

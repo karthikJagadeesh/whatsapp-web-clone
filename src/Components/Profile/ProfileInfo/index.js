@@ -11,7 +11,6 @@ export const Header = ({ handleProfileInfoBackClick, title }) => {
       color: "white",
       fontSize: "1.1em",
       fontWeight: "600",
-      letterSpacing: "1px",
       height: "40%",
       alignSelf: "end",
       display: "grid",
