@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Div } from "glamorous";
 
-import { ChatBoxHeader } from "./chatBoxHeader";
-import { ChatBoxDisplay } from "./chatBoxDisplay";
-import { ChatBoxFooter } from "./chatBoxFooter";
+import { ChatBoxHeader } from "./ChatBoxHeader";
+import { ChatBoxDisplay } from "./ChatBoxDisplay";
+import { ChatBoxFooter } from "./ChatBoxFooter";
 
 export default class ChatBox extends Component {
   state = {

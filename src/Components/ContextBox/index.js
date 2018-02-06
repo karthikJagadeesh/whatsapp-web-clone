@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Div } from "glamorous";
 
 import { Header } from "./header";
-import { SearchBar } from "../Profile/searchBar";
+import { SearchBar } from "../Profile/SearchBar";
 import { SearchResults } from "./searchResults";
 import { ContactInfo } from "./contactInfo";
 

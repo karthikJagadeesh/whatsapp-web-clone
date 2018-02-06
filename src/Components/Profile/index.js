@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Div } from "glamorous";
 
-import { ProfileHeader } from "./profileHeader";
-import { SearchBar } from "./searchBar";
-import { FriendsList } from "./friendsList";
+import { ProfileHeader } from "./ProfileHeader";
+import { SearchBar } from "./SearchBar";
+import { FriendsList } from "./FriendsList";
 
 import { ProfileInfo } from "./ProfileInfo";
 import ProfileSettings from "./Settings";
