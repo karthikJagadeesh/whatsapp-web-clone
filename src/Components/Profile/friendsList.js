@@ -9,11 +9,6 @@ export const FriendsList = ({
   selectedFriend,
   friendsList: friendsList = []
 }) => {
-  const wrapperStyle = {
-    overflowY: "scroll",
-    height: "100%"
-  };
-
   const listOfFriends = friendsList.map(friend => {
     const props = {
       key: friend.id,
@@ -29,7 +24,12 @@ export const FriendsList = ({
   });
 
   return (
-    <Div css={wrapperStyle}>
+    <Div
+      css={{
+        overflowY: "scroll",
+        height: "100%"
+      }}
+    >
       {listOfFriends.filter(({ props }) =>
         props.name.toLowerCase().includes(searchBarValue.toLowerCase().trim())
       )}
