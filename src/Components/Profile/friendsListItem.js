@@ -2,28 +2,25 @@ import React, { Component } from "react";
 import { Div, Label, Img, P } from "glamorous";
 
 const NameAndLastChat = ({ name, lastChat }) => {
-  const wrapperStyle = {
-    paddingLeft: "10px"
-  };
-  const lastChatStyle = {
-    width: "260px",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    color: "rgba(0, 0, 0, 0.6)",
-    fontSize: "0.9em",
-    margin: "0px"
-  };
-  const nameWrapperStyle = {};
-  const lastChatWrapperStyle = {};
-
   return (
-    <Div css={wrapperStyle}>
-      <Div css={nameWrapperStyle}>
+    <Div css={{ paddingLeft: "10px" }}>
+      <Div>
         <Label>{name}</Label>
       </Div>
-      <Div css={lastChatWrapperStyle}>
-        <P css={lastChatStyle}>{lastChat}</P>
+      <Div>
+        <P
+          css={{
+            width: "260px",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            color: "rgba(0, 0, 0, 0.6)",
+            fontSize: "0.9em",
+            margin: "0px"
+          }}
+        >
+          {lastChat}
+        </P>
       </Div>
     </Div>
   );
@@ -51,42 +48,6 @@ export const FriendsListItem = ({ picture: picture = "", ...props }) => {
     }
   };
 
-  const nameAndLastChatStyle = {
-    width: "100%",
-    alignSelf: "center",
-    justifySelf: "start",
-    ":hover": {
-      cursor: "pointer"
-    }
-  };
-
-  const timestampWrapperStyle = {
-    color: "rgba(0, 0, 0, 0.4)",
-    fontSize: "0.8em",
-    display: "grid",
-    height: "50%",
-    width: "100%",
-    alignSelf: "center"
-  };
-
-  const timestampStyle = {
-    alignSelf: "start",
-    justifySelf: "center"
-  };
-
-  const wrapperImageStyle = {
-    display: "grid",
-    gridTemplateColumns: "100%"
-  };
-
-  const imageStyle = {
-    borderRadius: "50%",
-    width: "70%",
-    height: "70%",
-    alignSelf: "center",
-    justifySelf: "center"
-  };
-
   return (
     <Div
       css={
@@ -95,14 +56,54 @@ export const FriendsListItem = ({ picture: picture = "", ...props }) => {
       data-id={props.id}
       onClickCapture={props.handleListItemClick}
     >
-      <Div css={wrapperImageStyle}>
-        <Img css={imageStyle} alt="" src={picture} />
+      <Div
+        css={{
+          display: "grid",
+          gridTemplateColumns: "100%"
+        }}
+      >
+        <Img
+          css={{
+            borderRadius: "50%",
+            width: "70%",
+            height: "70%",
+            alignSelf: "center",
+            justifySelf: "center"
+          }}
+          alt=""
+          src={picture}
+        />
       </Div>
-      <Div css={nameAndLastChatStyle}>
+      <Div
+        css={{
+          width: "100%",
+          alignSelf: "center",
+          justifySelf: "start",
+          ":hover": {
+            cursor: "pointer"
+          }
+        }}
+      >
         <NameAndLastChat name={props.name} lastChat={props.lastChat} />
       </Div>
-      <Div css={timestampWrapperStyle}>
-        <Label css={timestampStyle}>{props.timestamp}</Label>
+      <Div
+        css={{
+          color: "rgba(0, 0, 0, 0.4)",
+          fontSize: "0.8em",
+          display: "grid",
+          height: "50%",
+          width: "100%",
+          alignSelf: "center"
+        }}
+      >
+        <Label
+          css={{
+            alignSelf: "start",
+            justifySelf: "center"
+          }}
+        >
+          {props.timestamp}
+        </Label>
       </Div>
     </Div>
   );

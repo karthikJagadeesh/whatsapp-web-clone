@@ -34,13 +34,6 @@ export default class App extends Component {
     ...this.wrapperStyleWithContextBox,
     gridTemplateColumns: "3fr 7fr"
   };
-  friendsListStyle = {
-    background: "#eee"
-  };
-  chatBoxStyle = {
-    background: "#F7F9FA"
-  };
-  contextBoxStyle = {};
 
   friendChatHeaderClick = _ => {
     this.setState({
@@ -112,7 +105,9 @@ export default class App extends Component {
       profileData,
       chatBoxContext,
       isContextBoxActive,
-      isContactInfoContextBoxActive
+      isContactInfoContextBoxActive,
+      currentHovered,
+      currentSelected
     } = this.state;
     let wrapperStyle = this.wrapperStyleWithoutContextBox;
     if (isContextBoxActive) {
@@ -121,7 +116,7 @@ export default class App extends Component {
 
     return (
       <Div css={wrapperStyle}>
-        <Div css={this.friendsListStyle}>
+        <Div css={{ background: "#eee" }}>
           <Profile
             profileData={profileData}
             handleListItemClick={this.handleListItemClick}
@@ -129,17 +124,17 @@ export default class App extends Component {
             handleColorBoxClick={this.handleColorBoxClick}
             handleColorBoxHover={this.handleColorBoxHover}
             handleColorBoxHoverOut={this.handleColorBoxHoverOut}
-            currentHovered={this.state.currentHovered.id}
-            currentSelected={this.state.currentSelected.id}
+            currentHovered={currentHovered.id}
+            currentSelected={currentSelected.id}
           />
         </Div>
-        <Div css={this.chatBoxStyle}>
+        <Div css={{ background: "#F7F9FA" }}>
           <ChatBox
             currentFriend={this.handleListItemClick}
             chatBoxContext={chatBoxContext}
             handleSearchClick={this.handleSearchClick}
             friendChatHeaderClick={this.friendChatHeaderClick}
-            backgroundColor={this.state.currentHovered.color}
+            backgroundColor={currentHovered.color}
           />
         </Div>
         {isContextBoxActive ? (

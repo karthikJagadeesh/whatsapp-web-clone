@@ -16,17 +16,6 @@ export default class Profile extends Component {
     currentView: "friendList"
   };
 
-  wrapperStyle = {
-    display: "grid",
-    gridTemplateRows: "10% 6% 84%",
-    height: "100vh",
-    borderRight: "1px solid rgba(0, 0, 0, 0.05)"
-  };
-  profileHeaderWrapperStyle = {
-    borderBottom: "1px solid rgba(0, 0, 0, 0.05)"
-  };
-  searchBarWrapperStyle = { ...this.profileHeaderWrapperStyle };
-
   handleInputChange = ({ target }) => {
     this.setState({ searchBarValue: target.value });
   };
@@ -46,7 +35,7 @@ export default class Profile extends Component {
     this.setState({ currentView: "friendList" });
   };
 
-  getCurrentProfileView = _ => {
+  render() {
     const propsForInfoAndSettings = {
       name: this.props.profileData.name,
       status: this.props.profileData.status,
@@ -73,50 +62,68 @@ export default class Profile extends Component {
         return <ProfileInfo {...propsForInfoAndSettings} />;
 
       case "profileSettings":
+        const {
+          currentHovered,
+          currentSelected,
+          handleColorBoxClick,
+          handleColorBoxHover,
+          handleColorBoxHoverOut
+        } = this.props;
+
         return (
           <ProfileSettings
-            currentHovered={this.props.currentHovered}
-            currentSelected={this.props.currentSelected}
-            handleColorBoxClick={this.props.handleColorBoxClick}
-            handleColorBoxHover={this.props.handleColorBoxHover}
-            handleColorBoxHoverOut={this.props.handleColorBoxHoverOut}
+            currentHovered={currentHovered}
+            currentSelected={currentSelected}
+            handleColorBoxClick={handleColorBoxClick}
+            handleColorBoxHover={handleColorBoxHover}
+            handleColorBoxHoverOut={handleColorBoxHoverOut}
             handlePictureNameClick={this.handlePictureClick}
             {...propsForInfoAndSettings}
           />
         );
 
       case "friendList":
+        const {
+          profileData,
+          selectedFriend,
+          handleListItemClick
+        } = this.props;
+        const { searchBarValue } = this.state;
+
         return (
-          <Div css={this.wrapperStyle}>
-            <Div css={this.profileHeaderWrapperStyle}>
+          <Div
+            css={{
+              display: "grid",
+              gridTemplateRows: "10% 6% 84%",
+              height: "100vh",
+              borderRight: "1px solid rgba(0, 0, 0, 0.05)"
+            }}
+          >
+            <Div css={{ borderBottom: "1px solid rgba(0, 0, 0, 0.05)" }}>
               <ProfileHeader
                 handlePictureClick={this.handlePictureClick}
                 handleStarredMessagesClick={this.handleStarredMessagesClick}
                 handleProfileSettingsClick={this.handleProfileSettingsClick}
                 handleArchivedChatsClick={this.handleArchivedChatsClick}
-                profileData={this.props.profileData}
+                profileData={profileData}
               />
             </Div>
-            <Div css={this.searchBarWrapperStyle}>
+            <Div css={{ borderBottom: "1px solid rgba(0, 0, 0, 0.05)" }}>
               <SearchBar
                 handleInputChange={this.handleInputChange}
-                searchBarValue={this.state.searchBarValue}
+                searchBarValue={searchBarValue}
               />
             </Div>
             <Div>
               <FriendsList
-                selectedFriend={this.props.selectedFriend}
-                searchBarValue={this.state.searchBarValue}
-                friendsList={this.props.profileData.friends}
-                handleListItemClick={this.props.handleListItemClick}
+                selectedFriend={selectedFriend}
+                searchBarValue={searchBarValue}
+                friendsList={profileData.friends}
+                handleListItemClick={handleListItemClick}
               />
             </Div>
           </Div>
         );
     }
-  };
-
-  render() {
-    return this.getCurrentProfileView();
   }
 }

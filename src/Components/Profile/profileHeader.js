@@ -13,42 +13,57 @@ export const ProfileHeader = ({
   handleStarredMessagesClick,
   handleArchivedChatsClick
 }) => {
-  const wrapperStyle = {
-    background: "#eee",
-    height: "100%",
-    display: "grid",
-    gridTemplateColumns: "55% 15% 15% 15%"
-  };
-
-  const profilePictureWrapperStyle = {
-    alignSelf: "center",
-    justifySelf: "start"
-  };
-  const profileStatusWrapperStyle = {
-    alignSelf: "center",
-    justifySelf: "start",
-    ":hover": {
-      cursor: "pointer"
-    }
-  };
-  const profileNewChatWrapperStyle = { ...profileStatusWrapperStyle };
-  const profileMenuWrapperStyle = { ...profileStatusWrapperStyle };
-
   return (
-    <Div css={wrapperStyle}>
-      <Div css={profilePictureWrapperStyle}>
+    <Div
+      css={{
+        background: "#eee",
+        height: "100%",
+        display: "grid",
+        gridTemplateColumns: "55% 15% 15% 15%"
+      }}
+    >
+      <Div
+        css={{
+          alignSelf: "center",
+          justifySelf: "start"
+        }}
+      >
         <ProfilePicture
           handlePictureClick={handlePictureClick}
           profilePicture={profileData.picture}
         />
       </Div>
-      <Div css={profileStatusWrapperStyle}>
+      <Div
+        css={{
+          alignSelf: "center",
+          justifySelf: "start",
+          ":hover": {
+            cursor: "pointer"
+          }
+        }}
+      >
         <ProfileStatus />
       </Div>
-      <Div css={profileNewChatWrapperStyle}>
+      <Div
+        css={{
+          alignSelf: "center",
+          justifySelf: "start",
+          ":hover": {
+            cursor: "pointer"
+          }
+        }}
+      >
         <ProfileNewChat />
       </Div>
-      <Div css={profileMenuWrapperStyle}>
+      <Div
+        css={{
+          alignSelf: "center",
+          justifySelf: "start",
+          ":hover": {
+            cursor: "pointer"
+          }
+        }}
+      >
         <ProfileMenu
           handleProfileClick={handlePictureClick}
           handleStarredMessagesClick={handleStarredMessagesClick}
