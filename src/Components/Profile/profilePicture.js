@@ -5,28 +5,31 @@ export const ProfilePicture = ({
   profilePicture: profilePicture = "",
   handlePictureClick
 }) => {
-  const profilePictureStyle = {
-    borderRadius: "50%",
-    width: "60%",
-    display: "grid",
-    gridTemplateColumns: "100%",
-    ":hover": {
-      cursor: "pointer"
-    },
-    alignSelf: "center",
-    justifySelf: "center"
-  };
-
-  const wrapperStyle = {
-    alignSelf: "center",
-    justifySelf: "center",
-    width: "30%",
-    display: "grid"
-  };
-
   return (
-    <Div css={wrapperStyle} onClick={handlePictureClick}>
-      <Img css={profilePictureStyle} alt="" src={profilePicture} />
+    <Div
+      css={{
+        alignSelf: "center",
+        justifySelf: "center",
+        width: "30%",
+        display: "grid"
+      }}
+      onClick={handlePictureClick}
+    >
+      <Img
+        css={{
+          borderRadius: "50%",
+          width: "60%",
+          display: "grid",
+          gridTemplateColumns: "100%",
+          alignSelf: "center",
+          justifySelf: "center",
+          ":hover": {
+            cursor: "pointer"
+          }
+        }}
+        alt=""
+        src={profilePicture}
+      />
     </Div>
   );
 };

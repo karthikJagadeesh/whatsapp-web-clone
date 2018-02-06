@@ -46,17 +46,18 @@ const ColorList = ({
   handleColorBoxHoverOut,
   currentHovered
 }) => {
-  const wrapperStyle = {
-    height: "84%",
-    maxWidth: "100%",
-    overflowY: "scroll",
-    padding: "0em 3em",
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center"
-  };
   return (
-    <Div css={wrapperStyle}>
+    <Div
+      css={{
+        height: "84%",
+        maxWidth: "100%",
+        overflowY: "scroll",
+        padding: "0em 3em",
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center"
+      }}
+    >
       {colors.map((color, index) => (
         <ColorBox
           color={color}
@@ -81,15 +82,15 @@ export const ChatWallpaper = ({
   currentSelected,
   currentHovered
 }) => {
-  const wrapperStyle = {
-    height: "100vh",
-    background: "#F7F7F7"
-  };
-
   return (
-    <Div css={wrapperStyle}>
+    <Div
+      css={{
+        height: "100vh",
+        background: "#F7F7F7"
+      }}
+    >
       <Header
-        title={"Set Chat Wallpaper"}
+        title="Set Chat Wallpaper"
         handleProfileInfoBackClick={handleProfileInfoBackClick}
       />
       <ColorList

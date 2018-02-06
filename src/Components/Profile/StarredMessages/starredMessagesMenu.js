@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from "react";
-import { Div } from "glamorous";
+import React, { Fragment } from "react";
 
 import { Menu } from "../../ChatBox/menu";
 
