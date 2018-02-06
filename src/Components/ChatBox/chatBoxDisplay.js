@@ -6,14 +6,6 @@ export const ChatBoxDisplay = ({
   messages,
   chatlog: chatlog = []
 }) => {
-  const wrapperStyle = {
-    background: backgroundColor,
-    height: "100%",
-    overflowY: "auto",
-    display: "flex",
-    flexFlow: "column-reverse"
-  };
-
   const messagesListWrapperStyleLeft = {
     padding: "2px 70px",
     maxWidth: "400px",
@@ -61,5 +53,17 @@ export const ChatBoxDisplay = ({
     );
   });
 
-  return <Div css={wrapperStyle}>{messagesList}</Div>;
+  return (
+    <Div
+      css={{
+        background: backgroundColor,
+        height: "100%",
+        overflowY: "auto",
+        display: "flex",
+        flexFlow: "column-reverse"
+      }}
+    >
+      {messagesList}
+    </Div>
+  );
 };

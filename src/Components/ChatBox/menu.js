@@ -1,28 +1,34 @@
 import React from "react";
-import { MenuList, MenuItem, MenuButton, Dropdown } from "react-menu-list";
 import { Div, Label } from "glamorous";
+
+import { MenuList, MenuItem, MenuButton, Dropdown } from "react-menu-list";
 import MdMoveVert from "react-icons/lib/md/more-vert";
 
 const MenuItems = ({ labelsAndContext }) => {
-  const wrapperStyle = {
-    padding: "0px 20px",
-    width: "140px",
-    textAlign: "left"
-  };
-  const wrapperMenuItemStyle = {
-    padding: "10px 0px"
-  };
-  const menuItemStyle = {
-    color: "rgb(68, 68, 68)",
-    fontSize: "0.9em",
-    cursor: "pointer",
-    width: "100%"
-  };
   return (
-    <Div css={wrapperStyle}>
+    <Div
+      css={{
+        padding: "0px 20px",
+        width: "140px",
+        textAlign: "left"
+      }}
+    >
       {Object.keys(labelsAndContext).map(label => (
-        <MenuItem key={label} style={wrapperMenuItemStyle}>
-          <Label css={menuItemStyle} onClick={labelsAndContext[label]}>
+        <MenuItem
+          key={label}
+          style={{
+            padding: "10px 0px"
+          }}
+        >
+          <Label
+            css={{
+              color: "rgb(68, 68, 68)",
+              fontSize: "0.9em",
+              cursor: "pointer",
+              width: "100%"
+            }}
+            onClick={labelsAndContext[label]}
+          >
             {label}
           </Label>
         </MenuItem>
@@ -32,23 +38,22 @@ const MenuItems = ({ labelsAndContext }) => {
 };
 
 export const Menu = ({ labelsAndContext, buttonStyle }) => {
-  const wrapperButtonStyle = {
-    ":hover": {
-      cursor: "pointer"
-    }
-  };
-  const menuButtonStyle = {
-    border: "none",
-    borderRadius: "50%",
-    cursor: "pointer",
-    outline: "none",
-    background: "transparent"
-  };
-
   return (
-    <Div css={wrapperButtonStyle}>
+    <Div
+      css={{
+        ":hover": {
+          cursor: "pointer"
+        }
+      }}
+    >
       <MenuButton
-        style={menuButtonStyle}
+        style={{
+          border: "none",
+          borderRadius: "50%",
+          cursor: "pointer",
+          outline: "none",
+          background: "transparent"
+        }}
         menu={
           <Dropdown>
             <MenuList>

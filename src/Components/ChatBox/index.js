@@ -10,13 +10,6 @@ export default class ChatBox extends Component {
     messages: []
   };
 
-  wrapperStyle = {
-    display: "grid",
-    gridTemplateRows: "10% 80% 10%",
-    height: "100vh"
-  };
-  wrapperChatBoxDisplay = {};
-
   handleChatSend = message => {
     const freshMessages = [message, ...this.state.messages];
     if (message) this.setState({ messages: freshMessages });
@@ -29,9 +22,16 @@ export default class ChatBox extends Component {
       friendChatHeaderClick,
       backgroundColor
     } = this.props;
+    const { messages } = this.state;
 
     return (
-      <Div css={this.wrapperStyle}>
+      <Div
+        css={{
+          display: "grid",
+          gridTemplateRows: "10% 80% 10%",
+          height: "100vh"
+        }}
+      >
         <Div>
           {chatBoxContext ? (
             <ChatBoxHeader
@@ -41,11 +41,11 @@ export default class ChatBox extends Component {
             />
           ) : null}
         </Div>
-        <Div css={this.wrapperChatBoxDisplay}>
+        <Div>
           {chatBoxContext ? (
             <ChatBoxDisplay
               chatlog={chatBoxContext.chatlog}
-              messages={this.state.messages}
+              messages={messages}
               backgroundColor={backgroundColor}
             />
           ) : null}

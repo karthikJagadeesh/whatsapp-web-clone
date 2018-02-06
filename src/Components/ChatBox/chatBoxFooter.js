@@ -6,54 +6,8 @@ import { ChatMessageInput } from "./chatMessageInput";
 import { ChatAudioOrSend } from "./chatAudioOrSend";
 
 export class ChatBoxFooter extends Component {
-  constructor(context) {
-    super(context);
-    this.state = {
-      inputValue: ""
-    };
-  }
-
-  greenBarWrapperStyle = {
-    height: "100%",
-    width: "100%",
-    display: "grid"
-  };
-  greenBarStyle = {
-    height: "10%",
-    background: "#58e870",
-    alignSelf: "end"
-  };
-
-  wrapperStyle = {
-    background: "#F5F1EE",
-    padding: "0px 15px",
-    height: "100%",
-    display: "grid",
-    gridTemplateColumns: "5% 90% 5%"
-  };
-
-  smilieBoardWrapperStyle = {
-    alignSelf: "center",
-    justifySelf: "center",
-    ":hover": {
-      cursor: "pointer"
-    }
-  };
-  chatMessageWrapperStyle = {
-    alignSelf: "center",
-    justifySelf: "center",
-    width: "100%"
-  };
-  chatAudioMessageWrapperStyle = {
-    alignSelf: "center",
-    justifySelf: "center",
-    ":hover": {
-      cursor: "pointer"
-    }
-  };
-
-  handleInputChange = ({ target }) => {
-    this.setState({ inputValue: target.value });
+  state = {
+    inputValue: ""
   };
 
   postChatMessage = _ => {
@@ -76,27 +30,73 @@ export class ChatBoxFooter extends Component {
     }
   };
 
+  handleInputChange = ({ target }) => {
+    this.setState({ inputValue: target.value });
+  };
+
   render() {
     if (this.props.isInitialScreen) {
       return (
-        <Div css={this.greenBarWrapperStyle}>
-          <Div css={this.greenBarStyle} />
+        <Div
+          css={{
+            height: "100%",
+            width: "100%",
+            display: "grid"
+          }}
+        >
+          <Div
+            css={{
+              height: "10%",
+              background: "#58e870",
+              alignSelf: "end"
+            }}
+          />
         </Div>
       );
     } else {
       return (
-        <Div css={this.wrapperStyle}>
-          <Div css={this.smilieBoardWrapperStyle}>
+        <Div
+          css={{
+            background: "#F5F1EE",
+            padding: "0px 15px",
+            height: "100%",
+            display: "grid",
+            gridTemplateColumns: "5% 90% 5%"
+          }}
+        >
+          <Div
+            css={{
+              alignSelf: "center",
+              justifySelf: "center",
+              ":hover": {
+                cursor: "pointer"
+              }
+            }}
+          >
             <SmilieBoard />
           </Div>
-          <Div css={this.chatMessageWrapperStyle}>
+          <Div
+            css={{
+              alignSelf: "center",
+              justifySelf: "center",
+              width: "100%"
+            }}
+          >
             <ChatMessageInput
               inputValue={this.state.inputValue}
               handleInputChange={this.handleInputChange}
               handleInputKeyDown={this.handleInputKeyDown}
             />
           </Div>
-          <Div css={this.chatAudioMessageWrapperStyle}>
+          <Div
+            css={{
+              alignSelf: "center",
+              justifySelf: "center",
+              ":hover": {
+                cursor: "pointer"
+              }
+            }}
+          >
             <ChatAudioOrSend
               inputValue={this.state.inputValue}
               handleChatSend={this.postChatMessage}

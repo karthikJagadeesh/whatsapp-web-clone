@@ -16,41 +16,47 @@ const PictureAndName = ({
   name,
   handlePictureNameClick
 }) => {
-  const wrapperStyle = {
-    height: "16%",
-    display: "grid",
-    gridTemplateColumns: "3fr 7fr",
-    ":hover": {
-      background: "#F4F5F5",
-      cursor: "pointer"
-    }
-  };
-  const wrapperPictureStyle = {
-    display: "grid",
-    height: "100%",
-    gridTemplateColumns: "1fr",
-    justifySelf: "center",
-    alignSelf: "center"
-  };
-  const pictureStyle = {
-    justifySelf: "center",
-    alignSelf: "center",
-    height: "60%",
-    width: "60%",
-    borderRadius: "50%"
-  };
-  const wrapperNameStatusStyle = {
-    display: "grid",
-    gridTemplateRows: "5fr 5fr",
-    gridGap: "0.4em"
-  };
-
   return (
-    <Div css={wrapperStyle} onClick={handlePictureNameClick}>
-      <Div css={wrapperPictureStyle}>
-        <Img css={pictureStyle} src={picturePath} alt="" />
+    <Div
+      css={{
+        height: "16%",
+        display: "grid",
+        gridTemplateColumns: "3fr 7fr",
+        ":hover": {
+          background: "#F4F5F5",
+          cursor: "pointer"
+        }
+      }}
+      onClick={handlePictureNameClick}
+    >
+      <Div
+        css={{
+          display: "grid",
+          height: "100%",
+          gridTemplateColumns: "1fr",
+          justifySelf: "center",
+          alignSelf: "center"
+        }}
+      >
+        <Img
+          css={{
+            justifySelf: "center",
+            alignSelf: "center",
+            height: "60%",
+            width: "60%",
+            borderRadius: "50%"
+          }}
+          src={picturePath}
+          alt=""
+        />
       </Div>
-      <Div css={wrapperNameStatusStyle}>
+      <Div
+        css={{
+          display: "grid",
+          gridTemplateRows: "5fr 5fr",
+          gridGap: "0.4em"
+        }}
+      >
         <Span css={{ alignSelf: "end", fontSize: "1.2em" }}>{name}</Span>
         <Span
           css={{
@@ -68,11 +74,6 @@ const PictureAndName = ({
 export default class ProfileSettings extends Component {
   state = {
     currentView: "settings"
-  };
-
-  wrapperStyle = {
-    height: "100%",
-    background: "#fff"
   };
 
   handleChatWallpaperClick = _ => {
@@ -105,20 +106,33 @@ export default class ProfileSettings extends Component {
     }
   ];
 
-  getCurrentProfileView = _ => {
+  render() {
     switch (this.state.currentView) {
       case "settings":
+        const {
+          status,
+          name,
+          picturePath,
+          handlePictureNameClick,
+          handleProfileInfoBackClick
+        } = this.props;
+
         return (
-          <Div css={this.wrapperStyle}>
+          <Div
+            css={{
+              height: "100%",
+              background: "#fff"
+            }}
+          >
             <Header
               title={"Settings"}
-              handleProfileInfoBackClick={this.props.handleProfileInfoBackClick}
+              handleProfileInfoBackClick={handleProfileInfoBackClick}
             />
             <PictureAndName
-              status={this.props.status}
-              name={this.props.name}
-              picturePath={this.props.picturePath}
-              handlePictureNameClick={this.props.handlePictureNameClick}
+              status={status}
+              name={name}
+              picturePath={picturePath}
+              handlePictureNameClick={handlePictureNameClick}
             />
             {this.singleDeckContainerData.map((data, index) => (
               <SingleDeckContainer
@@ -138,20 +152,24 @@ export default class ProfileSettings extends Component {
         );
 
       case "chatWallpaper":
+        const {
+          currentHovered,
+          currentSelected,
+          handleColorBoxHover,
+          handleColorBoxClick,
+          handleColorBoxHoverOut
+        } = this.props
+
         return (
           <ChatWallpaper
-            currentHovered={this.props.currentHovered}
-            currentSelected={this.props.currentSelected}
-            handleColorBoxHover={this.props.handleColorBoxHover}
-            handleColorBoxClick={this.props.handleColorBoxClick}
-            handleColorBoxHoverOut={this.props.handleColorBoxHoverOut}
+            currentHovered={currentHovered}
+            currentSelected={currentSelected}
+            handleColorBoxHover={handleColorBoxHover}
+            handleColorBoxClick={handleColorBoxClick}
+            handleColorBoxHoverOut={handleColorBoxHoverOut}
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
           />
         );
     }
-  };
-
-  render() {
-    return this.getCurrentProfileView();
   }
 }

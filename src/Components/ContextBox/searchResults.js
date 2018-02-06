@@ -2,37 +2,33 @@ import React from "react";
 import { Div, P, Span } from "glamorous";
 
 export const SearchResults = ({ name, searchValue, messagesLog }) => {
-  const wrapperStyleInitialStyle = {
-    marginTop: "50px",
-    textAlign: "center",
-    color: "rgba(0, 0, 0, 0.4)",
-    fontSize: "0.9em"
-  };
-  const wrapperResultsStyle = {
-    padding: "20px",
-    textAlign: "center"
-  };
-  const resultsStyle = {
-    borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
-    padding: "1em 0",
-    color: "rgba(0, 0, 0, 0.6)",
-    fontSize: "0.9em"
-  };
-  const highlightValue = {
-    color: "#339686",
-    fontSize: "1.1em",
-    fontWeight: "700"
-  };
-
-  const templateDisplay = type => {
+  const templateDisplay = ({ type }) => {
     if (type === "initialDisplay") {
       return (
-        <Div css={wrapperStyleInitialStyle}>
+        <Div
+          css={{
+            marginTop: "50px",
+            textAlign: "center",
+            color: "rgba(0, 0, 0, 0.4)",
+            fontSize: "0.9em"
+          }}
+        >
           Search for messages with {name}
         </Div>
       );
     } else if (type === "noResultsDisplay") {
-      return <Div css={wrapperStyleInitialStyle}>No messages found</Div>;
+      return (
+        <Div
+          css={{
+            marginTop: "50px",
+            textAlign: "center",
+            color: "rgba(0, 0, 0, 0.4)",
+            fontSize: "0.9em"
+          }}
+        >
+          No messages found
+        </Div>
+      );
     }
   };
 
@@ -50,14 +46,27 @@ export const SearchResults = ({ name, searchValue, messagesLog }) => {
         afterSplit.forEach((text, index) => {
           if (index % 2 === 0 && index) {
             highlightedResult.push(
-              <Span key={text + index} css={highlightValue}>
+              <Span
+                key={index}
+                css={{
+                  color: "#339686",
+                  fontSize: "1.1em",
+                  fontWeight: "700"
+                }}
+              >
                 {searchValue}
               </Span>
             );
-          }
-          if (index === 1) {
+          } else if (index === 1) {
             highlightedResult.push(
-              <Span key={text + index} css={highlightValue}>
+              <Span
+                key={index}
+                css={{
+                  color: "#339686",
+                  fontSize: "1.1em",
+                  fontWeight: "700"
+                }}
+              >
                 {searchValue}
               </Span>
             );
@@ -66,18 +75,37 @@ export const SearchResults = ({ name, searchValue, messagesLog }) => {
         });
 
         return (
-          <P key={msg.message_id} css={resultsStyle}>
+          <P
+            key={msg.message_id}
+            css={{
+              borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
+              padding: "1em 0",
+              color: "rgba(0, 0, 0, 0.6)",
+              fontSize: "0.9em"
+            }}
+          >
             {highlightedResult}
           </P>
         );
       });
 
     if (resultMessagesLog.length > 0) {
-      return <Div css={wrapperResultsStyle}>{resultMessagesLog}</Div>;
+      return (
+        <Div
+          css={{
+            padding: "20px",
+            textAlign: "center"
+          }}
+        >
+          {resultMessagesLog}
+        </Div>
+      );
     } else {
-      return templateDisplay("noResultsDisplay");
+      return templateDisplay({ type: "noResultsDisplay" });
     }
   };
 
-  return searchValue ? resultsDisplay() : templateDisplay("initialDisplay");
+  return searchValue
+    ? resultsDisplay()
+    : templateDisplay({ type: "initialDisplay" });
 };

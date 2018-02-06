@@ -17,9 +17,5 @@ export const ProfileMenu = ({
     "Log out": _ => {}
   };
 
-  return (
-    <Fragment>
-      <Menu labelsAndContext={labelsAndContext} />
-    </Fragment>
-  );
+  return <Menu labelsAndContext={labelsAndContext} />;
 };
