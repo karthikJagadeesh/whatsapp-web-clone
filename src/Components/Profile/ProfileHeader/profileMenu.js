@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 
-import { Menu } from "../ChatBox/menu";
+import { Menu } from "../../ChatBox/ChatBoxHeader/menu";
 
 export const ProfileMenu = ({
   handleProfileSettingsClick,
