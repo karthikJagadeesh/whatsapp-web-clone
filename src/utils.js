@@ -7,7 +7,7 @@ export const range = (times, fn) => {
 };
 
 export const colors = [
-  "#eeeae5",
+  "#E5DDD5",
   "#cdecdd",
   "#afd9c8",
   "#7acca6",

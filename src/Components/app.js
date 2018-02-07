@@ -1,7 +1,7 @@
 import "babel-polyfill";
 import React, { Component } from "react";
 import { Div } from "glamorous";
-import { object, boolean } from "prop-types";
+import { Broadcast } from "react-broadcast";
 
 import Profile from "./Profile";
 import ChatBox from "./ChatBox";
@@ -16,11 +16,11 @@ export default class App extends Component {
     isContactInfoContextBoxActive: false,
     currentHovered: {
       id: 100,
-      color: "#eeeae5"
+      color: "#E5DDD5"
     },
     currentSelected: {
       id: 0,
-      color: "#eeeae5"
+      color: "#E5DDD5"
     }
   };
 
@@ -117,16 +117,17 @@ export default class App extends Component {
     return (
       <Div css={wrapperStyle}>
         <Div css={{ background: "#eee" }}>
-          <Profile
-            profileData={profileData}
-            handleListItemClick={this.handleListItemClick}
-            selectedFriend={chatBoxContext ? chatBoxContext.id : "0"}
-            handleColorBoxClick={this.handleColorBoxClick}
-            handleColorBoxHover={this.handleColorBoxHover}
-            handleColorBoxHoverOut={this.handleColorBoxHoverOut}
-            currentHovered={currentHovered.id}
-            currentSelected={currentSelected.id}
-          />
+          <Broadcast channel="profile" value={this.state}>
+            <Profile
+              handleListItemClick={this.handleListItemClick}
+              selectedFriend={chatBoxContext ? chatBoxContext.id : "0"}
+              handleColorBoxClick={this.handleColorBoxClick}
+              handleColorBoxHover={this.handleColorBoxHover}
+              handleColorBoxHoverOut={this.handleColorBoxHoverOut}
+              currentHovered={currentHovered.id}
+              currentSelected={currentSelected.id}
+            />
+          </Broadcast>
         </Div>
         <Div css={{ background: "#F7F9FA" }}>
           <ChatBox
