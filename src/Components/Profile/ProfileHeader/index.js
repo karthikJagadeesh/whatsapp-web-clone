@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Div } from "glamorous";
+import { Subscriber } from "react-broadcast";
 
 import { ProfilePicture } from "./profilePicture";
 import { ProfileStatus } from "./profileStatus";
@@ -28,10 +29,14 @@ export const ProfileHeader = ({
           justifySelf: "start"
         }}
       >
-        <ProfilePicture
-          handlePictureClick={handlePictureClick}
-          profilePicture={profileData.picture}
-        />
+        <Subscriber channel="profile">
+          {({ profileData }) => (
+            <ProfilePicture
+              handlePictureClick={handlePictureClick}
+              profilePicture={profileData.picture}
+            />
+          )}
+        </Subscriber>
       </Div>
       <Div
         css={{

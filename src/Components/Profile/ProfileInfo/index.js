@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Div, Span } from "glamorous";
+import { Subscriber } from "react-broadcast";
+
 import MdArrowBack from "react-icons/lib/md/arrow-back";
 import MdEdit from "react-icons/lib/md/edit";
 
@@ -133,12 +135,7 @@ const Billboard = _ => {
   );
 };
 
-export const ProfileInfo = ({
-  handleProfileInfoBackClick,
-  picturePath,
-  name,
-  status
-}) => {
+export const ProfileInfo = ({ handleProfileInfoBackClick }) => {
   return (
     <Div
       css={{
@@ -150,13 +147,25 @@ export const ProfileInfo = ({
         handleProfileInfoBackClick={handleProfileInfoBackClick}
         title="Profile"
       />
-      <ProfilePictureCard
-        style={{ background: "#f7f7f7" }}
-        picturePath={picturePath}
-      />
-      <SingleDeckContainer title="Your Name" info={name} />
+      <Subscriber channel="profile">
+        {({ profileData }) => (
+          <ProfilePictureCard
+            style={{ background: "#f7f7f7" }}
+            picturePath={profileData.picture}
+          />
+        )}
+      </Subscriber>
+      <Subscriber channel="profile">
+        {({ profileData }) => (
+          <SingleDeckContainer title="Your Name" info={profileData.name} />
+        )}
+      </Subscriber>
       <Billboard />
-      <SingleDeckContainer title="About" info={status} />
+      <Subscriber channel="profile">
+        {({ profileData }) => (
+          <SingleDeckContainer title="About" info={profileData.status} />
+        )}
+      </Subscriber>
     </Div>
   );
 };

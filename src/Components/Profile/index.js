@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Div } from "glamorous";
+import { Subscriber } from "react-broadcast";
 
 import { ProfileHeader } from "./ProfileHeader";
 import { SearchBar } from "./SearchBar";
@@ -37,10 +38,7 @@ export default class Profile extends Component {
 
   render() {
     const propsForInfoAndSettings = {
-      name: this.props.profileData.name,
-      status: this.props.profileData.status,
-      handleProfileInfoBackClick: this.handleProfileInfoBackClick,
-      picturePath: this.props.profileData.picture
+      handleProfileInfoBackClick: this.handleProfileInfoBackClick
     };
 
     switch (this.state.currentView) {
@@ -83,11 +81,7 @@ export default class Profile extends Component {
         );
 
       case "friendList":
-        const {
-          profileData,
-          selectedFriend,
-          handleListItemClick
-        } = this.props;
+        const { selectedFriend, handleListItemClick } = this.props;
         const { searchBarValue } = this.state;
 
         return (
@@ -105,7 +99,6 @@ export default class Profile extends Component {
                 handleStarredMessagesClick={this.handleStarredMessagesClick}
                 handleProfileSettingsClick={this.handleProfileSettingsClick}
                 handleArchivedChatsClick={this.handleArchivedChatsClick}
-                profileData={profileData}
               />
             </Div>
             <Div css={{ borderBottom: "1px solid rgba(0, 0, 0, 0.05)" }}>
@@ -115,12 +108,16 @@ export default class Profile extends Component {
               />
             </Div>
             <Div>
-              <FriendsList
-                selectedFriend={selectedFriend}
-                searchBarValue={searchBarValue}
-                friendsList={profileData.friends}
-                handleListItemClick={handleListItemClick}
-              />
+              <Subscriber channel="profile">
+                {({ profileData }) => (
+                  <FriendsList
+                    selectedFriend={selectedFriend}
+                    searchBarValue={searchBarValue}
+                    friendsList={profileData.friends}
+                    handleListItemClick={handleListItemClick}
+                  />
+                )}
+              </Subscriber>
             </Div>
           </Div>
         );

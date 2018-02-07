@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Div, Span, Img } from "glamorous";
+import { Subscriber } from "react-broadcast";
 
 import MdNotifications from "react-icons/lib/md/notifications";
 import MdNowWallpaper from "react-icons/lib/md/now-wallpaper";
@@ -110,9 +111,6 @@ export default class ProfileSettings extends Component {
     switch (this.state.currentView) {
       case "settings":
         const {
-          status,
-          name,
-          picturePath,
           handlePictureNameClick,
           handleProfileInfoBackClick
         } = this.props;
@@ -128,12 +126,16 @@ export default class ProfileSettings extends Component {
               title={"Settings"}
               handleProfileInfoBackClick={handleProfileInfoBackClick}
             />
-            <PictureAndName
-              status={status}
-              name={name}
-              picturePath={picturePath}
-              handlePictureNameClick={handlePictureNameClick}
-            />
+            <Subscriber channel="profile">
+              {({ profileData }) => (
+                <PictureAndName
+                  status={profileData.status}
+                  name={profileData.name}
+                  picturePath={profileData.picture}
+                  handlePictureNameClick={handlePictureNameClick}
+                />
+              )}
+            </Subscriber>
             {this.singleDeckContainerData.map((data, index) => (
               <SingleDeckContainer
                 key={index}
@@ -158,7 +160,7 @@ export default class ProfileSettings extends Component {
           handleColorBoxHover,
           handleColorBoxClick,
           handleColorBoxHoverOut
-        } = this.props
+        } = this.props;
 
         return (
           <ChatWallpaper
