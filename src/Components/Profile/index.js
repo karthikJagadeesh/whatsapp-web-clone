@@ -10,6 +10,7 @@ import { ProfileInfo } from "./ProfileInfo";
 import ProfileSettings from "./Settings";
 import { ArchivedChats } from "./ArchivedChats";
 import { StarredMessages } from "./StarredMessages";
+import { NewGroup } from "./NewGroup";
 
 export default class Profile extends Component {
   state = {
@@ -32,13 +33,22 @@ export default class Profile extends Component {
   handleStarredMessagesClick = _ => {
     this.setState({ currentView: "starredMessages" });
   };
+  handleNewGroupClick = _ => {
+    this.setState({ currentView: "newGroup" });
+  };
   handleProfileInfoBackClick = _ => {
     this.setState({ currentView: "friendList" });
   };
 
   render() {
-    console.log("hovered??????")
     switch (this.state.currentView) {
+      case "newGroup":
+        return (
+          <NewGroup
+            handleProfileInfoBackClick={this.handleProfileInfoBackClick}
+          />
+        );
+
       case "starredMessages":
         return (
           <StarredMessages
@@ -96,6 +106,7 @@ export default class Profile extends Component {
                 handleStarredMessagesClick={this.handleStarredMessagesClick}
                 handleProfileSettingsClick={this.handleProfileSettingsClick}
                 handleArchivedChatsClick={this.handleArchivedChatsClick}
+                handleNewGroupClick={this.handleNewGroupClick}
               />
             </Div>
             <Div css={{ borderBottom: "1px solid rgba(0, 0, 0, 0.05)" }}>
