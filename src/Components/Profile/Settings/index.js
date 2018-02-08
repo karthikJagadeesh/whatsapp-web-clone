@@ -155,8 +155,6 @@ export default class ProfileSettings extends Component {
 
       case "chatWallpaper":
         const {
-          currentHovered,
-          currentSelected,
           handleColorBoxHover,
           handleColorBoxClick,
           handleColorBoxHoverOut
@@ -164,8 +162,6 @@ export default class ProfileSettings extends Component {
 
         return (
           <ChatWallpaper
-            currentHovered={currentHovered}
-            currentSelected={currentSelected}
             handleColorBoxHover={handleColorBoxHover}
             handleColorBoxClick={handleColorBoxClick}
             handleColorBoxHoverOut={handleColorBoxHoverOut}

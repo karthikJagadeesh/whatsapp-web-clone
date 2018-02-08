@@ -37,10 +37,7 @@ export default class Profile extends Component {
   };
 
   render() {
-    const propsForInfoAndSettings = {
-      handleProfileInfoBackClick: this.handleProfileInfoBackClick
-    };
-
+    console.log("hovered??????")
     switch (this.state.currentView) {
       case "starredMessages":
         return (
@@ -57,12 +54,14 @@ export default class Profile extends Component {
         );
 
       case "profileInfo":
-        return <ProfileInfo {...propsForInfoAndSettings} />;
+        return (
+          <ProfileInfo
+            handleProfileInfoBackClick={this.handleProfileInfoBackClick}
+          />
+        );
 
       case "profileSettings":
         const {
-          currentHovered,
-          currentSelected,
           handleColorBoxClick,
           handleColorBoxHover,
           handleColorBoxHoverOut
@@ -70,13 +69,11 @@ export default class Profile extends Component {
 
         return (
           <ProfileSettings
-            currentHovered={currentHovered}
-            currentSelected={currentSelected}
             handleColorBoxClick={handleColorBoxClick}
             handleColorBoxHover={handleColorBoxHover}
             handleColorBoxHoverOut={handleColorBoxHoverOut}
             handlePictureNameClick={this.handlePictureClick}
-            {...propsForInfoAndSettings}
+            handleProfileInfoBackClick={this.handleProfileInfoBackClick}
           />
         );
 

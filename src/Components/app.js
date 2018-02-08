@@ -102,17 +102,14 @@ export default class App extends Component {
 
   render() {
     const {
-      profileData,
       chatBoxContext,
       isContextBoxActive,
       isContactInfoContextBoxActive,
-      currentHovered,
-      currentSelected
+      currentHovered
     } = this.state;
-    let wrapperStyle = this.wrapperStyleWithoutContextBox;
-    if (isContextBoxActive) {
-      wrapperStyle = this.wrapperStyleWithContextBox;
-    }
+    const wrapperStyle = isContextBoxActive
+      ? this.wrapperStyleWithContextBox
+      : this.wrapperStyleWithoutContextBox;
 
     return (
       <Div css={wrapperStyle}>
@@ -124,8 +121,6 @@ export default class App extends Component {
               handleColorBoxClick={this.handleColorBoxClick}
               handleColorBoxHover={this.handleColorBoxHover}
               handleColorBoxHoverOut={this.handleColorBoxHoverOut}
-              currentHovered={currentHovered.id}
-              currentSelected={currentSelected.id}
             />
           </Broadcast>
         </Div>

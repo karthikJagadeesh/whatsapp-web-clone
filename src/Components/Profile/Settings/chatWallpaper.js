@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Div, Span } from "glamorous";
+import { Subscriber } from "react-broadcast";
 
 import { Header } from "../ProfileInfo";
 import { colors } from "../../../utils";
@@ -40,11 +41,9 @@ const ColorBox = ({
 };
 
 const ColorList = ({
-  currentSelected,
   handleColorBoxClick,
   handleColorBoxHover,
-  handleColorBoxHoverOut,
-  currentHovered
+  handleColorBoxHoverOut
 }) => {
   return (
     <Div
@@ -59,16 +58,20 @@ const ColorList = ({
       }}
     >
       {colors.map((color, index) => (
-        <ColorBox
-          color={color}
-          key={index}
-          index={index}
-          currentSelected={currentSelected}
-          currentHovered={currentHovered}
-          handleColorBoxClick={handleColorBoxClick}
-          handleColorBoxHover={handleColorBoxHover}
-          handleColorBoxHoverOut={handleColorBoxHoverOut}
-        />
+        <Subscriber channel="profile">
+          {({ currentSelected, currentHovered }) => (
+            <ColorBox
+              color={color}
+              key={index}
+              index={index}
+              currentSelected={currentSelected.id}
+              currentHovered={currentHovered.id}
+              handleColorBoxClick={handleColorBoxClick}
+              handleColorBoxHover={handleColorBoxHover}
+              handleColorBoxHoverOut={handleColorBoxHoverOut}
+            />
+          )}
+        </Subscriber>
       ))}
     </Div>
   );
@@ -78,9 +81,7 @@ export const ChatWallpaper = ({
   handleProfileInfoBackClick,
   handleColorBoxClick,
   handleColorBoxHover,
-  handleColorBoxHoverOut,
-  currentSelected,
-  currentHovered
+  handleColorBoxHoverOut
 }) => {
   return (
     <Div
@@ -94,8 +95,6 @@ export const ChatWallpaper = ({
         handleProfileInfoBackClick={handleProfileInfoBackClick}
       />
       <ColorList
-        currentSelected={currentSelected}
-        currentHovered={currentHovered}
         handleColorBoxClick={handleColorBoxClick}
         handleColorBoxHover={handleColorBoxHover}
         handleColorBoxHoverOut={handleColorBoxHoverOut}
