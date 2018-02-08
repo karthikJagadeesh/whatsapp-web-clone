@@ -6,10 +6,11 @@ export const ProfileMenu = ({
   handleProfileSettingsClick,
   handleArchivedChatsClick,
   handleStarredMessagesClick,
-  handleProfileClick
+  handleProfileClick,
+  handleNewGroupClick
 }) => {
   const labelsAndContext = {
-    "New group": _ => {},
+    "New group": handleNewGroupClick,
     Profile: handleProfileClick,
     Archived: handleArchivedChatsClick,
     Starred: handleStarredMessagesClick,

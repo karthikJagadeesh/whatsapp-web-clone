@@ -8,11 +8,12 @@ import { ProfileNewChat } from "./profileNewChat";
 import { ProfileMenu } from "./profileMenu";
 
 export const ProfileHeader = ({
-  handlePictureClick,
   profileData,
+  handlePictureClick,
   handleProfileSettingsClick,
   handleStarredMessagesClick,
-  handleArchivedChatsClick
+  handleArchivedChatsClick,
+  handleNewGroupClick
 }) => {
   return (
     <Div
@@ -74,6 +75,7 @@ export const ProfileHeader = ({
           handleStarredMessagesClick={handleStarredMessagesClick}
           handleArchivedChatsClick={handleArchivedChatsClick}
           handleProfileSettingsClick={handleProfileSettingsClick}
+          handleNewGroupClick={handleNewGroupClick}
         />
       </Div>
     </Div>
