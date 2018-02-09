@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Div, Span } from "glamorous";
 import { Subscriber } from "react-broadcast";
 
