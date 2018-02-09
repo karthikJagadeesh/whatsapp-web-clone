@@ -10,6 +10,9 @@ import MdHelp from "react-icons/lib/md/help";
 import { Header } from "../ProfileInfo";
 import { SingleDeckContainer } from "../../ContextBox/contactInfoResults";
 import { ChatWallpaper } from "./chatWallpaper";
+import { Notifications } from "./notifications";
+import { BlockedContacts } from "./blockedContacts";
+import { Help } from "./help";
 
 const PictureAndName = ({
   status,
@@ -80,6 +83,15 @@ export default class ProfileSettings extends Component {
   handleChatWallpaperClick = _ => {
     this.setState({ currentView: "chatWallpaper" });
   };
+  handleNotificationsClick = _ => {
+    this.setState({ currentView: "notifications" });
+  };
+  handleBlockedContactsClick = _ => {
+    this.setState({ currentView: "blockedContacts" });
+  };
+  handleHelpClick = _ => {
+    this.setState({ currentView: "help" });
+  };
   handleProfileInfoBackClick = _ => {
     this.setState({ currentView: "settings" });
   };
@@ -88,7 +100,7 @@ export default class ProfileSettings extends Component {
     {
       icon: MdNotifications,
       text: "Notifications",
-      onClick: _ => {}
+      onClick: this.handleNotificationsClick
     },
     {
       icon: MdNowWallpaper,
@@ -98,12 +110,12 @@ export default class ProfileSettings extends Component {
     {
       icon: MdBlock,
       text: "Blocked",
-      onClick: _ => {}
+      onClick: this.handleBlockedContactsClick
     },
     {
       icon: MdHelp,
       text: "Help",
-      onClick: _ => {}
+      onClick: this.handleHelpClick
     }
   ];
 
@@ -151,6 +163,25 @@ export default class ProfileSettings extends Component {
               />
             ))}
           </Div>
+        );
+
+      case "notifications":
+        return (
+          <Notifications
+            handleProfileInfoBackClick={this.handleProfileInfoBackClick}
+          />
+        );
+
+      case "blockedContacts":
+        return (
+          <BlockedContacts
+            handleProfileInfoBackClick={this.handleProfileInfoBackClick}
+          />
+        );
+
+      case "help":
+        return (
+          <Help handleProfileInfoBackClick={this.handleProfileInfoBackClick} />
         );
 
       case "chatWallpaper":
