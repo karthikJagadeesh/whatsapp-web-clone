@@ -35,14 +35,17 @@ export const ChatBoxHeader = ({
   currentFriend,
   chatBoxContext,
   handleSearchClick,
-  friendChatHeaderClick
+  friendChatHeaderClick,
+  handleDeleteChatClick,
+  handleClearChatClick,
+  handleMuteClick
 }) => {
   const labelsAndContext = {
     "Contact Info": friendChatHeaderClick,
     "Select Messages": _ => {},
-    "Cancel Mute": _ => {},
-    "Clear messages": _ => {},
-    "Delete chat": _ => {}
+    Mute: handleMuteClick,
+    "Clear messages": handleClearChatClick,
+    "Delete chat": handleDeleteChatClick
   };
 
   return (

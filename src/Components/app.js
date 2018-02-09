@@ -1,11 +1,12 @@
 import "babel-polyfill";
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Div } from "glamorous";
 import { Broadcast } from "react-broadcast";
 
 import Profile from "./Profile";
 import ChatBox from "./ChatBox";
 import ContextBox from "./ContextBox/";
+import ModalDialog from "./ModalDialog";
 import { profileDataUrl, friendDataUrl, fetchData } from "../network";
 
 export default class App extends Component {
@@ -21,10 +22,15 @@ export default class App extends Component {
     currentSelected: {
       id: 0,
       color: "#E5DDD5"
+    },
+    modalDialog: {
+      show: false,
+      view: ""
     }
   };
 
   wrapperStyleWithContextBox = {
+    opacity: "1",
     display: "grid",
     gridTemplateColumns: "3fr 4fr 3fr",
     height: "100%",
@@ -83,6 +89,18 @@ export default class App extends Component {
       };
     });
   };
+  handleDeleteChatClick = _ => {
+    this.setState({ modalDialog: { show: true, view: "deleteChat" } });
+  };
+  handleClearChatClick = _ => {
+    this.setState({ modalDialog: { show: true, view: "clearChat" } });
+  };
+  handleMuteClick = _ => {
+    this.setState({ modalDialog: { show: true, view: "mute" } });
+  };
+  handleModalCancel = _ => {
+    this.setState({ modalDialog: { show: false, view: "" } });
+  };
 
   handleListItemClick = ({ currentTarget }) => {
     (async _ => {
@@ -105,46 +123,78 @@ export default class App extends Component {
       chatBoxContext,
       isContextBoxActive,
       isContactInfoContextBoxActive,
-      currentHovered
+      currentHovered,
+      modalDialog
     } = this.state;
     const wrapperStyle = isContextBoxActive
       ? this.wrapperStyleWithContextBox
       : this.wrapperStyleWithoutContextBox;
 
     return (
-      <Div css={wrapperStyle}>
-        <Div css={{ background: "#eee" }}>
-          <Broadcast channel="profile" value={this.state}>
-            <Profile
-              handleListItemClick={this.handleListItemClick}
-              selectedFriend={chatBoxContext ? chatBoxContext.id : "0"}
-              handleColorBoxClick={this.handleColorBoxClick}
-              handleColorBoxHover={this.handleColorBoxHover}
-              handleColorBoxHoverOut={this.handleColorBoxHoverOut}
+      <Fragment>
+        <Div
+          css={
+            modalDialog.show
+              ? { ...wrapperStyle, opacity: "0.2" }
+              : wrapperStyle
+          }
+        >
+          <Div css={{ background: "#eee" }}>
+            <Broadcast channel="profile" value={this.state}>
+              <Profile
+                handleListItemClick={this.handleListItemClick}
+                selectedFriend={chatBoxContext ? chatBoxContext.id : "0"}
+                handleColorBoxClick={this.handleColorBoxClick}
+                handleColorBoxHover={this.handleColorBoxHover}
+                handleColorBoxHoverOut={this.handleColorBoxHoverOut}
+              />
+            </Broadcast>
+          </Div>
+          <Div css={{ background: "#F7F9FA" }}>
+            <ChatBox
+              currentFriend={this.handleListItemClick}
+              chatBoxContext={chatBoxContext}
+              handleSearchClick={this.handleSearchClick}
+              handleDeleteChatClick={this.handleDeleteChatClick}
+              handleClearChatClick={this.handleClearChatClick}
+              handleMuteClick={this.handleMuteClick}
+              friendChatHeaderClick={this.friendChatHeaderClick}
+              backgroundColor={currentHovered.color}
             />
-          </Broadcast>
+          </Div>
+          {isContextBoxActive ? (
+            <Div css={this.contextBoxStyle}>
+              <ContextBox
+                isContactInfoContextBoxActive={isContactInfoContextBoxActive}
+                handleCancelClick={this.handleCancelClick}
+                name={chatBoxContext.name}
+                messagesLog={chatBoxContext.chatlog}
+                picturePath={chatBoxContext.picture}
+              />
+            </Div>
+          ) : null}
         </Div>
-        <Div css={{ background: "#F7F9FA" }}>
-          <ChatBox
-            currentFriend={this.handleListItemClick}
-            chatBoxContext={chatBoxContext}
-            handleSearchClick={this.handleSearchClick}
-            friendChatHeaderClick={this.friendChatHeaderClick}
-            backgroundColor={currentHovered.color}
-          />
-        </Div>
-        {isContextBoxActive ? (
-          <Div css={this.contextBoxStyle}>
-            <ContextBox
-              isContactInfoContextBoxActive={isContactInfoContextBoxActive}
-              handleCancelClick={this.handleCancelClick}
+        {modalDialog.show ? (
+          <Div
+            css={{
+              top: "0",
+              left: "0",
+              display: "grid",
+              gridTemplateRows: "1fr",
+              position: "absolute",
+              zIndex: "10",
+              height: "100vh",
+              width: "100vw"
+            }}
+          >
+            <ModalDialog
+              type={modalDialog.view}
+              handleModalCancel={this.handleModalCancel}
               name={chatBoxContext.name}
-              messagesLog={chatBoxContext.chatlog}
-              picturePath={chatBoxContext.picture}
             />
           </Div>
         ) : null}
-      </Div>
+      </Fragment>
     );
   }
 }
