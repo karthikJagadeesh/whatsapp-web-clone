@@ -275,7 +275,8 @@ const AboutAndPhoneNumber = _ => {
 };
 
 export const SingleDeckContainer = props => {
-  const { Icon, IconStyle, TextStyle, Text, OnClick } = props;
+  const { iconStyle, textStyle, text, onClick } = props;
+  const Icon = props.icon;
 
   return (
     <Div
@@ -290,9 +291,9 @@ export const SingleDeckContainer = props => {
           cursor: "pointer",
           background: "#F4F5F5"
         },
-        ...props.Style
+        ...props.style
       }}
-      onClick={OnClick}
+      onClick={onClick}
     >
       <Div
         css={{
@@ -300,14 +301,14 @@ export const SingleDeckContainer = props => {
           justifySelf: "center"
         }}
       >
-        <Icon {...IconStyle} />
+        <Icon {...iconStyle} />
       </Div>
       <Div
         css={{
           alignSelf: "center"
         }}
       >
-        <Span css={TextStyle}>{Text}</Span>
+        <Span css={textStyle}>{text}</Span>
       </Div>
     </Div>
   );
@@ -328,20 +329,20 @@ export const ContactInfoResults = ({ picturePath, name }) => {
         <MuteAndStarred />
         <AboutAndPhoneNumber />
         <SingleDeckContainer
-          Icon={MdBlock}
-          IconStyle={{ size: "25", color: "#666" }}
-          Text={"Block Contact"}
+          icon={MdBlock}
+          iconStyle={{ size: "25", color: "#666" }}
+          text={"Block Contact"}
         />
         <SingleDeckContainer
-          Icon={MdThumbDown}
-          IconStyle={{ size: "25", color: "#DF3333" }}
-          Text={"Report spam"}
+          icon={MdThumbDown}
+          iconStyle={{ size: "25", color: "#DF3333" }}
+          text={"Report spam"}
         />
         <SingleDeckContainer
-          Style={{ marginBottom: "2em" }}
-          Icon={MdDelete}
-          IconStyle={{ size: "25", color: "#DF3333" }}
-          Text={"Delete chat"}
+          style={{ marginBottom: "2em" }}
+          icon={MdDelete}
+          iconStyle={{ size: "25", color: "#DF3333" }}
+          text={"Delete chat"}
         />
       </Div>
     </Div>

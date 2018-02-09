@@ -100,13 +100,13 @@ const Results = ({ messagesLog, searchValue }) => {
       </Div>
     );
   } else {
-    return <Template type="noResultsDisplay" />
+    return <Template type="noResultsDisplay" />;
   }
 };
 
 export const SearchResults = ({ name, searchValue, messagesLog }) => {
   return searchValue ? (
-    <Results messagesLog={messagesLog} searchValue={searchValue}/>
+    <Results messagesLog={messagesLog} searchValue={searchValue} />
   ) : (
     <Template type="initialDisplay" />
   );
