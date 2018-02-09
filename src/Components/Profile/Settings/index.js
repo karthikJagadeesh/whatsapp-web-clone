@@ -151,11 +151,11 @@ export default class ProfileSettings extends Component {
             {this.singleDeckContainerData.map((data, index) => (
               <SingleDeckContainer
                 key={index}
-                OnClick={data.onClick}
-                Icon={data.icon}
-                IconStyle={{ size: "22", color: "rgba(0,0,0,0.4)" }}
-                Text={data.text}
-                Style={{
+                onClick={data.onClick}
+                icon={data.icon}
+                iconStyle={{ size: "22", color: "rgba(0,0,0,0.4)" }}
+                text={data.text}
+                style={{
                   marginTop: "0",
                   boxShadow: "0",
                   borderBottom: "1px solid rgba(0, 0, 0, 0.06)"

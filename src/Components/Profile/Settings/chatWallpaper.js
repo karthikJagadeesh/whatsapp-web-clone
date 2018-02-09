@@ -58,11 +58,10 @@ const ColorList = ({
       }}
     >
       {colors.map((color, index) => (
-        <Subscriber channel="profile">
+        <Subscriber channel="profile" key={index}>
           {({ currentSelected, currentHovered }) => (
             <ColorBox
               color={color}
-              key={index}
               index={index}
               currentSelected={currentSelected.id}
               currentHovered={currentHovered.id}

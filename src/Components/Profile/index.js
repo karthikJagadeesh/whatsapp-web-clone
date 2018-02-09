@@ -15,33 +15,36 @@ import { NewGroup } from "./NewGroup";
 export default class Profile extends Component {
   state = {
     searchBarValue: "",
-    currentView: "friendList"
+    currentView: ["friendList"]
   };
 
   handleInputChange = ({ target }) => {
     this.setState({ searchBarValue: target.value });
   };
-  handlePictureClick = _ => {
-    this.setState({ currentView: "profileInfo" });
-  };
-  handleProfileSettingsClick = _ => {
-    this.setState({ currentView: "profileSettings" });
-  };
-  handleArchivedChatsClick = _ => {
-    this.setState({ currentView: "archivedChats" });
-  };
-  handleStarredMessagesClick = _ => {
-    this.setState({ currentView: "starredMessages" });
-  };
-  handleNewGroupClick = _ => {
-    this.setState({ currentView: "newGroup" });
-  };
+  currentViewStateUpdater = view =>
+    this.setState(prevState => {
+      const updatedCurrentView = [...prevState.currentView, view];
+      return { currentView: updatedCurrentView };
+    });
+  handlePictureClick = _ => this.currentViewStateUpdater("profileInfo");
+  handleProfileSettingsClick = _ =>
+    this.currentViewStateUpdater("profileSettings");
+  handleArchivedChatsClick = _ => this.currentViewStateUpdater("archivedChats");
+  handleStarredMessagesClick = _ =>
+    this.currentViewStateUpdater("starredMessages");
+  handleNewGroupClick = _ => this.currentViewStateUpdater("newGroup");
+
   handleProfileInfoBackClick = _ => {
-    this.setState({ currentView: "friendList" });
+    this.setState(prevState => {
+      const updatedCurrentView = [...prevState.currentView];
+      updatedCurrentView.pop();
+      return { currentView: updatedCurrentView };
+    });
   };
 
   render() {
-    switch (this.state.currentView) {
+    const { currentView } = this.state;
+    switch (currentView[currentView.length - 1]) {
       case "newGroup":
         return (
           <NewGroup
