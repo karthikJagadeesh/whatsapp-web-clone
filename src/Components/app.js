@@ -92,6 +92,9 @@ export default class App extends Component {
   handleDeleteChatClick = _ => {
     this.setState({ modalDialog: { show: true, view: "deleteChat" } });
   };
+  handleModalCancel = _ => {
+    this.setState({ modalDialog: { show: false, view: "" } });
+  };
 
   handleListItemClick = ({ currentTarget }) => {
     (async _ => {
@@ -176,7 +179,11 @@ export default class App extends Component {
               width: "100vw"
             }}
           >
-            <ModalDialog type={modalDialog.view} />
+            <ModalDialog
+              type={modalDialog.view}
+              handleModalCancel={this.handleModalCancel}
+              name={chatBoxContext.name}
+            />
           </Div>
         ) : null}
       </Fragment>
