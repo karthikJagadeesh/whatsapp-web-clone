@@ -92,6 +92,12 @@ export default class App extends Component {
   handleDeleteChatClick = _ => {
     this.setState({ modalDialog: { show: true, view: "deleteChat" } });
   };
+  handleClearChatClick = _ => {
+    this.setState({ modalDialog: { show: true, view: "clearChat" } });
+  };
+  handleMuteClick = _ => {
+    this.setState({ modalDialog: { show: true, view: "mute" } });
+  };
   handleModalCancel = _ => {
     this.setState({ modalDialog: { show: false, view: "" } });
   };
@@ -150,6 +156,8 @@ export default class App extends Component {
               chatBoxContext={chatBoxContext}
               handleSearchClick={this.handleSearchClick}
               handleDeleteChatClick={this.handleDeleteChatClick}
+              handleClearChatClick={this.handleClearChatClick}
+              handleMuteClick={this.handleMuteClick}
               friendChatHeaderClick={this.friendChatHeaderClick}
               backgroundColor={currentHovered.color}
             />

@@ -21,7 +21,9 @@ export default class ChatBox extends Component {
       handleSearchClick,
       friendChatHeaderClick,
       backgroundColor,
-      handleDeleteChatClick
+      handleDeleteChatClick,
+      handleClearChatClick,
+      handleMuteClick
     } = this.props;
     const { messages } = this.state;
 
@@ -40,6 +42,8 @@ export default class ChatBox extends Component {
               handleSearchClick={handleSearchClick}
               friendChatHeaderClick={friendChatHeaderClick}
               handleDeleteChatClick={handleDeleteChatClick}
+              handleClearChatClick={handleClearChatClick}
+              handleMuteClick={handleMuteClick}
             />
           ) : null}
         </Div>
