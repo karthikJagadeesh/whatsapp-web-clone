@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import { Div, Img, Label, Span } from "glamorous";
+import { Div, Img, Label, Span, Input } from "glamorous";
 
 import FaAngleRight from "react-icons/lib/fa/angle-right";
 import MdBlock from "react-icons/lib/md/block";
 import MdThumbDown from "react-icons/lib/md/thumb-down";
 import MdDelete from "react-icons/lib/md/delete";
-
-import Checkbox from "rc-checkbox";
 
 const Picture = ({ picturePath, name, style }) => {
   const imageStyleWithName = {
@@ -155,7 +153,10 @@ const Mute = _ => {
       <Span css={{ alignSelf: "center", width: "80%", justifySelf: "center" }}>
         Mute
       </Span>
-      <Checkbox style={{ alignSelf: "center", justifySelf: "center" }} />
+      <Input
+        type="checkbox"
+        css={{ alignSelf: "center", justifySelf: "center" }}
+      />
     </Div>
   );
 };
