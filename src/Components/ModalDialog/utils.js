@@ -16,15 +16,27 @@ export const Modal = glamorous.div(
   },
   ({ type }) => {
     switch (type) {
+      case "blockContact":
+        return {
+          gridTemplateRows: "3fr 1fr 5fr",
+          height: "180px",
+          width: "460px"
+        };
       case "clear":
         return {
           gridTemplateRows: "3fr 1fr 5fr",
-          height: "180px"
+          height: "180px",
+          width: "400px"
         };
       case "mute":
         return {
           gridTemplateRows: "3fr 3fr 4fr",
           height: "260px"
+        };
+      case "reportSpam":
+        return {
+          height: "180px",
+          width: "400px"
         };
     }
   }
@@ -45,8 +57,9 @@ export const ModalButton = glamorous.div(
     }
   },
   ({ type }) => {
-    return type === "delete"
-      ? {
+    switch (type) {
+      case "delete":
+        return {
           background: "#08c65b",
           color: "#ffffff",
           ":hover": {
@@ -54,17 +67,58 @@ export const ModalButton = glamorous.div(
             boxShadow:
               "0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.2)"
           }
-        }
-      : null;
+        };
+
+      case "cancel-reportSpam":
+        return {
+          justifySelf: "center"
+        };
+
+      case "blockContact":
+        return {
+          width: "200px"
+        };
+
+      case "reportSpam":
+        return {
+          background: "#08c65b",
+          color: "#ffffff",
+          ":hover": {
+            background: "#0cb757",
+            boxShadow:
+              "0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.2)"
+          },
+          width: "200px"
+        };
+    }
   }
 );
-export const ModalButtonContainer = glamorous.div({
-  display: "grid",
-  gridTemplateColumns: "5fr 5fr",
-  width: "70%",
-  justifySelf: "end",
-  alignSelf: "center"
-});
+export const ModalButtonContainer = glamorous.div(
+  {
+    display: "grid",
+    gridTemplateColumns: "5fr 5fr",
+    width: "70%",
+    justifySelf: "end",
+    alignSelf: "center"
+  },
+  ({ type }) => {
+    switch (type) {
+      case "reportSpam":
+        return {
+          gridTemplateColumns: "4fr 6fr",
+          width: "100%",
+          justifySelf: "center"
+        };
+
+      case "blockContact":
+        return {
+          width: "90%",
+          justifySelf: "center",
+          gridTemplateColumns: "3fr 4fr 3fr"
+        };
+    }
+  }
+);
 export const ModalHeader = glamorous.div(
   {
     width: "90%",
@@ -72,10 +126,13 @@ export const ModalHeader = glamorous.div(
     justifySelf: "center",
     color: "#4b4b4b"
   },
-  ({ type }) =>
-    type === "mute"
-      ? {
-          fontSize: "1.4em"
-        }
-      : null
+  ({ type }) => {
+    switch (type) {
+      case "mute":
+      case "blockContact":
+        return {
+          fontSize: "1.5em"
+        };
+    }
+  }
 );
