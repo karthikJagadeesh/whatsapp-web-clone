@@ -19,6 +19,9 @@ export default class ContextBox extends Component {
     const {
       isContactInfoContextBoxActive,
       handleCancelClick,
+      handleDeleteChatClick,
+      handleReportSpamClick,
+      handleBlockContactClick,
       messagesLog,
       name,
       picturePath
@@ -28,6 +31,9 @@ export default class ContextBox extends Component {
     if (isContactInfoContextBoxActive) {
       return (
         <ContactInfo
+          handleReportSpamClick={handleReportSpamClick}
+          handleDeleteChatClick={handleDeleteChatClick}
+          handleBlockContactClick={handleBlockContactClick}
           handleCancelClick={handleCancelClick}
           picturePath={picturePath}
           name={name}

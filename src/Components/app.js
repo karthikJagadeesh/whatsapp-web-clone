@@ -98,6 +98,12 @@ export default class App extends Component {
   handleMuteClick = _ => {
     this.setState({ modalDialog: { show: true, view: "mute" } });
   };
+  handleReportSpamClick = _ => {
+    this.setState({ modalDialog: { show: true, view: "reportSpam" } });
+  };
+  handleBlockContactClick = _ => {
+    this.setState({ modalDialog: { show: true, view: "blockContact" } });
+  };
   handleModalCancel = _ => {
     this.setState({ modalDialog: { show: false, view: "" } });
   };
@@ -166,10 +172,13 @@ export default class App extends Component {
             <Div css={this.contextBoxStyle}>
               <ContextBox
                 isContactInfoContextBoxActive={isContactInfoContextBoxActive}
-                handleCancelClick={this.handleCancelClick}
                 name={chatBoxContext.name}
                 messagesLog={chatBoxContext.chatlog}
                 picturePath={chatBoxContext.picture}
+                handleCancelClick={this.handleCancelClick}
+                handleDeleteChatClick={this.handleDeleteChatClick}
+                handleReportSpamClick={this.handleReportSpamClick}
+                handleBlockContactClick={this.handleBlockContactClick}
               />
             </Div>
           ) : null}

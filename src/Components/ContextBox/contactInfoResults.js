@@ -315,7 +315,13 @@ export const SingleDeckContainer = props => {
   );
 };
 
-export const ContactInfoResults = ({ picturePath, name }) => {
+export const ContactInfoResults = ({
+  picturePath,
+  name,
+  handleDeleteChatClick,
+  handleReportSpamClick,
+  handleBlockContactClick
+}) => {
   return (
     <Div
       css={{
@@ -333,17 +339,20 @@ export const ContactInfoResults = ({ picturePath, name }) => {
           icon={MdBlock}
           iconStyle={{ size: "25", color: "#666" }}
           text={"Block Contact"}
+          onClick={handleBlockContactClick}
         />
         <SingleDeckContainer
           icon={MdThumbDown}
           iconStyle={{ size: "25", color: "#DF3333" }}
           text={"Report spam"}
+          onClick={handleReportSpamClick}
         />
         <SingleDeckContainer
           style={{ marginBottom: "2em" }}
           icon={MdDelete}
           iconStyle={{ size: "25", color: "#DF3333" }}
           text={"Delete chat"}
+          onClick={handleDeleteChatClick}
         />
       </Div>
     </Div>

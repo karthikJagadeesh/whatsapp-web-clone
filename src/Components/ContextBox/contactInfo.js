@@ -4,7 +4,14 @@ import { Div } from "glamorous";
 import { Header } from "./header";
 import { ContactInfoResults } from "./contactInfoResults";
 
-export const ContactInfo = ({ handleCancelClick, picturePath, name }) => {
+export const ContactInfo = ({
+  handleCancelClick,
+  handleDeleteChatClick,
+  handleReportSpamClick,
+  handleBlockContactClick,
+  picturePath,
+  name
+}) => {
   return (
     <Div
       css={{
@@ -16,7 +23,13 @@ export const ContactInfo = ({ handleCancelClick, picturePath, name }) => {
       }}
     >
       <Header text="Contact Info" handleCancelClick={handleCancelClick} />
-      <ContactInfoResults picturePath={picturePath} name={name} />
+      <ContactInfoResults
+        picturePath={picturePath}
+        name={name}
+        handleReportSpamClick={handleReportSpamClick}
+        handleDeleteChatClick={handleDeleteChatClick}
+        handleBlockContactClick={handleBlockContactClick}
+      />
     </Div>
   );
 };
