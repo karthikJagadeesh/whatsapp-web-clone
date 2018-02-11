@@ -69,7 +69,7 @@ export const ModalButton = glamorous.div(
           }
         };
 
-      case "cancel-reportSpam":
+      case "cancelReportSpam":
         return {
           justifySelf: "center"
         };

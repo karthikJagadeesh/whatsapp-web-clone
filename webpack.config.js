@@ -12,6 +12,7 @@ const ExtractTextPluginConfig = new ExtractTextPlugin({
 });
 
 const config = {
+  context: __dirname,
   entry: ["react-hot-loader/patch", "./src/index.js"],
   output: {
     path: path.resolve(__dirname, "dist"),

@@ -6,7 +6,7 @@ import { ProfileHeader } from "./ProfileHeader";
 import { SearchBar } from "./SearchBar";
 import { FriendsList } from "./FriendsList";
 
-import { ProfileInfo } from "./ProfileInfo";
+import ProfileInfo from "./ProfileInfo";
 import ProfileSettings from "./Settings";
 import { ArchivedChats } from "./ArchivedChats";
 import { StarredMessages } from "./StarredMessages";

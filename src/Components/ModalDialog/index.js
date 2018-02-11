@@ -1,5 +1,4 @@
-import React, { Fragment } from "react";
-import glamorous, { Div, Span, Label, Input } from "glamorous";
+import React from "react";
 
 import DeleteChat from "./deleteChat";
 import ClearChat from "./clearChat";
