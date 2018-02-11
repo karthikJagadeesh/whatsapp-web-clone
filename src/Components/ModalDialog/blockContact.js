@@ -1,5 +1,5 @@
 import React from "react";
-import { Span, Input, Div } from "glamorous";
+import { Span, Div } from "glamorous";
 
 import { Modal, ModalButton, ModalButtonContainer, ModalHeader } from "./utils";
 

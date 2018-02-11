@@ -12,7 +12,7 @@ const ReportSpam = ({ handleModalCancel }) => (
       </Span>
     </ModalHeader>
     <ModalButtonContainer type="reportSpam">
-      <ModalButton type="cancel-reportSpam" onClick={handleModalCancel}>
+      <ModalButton type="cancelReportSpam" onClick={handleModalCancel}>
         CANCEL
       </ModalButton>
       <ModalButton type="reportSpam" onClick={handleModalCancel}>
