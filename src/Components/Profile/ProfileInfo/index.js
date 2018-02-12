@@ -42,7 +42,8 @@ const Title = ({ handleProfileInfoBackClick, title }) => {
 export const Header = ({
   handleProfileInfoBackClick,
   title,
-  StarredMessagesMenu = ""
+  StarredMessagesMenu = "",
+  style
 }) => {
   return (
     <Div
@@ -50,7 +51,8 @@ export const Header = ({
         background: "#00bfa5",
         height: "16%",
         display: "grid",
-        gridTemplateColumns: "8fr 2fr"
+        gridTemplateColumns: "8fr 2fr",
+        ...style
       }}
     >
       <Div
@@ -99,11 +101,11 @@ const SingleDeckContainer = ({
   title,
   info,
   onClick,
-  nameEditMode,
-  inputNameValue,
-  inputNameRemainingChars,
-  handleNameInputChange,
-  handleInputNameAcceptClick
+  editMode,
+  inputValue,
+  inputRemainingChars,
+  handleInputChange,
+  handleInputAcceptClick
 }) => (
   <Div
     css={{
@@ -126,7 +128,7 @@ const SingleDeckContainer = ({
     >
       {title}
     </Div>
-    {nameEditMode ? (
+    {editMode ? (
       <Div
         css={{
           alignSelf: "center",
@@ -149,21 +151,27 @@ const SingleDeckContainer = ({
           }}
           spellcheck="false"
           type="text"
-          onChange={handleNameInputChange}
+          onChange={handleInputChange}
           onFocus={({ target }) => {
             const length = target.value.length;
             target.setSelectionRange(length, length);
           }}
-          value={inputNameValue}
+          value={inputValue}
           autoFocus
         />
-        <Span justifySelf="center">{inputNameRemainingChars}</Span>
+        {title === "Your Name" ? (
+          <Span justifySelf="center">{inputRemainingChars}</Span>
+        ) : (
+          <Span justifySelf="center">
+            {inputRemainingChars < 50 ? inputRemainingChars : null}
+          </Span>
+        )}
         <Span css={{ justifySelf: "center", ":hover": { cursor: "pointer" } }}>
           <SmilieBoard color="#bbb" size={22} />
         </Span>
         <Span
           css={{ justifySelf: "center", ":hover": { cursor: "pointer" } }}
-          onClick={handleInputNameAcceptClick}
+          onClick={handleInputAcceptClick}
         >
           <MdCheck color="#bbb" size={22} />
         </Span>
@@ -195,8 +203,11 @@ const SingleDeckContainer = ({
 export default class ProfileInfo extends Component {
   state = {
     nameEditMode: false,
+    statusEditMode: false,
     inputNameValue: "",
-    inputNameRemainingChars: 25
+    inputStatusValue: "",
+    inputNameRemainingChars: 25,
+    inputStatusRemainingChars: 180
   };
 
   handleEditNameClick = name =>
@@ -205,6 +216,12 @@ export default class ProfileInfo extends Component {
       inputNameValue: name,
       inputNameRemainingChars: 25 - name.length
     });
+  handleEditStatusClick = status =>
+    this.setState({
+      statusEditMode: true,
+      inputStatusValue: status,
+      inputStatusRemainingChars: 180 - status.length
+    });
   handleNameInputChange = ({ target }) => {
     const constrainedValue = target.value.substring(0, 25);
     this.setState({
@@ -212,14 +229,25 @@ export default class ProfileInfo extends Component {
       inputNameRemainingChars: 25 - constrainedValue.length
     });
   };
+  handleStatusInputChange = ({ target }) => {
+    const constrainedValue = target.value.substring(0, 180);
+    this.setState({
+      inputStatusValue: constrainedValue,
+      inputStatusRemainingChars: 180 - constrainedValue.length
+    });
+  };
   handleInputNameAcceptClick = _ => this.setState({ nameEditMode: false });
+  handleInputStatusAcceptClick = _ => this.setState({ statusEditMode: false });
 
   render() {
     const { handleProfileInfoBackClick } = this.props;
     const {
       nameEditMode,
+      statusEditMode,
       inputNameValue,
-      inputNameRemainingChars
+      inputStatusValue,
+      inputNameRemainingChars,
+      inputStatusRemainingChars
     } = this.state;
     return (
       <Div
@@ -246,18 +274,27 @@ export default class ProfileInfo extends Component {
               title="Your Name"
               info={profileData.name}
               onClick={this.handleEditNameClick}
-              nameEditMode={nameEditMode}
-              handleNameInputChange={this.handleNameInputChange}
-              inputNameValue={inputNameValue}
-              inputNameRemainingChars={inputNameRemainingChars}
-              handleInputNameAcceptClick={this.handleInputNameAcceptClick}
+              editMode={nameEditMode}
+              handleInputChange={this.handleNameInputChange}
+              inputValue={inputNameValue}
+              inputRemainingChars={inputNameRemainingChars}
+              handleInputAcceptClick={this.handleInputNameAcceptClick}
             />
           )}
         </Subscriber>
         <Billboard />
         <Subscriber channel="profile">
           {({ profileData }) => (
-            <SingleDeckContainer title="About" info={profileData.status} />
+            <SingleDeckContainer
+              title="About"
+              info={profileData.status}
+              onClick={this.handleEditStatusClick}
+              editMode={statusEditMode}
+              handleInputChange={this.handleStatusInputChange}
+              inputValue={inputStatusValue}
+              inputRemainingChars={inputStatusRemainingChars}
+              handleInputAcceptClick={this.handleInputStatusAcceptClick}
+            />
           )}
         </Subscriber>
       </Div>

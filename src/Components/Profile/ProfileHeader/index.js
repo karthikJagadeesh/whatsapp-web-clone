@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Div } from "glamorous";
+import { Div, Span } from "glamorous";
 import { Subscriber } from "react-broadcast";
+
+import MdChat from "react-icons/lib/md/chat";
 
 import { ProfilePicture } from "./profilePicture";
 import { ProfileStatus } from "./profileStatus";
-import { ProfileNewChat } from "./profileNewChat";
 import { ProfileMenu } from "./profileMenu";
 
 export const ProfileHeader = ({
@@ -13,7 +14,8 @@ export const ProfileHeader = ({
   handleProfileSettingsClick,
   handleStarredMessagesClick,
   handleArchivedChatsClick,
-  handleNewGroupClick
+  handleNewGroupClick,
+  handleNewChatClick
 }) => {
   return (
     <Div
@@ -59,7 +61,9 @@ export const ProfileHeader = ({
           }
         }}
       >
-        <ProfileNewChat />
+        <Span onClick={handleNewChatClick}>
+          <MdChat size={25} color="#666" />
+        </Span>
       </Div>
       <Div
         css={{
