@@ -42,7 +42,8 @@ const Title = ({ handleProfileInfoBackClick, title }) => {
 export const Header = ({
   handleProfileInfoBackClick,
   title,
-  StarredMessagesMenu = ""
+  StarredMessagesMenu = "",
+  style
 }) => {
   return (
     <Div
@@ -50,7 +51,8 @@ export const Header = ({
         background: "#00bfa5",
         height: "16%",
         display: "grid",
-        gridTemplateColumns: "8fr 2fr"
+        gridTemplateColumns: "8fr 2fr",
+        ...style
       }}
     >
       <Div
@@ -157,7 +159,13 @@ const SingleDeckContainer = ({
           value={inputValue}
           autoFocus
         />
-        <Span justifySelf="center">{inputRemainingChars}</Span>
+        {title === "Your Name" ? (
+          <Span justifySelf="center">{inputRemainingChars}</Span>
+        ) : (
+          <Span justifySelf="center">
+            {inputRemainingChars < 50 ? inputRemainingChars : null}
+          </Span>
+        )}
         <Span css={{ justifySelf: "center", ":hover": { cursor: "pointer" } }}>
           <SmilieBoard color="#bbb" size={22} />
         </Span>

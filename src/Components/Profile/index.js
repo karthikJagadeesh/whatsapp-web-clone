@@ -11,6 +11,7 @@ import ProfileSettings from "./Settings";
 import { ArchivedChats } from "./ArchivedChats";
 import { StarredMessages } from "./StarredMessages";
 import { NewGroup } from "./NewGroup";
+import ProfileNewChat from "./ProfileNewChat"
 
 export default class Profile extends Component {
   state = {
@@ -33,6 +34,7 @@ export default class Profile extends Component {
   handleStarredMessagesClick = _ =>
     this.currentViewStateUpdater("starredMessages");
   handleNewGroupClick = _ => this.currentViewStateUpdater("newGroup");
+  handleNewChatClick = _ => this.currentViewStateUpdater("newChat");
 
   handleProfileInfoBackClick = _ => {
     this.setState(prevState => {
@@ -45,6 +47,13 @@ export default class Profile extends Component {
   render() {
     const { currentView } = this.state;
     switch (currentView[currentView.length - 1]) {
+      case "newChat":
+        return (
+          <ProfileNewChat
+            handleProfileInfoBackClick={this.handleProfileInfoBackClick}
+          />
+        );
+
       case "newGroup":
         return (
           <NewGroup
@@ -110,6 +119,7 @@ export default class Profile extends Component {
                 handleProfileSettingsClick={this.handleProfileSettingsClick}
                 handleArchivedChatsClick={this.handleArchivedChatsClick}
                 handleNewGroupClick={this.handleNewGroupClick}
+                handleNewChatClick={this.handleNewChatClick}
               />
             </Div>
             <Div css={{ borderBottom: "1px solid rgba(0, 0, 0, 0.05)" }}>
