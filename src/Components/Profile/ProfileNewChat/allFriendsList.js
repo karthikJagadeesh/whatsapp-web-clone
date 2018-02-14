@@ -21,14 +21,26 @@ export const AllFriendsList = ({
     };
     return <FriendsListItem {...props} type="allFriendsList" />;
   });
-  const listOfAllFriendsWithMeta = Array.from(listOfAllFriends);
 
-  // let previouslyCurrentRegion = "A";
-  listOfAllFriendsWithMeta.forEach((friend, index) => {
+  const filteredList = list =>
+    list.filter(({ props }) =>
+      props.name.toLowerCase().includes(searchBarValue.toLowerCase().trim())
+    );
+  const sortedList = list =>
+    list.sort((curr, next) => {
+      if (curr.props.id === 0 || next.props.id === 0) return;
+      const currName = curr.props.name.toLowerCase();
+      const nextName = next.props.name.toLowerCase();
+      if (currName < nextName) return -1;
+      else if (currName > nextName) return 1;
+      else return 0;
+    });
+
+  let currentNameGroup = "";
+  const listOfAllFriendsWithMeta = [];
+  sortedList(listOfAllFriends).forEach((friend, index) => {
     if (index === 0) {
-      listOfAllFriendsWithMeta.splice(
-        index,
-        0,
+      listOfAllFriendsWithMeta.push(
         <FriendsListItem
           id={0}
           key={0}
@@ -38,36 +50,17 @@ export const AllFriendsList = ({
           handleListItemClick={handleNewGroupClick}
         />
       );
+    } else {
+      const name = friend.props.name[0].toUpperCase();
+      if (name !== currentNameGroup) {
+        listOfAllFriendsWithMeta.push(
+          <FriendsListItem id={name} key={name} name={name} type="nameGroup" />
+        );
+      }
+      currentNameGroup = name;
     }
-    // else if (friend.props.name[0] !== previouslyCurrentRegion) {
-    //   listOfAllFriendsWithMeta.splice(
-    //     index,
-    //     0,
-    //     <FriendsListItem
-    //       id={friend.props.name[0].toUpperCase().repeat(6)}
-    //       key={friend.props.name[0].toUpperCase().repeat(6)}
-    //       name={friend.props.name[0].toUpperCase()}
-    //       type="nameGroup"
-    //     />
-    //   );
-    //   previouslyCurrentRegion = friend.props.name[0];
-    // }
+    listOfAllFriendsWithMeta.push(friend);
   });
-  // listOfAllFriendsWithMeta.unshift();
-
-  const sortedAndFilteredList = list =>
-    list
-      .sort((curr, next) => {
-        if (curr.props.id === 0 || next.props.id === 0) return;
-        const currName = curr.props.name.toLowerCase();
-        const nextName = next.props.name.toLowerCase();
-        if (currName < nextName) return -1;
-        else if (currName > nextName) return 1;
-        else return 0;
-      })
-      .filter(({ props }) =>
-        props.name.toLowerCase().includes(searchBarValue.toLowerCase().trim())
-      );
 
   return (
     <Div
@@ -77,8 +70,8 @@ export const AllFriendsList = ({
       }}
     >
       {searchBarValue
-        ? sortedAndFilteredList(listOfAllFriends)
-        : sortedAndFilteredList(listOfAllFriendsWithMeta)}
+        ? filteredList(sortedList(listOfAllFriends))
+        : sortedList(listOfAllFriendsWithMeta)}
     </Div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Div, Label, Img, P, Span } from "glamorous";
+import glamorous, { Div, Label, Img, P, Span } from "glamorous";
 
 const NameAndLastChat = ({ name, lastChat }) => {
   return (
@@ -27,32 +27,34 @@ const NameAndLastChat = ({ name, lastChat }) => {
 };
 
 export const FriendsListItem = ({ picture: picture = "", ...props }) => {
-  const wrapperStyle = {
-    borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
-    background: "#fff",
-    wordWrap: "break-word",
-    display: "grid",
-    height: "80px",
-    zIndex: "10",
-    gridTemplateColumns: "20% 55% 25%",
-    ":hover": {
-      background: "#F4F5F5",
-      cursor: "pointer"
+  const FriendsListItemBox = glamorous.div(
+    {
+      borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
+      background: "#fff",
+      wordWrap: "break-word",
+      display: "grid",
+      height: "80px",
+      zIndex: "10",
+      gridTemplateColumns: "20% 55% 25%",
+      ":hover": {
+        background: "#F4F5F5",
+        cursor: "pointer"
+      }
+    },
+    _ => {
+      if (props.type === "nameGroup") return { pointerEvents: "none" };
+      if (props.selectedFriend === props.id)
+        return {
+          background: "#e9ebeb",
+          ":hover": {
+            cursor: "pointer"
+          }
+        };
     }
-  };
-  const wrapperStyleSelected = {
-    ...wrapperStyle,
-    background: "#e9ebeb",
-    ":hover": {
-      cursor: "pointer"
-    }
-  };
+  );
 
   return (
-    <Div
-      css={
-        props.selectedFriend === props.id ? wrapperStyleSelected : wrapperStyle
-      }
+    <FriendsListItemBox
       data-id={props.id}
       onClickCapture={props.handleListItemClick}
     >
@@ -84,7 +86,8 @@ export const FriendsListItem = ({ picture: picture = "", ...props }) => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              color: "#348C7D"
+              color: "#348C7D",
+              fontSize: "1.2em"
             }}
           >
             {props.name}
@@ -113,12 +116,14 @@ export const FriendsListItem = ({ picture: picture = "", ...props }) => {
           }
         }}
       >
-        <NameAndLastChat
-          name={props.name}
-          lastChat={
-            props.type === "allFriendsList" ? props.status : props.lastChat
-          }
-        />
+        {props.type !== "nameGroup" ? (
+          <NameAndLastChat
+            name={props.name}
+            lastChat={
+              props.type === "allFriendsList" ? props.status : props.lastChat
+            }
+          />
+        ) : null}
       </Div>
       <Div
         css={{
@@ -139,6 +144,6 @@ export const FriendsListItem = ({ picture: picture = "", ...props }) => {
           {props.timestamp}
         </Label>
       </Div>
-    </Div>
+    </FriendsListItemBox>
   );
 };
