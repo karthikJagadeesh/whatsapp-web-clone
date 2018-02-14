@@ -11,7 +11,7 @@ import ProfileSettings from "./Settings";
 import { ArchivedChats } from "./ArchivedChats";
 import { StarredMessages } from "./StarredMessages";
 import { NewGroup } from "./NewGroup";
-import ProfileNewChat from "./ProfileNewChat"
+import ProfileNewChat from "./ProfileNewChat";
 
 export default class Profile extends Component {
   state = {
@@ -51,6 +51,7 @@ export default class Profile extends Component {
         return (
           <ProfileNewChat
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
+            handleNewGroupClick={this.handleNewGroupClick}
           />
         );
 

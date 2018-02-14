@@ -117,11 +117,9 @@ export default class App extends Component {
     })();
   };
 
-  componentDidMount() {
-    (async _ => {
-      const profileData = await fetchData(profileDataUrl);
-      this.setState({ profileData });
-    })();
+  async componentDidMount() {
+    const profileData = await fetchData(profileDataUrl);
+    this.setState({ profileData });
   }
 
   render() {

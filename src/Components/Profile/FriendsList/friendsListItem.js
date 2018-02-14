@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Div, Label, Img, P } from "glamorous";
+import { Div, Label, Img, P, Span } from "glamorous";
 
 const NameAndLastChat = ({ name, lastChat }) => {
   return (
@@ -62,17 +62,46 @@ export const FriendsListItem = ({ picture: picture = "", ...props }) => {
           gridTemplateColumns: "100%"
         }}
       >
-        <Img
-          css={{
-            borderRadius: "50%",
-            width: "70%",
-            height: "70%",
-            alignSelf: "center",
-            justifySelf: "center"
-          }}
-          alt=""
-          src={picture}
-        />
+        {props.type === "newGroup" ? (
+          <Span
+            css={{
+              background: "#348C7D",
+              borderRadius: "50%",
+              width: "70%",
+              height: "70%",
+              alignSelf: "center",
+              justifySelf: "center",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <props.icon size={35} color="#FFFFFF" />
+          </Span>
+        ) : props.type === "nameGroup" ? (
+          <Span
+            css={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "#348C7D"
+            }}
+          >
+            {props.name}
+          </Span>
+        ) : (
+          <Img
+            css={{
+              borderRadius: "50%",
+              width: "70%",
+              height: "70%",
+              alignSelf: "center",
+              justifySelf: "center"
+            }}
+            alt=""
+            src={picture}
+          />
+        )}
       </Div>
       <Div
         css={{
@@ -84,7 +113,12 @@ export const FriendsListItem = ({ picture: picture = "", ...props }) => {
           }
         }}
       >
-        <NameAndLastChat name={props.name} lastChat={props.lastChat} />
+        <NameAndLastChat
+          name={props.name}
+          lastChat={
+            props.type === "allFriendsList" ? props.status : props.lastChat
+          }
+        />
       </Div>
       <Div
         css={{
