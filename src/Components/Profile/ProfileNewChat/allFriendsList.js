@@ -17,7 +17,8 @@ export const AllFriendsList = ({
       id: friend.id,
       name: friend.name,
       picture: friend.picture,
-      status: friend.status
+      status: friend.status,
+      handleListItemClick
     };
     return <FriendsListItem {...props} type="allFriendsList" />;
   });

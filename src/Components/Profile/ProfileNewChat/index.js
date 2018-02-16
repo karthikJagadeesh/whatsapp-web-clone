@@ -21,7 +21,11 @@ class ProfileNewChat extends Component {
   }
 
   render() {
-    const { handleProfileInfoBackClick, handleNewGroupClick } = this.props;
+    const {
+      handleProfileInfoBackClick,
+      handleNewGroupClick,
+      handleListItemClick
+    } = this.props;
     const { allFriendsList, searchBarValue } = this.state;
     return (
       <Div
@@ -51,6 +55,7 @@ class ProfileNewChat extends Component {
             allFriendsList={allFriendsList}
             searchBarValue={searchBarValue}
             handleNewGroupClick={handleNewGroupClick}
+            handleListItemClick={handleListItemClick}
           />
         </Div>
       </Div>

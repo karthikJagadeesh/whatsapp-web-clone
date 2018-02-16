@@ -35,7 +35,6 @@ export default class Profile extends Component {
     this.currentViewStateUpdater("starredMessages");
   handleNewGroupClick = _ => this.currentViewStateUpdater("newGroup");
   handleNewChatClick = _ => this.currentViewStateUpdater("newChat");
-
   handleProfileInfoBackClick = _ => {
     this.setState(prevState => {
       const updatedCurrentView = [...prevState.currentView];
@@ -43,15 +42,27 @@ export default class Profile extends Component {
       return { currentView: updatedCurrentView };
     });
   };
+  handleNewChatListItemClick = event => {
+    this.props.handleListItemClick(event);
+    this.handleProfileInfoBackClick();
+  };
 
   render() {
-    const { currentView } = this.state;
+    const { currentView, searchBarValue } = this.state;
+    const {
+      selectedFriend,
+      handleListItemClick,
+      handleColorBoxClick,
+      handleColorBoxHover,
+      handleColorBoxHoverOut
+    } = this.props;
     switch (currentView[currentView.length - 1]) {
       case "newChat":
         return (
           <ProfileNewChat
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
             handleNewGroupClick={this.handleNewGroupClick}
+            handleListItemClick={this.handleNewChatListItemClick}
           />
         );
 
@@ -84,12 +95,6 @@ export default class Profile extends Component {
         );
 
       case "profileSettings":
-        const {
-          handleColorBoxClick,
-          handleColorBoxHover,
-          handleColorBoxHoverOut
-        } = this.props;
-
         return (
           <ProfileSettings
             handleColorBoxClick={handleColorBoxClick}
@@ -101,9 +106,6 @@ export default class Profile extends Component {
         );
 
       case "friendList":
-        const { selectedFriend, handleListItemClick } = this.props;
-        const { searchBarValue } = this.state;
-
         return (
           <Div
             css={{
