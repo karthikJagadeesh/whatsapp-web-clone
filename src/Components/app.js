@@ -7,7 +7,12 @@ import Profile from "./Profile";
 import ChatBox from "./ChatBox";
 import ContextBox from "./ContextBox/";
 import ModalDialog from "./ModalDialog";
-import { profileDataUrl, friendDataUrl, fetchData } from "../network";
+import {
+  profileDataUrl,
+  friendDataUrl,
+  allFriendsDataUrl,
+  fetchData
+} from "../network";
 
 export default class App extends Component {
   state = {
@@ -15,12 +20,16 @@ export default class App extends Component {
     chatBoxContext: null,
     isContextBoxActive: false,
     isContactInfoContextBoxActive: false,
+    recentChat: {
+      id: null,
+      changed: true
+    },
     currentHovered: {
-      id: 100,
+      id: null,
       color: "#E5DDD5"
     },
     currentSelected: {
-      id: 0,
+      id: null,
       color: "#E5DDD5"
     },
     modalDialog: {
@@ -41,6 +50,87 @@ export default class App extends Component {
     gridTemplateColumns: "3fr 7fr"
   };
 
+  checkForLastChat = lastChat => {
+    const { recentChat, chatBoxContext, profileData } = this.state;
+    const mostRecentIndex = profileData.friends.findIndex(
+      friend => friend.id === chatBoxContext.id
+    );
+    if (recentChat.id !== chatBoxContext.id) {
+      if (mostRecentIndex === -1) {
+        fetch(allFriendsDataUrl)
+          .then(response => response.json())
+          .then(allFriends => {
+            const mostRecent = allFriends.find(
+              friend => friend.id === chatBoxContext.id
+            );
+            mostRecent.lastChat = lastChat;
+            mostRecent.latest_timestamp = new Date()
+              .toLocaleTimeString()
+              .split(":")
+              .slice(0, 2)
+              .join(":");
+            const updatedList = [mostRecent, ...profileData.friends];
+            const updatedProfileData = { ...profileData };
+            updatedProfileData.friends = updatedList;
+            this.setState({
+              profileData: updatedProfileData,
+              recentChat: {
+                id: updatedProfileData.friends[0].id,
+                changed: true
+              }
+            });
+          });
+      } else {
+        const mostRecent = profileData.friends[mostRecentIndex];
+        mostRecent.lastChat = lastChat;
+        mostRecent.latest_timestamp = new Date()
+          .toLocaleTimeString()
+          .split(":")
+          .slice(0, 2)
+          .join(":");
+        const updatedList = [...profileData.friends];
+        updatedList.splice(mostRecentIndex, 1);
+        updatedList.unshift(mostRecent);
+        const updatedProfileData = { ...profileData };
+        updatedProfileData.friends = updatedList;
+
+        this.setState({
+          profileData: updatedProfileData,
+          recentChat: {
+            id: updatedProfileData.friends[0].id,
+            changed: true
+          }
+        });
+      }
+    } else {
+      const updatedProfileDataFriends = profileData.friends.map(friend => {
+        if (friend.id === chatBoxContext.id) {
+          return {
+            ...friend,
+            lastChat: lastChat,
+            latest_timestamp: new Date()
+              .toLocaleTimeString()
+              .split(":")
+              .slice(0, 2)
+              .join(":")
+          };
+        }
+        return friend;
+      });
+      const updatedProfileData = {
+        ...profileData,
+        friends: updatedProfileDataFriends
+      };
+
+      this.setState({
+        profileData: updatedProfileData,
+        recentChat: {
+          id: profileData.friends[0].id,
+          changed: false
+        }
+      });
+    }
+  };
   friendChatHeaderClick = _ => {
     this.setState({
       isContactInfoContextBoxActive: true,
@@ -119,7 +209,13 @@ export default class App extends Component {
 
   async componentDidMount() {
     const profileData = await fetchData(profileDataUrl);
-    this.setState({ profileData });
+    this.setState({
+      profileData,
+      recentChat: {
+        id: profileData.friends[0].id,
+        changed: false
+      }
+    });
   }
 
   render() {
@@ -156,6 +252,7 @@ export default class App extends Component {
           </Div>
           <Div css={{ background: "#F7F9FA" }}>
             <ChatBox
+              checkForLastChat={this.checkForLastChat}
               currentFriend={this.handleListItemClick}
               chatBoxContext={chatBoxContext}
               handleSearchClick={this.handleSearchClick}
