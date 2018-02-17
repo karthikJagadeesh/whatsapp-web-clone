@@ -106,7 +106,7 @@
       }
     ]
   },
-  "friends": [
+  "recentChats": [
     {
       "id": 2,
       "name": "Alex",
@@ -253,13 +253,175 @@
       "name": "Zen",
       "picture": "https://image.ibb.co/eeqWbw/zen_1.jpg",
       "chatlog": []
+    },
+    {
+      "id": 16,
+      "name": "A'Koba",
+      "picture": "https://image.ibb.co/f3n037/A_Koba_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 17,
+      "name": "Almec",
+      "picture": "https://image.ibb.co/cMW4Vn/Almec_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 18,
+      "name": "Raymus Antilles",
+      "picture": "https://image.ibb.co/nJ7NGS/Raymus_Antilles_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 19,
+      "name": "Doctor Aphra",
+      "picture": "https://image.ibb.co/mVCNGS/Doctor_Aphra_1.png",
+      "chatlog": []
+    },
+    {
+      "id": 20,
+      "name": "Ello Asty",
+      "picture": "https://image.ibb.co/jfgtO7/Ello_Asty_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 21,
+      "name": "Kitster Banai",
+      "picture": "https://image.ibb.co/eMGGbS/Kitster_Banai_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 22,
+      "name": "Barada",
+      "picture": "https://image.ibb.co/i2Z2GS/Barada_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 23,
+      "name": "Depa Billaba",
+      "picture": "https://image.ibb.co/hhPrAn/Depa_Billaba_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 24,
+      "name": "Temiri Blagg",
+      "picture": "https://image.ibb.co/kYGhGS/Temiri_Blagg_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 25,
+      "name": "Mina Bonteri",
+      "picture": "https://image.ibb.co/k4spwS/Mina_Bonteri_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 26,
+      "name": "Rush Clovis",
+      "picture": "https://image.ibb.co/mmOjVn/Rush_Clovis_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 27,
+      "name": "Commander Cody",
+      "picture": "https://image.ibb.co/fU14Vn/Commander_Cody_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 28,
+      "name": "Joclad Danva",
+      "picture": "https://image.ibb.co/kWsBAn/Joclad_Danva_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 29,
+      "name": "Vober Dand",
+      "picture": "https://image.ibb.co/etowbS/Vober_Dand_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 30,
+      "name": "Daultay Dofine",
+      "picture": "https://image.ibb.co/cJVWAn/Daultay_Dofine_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 31,
+      "name": "Caluan Ematt",
+      "picture": "https://image.ibb.co/cXPrAn/Caluan_Ematt_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 32,
+      "name": "Rune Haako",
+      "picture": "https://image.ibb.co/iRsBAn/Rune_Haako_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 33,
+      "name": "Wes Janson",
+      "picture": "https://image.ibb.co/hVOUwS/Wes_Janson_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 34,
+      "name": "Harter Kalonia",
+      "picture": "https://image.ibb.co/eSbhGS/Harter_Kalonia_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 35,
+      "name": "Maz Kanata",
+      "picture": "https://image.ibb.co/f97dqn/Maz_Kanata_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 36,
+      "name": "Owen Lars",
+      "picture": "https://image.ibb.co/nkxdqn/Owen_Lars_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 37,
+      "name": "Bazine Netal",
+      "picture": "https://image.ibb.co/nGQWAn/Bazine_Netal_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 38,
+      "name": "Darth Plagueis",
+      "picture": "https://image.ibb.co/iLOUwS/Darth_Plagueis_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 39,
+      "name": "Sana Starros",
+      "picture": "https://image.ibb.co/jsBtO7/Sana_Starros_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 40,
+      "name": "Jova Tarkin",
+      "picture": "https://image.ibb.co/dYMGbS/Jova_Tarkin_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 41,
+      "name": "Wat Tambor",
+      "picture": "https://image.ibb.co/mM64Vn/Wat_Tambor_1.jpg",
+      "chatlog": []
+    },
+    {
+      "id": 42,
+      "name": "Quinlan Vos",
+      "picture": "https://image.ibb.co/fgLyqn/Quinlan_Vos_1.jpg",
+      "chatlog": []
     }
   ],
   "allFriends": [
     {
       "id": 16,
       "name": "A'Koba",
-      "picture": "",
+      "picture": "https://image.ibb.co/f3n037/A_Koba_1.jpg",
       "status": "Available 🦈"
     },
     {
@@ -349,157 +511,157 @@
     {
       "id": 17,
       "name": "Almec",
-      "picture": "",
+      "picture": "https://image.ibb.co/cMW4Vn/Almec_1.jpg",
       "status": "Busy"
     },
     {
       "id": 18,
       "name": "Raymus Antilles",
-      "picture": "",
+      "picture": "https://image.ibb.co/nJ7NGS/Raymus_Antilles_1.jpg",
       "status": "Busy"
     },
     {
       "id": 19,
       "name": "Doctor Aphra",
-      "picture": "",
+      "picture": "https://image.ibb.co/mVCNGS/Doctor_Aphra_1.png",
       "status": "Busy"
     },
     {
       "id": 20,
       "name": "Ello Asty",
-      "picture": "",
+      "picture": "https://image.ibb.co/jfgtO7/Ello_Asty_1.jpg",
       "status": "Busy ⚔️"
     },
     {
       "id": 21,
       "name": "Kitster Banai",
-      "picture": "",
+      "picture": "https://image.ibb.co/eMGGbS/Kitster_Banai_1.jpg",
       "status": "Busy"
     },
     {
       "id": 22,
       "name": "Barada",
-      "picture": "",
+      "picture": "https://image.ibb.co/i2Z2GS/Barada_1.jpg",
       "status": "Busy"
     },
     {
       "id": 23,
       "name": "Depa Billaba",
-      "picture": "",
+      "picture": "https://image.ibb.co/hhPrAn/Depa_Billaba_1.jpg",
       "status": "Busy 🗺"
     },
     {
       "id": 24,
       "name": "Temiri Blagg",
-      "picture": "",
+      "picture": "https://image.ibb.co/kYGhGS/Temiri_Blagg_1.jpg",
       "status": "Busy 🤜"
     },
     {
       "id": 25,
       "name": "Mina Bonteri",
-      "picture": "",
+      "picture": "https://image.ibb.co/k4spwS/Mina_Bonteri_1.jpg",
       "status": "Busy 📉"
     },
     {
       "id": 26,
       "name": "Rush Clovis",
-      "picture": "",
+      "picture": "https://image.ibb.co/mmOjVn/Rush_Clovis_1.jpg",
       "status": "Busy 🌄"
     },
     {
       "id": 27,
       "name": "Commander Cody",
-      "picture": "",
+      "picture": "https://image.ibb.co/fU14Vn/Commander_Cody_1.jpg",
       "status": "Busy 🔷"
     },
     {
       "id": 28,
       "name": "Joclad Danva",
-      "picture": "",
+      "picture": "https://image.ibb.co/kWsBAn/Joclad_Danva_1.jpg",
       "status": "Busy"
     },
     {
       "id": 29,
       "name": "Vober Dand",
-      "picture": "",
+      "picture": "https://image.ibb.co/etowbS/Vober_Dand_1.jpg",
       "status": "Busy"
     },
     {
       "id": 30,
       "name": "Daultay Dofine",
-      "picture": "",
+      "picture": "https://image.ibb.co/cJVWAn/Daultay_Dofine_1.jpg",
       "status": "Busy"
     },
     {
       "id": 31,
       "name": "Caluan Ematt",
-      "picture": "",
+      "picture": "https://image.ibb.co/cXPrAn/Caluan_Ematt_1.jpg",
       "status": "Busy"
     },
     {
       "id": 32,
       "name": "Rune Haako",
-      "picture": "",
+      "picture": "https://image.ibb.co/iRsBAn/Rune_Haako_1.jpg",
       "status": "Busy"
     },
     {
       "id": 33,
       "name": "Wes Janson",
-      "picture": "",
+      "picture": "https://image.ibb.co/hVOUwS/Wes_Janson_1.jpg",
       "status": "Busy"
     },
     {
       "id": 34,
       "name": "Harter Kalonia",
-      "picture": "",
+      "picture": "https://image.ibb.co/eSbhGS/Harter_Kalonia_1.jpg",
       "status": "Busy"
     },
     {
       "id": 35,
       "name": "Maz Kanata",
-      "picture": "",
+      "picture": "https://image.ibb.co/f97dqn/Maz_Kanata_1.jpg",
       "status": "Busy"
     },
     {
       "id": 36,
       "name": "Owen Lars",
-      "picture": "",
+      "picture": "https://image.ibb.co/nkxdqn/Owen_Lars_1.jpg",
       "status": "Busy"
     },
     {
       "id": 37,
       "name": "Bazine Netal",
-      "picture": "",
+      "picture": "https://image.ibb.co/nGQWAn/Bazine_Netal_1.jpg",
       "status": "Busy"
     },
     {
       "id": 38,
       "name": "Darth Plagueis",
-      "picture": "",
+      "picture": "https://image.ibb.co/iLOUwS/Darth_Plagueis_1.jpg",
       "status": "Busy"
     },
     {
       "id": 39,
       "name": "Sana Starros",
-      "picture": "",
+      "picture": "https://image.ibb.co/jsBtO7/Sana_Starros_1.jpg",
       "status": "Busy"
     },
     {
       "id": 40,
       "name": "Jova Tarkin",
-      "picture": "",
+      "picture": "https://image.ibb.co/dYMGbS/Jova_Tarkin_1.jpg",
       "status": "Busy"
     },
     {
       "id": 41,
       "name": "Wat Tambor",
-      "picture": "",
+      "picture": "https://image.ibb.co/mM64Vn/Wat_Tambor_1.jpg",
       "status": "Busy"
     },
     {
       "id": 42,
       "name": "Quinlan Vos",
-      "picture": "",
+      "picture": "https://image.ibb.co/fgLyqn/Quinlan_Vos_1.jpg",
       "status": "Busy 🔥"
     }
   ]

@@ -18,6 +18,7 @@ export default class ChatBox extends Component {
   render() {
     const {
       chatBoxContext,
+      checkForLastChat,
       handleSearchClick,
       friendChatHeaderClick,
       backgroundColor,
@@ -61,6 +62,7 @@ export default class ChatBox extends Component {
             <ChatBoxFooter
               isInitialScreen={false}
               handleChatSend={this.handleChatSend}
+              checkForLastChat={checkForLastChat}
             />
           ) : (
             <ChatBoxFooter isInitialScreen={true} />

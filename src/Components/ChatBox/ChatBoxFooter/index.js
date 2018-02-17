@@ -21,12 +21,15 @@ export class ChatBoxFooter extends Component {
     this.setState({ inputValue: "" });
   };
 
+  checkForLastChat = _ => {};
+
   handleInputKeyDown = event => {
     const enterKeyCode = 13;
-    if (event.keyCode === enterKeyCode) {
-      if (this.state.inputValue) {
-        this.postChatMessage();
-      }
+    const { checkForLastChat } = this.props;
+    const { inputValue } = this.state;
+    if (event.keyCode === enterKeyCode && inputValue) {
+      this.postChatMessage();
+      checkForLastChat(inputValue);
     }
   };
 
