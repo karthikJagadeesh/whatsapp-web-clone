@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Div } from "glamorous";
+import { format } from "date-fns";
 
 import { SmilieBoard } from "./smilieBoard";
 import { ChatMessageInput } from "./chatMessageInput";
@@ -14,7 +15,7 @@ export class ChatBoxFooter extends Component {
     const { handleChatSend } = this.props;
     handleChatSend({
       text: this.state.inputValue,
-      timestamp: new Date(),
+      timestamp: format(new Date(), "h:mm A"),
       side: "right",
       message_id: Math.round(Math.random() * Math.pow(10, 10)) // dummy placeholder
     });

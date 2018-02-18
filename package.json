@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "date-fns": "^1.29.0",
     "glamor": "^2.20.40",
     "glamorous": "^4.11.2",
     "prop-types": "^15.6.0",

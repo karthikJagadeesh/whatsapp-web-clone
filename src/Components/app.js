@@ -2,6 +2,7 @@ import "babel-polyfill";
 import React, { Component, Fragment } from "react";
 import { Div } from "glamorous";
 import { Broadcast } from "react-broadcast";
+import { format } from "date-fns";
 
 import Profile from "./Profile";
 import ChatBox from "./ChatBox";
@@ -64,11 +65,7 @@ export default class App extends Component {
               friend => friend.id === chatBoxContext.id
             );
             mostRecent.lastChat = lastChat;
-            mostRecent.latest_timestamp = new Date()
-              .toLocaleTimeString()
-              .split(":")
-              .slice(0, 2)
-              .join(":");
+            mostRecent.latest_timestamp = format(new Date(), "h:mm A");
             const updatedList = [mostRecent, ...profileData.friends];
             const updatedProfileData = { ...profileData };
             updatedProfileData.friends = updatedList;
@@ -83,11 +80,8 @@ export default class App extends Component {
       } else {
         const mostRecent = profileData.friends[mostRecentIndex];
         mostRecent.lastChat = lastChat;
-        mostRecent.latest_timestamp = new Date()
-          .toLocaleTimeString()
-          .split(":")
-          .slice(0, 2)
-          .join(":");
+        mostRecent.latest_timestamp = format(new Date(), "h:mm A");
+
         const updatedList = [...profileData.friends];
         updatedList.splice(mostRecentIndex, 1);
         updatedList.unshift(mostRecent);
@@ -108,11 +102,7 @@ export default class App extends Component {
           return {
             ...friend,
             lastChat: lastChat,
-            latest_timestamp: new Date()
-              .toLocaleTimeString()
-              .split(":")
-              .slice(0, 2)
-              .join(":")
+            latest_timestamp: format(new Date(), "h:mm A")
           };
         }
         return friend;
