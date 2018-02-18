@@ -1,5 +1,6 @@
 import React from "react";
-import { Div } from "glamorous";
+import { Div, Span } from "glamorous";
+import { format } from "date-fns";
 
 export const ChatBoxDisplay = ({
   backgroundColor,
@@ -18,15 +19,15 @@ export const ChatBoxDisplay = ({
   };
 
   const messageStyleLeft = {
-    wordWrap: "break-word",
-    overflow: "hidden",
     border: "1px solid rgba(0, 0, 0, 0.1)",
     boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.1)",
     fontSize: "0.9em",
     borderRadius: "8px",
     color: "rgb(38, 38, 38)",
     padding: "8px 6px",
-    background: "#FFF"
+    background: "#FFF",
+    display: "grid",
+    gridTemplateColumns: "auto 50px"
   };
 
   const messageStyleRight = {
@@ -48,7 +49,26 @@ export const ChatBoxDisplay = ({
     }
     return (
       <Div key={msg.message_id} css={messagesListWrapperStyle}>
-        <Div css={messageStyle}>{msg.text}</Div>
+        <Div css={messageStyle}>
+          <Span
+            css={{
+              wordWrap: "break-word",
+              overflow: "hidden"
+            }}
+          >
+            {msg.text}
+          </Span>
+          <Span
+            css={{
+              fontSize: "0.7em",
+              alignSelf: "end",
+              justifySelf: "end",
+              color: "rgba(0, 0, 0, 0.45)"
+            }}
+          >
+            {msg.timestamp}
+          </Span>
+        </Div>
       </Div>
     );
   });
