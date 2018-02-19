@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const Stylish = require("webpack-stylish");
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: "./src/index.html",
@@ -35,7 +36,7 @@ const config = {
       }
     ]
   },
-  plugins: [HtmlWebpackPluginConfig, ExtractTextPluginConfig],
+  plugins: [HtmlWebpackPluginConfig, ExtractTextPluginConfig, new Stylish()],
   devtool: "cheap-module-eval-source-map"
 };
 

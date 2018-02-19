@@ -1,6 +1,29 @@
 import React from "react";
 import { Div, Span } from "glamorous";
-import { format } from "date-fns";
+
+const Message = ({ messageStyle, text, timestamp }) => (
+  <Div css={messageStyle}>
+    <Span
+      css={{
+        wordWrap: "break-word",
+        overflow: "hidden"
+      }}
+    >
+      {text}
+    </Span>
+    <Span
+      css={{
+        marginBottom: "-4px",
+        fontSize: "0.7em",
+        alignSelf: "end",
+        justifySelf: "end",
+        color: "rgba(0, 0, 0, 0.45)"
+      }}
+    >
+      {timestamp}
+    </Span>
+  </Div>
+);
 
 export const ChatBoxDisplay = ({
   backgroundColor,
@@ -24,7 +47,7 @@ export const ChatBoxDisplay = ({
     fontSize: "0.9em",
     borderRadius: "8px",
     color: "rgb(38, 38, 38)",
-    padding: "8px 6px",
+    padding: "6px 6px",
     background: "#FFF",
     display: "grid",
     gridTemplateColumns: "auto 50px"
@@ -37,7 +60,7 @@ export const ChatBoxDisplay = ({
 
   const fullChatLog = [...messages, ...chatlog];
 
-  const messagesList = fullChatLog.map(msg => {
+  const messagesList = fullChatLog.map((msg, index, self) => {
     let messagesListWrapperStyle;
     let messageStyle;
     if (msg.side === "left") {
@@ -47,28 +70,22 @@ export const ChatBoxDisplay = ({
       messagesListWrapperStyle = messagesListWrapperStyleRight;
       messageStyle = messageStyleRight;
     }
+
     return (
-      <Div key={msg.message_id} css={messagesListWrapperStyle}>
-        <Div css={messageStyle}>
-          <Span
-            css={{
-              wordWrap: "break-word",
-              overflow: "hidden"
-            }}
-          >
-            {msg.text}
-          </Span>
-          <Span
-            css={{
-              fontSize: "0.7em",
-              alignSelf: "end",
-              justifySelf: "end",
-              color: "rgba(0, 0, 0, 0.45)"
-            }}
-          >
-            {msg.timestamp}
-          </Span>
-        </Div>
+      <Div
+        key={msg.message_id}
+        css={{
+          ...messagesListWrapperStyle,
+          /* Since the message list style is flex-reversed, applying margin to
+             the first messageBox instead of last */
+          marginBottom: index === 0 ? "10px" : "0"
+        }}
+      >
+        <Message
+          messageStyle={messageStyle}
+          text={msg.text}
+          timestamp={msg.timestamp}
+        />
       </Div>
     );
   });

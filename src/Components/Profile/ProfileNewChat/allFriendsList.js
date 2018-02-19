@@ -4,6 +4,21 @@ import { Div } from "glamorous";
 import { FriendsListItem } from "../FriendsList/friendsListItem";
 import MdGroupAdd from "react-icons/lib/md/group-add";
 
+const filteredList = (list, searchBarValue) =>
+  list.filter(({ props }) =>
+    props.name.toLowerCase().includes(searchBarValue.toLowerCase().trim())
+  );
+
+const sortedList = list =>
+  list.sort((curr, next) => {
+    if (curr.props.id === 0 || next.props.id === 0) return;
+    const currName = curr.props.name.toLowerCase();
+    const nextName = next.props.name.toLowerCase();
+    if (currName < nextName) return -1;
+    else if (currName > nextName) return 1;
+    else return 0;
+  });
+
 export const AllFriendsList = ({
   handleNewGroupClick,
   handleListItemClick,
@@ -22,20 +37,6 @@ export const AllFriendsList = ({
     };
     return <FriendsListItem {...props} type="allFriendsList" />;
   });
-
-  const filteredList = list =>
-    list.filter(({ props }) =>
-      props.name.toLowerCase().includes(searchBarValue.toLowerCase().trim())
-    );
-  const sortedList = list =>
-    list.sort((curr, next) => {
-      if (curr.props.id === 0 || next.props.id === 0) return;
-      const currName = curr.props.name.toLowerCase();
-      const nextName = next.props.name.toLowerCase();
-      if (currName < nextName) return -1;
-      else if (currName > nextName) return 1;
-      else return 0;
-    });
 
   let currentNameGroup = "";
   const listOfAllFriendsWithMeta = [];
@@ -71,7 +72,7 @@ export const AllFriendsList = ({
       }}
     >
       {searchBarValue
-        ? filteredList(sortedList(listOfAllFriends))
+        ? filteredList(sortedList(listOfAllFriends), searchBarValue)
         : sortedList(listOfAllFriendsWithMeta)}
     </Div>
   );

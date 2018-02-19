@@ -6,7 +6,7 @@ import { Header } from "../ProfileInfo";
 import AllFriendsList from "./allFriendsList";
 import { allFriendsDataUrl, fetchData } from "../../../network";
 
-class ProfileNewChat extends Component {
+export default class ProfileNewChat extends Component {
   state = {
     allFriendsList: [],
     searchBarValue: ""
@@ -63,4 +63,3 @@ class ProfileNewChat extends Component {
   }
 }
 
-export default ProfileNewChat;

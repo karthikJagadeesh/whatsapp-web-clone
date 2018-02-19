@@ -35,13 +35,13 @@ export const ChatBoxHeader = ({
   currentFriend,
   chatBoxContext,
   handleSearchClick,
-  friendChatHeaderClick,
+  handleFriendChatHeaderClick,
   handleDeleteChatClick,
   handleClearChatClick,
   handleMuteClick
 }) => {
   const labelsAndContext = {
-    "Contact Info": friendChatHeaderClick,
+    "Contact Info": handleFriendChatHeaderClick,
     "Select Messages": _ => {},
     Mute: handleMuteClick,
     "Clear messages": handleClearChatClick,
@@ -72,7 +72,7 @@ export const ChatBoxHeader = ({
             cursor: "pointer"
           }
         }}
-        onClick={friendChatHeaderClick}
+        onClick={handleFriendChatHeaderClick}
       >
         <Picture currentFriend={chatBoxContext.picture} />
         <Name name={chatBoxContext.name} />

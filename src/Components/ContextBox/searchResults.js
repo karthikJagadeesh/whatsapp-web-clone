@@ -1,7 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import { Div, P, Span } from "glamorous";
 
-const Template = ({ type }) => {
+import { Header } from "./header";
+import { SearchBar } from "../Profile/SearchBar";
+
+const Template = ({ type, name }) => {
   if (type === "initialDisplay") {
     return (
       <Div
@@ -104,10 +107,67 @@ const Results = ({ messagesLog, searchValue }) => {
   }
 };
 
-export const SearchResults = ({ name, searchValue, messagesLog }) => {
-  return searchValue ? (
-    <Results messagesLog={messagesLog} searchValue={searchValue} />
-  ) : (
-    <Template type="initialDisplay" />
-  );
-};
+export default class SearchResults extends Component {
+  state = {
+    value: ""
+  };
+
+  handleInputChange = ({ target }) => {
+    this.setState({ value: target.value });
+  };
+
+  render() {
+    const { name, messagesLog, handleCancelClick } = this.props;
+    const { value } = this.state;
+    return (
+      <Div
+        css={{
+          height: "100%",
+          display: "grid",
+          gridTemplateRows: "1fr 0.6fr 8.4fr",
+          borderLeft: "1px solid rgba(0, 0, 0, 0.05)",
+          background: "#FFF"
+        }}
+      >
+        <Div
+          css={{
+            height: "100%",
+            width: "100%",
+            borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
+          }}
+        >
+          <Header
+            text={"Search Messages"}
+            handleCancelClick={handleCancelClick}
+          />
+        </Div>
+        <Div
+          css={{
+            height: "100%",
+            width: "100%",
+            borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
+          }}
+        >
+          <SearchBar
+            placeholder={"Search..."}
+            handleInputChange={this.handleInputChange}
+            searchBarValue={value}
+          />
+        </Div>
+        <Div
+          css={{
+            height: "100%",
+            width: "100%",
+            borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
+          }}
+        >
+          {value ? (
+            <Results messagesLog={messagesLog} searchValue={value} />
+          ) : (
+            <Template type="initialDisplay" name={name} />
+          )}
+        </Div>
+      </Div>
+    );
+  }
+}

@@ -20,7 +20,7 @@ export default class ChatBox extends Component {
       chatBoxContext,
       checkForLastChat,
       handleSearchClick,
-      friendChatHeaderClick,
+      handleFriendChatHeaderClick,
       backgroundColor,
       handleDeleteChatClick,
       handleClearChatClick,
@@ -41,7 +41,7 @@ export default class ChatBox extends Component {
             <ChatBoxHeader
               chatBoxContext={chatBoxContext}
               handleSearchClick={handleSearchClick}
-              friendChatHeaderClick={friendChatHeaderClick}
+              handleFriendChatHeaderClick={handleFriendChatHeaderClick}
               handleDeleteChatClick={handleDeleteChatClick}
               handleClearChatClick={handleClearChatClick}
               handleMuteClick={handleMuteClick}
