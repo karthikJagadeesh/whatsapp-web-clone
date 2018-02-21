@@ -51,8 +51,17 @@ export default class App extends Component {
     gridTemplateColumns: "3fr 7fr"
   };
 
+  recentActiveFriendsListOrderUpdater = ({ changed, updatedProfileData }) =>
+    this.setState({
+      profileData: updatedProfileData,
+      recentChat: {
+        id: updatedProfileData.friends[0].id,
+        changed
+      }
+    });
+
   // decides who in the active chat list - friend's list should be at the top
-  checkForLastChat = lastChat => {
+  checkForLastChat = (lastChat, timestamp) => {
     const { recentChat, chatBoxContext, profileData } = this.state;
     const mostRecentIndex = profileData.friends.findIndex(
       friend => friend.id === chatBoxContext.id
@@ -70,36 +79,30 @@ export default class App extends Component {
             friend => friend.id === chatBoxContext.id
           );
           mostRecent.lastChat = lastChat;
-          mostRecent.latest_timestamp = format(new Date(), "h:mm A");
+          mostRecent.latest_timestamp = timestamp;
           const updatedList = [mostRecent, ...profileData.friends];
           const updatedProfileData = { ...profileData };
           updatedProfileData.friends = updatedList;
 
-          this.setState({
-            profileData: updatedProfileData,
-            recentChat: {
-              id: updatedProfileData.friends[0].id,
-              changed: true
-            }
+          this.recentActiveFriendsListOrderUpdater({
+            changed: true,
+            updatedProfileData
           });
         })();
       } else {
         // rearrange the list to put the person on the top
         const mostRecent = profileData.friends[mostRecentIndex];
         mostRecent.lastChat = lastChat;
-        mostRecent.latest_timestamp = format(new Date(), "h:mm A");
+        mostRecent.latest_timestamp = timestamp;
         const updatedList = [...profileData.friends];
         updatedList.splice(mostRecentIndex, 1);
         updatedList.unshift(mostRecent);
         const updatedProfileData = { ...profileData };
         updatedProfileData.friends = updatedList;
 
-        this.setState({
-          profileData: updatedProfileData,
-          recentChat: {
-            id: updatedProfileData.friends[0].id,
-            changed: true
-          }
+        this.recentActiveFriendsListOrderUpdater({
+          changed: true,
+          updatedProfileData
         });
       }
     } else {
@@ -111,7 +114,7 @@ export default class App extends Component {
           return {
             ...friend,
             lastChat: lastChat,
-            latest_timestamp: format(new Date(), "h:mm A")
+            latest_timestamp: timestamp
           };
         }
         return friend;
@@ -120,13 +123,9 @@ export default class App extends Component {
         ...profileData,
         friends: updatedProfileDataFriends
       };
-
-      this.setState({
-        profileData: updatedProfileData,
-        recentChat: {
-          id: profileData.friends[0].id,
-          changed: false
-        }
+      this.recentActiveFriendsListOrderUpdater({
+        changed: false,
+        updatedProfileData
       });
     }
   };

@@ -11,26 +11,25 @@ export class ChatBoxFooter extends Component {
     inputValue: ""
   };
 
-  postChatMessage = _ => {
+  postChatMessage = timestamp => {
     const { handleChatSend } = this.props;
     handleChatSend({
       text: this.state.inputValue,
-      timestamp: format(new Date(), "h:mm A"),
+      timestamp,
       side: "right",
-      message_id: Math.round(Math.random() * Math.pow(10, 10)) // dummy placeholder
+      message_id: timestamp
     });
     this.setState({ inputValue: "" });
   };
-
-  checkForLastChat = _ => {};
 
   handleInputKeyDown = event => {
     const enterKeyCode = 13;
     const { checkForLastChat } = this.props;
     const { inputValue } = this.state;
     if (event.keyCode === enterKeyCode && inputValue) {
-      this.postChatMessage();
-      checkForLastChat(inputValue);
+      const timestamp = new Date().toISOString();
+      this.postChatMessage(timestamp);
+      checkForLastChat(inputValue, timestamp);
     }
   };
 

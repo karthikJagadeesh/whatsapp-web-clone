@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Div } from "glamorous";
+import { format } from "date-fns";
 
 import { FriendsListItem } from "./friendsListItem";
 
@@ -14,7 +15,7 @@ export const FriendsList = ({
       key: friend.id,
       id: friend.id,
       name: friend.name,
-      timestamp: friend.latest_timestamp,
+      timestamp: format(new Date(friend.latest_timestamp), "h:mm A"),
       picture: friend.picture,
       lastChat: friend.lastChat,
       handleListItemClick,

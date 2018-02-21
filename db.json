@@ -9,7 +9,7 @@
         "id": 2,
         "name": "Alex",
         "picture": "https://image.ibb.co/cA2oOb/alex_1.jpg",
-        "latest_timestamp": "10:00 AM",
+        "latest_timestamp": "2018-02-21T07:54:18.290Z",
         "lastChat":
           "Or maybe not, let me check logistics and call you. Give me sometime"
       },
@@ -17,91 +17,91 @@
         "id": 3,
         "name": "Bob",
         "picture": "https://image.ibb.co/gSyTOb/bob_1.jpg",
-        "latest_timestamp": "12:30 AM",
+        "latest_timestamp": "2018-02-21T07:55:01.951Z",
         "lastChat": "Alright"
       },
       {
         "id": 4,
         "name": "Luke",
         "picture": "https://image.ibb.co/jOzeUG/luke_1.jpg",
-        "latest_timestamp": "4:12 PM",
+        "latest_timestamp": "2018-02-21T07:55:15.238Z",
         "lastChat": "I will look into it"
       },
       {
         "id": 5,
         "name": "Bane",
         "picture": "https://image.ibb.co/cBZPww/bane_1.jpg",
-        "latest_timestamp": "7:53 PM",
+        "latest_timestamp": "2018-02-21T07:55:26.445Z",
         "lastChat": "Exactly my point!"
       },
       {
         "id": 6,
         "name": "Darth Vader",
         "picture": "https://image.ibb.co/j4Ov3b/darth_vader_1.png",
-        "latest_timestamp": "1:09 PM",
+        "latest_timestamp": "2018-02-21T07:55:41.949Z",
         "lastChat": "Not quite the same."
       },
       {
         "id": 7,
         "name": "Zach",
         "picture": "https://image.ibb.co/b4kxGw/zach_1.jpg",
-        "latest_timestamp": "Yesterday",
+        "latest_timestamp": "2018-02-21T08:14:00.565Z",
         "lastChat": "I thought that the event was over long ago"
       },
       {
         "id": 8,
         "name": "Katie",
         "picture": "https://image.ibb.co/eLVWbw/katie_1.jpg",
-        "latest_timestamp": "Yesterday",
+        "latest_timestamp": "2018-02-21T08:14:22.864Z",
         "lastChat": "nothing"
       },
       {
         "id": 9,
         "name": "Chloe",
         "picture": "https://image.ibb.co/ncAa3b/chloe_1.jpg",
-        "latest_timestamp": "Wednesday",
+        "latest_timestamp": "2018-02-21T08:14:32.871Z",
         "lastChat": "sure i'll take it from you"
       },
       {
         "id": 10,
         "name": "Kennith",
         "picture": "https://image.ibb.co/fQKPww/kennith_1.jpg",
-        "latest_timestamp": "Wednesday",
+        "latest_timestamp": "2018-02-21T08:14:42.340Z",
         "lastChat": "Take care, bye"
       },
       {
         "id": 11,
         "name": "Tara",
         "picture": "https://image.ibb.co/dM6hib/tara_1.jpg",
-        "latest_timestamp": "Monday",
+        "latest_timestamp": "2018-02-21T08:14:51.596Z",
         "lastChat": "Not today"
       },
       {
         "id": 12,
         "name": "Gary",
         "picture": "https://image.ibb.co/gsF8Ob/gary_1.jpg",
-        "latest_timestamp": "Sunday",
+        "latest_timestamp": "2018-02-21T08:15:04.656Z",
         "lastChat": "Whatever works for you!"
       },
       {
         "id": 13,
         "name": "Zoey",
         "picture": "https://image.ibb.co/nd0Wbw/zoey_1.jpg",
-        "latest_timestamp": "8/12/2017",
+        "latest_timestamp": "2017-12-21T07:56:10.627Z",
         "lastChat": "Will get in touch"
       },
       {
         "id": 14,
         "name": "Ash",
         "picture": "https://image.ibb.co/iasYpG/ash_1.jpg",
-        "latest_timestamp": "6/12/2017",
+        "latest_timestamp": "2017-12-06T07:56:41.556Z",
         "lastChat": "Ok"
       },
       {
         "id": 15,
         "name": "Zen",
         "picture": "https://image.ibb.co/eeqWbw/zen_1.jpg",
-        "latest_timestamp": "19/11/2017",
+        "latest_timestamp": "2018-11-19T07:57:34.716Z",
         "lastChat": "Lol"
       }
     ]
@@ -115,33 +115,33 @@
         {
           "text":
             "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour",
-          "timestamp": "10:05 AM",
+          "timestamp": "2018-02-21T08:09:44.341Z",
           "side": "left",
           "message_id": 5
         },
         {
           "text":
             "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet",
-          "timestamp": "10:03 AM",
+          "timestamp": "2018-02-21T08:10:01.714Z",
           "side": "left",
           "message_id": 4
         },
         {
           "text":
             "Or maybe not, let me check logistics and call you. Give me sometime",
-          "timestamp": "10:03 AM",
+          "timestamp": "2018-02-21T08:10:12.349Z",
           "side": "left",
           "message_id": 3
         },
         {
           "text": "I believe they must have misplaced it elsewhere?!",
-          "timestamp": "10:02 AM",
+          "timestamp": "2018-02-21T08:10:22.239Z",
           "side": "left",
           "message_id": 2
         },
         {
           "text": "Did you recieve the package I sent you the other day?",
-          "timestamp": "10:00 AM",
+          "timestamp": "2018-02-21T08:10:31.221Z",
           "side": "left",
           "message_id": 1
         }
@@ -155,28 +155,28 @@
         {
           "text":
             "It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable",
-          "timestamp": "07:05 AM",
+          "timestamp": "2018-02-21T08:10:42.139Z",
           "side": "left",
           "message_id": 4
         },
         {
           "text":
             "The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
-          "timestamp": "07:00 AM",
+          "timestamp": "2018-02-21T08:10:59.088Z",
           "side": "left",
           "message_id": 3
         },
         {
           "text":
             "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested",
-          "timestamp": "06:58 AM",
+          "timestamp": "2018-02-21T08:11:10.731Z",
           "side": "left",
           "message_id": 2
         },
         {
           "text":
             "Sections 1.10.32 and 1.10.33 from 'de Finibus Bonorum et Malorum' by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham",
-          "timestamp": "06:55 AM",
+          "timestamp": "2018-02-21T08:11:21.201Z",
           "side": "left",
           "message_id": 1
         }

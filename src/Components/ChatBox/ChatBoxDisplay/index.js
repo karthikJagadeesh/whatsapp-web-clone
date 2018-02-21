@@ -1,5 +1,6 @@
 import React from "react";
 import { Div, Span } from "glamorous";
+import { format } from "date-fns";
 
 const Message = ({ messageStyle, text, timestamp }) => (
   <Div css={messageStyle}>
@@ -84,7 +85,7 @@ export const ChatBoxDisplay = ({
         <Message
           messageStyle={messageStyle}
           text={msg.text}
-          timestamp={msg.timestamp}
+          timestamp={format(new Date(msg.timestamp), "h:mm A")}
         />
       </Div>
     );
