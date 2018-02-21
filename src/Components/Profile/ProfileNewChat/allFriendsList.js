@@ -24,7 +24,7 @@ export const AllFriendsList = ({
   handleListItemClick,
   searchBarValue,
   selectedFriend,
-  allFriendsList: allFriendsList = []
+  allFriendsList = []
 }) => {
   const listOfAllFriends = allFriendsList.map(friend => {
     const props = {

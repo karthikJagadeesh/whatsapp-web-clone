@@ -11,13 +11,22 @@ export default class ProfileNewChat extends Component {
     allFriendsList: [],
     searchBarValue: ""
   };
+  isComponentMounted = true;
 
   handleInputChange = ({ target }) =>
     this.setState({ searchBarValue: target.value });
 
   async componentDidMount() {
-    const response = await fetchData(allFriendsDataUrl);
-    this.setState({ allFriendsList: response });
+    try {
+      const response = await fetchData(allFriendsDataUrl);
+      if (this.isComponentMounted) this.setState({ allFriendsList: response });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  componentWillUnmount() {
+    this.isComponentMounted = false;
   }
 
   render() {
@@ -62,4 +71,3 @@ export default class ProfileNewChat extends Component {
     );
   }
 }
-
