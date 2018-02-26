@@ -22,15 +22,14 @@ const ColorBox = ({
     margin: "10px 0px 0px 12px",
     ":hover": {
       cursor: "pointer"
-    },
-    // black inset shadow for selected color and white for currently hovered
-    boxShadow: (_ => {
-      if (currentSelected === index) return "inset 0 0 0px 3px #000000";
-      else if (currentHovered === index && currentHovered !== currentSelected)
-        return "inset 0 0 0px 4px #ffffff";
-      else return "none";
-    })()
+    }
   };
+  // black inset shadow for selected color and white for currently hovered
+  if (currentSelected === index)
+    boxStyle.boxShadow = "inset 0 0 0px 3px #000000";
+  else if (currentHovered === index && currentHovered !== currentSelected)
+    boxStyle.boxShadow = "inset 0 0 0px 4px #ffffff";
+  else boxStyle.boxShadow = "none";
 
   return (
     <Div
@@ -39,6 +38,7 @@ const ColorBox = ({
       onMouseEnter={handleColorBoxHover}
       onMouseLeave={handleColorBoxHoverOut}
       data-id={index}
+      data-color={color}
     />
   );
 };

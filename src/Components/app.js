@@ -74,20 +74,24 @@ export default class App extends Component {
          active list i.e with someone from new chat/all friends list */
       if (mostRecentIndex === -1) {
         (async _ => {
-          const allFriends = await fetchData(allFriendsDataUrl);
-          const mostRecent = allFriends.find(
-            friend => friend.id === chatBoxContext.id
-          );
-          mostRecent.lastChat = lastChat;
-          mostRecent.latest_timestamp = timestamp;
-          const updatedList = [mostRecent, ...profileData.friends];
-          const updatedProfileData = { ...profileData };
-          updatedProfileData.friends = updatedList;
+          try {
+            const allFriends = await fetchData(allFriendsDataUrl);
+            const mostRecent = allFriends.find(
+              friend => friend.id === chatBoxContext.id
+            );
+            mostRecent.lastChat = lastChat;
+            mostRecent.latest_timestamp = timestamp;
+            const updatedList = [mostRecent, ...profileData.friends];
+            const updatedProfileData = { ...profileData };
+            updatedProfileData.friends = updatedList;
 
-          this.recentActiveFriendsListOrderUpdater({
-            changed: true,
-            updatedProfileData
-          });
+            this.recentActiveFriendsListOrderUpdater({
+              changed: true,
+              updatedProfileData
+            });
+          } catch (error) {
+            console.error(error);
+          }
         })();
       } else {
         // rearrange the list to put the person on the top
@@ -200,20 +204,28 @@ export default class App extends Component {
     (async _ => {
       const id = currentTarget.dataset.id;
       const url = friendDataUrl + id;
-      const chatBoxContext = await fetchData(url);
-      this.setState({ chatBoxContext, isContextBoxActive: false });
+      try {
+        const chatBoxContext = await fetchData(url);
+        this.setState({ chatBoxContext, isContextBoxActive: false });
+      } catch (error) {
+        console.error(error);
+      }
     })();
   };
 
   async componentDidMount() {
-    const profileData = await fetchData(profileDataUrl);
-    this.setState({
-      profileData,
-      recentChat: {
-        id: profileData.friends[0].id,
-        changed: false
-      }
-    });
+    try {
+      const profileData = await fetchData(profileDataUrl);
+      this.setState({
+        profileData,
+        recentChat: {
+          id: profileData.friends[0].id,
+          changed: false
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   render() {
