@@ -7,7 +7,7 @@ import MdEdit from "react-icons/lib/md/edit";
 import MdCheck from "react-icons/lib/md/check";
 
 import { SmilieBoard } from "../../ChatBox/ChatBoxFooter/smilieBoard";
-import { ProfilePictureCard } from "../../ContextBox/contactInfoResults";
+import { ProfilePictureCard } from "../../ChatBox/ContextBox/contactInfoResults";
 
 const Title = ({ handleProfileInfoBackClick, title }) => {
   return (

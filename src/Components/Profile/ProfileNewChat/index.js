@@ -18,8 +18,8 @@ export default class ProfileNewChat extends Component {
 
   async componentDidMount() {
     try {
-      const response = await fetchData(allFriendsDataUrl);
-      if (this.isComponentMounted) this.setState({ allFriendsList: response });
+      const allFriendsList = await fetchData(allFriendsDataUrl);
+      if (this.isComponentMounted) this.setState({ allFriendsList });
     } catch (error) {
       console.error(error);
     }

@@ -6,7 +6,6 @@ import { format } from "date-fns";
 
 import Profile from "./Profile";
 import ChatBox from "./ChatBox";
-import ContextBox from "./ContextBox/";
 import ModalDialog from "./ModalDialog";
 import {
   profileDataUrl,
@@ -19,8 +18,6 @@ export default class App extends Component {
   state = {
     profileData: {},
     chatBoxContext: null,
-    isContextBoxActive: false,
-    isContactInfoContextBoxActive: false,
     recentChat: {
       id: null,
       changed: true
@@ -39,16 +36,12 @@ export default class App extends Component {
     }
   };
 
-  wrapperStyleWithContextBox = {
+  wrapperStyle = {
     opacity: "1",
     display: "grid",
-    gridTemplateColumns: "3fr 4fr 3fr",
+    gridTemplateColumns: "3fr 7fr",
     height: "100%",
     boxShadow: "0px 0px 8px #c4c4c4"
-  };
-  wrapperStyleWithoutContextBox = {
-    ...this.wrapperStyleWithContextBox,
-    gridTemplateColumns: "3fr 7fr"
   };
 
   recentActiveFriendsListOrderUpdater = ({ changed, updatedProfileData }) =>
@@ -133,24 +126,7 @@ export default class App extends Component {
       });
     }
   };
-  handleFriendChatHeaderClick = _ => {
-    this.setState({
-      isContactInfoContextBoxActive: true,
-      isContextBoxActive: true
-    });
-  };
-  handleSearchClick = _ => {
-    this.setState({
-      isContextBoxActive: true,
-      isContactInfoContextBoxActive: false
-    });
-  };
-  handleCancelClick = _ => {
-    this.setState({
-      isContextBoxActive: false,
-      isContactInfoContextBoxActive: false
-    });
-  };
+
   handleColorBoxClick = ({ currentTarget }) => {
     this.setState({
       currentSelected: {
@@ -206,7 +182,7 @@ export default class App extends Component {
       const url = friendDataUrl + id;
       try {
         const chatBoxContext = await fetchData(url);
-        this.setState({ chatBoxContext, isContextBoxActive: false });
+        this.setState({ chatBoxContext });
       } catch (error) {
         console.error(error);
       }
@@ -229,24 +205,15 @@ export default class App extends Component {
   }
 
   render() {
-    const {
-      chatBoxContext,
-      isContextBoxActive,
-      isContactInfoContextBoxActive,
-      currentHovered,
-      modalDialog
-    } = this.state;
-    const wrapperStyle = isContextBoxActive
-      ? this.wrapperStyleWithContextBox
-      : this.wrapperStyleWithoutContextBox;
+    const { chatBoxContext, currentHovered, modalDialog } = this.state;
 
     return (
       <Fragment>
         <Div
           css={
             modalDialog.show
-              ? { ...wrapperStyle, opacity: "0.2" }
-              : wrapperStyle
+              ? { ...this.wrapperStyle, opacity: "0.2" }
+              : this.wrapperStyle
           }
         >
           <Div css={{ background: "#eee" }}>
@@ -268,25 +235,12 @@ export default class App extends Component {
               handleSearchClick={this.handleSearchClick}
               handleDeleteChatClick={this.handleDeleteChatClick}
               handleClearChatClick={this.handleClearChatClick}
+              handleBlockContactClick={this.handleBlockContactClick}
+              handleReportSpamClick={this.handleReportSpamClick}
               handleMuteClick={this.handleMuteClick}
-              handleFriendChatHeaderClick={this.handleFriendChatHeaderClick}
               backgroundColor={currentHovered.color}
             />
           </Div>
-          {isContextBoxActive ? (
-            <Div css={this.contextBoxStyle}>
-              <ContextBox
-                isContactInfoContextBoxActive={isContactInfoContextBoxActive}
-                name={chatBoxContext.name}
-                messagesLog={chatBoxContext.chatlog}
-                picturePath={chatBoxContext.picture}
-                handleCancelClick={this.handleCancelClick}
-                handleDeleteChatClick={this.handleDeleteChatClick}
-                handleReportSpamClick={this.handleReportSpamClick}
-                handleBlockContactClick={this.handleBlockContactClick}
-              />
-            </Div>
-          ) : null}
         </Div>
         {modalDialog.show ? (
           <Div

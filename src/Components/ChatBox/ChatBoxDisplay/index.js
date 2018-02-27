@@ -79,7 +79,7 @@ export const ChatBoxDisplay = ({
           ...messagesListWrapperStyle,
           /* Since the message list style is flex-reversed, applying margin to
              the first messageBox instead of last */
-          marginBottom: index === 0 ? "10px" : "0"
+          marginBottom: index === 0 ? "20px" : "0"
         }}
       >
         <Message

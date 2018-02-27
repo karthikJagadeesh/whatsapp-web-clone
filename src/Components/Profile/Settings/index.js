@@ -8,7 +8,7 @@ import MdBlock from "react-icons/lib/md/block";
 import MdHelp from "react-icons/lib/md/help";
 
 import { Header } from "../ProfileInfo";
-import { SingleDeckContainer } from "../../ContextBox/contactInfoResults";
+import { SingleDeckContainer } from "../../ChatBox/ContextBox/contactInfoResults";
 import { ChatWallpaper } from "./chatWallpaper";
 import { Notifications } from "./notifications";
 import { BlockedContacts } from "./blockedContacts";

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Div, P, Span } from "glamorous";
 
 import { Header } from "./header";
-import { SearchBar } from "../Profile/SearchBar";
+import { SearchBar } from "../../Profile/SearchBar";
 
 const Template = ({ type, name }) => {
   if (type === "initialDisplay") {
