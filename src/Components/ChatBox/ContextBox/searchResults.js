@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import glamorous, { Div, P, Span } from "glamorous";
+import React, { Component } from 'react';
+import glamorous, { Div, P, Span } from 'glamorous';
 
-import { Header } from "./header";
-import { SearchBar } from "../../Profile/SearchBar";
+import { Header } from './header';
+import { SearchBar } from '../../Profile/SearchBar';
 
 const TemplateMessage = glamorous.div({
-  marginTop: "50px",
-  textAlign: "center",
-  color: "rgba(0, 0, 0, 0.4)",
-  fontSize: "0.9em"
+  marginTop: '50px',
+  textAlign: 'center',
+  color: 'rgba(0, 0, 0, 0.4)',
+  fontSize: '0.9em'
 });
 
 const Template = ({ type, name }) => {
-  if (type === "initialDisplay") {
+  if (type === 'initialDisplay') {
     return <TemplateMessage>Search for messages with {name}</TemplateMessage>;
-  } else if (type === "noResultsDisplay") {
+  } else if (type === 'noResultsDisplay') {
     return <TemplateMessage>No messages found</TemplateMessage>;
   }
 };
@@ -25,10 +25,13 @@ const Results = ({ messagesLog, searchValue }) => {
       text.toLowerCase().includes(searchValue.toLowerCase().trim())
     )
     .map(msg => {
+      // FIXME Probably should be moved into it's own component and rest of logic should be
+      // folded into SearchResults
       const afterSplit = msg.text
         .toLowerCase()
         .split(searchValue.toLowerCase());
 
+      // FIXME Rewrite using map or loop.
       const highlightedResult = [];
       afterSplit.forEach((text, index) => {
         if (index % 2 === 0 && index) {
@@ -36,9 +39,9 @@ const Results = ({ messagesLog, searchValue }) => {
             <Span
               key={index}
               css={{
-                color: "#339686",
-                fontSize: "1.1em",
-                fontWeight: "700"
+                color: '#339686',
+                fontSize: '1.1em',
+                fontWeight: '700'
               }}
             >
               {searchValue}
@@ -49,9 +52,9 @@ const Results = ({ messagesLog, searchValue }) => {
             <Span
               key={index}
               css={{
-                color: "#339686",
-                fontSize: "1.1em",
-                fontWeight: "700"
+                color: '#339686',
+                fontSize: '1.1em',
+                fontWeight: '700'
               }}
             >
               {searchValue}
@@ -65,10 +68,10 @@ const Results = ({ messagesLog, searchValue }) => {
         <P
           key={msg.message_id}
           css={{
-            borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
-            padding: "1em 0",
-            color: "rgba(0, 0, 0, 0.6)",
-            fontSize: "0.9em"
+            borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+            padding: '1em 0',
+            color: 'rgba(0, 0, 0, 0.6)',
+            fontSize: '0.9em'
           }}
         >
           {highlightedResult}
@@ -80,8 +83,8 @@ const Results = ({ messagesLog, searchValue }) => {
     return (
       <Div
         css={{
-          padding: "20px",
-          textAlign: "center"
+          padding: '20px',
+          textAlign: 'center'
         }}
       >
         {resultMessagesLog}
@@ -94,7 +97,7 @@ const Results = ({ messagesLog, searchValue }) => {
 
 export default class SearchResults extends Component {
   state = {
-    value: ""
+    value: ''
   };
 
   handleInputChange = ({ target }) => {
@@ -104,46 +107,47 @@ export default class SearchResults extends Component {
   render() {
     const { name, messagesLog, handleCancelClick } = this.props;
     const { value } = this.state;
+    // FIXME Why does everyplace require 100% width and height? Seems fishy.
     return (
       <Div
         css={{
-          height: "100%",
-          display: "grid",
-          gridTemplateRows: "1fr 0.6fr 8.4fr",
-          borderLeft: "1px solid rgba(0, 0, 0, 0.05)",
-          background: "#FFF"
+          height: '100%',
+          display: 'grid',
+          gridTemplateRows: '1fr 0.6fr 8.4fr',
+          borderLeft: '1px solid rgba(0, 0, 0, 0.05)',
+          background: '#FFF'
         }}
       >
         <Div
           css={{
-            height: "100%",
-            width: "100%",
-            borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
+            height: '100%',
+            width: '100%',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
           }}
         >
           <Header
-            text={"Search Messages"}
+            text={'Search Messages'}
             handleCancelClick={handleCancelClick}
           />
         </Div>
         <Div
           css={{
-            height: "100%",
-            width: "100%",
-            borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
+            height: '100%',
+            width: '100%',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
           }}
         >
           <SearchBar
-            placeholder={"Search..."}
+            placeholder={'Search...'}
             handleInputChange={this.handleInputChange}
             searchBarValue={value}
           />
         </Div>
         <Div
           css={{
-            height: "100%",
-            width: "100%",
-            borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
+            height: '100%',
+            width: '100%',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
           }}
         >
           {value ? (

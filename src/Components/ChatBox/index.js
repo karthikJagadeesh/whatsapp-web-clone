@@ -1,31 +1,39 @@
-import React, { Component, Fragment } from "react";
-import { Div } from "glamorous";
+import React, { Component, Fragment } from 'react';
+import { Div } from 'glamorous';
 
-import { ChatBoxHeader } from "./ChatBoxHeader";
-import { ChatBoxDisplay } from "./ChatBoxDisplay";
-import { ChatBoxFooter } from "./ChatBoxFooter";
-import ContextBox from "./ContextBox";
-import ModalDialog from "../ModalDialog";
+import { ChatBoxHeader } from './ChatBoxHeader';
+import { ChatBoxDisplay } from './ChatBoxDisplay';
+import { ChatBoxFooter } from './ChatBoxFooter';
+import ContextBox from './ContextBox';
+import ModalDialog from '../ModalDialog';
 
 export default class ChatBox extends Component {
   state = {
+    // FIXME chatlog and messages represent the same thing yet they live seperated
+    // There should only be one representation. Ideally these messages should be reflected in the
     messages: [],
+
+    // FIXME Move This State Into it's own component and pass it as a render prop.
+    // FIXME `is` prefix probably uncessary. I will probably choose showContextBox
     isContextBoxActive: false,
+    // FIXME Bad naming. Instead use type or something to represent contact info or search.
     isContactInfoContextBoxActive: false,
+
+    // FIXME Move Into it's own component and pass it as a render prop.
     modalDialog: {
       show: false,
-      view: ""
+      view: ''
     }
   };
 
   wrapperStyleWithoutContextBox = {
-    display: "grid",
-    gridTemplateColumns: "1fr",
-    height: "100%"
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    height: '100%'
   };
   wrapperStyleWithContextBox = {
     ...this.wrapperStyleWithoutContextBox,
-    gridTemplateColumns: "5.7fr 4.3fr"
+    gridTemplateColumns: '5.7fr 4.3fr'
   };
 
   handleFriendChatHeaderClick = _ => {
@@ -48,22 +56,22 @@ export default class ChatBox extends Component {
   };
 
   handleDeleteChatClick = _ => {
-    this.setState({ modalDialog: { show: true, view: "deleteChat" } });
+    this.setState({ modalDialog: { show: true, view: 'deleteChat' } });
   };
   handleClearChatClick = _ => {
-    this.setState({ modalDialog: { show: true, view: "clearChat" } });
+    this.setState({ modalDialog: { show: true, view: 'clearChat' } });
   };
   handleMuteClick = _ => {
-    this.setState({ modalDialog: { show: true, view: "mute" } });
+    this.setState({ modalDialog: { show: true, view: 'mute' } });
   };
   handleReportSpamClick = _ => {
-    this.setState({ modalDialog: { show: true, view: "reportSpam" } });
+    this.setState({ modalDialog: { show: true, view: 'reportSpam' } });
   };
   handleBlockContactClick = _ => {
-    this.setState({ modalDialog: { show: true, view: "blockContact" } });
+    this.setState({ modalDialog: { show: true, view: 'blockContact' } });
   };
   handleModalCancel = _ => {
-    this.setState({ modalDialog: { show: false, view: "" } });
+    this.setState({ modalDialog: { show: false, view: '' } });
   };
 
   handleChatSend = message => {
@@ -97,9 +105,9 @@ export default class ChatBox extends Component {
         <Div css={wrapperStyle}>
           <Div
             css={{
-              display: "grid",
-              gridTemplateRows: "10% 80% 10%",
-              height: "100vh"
+              display: 'grid',
+              gridTemplateRows: '10% 80% 10%',
+              height: '100vh'
             }}
           >
             <Div>

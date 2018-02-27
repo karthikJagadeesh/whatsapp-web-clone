@@ -1,33 +1,36 @@
-import "babel-polyfill";
-import React, { Component } from "react";
-import { Div } from "glamorous";
-import { Broadcast } from "react-broadcast";
-import { format } from "date-fns";
+// FIXME This is not necessary.
+import 'babel-polyfill';
+import React, { Component } from 'react';
+import { Div } from 'glamorous';
+import { Broadcast } from 'react-broadcast';
+import { format } from 'date-fns';
 
-import Profile from "./Profile";
-import ChatBox from "./ChatBox";
+import Profile from './Profile';
+import ChatBox from './ChatBox';
 import {
   profileDataUrl,
   friendDataUrl,
   allFriendsDataUrl,
   fetchData
-} from "../network";
+} from '../network';
 
 export default class App extends Component {
   state = {
     profileData: {},
+    // FIXME chatBoxContext is bad name. Doesn't tell much about what it contains
     chatBoxContext: null,
     recentChat: {
       id: null,
       changed: true
     },
+    // FIXME Move these both into a seperate component And pass them via render props
     currentHovered: {
       id: null,
-      color: "#E5DDD5"
+      color: '#E5DDD5'
     },
     currentSelected: {
       id: null,
-      color: "#E5DDD5"
+      color: '#E5DDD5'
     }
   };
 
@@ -53,6 +56,8 @@ export default class App extends Component {
       /* If the recent interaction was with someone not already in the current
          active list i.e with someone from new chat/all friends list */
       if (mostRecentIndex === -1) {
+        // FIXME Move the fetch calls and logic into a seperate function.
+        //
         (async _ => {
           try {
             const allFriends = await fetchData(allFriendsDataUrl);
@@ -74,10 +79,12 @@ export default class App extends Component {
           }
         })();
       } else {
+        // FIXME Move this sorting loginc into a function.
         // rearrange the list to put the person on the top
         const mostRecent = profileData.friends[mostRecentIndex];
         mostRecent.lastChat = lastChat;
         mostRecent.latest_timestamp = timestamp;
+        // FIXME Write using contact, slice and spread
         const updatedList = [...profileData.friends];
         updatedList.splice(mostRecentIndex, 1);
         updatedList.unshift(mostRecent);
@@ -176,27 +183,28 @@ export default class App extends Component {
   render() {
     const { chatBoxContext, currentHovered, modalDialog } = this.state;
 
+    // FIXME The Usage of Broadcast here seems bad. You are only skipping one level deep.
     return (
       <Div
         css={{
-          display: "grid",
-          gridTemplateColumns: "3fr 7fr",
-          height: "100%",
-          boxShadow: "0px 0px 8px #c4c4c4"
+          display: 'grid',
+          gridTemplateColumns: '3fr 7fr',
+          height: '100%',
+          boxShadow: '0px 0px 8px #c4c4c4'
         }}
       >
-        <Div css={{ background: "#eee" }}>
+        <Div css={{ background: '#eee' }}>
           <Broadcast channel="profile" value={this.state}>
             <Profile
               handleListItemClick={this.handleListItemClick}
-              selectedFriend={chatBoxContext ? chatBoxContext.id : "0"}
+              selectedFriend={chatBoxContext ? chatBoxContext.id : '0'}
               handleColorBoxClick={this.handleColorBoxClick}
               handleColorBoxHover={this.handleColorBoxHover}
               handleColorBoxHoverOut={this.handleColorBoxHoverOut}
             />
           </Broadcast>
         </Div>
-        <Div css={{ background: "#F7F9FA" }}>
+        <Div css={{ background: '#F7F9FA' }}>
           <ChatBox
             checkForLastChat={this.checkForLastChat}
             currentFriend={this.handleListItemClick}
