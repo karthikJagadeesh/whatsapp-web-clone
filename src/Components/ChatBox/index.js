@@ -136,7 +136,7 @@ export default class ChatBox extends Component {
             </Div>
           </Div>
           {isContextBoxActive ? (
-            <Div css={this.contextBoxStyle}>
+            <Div>
               <ContextBox
                 isContactInfoContextBoxActive={isContactInfoContextBoxActive}
                 name={chatBoxContext.name}

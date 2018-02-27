@@ -1,36 +1,21 @@
 import React, { Component } from "react";
-import { Div, P, Span } from "glamorous";
+import glamorous, { Div, P, Span } from "glamorous";
 
 import { Header } from "./header";
 import { SearchBar } from "../../Profile/SearchBar";
 
+const TemplateMessage = glamorous.div({
+  marginTop: "50px",
+  textAlign: "center",
+  color: "rgba(0, 0, 0, 0.4)",
+  fontSize: "0.9em"
+});
+
 const Template = ({ type, name }) => {
   if (type === "initialDisplay") {
-    return (
-      <Div
-        css={{
-          marginTop: "50px",
-          textAlign: "center",
-          color: "rgba(0, 0, 0, 0.4)",
-          fontSize: "0.9em"
-        }}
-      >
-        Search for messages with {name}
-      </Div>
-    );
+    return <TemplateMessage>Search for messages with {name}</TemplateMessage>;
   } else if (type === "noResultsDisplay") {
-    return (
-      <Div
-        css={{
-          marginTop: "50px",
-          textAlign: "center",
-          color: "rgba(0, 0, 0, 0.4)",
-          fontSize: "0.9em"
-        }}
-      >
-        No messages found
-      </Div>
-    );
+    return <TemplateMessage>No messages found</TemplateMessage>;
   }
 };
 
