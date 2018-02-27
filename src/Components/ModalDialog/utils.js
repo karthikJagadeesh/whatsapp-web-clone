@@ -136,3 +136,14 @@ export const ModalHeader = glamorous.div(
     }
   }
 );
+export const ModalWrapper = glamorous.div({
+  top: "0",
+  left: "0",
+  display: "grid",
+  gridTemplateRows: "1fr",
+  position: "absolute",
+  zIndex: "10",
+  height: "100vh",
+  width: "100vw",
+  background: "rgba(255, 255, 255, 0.8)"
+});

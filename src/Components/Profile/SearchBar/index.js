@@ -28,6 +28,7 @@ export const SearchBar = ({
           textAlign: "left",
           background: "#fff",
           color: "#7f7f7f",
+          outline: "none",
           ":focus": {
             "::placeholder": {
               color: "transparent"

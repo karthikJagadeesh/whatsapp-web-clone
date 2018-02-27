@@ -5,12 +5,17 @@ import { ChatBoxHeader } from "./ChatBoxHeader";
 import { ChatBoxDisplay } from "./ChatBoxDisplay";
 import { ChatBoxFooter } from "./ChatBoxFooter";
 import ContextBox from "./ContextBox";
+import ModalDialog from "../ModalDialog";
 
 export default class ChatBox extends Component {
   state = {
     messages: [],
     isContextBoxActive: false,
-    isContactInfoContextBoxActive: false
+    isContactInfoContextBoxActive: false,
+    modalDialog: {
+      show: false,
+      view: ""
+    }
   };
 
   wrapperStyleWithoutContextBox = {
@@ -42,6 +47,25 @@ export default class ChatBox extends Component {
     });
   };
 
+  handleDeleteChatClick = _ => {
+    this.setState({ modalDialog: { show: true, view: "deleteChat" } });
+  };
+  handleClearChatClick = _ => {
+    this.setState({ modalDialog: { show: true, view: "clearChat" } });
+  };
+  handleMuteClick = _ => {
+    this.setState({ modalDialog: { show: true, view: "mute" } });
+  };
+  handleReportSpamClick = _ => {
+    this.setState({ modalDialog: { show: true, view: "reportSpam" } });
+  };
+  handleBlockContactClick = _ => {
+    this.setState({ modalDialog: { show: true, view: "blockContact" } });
+  };
+  handleModalCancel = _ => {
+    this.setState({ modalDialog: { show: false, view: "" } });
+  };
+
   handleChatSend = message => {
     const freshMessages = [message, ...this.state.messages];
     if (message) this.setState({ messages: freshMessages });
@@ -50,87 +74,90 @@ export default class ChatBox extends Component {
   componentWillReceiveProps(nextProps) {
     const { chatBoxContext: currentChatBoxContext } = this.props;
     const { chatBoxContext: nextChatBoxContext } = nextProps;
-    if (currentChatBoxContext.id !== nextChatBoxContext.id)
-      this.setState({ isContextBoxActive: false });
+    if (currentChatBoxContext) {
+      if (currentChatBoxContext.id !== nextChatBoxContext.id)
+        this.setState({ isContextBoxActive: false });
+    }
   }
 
   render() {
-    const {
-      chatBoxContext,
-      checkForLastChat,
-      backgroundColor,
-      handleDeleteChatClick,
-      handleClearChatClick,
-      handleReportSpamClick,
-      handleBlockContactClick,
-      handleMuteClick
-    } = this.props;
+    const { chatBoxContext, checkForLastChat, backgroundColor } = this.props;
     const {
       messages,
       isContextBoxActive,
-      isContactInfoContextBoxActive
+      isContactInfoContextBoxActive,
+      modalDialog
     } = this.state;
     const wrapperStyle = isContextBoxActive
       ? this.wrapperStyleWithContextBox
       : this.wrapperStyleWithoutContextBox;
 
     return (
-      <Div css={wrapperStyle}>
-        <Div
-          css={{
-            display: "grid",
-            gridTemplateRows: "10% 80% 10%",
-            height: "100vh"
-          }}
-        >
-          <Div>
-            {chatBoxContext ? (
-              <ChatBoxHeader
-                chatBoxContext={chatBoxContext}
-                handleSearchClick={this.handleSearchClick}
-                handleFriendChatHeaderClick={this.handleFriendChatHeaderClick}
-                handleDeleteChatClick={handleDeleteChatClick}
-                handleClearChatClick={handleClearChatClick}
-                handleMuteClick={handleMuteClick}
-              />
-            ) : null}
+      <Fragment>
+        <Div css={wrapperStyle}>
+          <Div
+            css={{
+              display: "grid",
+              gridTemplateRows: "10% 80% 10%",
+              height: "100vh"
+            }}
+          >
+            <Div>
+              {chatBoxContext ? (
+                <ChatBoxHeader
+                  chatBoxContext={chatBoxContext}
+                  handleSearchClick={this.handleSearchClick}
+                  handleFriendChatHeaderClick={this.handleFriendChatHeaderClick}
+                  handleDeleteChatClick={this.handleDeleteChatClick}
+                  handleClearChatClick={this.handleClearChatClick}
+                  handleMuteClick={this.handleMuteClick}
+                />
+              ) : null}
+            </Div>
+            <Div>
+              {chatBoxContext ? (
+                <ChatBoxDisplay
+                  chatlog={chatBoxContext.chatlog}
+                  messages={messages}
+                  backgroundColor={backgroundColor}
+                />
+              ) : null}
+            </Div>
+            <Div>
+              {chatBoxContext ? (
+                <ChatBoxFooter
+                  isInitialScreen={false}
+                  handleChatSend={this.handleChatSend}
+                  checkForLastChat={checkForLastChat}
+                />
+              ) : (
+                <ChatBoxFooter isInitialScreen={true} />
+              )}
+            </Div>
           </Div>
-          <Div>
-            {chatBoxContext ? (
-              <ChatBoxDisplay
-                chatlog={chatBoxContext.chatlog}
-                messages={messages}
-                backgroundColor={backgroundColor}
+          {isContextBoxActive ? (
+            <Div css={this.contextBoxStyle}>
+              <ContextBox
+                isContactInfoContextBoxActive={isContactInfoContextBoxActive}
+                name={chatBoxContext.name}
+                messagesLog={chatBoxContext.chatlog}
+                picturePath={chatBoxContext.picture}
+                handleCancelClick={this.handleCancelClick}
+                handleDeleteChatClick={this.handleDeleteChatClick}
+                handleReportSpamClick={this.handleReportSpamClick}
+                handleBlockContactClick={this.handleBlockContactClick}
               />
-            ) : null}
-          </Div>
-          <Div>
-            {chatBoxContext ? (
-              <ChatBoxFooter
-                isInitialScreen={false}
-                handleChatSend={this.handleChatSend}
-                checkForLastChat={checkForLastChat}
-              />
-            ) : (
-              <ChatBoxFooter isInitialScreen={true} />
-            )}
-          </Div>
+            </Div>
+          ) : null}
         </Div>
-        {isContextBoxActive ? (
-          <Div css={this.contextBoxStyle}>
-            <ContextBox
-              isContactInfoContextBoxActive={isContactInfoContextBoxActive}
-              name={chatBoxContext.name}
-              messagesLog={chatBoxContext.chatlog}
-              picturePath={chatBoxContext.picture}
-              handleCancelClick={this.handleCancelClick}
-              handleDeleteChatClick={handleDeleteChatClick}
-              handleReportSpamClick={handleReportSpamClick}
-              handleBlockContactClick={handleBlockContactClick}
-            />
-          </Div>
+        {modalDialog.show ? (
+          <ModalDialog
+            type={modalDialog.view}
+            handleModalCancel={this.handleModalCancel}
+            name={chatBoxContext.name}
+          />
         ) : null}
-      </Div>
+      </Fragment>
     );
   }
 }

@@ -5,24 +5,45 @@ import ClearChat from "./clearChat";
 import Mute from "./mute";
 import ReportSpam from "./reportSpam";
 import BlockContact from "./blockContact";
+import { ModalWrapper } from "./utils";
 
 const ModalDialog = ({ type, name, handleModalCancel }) => {
   const props = { name, handleModalCancel };
   switch (type) {
     case "deleteChat":
-      return <DeleteChat {...props} />;
+      return (
+        <ModalWrapper>
+          <DeleteChat {...props} />
+        </ModalWrapper>
+      );
 
     case "clearChat":
-      return <ClearChat {...props} />;
+      return (
+        <ModalWrapper>
+          <ClearChat {...props} />
+        </ModalWrapper>
+      );
 
     case "mute":
-      return <Mute {...props} />;
+      return (
+        <ModalWrapper>
+          <Mute {...props} />
+        </ModalWrapper>
+      );
 
     case "reportSpam":
-      return <ReportSpam handleModalCancel={handleModalCancel} />;
+      return (
+        <ModalWrapper>
+          <ReportSpam handleModalCancel={handleModalCancel} />
+        </ModalWrapper>
+      );
 
     case "blockContact":
-      return <BlockContact {...props} />;
+      return (
+        <ModalWrapper>
+          <BlockContact {...props} />
+        </ModalWrapper>
+      );
   }
 };
 export default ModalDialog;

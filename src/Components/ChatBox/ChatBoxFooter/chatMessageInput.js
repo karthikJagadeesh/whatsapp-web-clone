@@ -18,11 +18,12 @@ export class ChatMessageInput extends Component {
             width: "95%",
             padding: "4px 10px",
             border: "1px solid rgba(0, 0, 0, 0.05)",
-            height: "30px",
+            height: "40px",
             color: "#7f7f7f",
-            fontSize: "0.9em",
+            fontSize: "1em",
             fontWeight: "500",
             letterSpacing: "0.5px",
+            outline: "none",
             ":focus": {
               color: "#545454"
             }

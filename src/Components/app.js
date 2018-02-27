@@ -1,12 +1,11 @@
 import "babel-polyfill";
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Div } from "glamorous";
 import { Broadcast } from "react-broadcast";
 import { format } from "date-fns";
 
 import Profile from "./Profile";
 import ChatBox from "./ChatBox";
-import ModalDialog from "./ModalDialog";
 import {
   profileDataUrl,
   friendDataUrl,
@@ -29,19 +28,7 @@ export default class App extends Component {
     currentSelected: {
       id: null,
       color: "#E5DDD5"
-    },
-    modalDialog: {
-      show: false,
-      view: ""
     }
-  };
-
-  wrapperStyle = {
-    opacity: "1",
-    display: "grid",
-    gridTemplateColumns: "3fr 7fr",
-    height: "100%",
-    boxShadow: "0px 0px 8px #c4c4c4"
   };
 
   recentActiveFriendsListOrderUpdater = ({ changed, updatedProfileData }) =>
@@ -157,24 +144,6 @@ export default class App extends Component {
       };
     });
   };
-  handleDeleteChatClick = _ => {
-    this.setState({ modalDialog: { show: true, view: "deleteChat" } });
-  };
-  handleClearChatClick = _ => {
-    this.setState({ modalDialog: { show: true, view: "clearChat" } });
-  };
-  handleMuteClick = _ => {
-    this.setState({ modalDialog: { show: true, view: "mute" } });
-  };
-  handleReportSpamClick = _ => {
-    this.setState({ modalDialog: { show: true, view: "reportSpam" } });
-  };
-  handleBlockContactClick = _ => {
-    this.setState({ modalDialog: { show: true, view: "blockContact" } });
-  };
-  handleModalCancel = _ => {
-    this.setState({ modalDialog: { show: false, view: "" } });
-  };
 
   handleListItemClick = ({ currentTarget }) => {
     (async _ => {
@@ -208,61 +177,35 @@ export default class App extends Component {
     const { chatBoxContext, currentHovered, modalDialog } = this.state;
 
     return (
-      <Fragment>
-        <Div
-          css={
-            modalDialog.show
-              ? { ...this.wrapperStyle, opacity: "0.2" }
-              : this.wrapperStyle
-          }
-        >
-          <Div css={{ background: "#eee" }}>
-            <Broadcast channel="profile" value={this.state}>
-              <Profile
-                handleListItemClick={this.handleListItemClick}
-                selectedFriend={chatBoxContext ? chatBoxContext.id : "0"}
-                handleColorBoxClick={this.handleColorBoxClick}
-                handleColorBoxHover={this.handleColorBoxHover}
-                handleColorBoxHoverOut={this.handleColorBoxHoverOut}
-              />
-            </Broadcast>
-          </Div>
-          <Div css={{ background: "#F7F9FA" }}>
-            <ChatBox
-              checkForLastChat={this.checkForLastChat}
-              currentFriend={this.handleListItemClick}
-              chatBoxContext={chatBoxContext}
-              handleSearchClick={this.handleSearchClick}
-              handleDeleteChatClick={this.handleDeleteChatClick}
-              handleClearChatClick={this.handleClearChatClick}
-              handleBlockContactClick={this.handleBlockContactClick}
-              handleReportSpamClick={this.handleReportSpamClick}
-              handleMuteClick={this.handleMuteClick}
-              backgroundColor={currentHovered.color}
+      <Div
+        css={{
+          display: "grid",
+          gridTemplateColumns: "3fr 7fr",
+          height: "100%",
+          boxShadow: "0px 0px 8px #c4c4c4"
+        }}
+      >
+        <Div css={{ background: "#eee" }}>
+          <Broadcast channel="profile" value={this.state}>
+            <Profile
+              handleListItemClick={this.handleListItemClick}
+              selectedFriend={chatBoxContext ? chatBoxContext.id : "0"}
+              handleColorBoxClick={this.handleColorBoxClick}
+              handleColorBoxHover={this.handleColorBoxHover}
+              handleColorBoxHoverOut={this.handleColorBoxHoverOut}
             />
-          </Div>
+          </Broadcast>
         </Div>
-        {modalDialog.show ? (
-          <Div
-            css={{
-              top: "0",
-              left: "0",
-              display: "grid",
-              gridTemplateRows: "1fr",
-              position: "absolute",
-              zIndex: "10",
-              height: "100vh",
-              width: "100vw"
-            }}
-          >
-            <ModalDialog
-              type={modalDialog.view}
-              handleModalCancel={this.handleModalCancel}
-              name={chatBoxContext.name}
-            />
-          </Div>
-        ) : null}
-      </Fragment>
+        <Div css={{ background: "#F7F9FA" }}>
+          <ChatBox
+            checkForLastChat={this.checkForLastChat}
+            currentFriend={this.handleListItemClick}
+            chatBoxContext={chatBoxContext}
+            handleSearchClick={this.handleSearchClick}
+            backgroundColor={currentHovered.color}
+          />
+        </Div>
+      </Div>
     );
   }
 }

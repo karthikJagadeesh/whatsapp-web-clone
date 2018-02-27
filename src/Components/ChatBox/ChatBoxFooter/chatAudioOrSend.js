@@ -8,9 +8,9 @@ export const ChatAudioOrSend = ({ inputValue, handleChatSend }) => {
   return (
     <Div>
       {inputValue ? (
-        <MdSend size={25} color="#989B9C" onClick={handleChatSend} />
+        <MdSend size={30} color="#989B9C" onClick={handleChatSend} />
       ) : (
-        <MdKeyboardVoice size={25} color="#989B9C" />
+        <MdKeyboardVoice size={30} color="#989B9C" />
       )}
     </Div>
   );
