@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Div, Span, Img } from "glamorous";
-import { Subscriber } from "react-broadcast";
+import React, { Component } from 'react';
+import { Div, Span, Img } from 'glamorous';
+import { Subscriber } from 'react-broadcast';
 
-import MdNotifications from "react-icons/lib/md/notifications";
-import MdNowWallpaper from "react-icons/lib/md/now-wallpaper";
-import MdBlock from "react-icons/lib/md/block";
-import MdHelp from "react-icons/lib/md/help";
+import MdNotifications from 'react-icons/lib/md/notifications';
+import MdNowWallpaper from 'react-icons/lib/md/now-wallpaper';
+import MdBlock from 'react-icons/lib/md/block';
+import MdHelp from 'react-icons/lib/md/help';
 
-import { Header } from "../ProfileInfo";
-import { SingleDeckContainer } from "../../ChatBox/ContextBox/contactInfoResults";
-import { ChatWallpaper } from "./chatWallpaper";
-import { Notifications } from "./notifications";
-import { BlockedContacts } from "./blockedContacts";
-import { Help } from "./help";
+import { Header } from '../ProfileInfo';
+import { SingleDeckContainer } from '../../ChatBox/ContextBox/contactInfoResults';
+import { ChatWallpaper } from './chatWallpaper';
+import { Notifications } from './notifications';
+import { BlockedContacts } from './blockedContacts';
+import { Help } from './help';
 
 const PictureAndName = ({
   status,
@@ -23,32 +23,32 @@ const PictureAndName = ({
   return (
     <Div
       css={{
-        height: "16%",
-        display: "grid",
-        gridTemplateColumns: "3fr 7fr",
-        ":hover": {
-          background: "#F4F5F5",
-          cursor: "pointer"
+        height: '16%',
+        display: 'grid',
+        gridTemplateColumns: '3fr 7fr',
+        ':hover': {
+          background: '#F4F5F5',
+          cursor: 'pointer'
         }
       }}
       onClick={handlePictureNameClick}
     >
       <Div
         css={{
-          display: "grid",
-          height: "100%",
-          gridTemplateColumns: "1fr",
-          justifySelf: "center",
-          alignSelf: "center"
+          display: 'grid',
+          height: '100%',
+          gridTemplateColumns: '1fr',
+          justifySelf: 'center',
+          alignSelf: 'center'
         }}
       >
         <Img
           css={{
-            justifySelf: "center",
-            alignSelf: "center",
-            height: "60%",
-            width: "60%",
-            borderRadius: "50%"
+            justifySelf: 'center',
+            alignSelf: 'center',
+            height: '60%',
+            width: '60%',
+            borderRadius: '50%'
           }}
           src={picturePath}
           alt=""
@@ -56,16 +56,16 @@ const PictureAndName = ({
       </Div>
       <Div
         css={{
-          display: "grid",
-          gridTemplateRows: "5fr 5fr",
-          gridGap: "0.4em"
+          display: 'grid',
+          gridTemplateRows: '5fr 5fr',
+          gridGap: '0.4em'
         }}
       >
-        <Span css={{ alignSelf: "end", fontSize: "1.2em" }}>{name}</Span>
+        <Span css={{ alignSelf: 'end', fontSize: '1.2em' }}>{name}</Span>
         <Span
           css={{
-            alignSelf: "start",
-            color: "rgba(0,0,0,0.6)"
+            alignSelf: 'start',
+            color: 'rgba(0,0,0,0.6)'
           }}
         >
           {status}
@@ -77,51 +77,51 @@ const PictureAndName = ({
 
 export default class ProfileSettings extends Component {
   state = {
-    currentView: "settings"
+    currentView: 'settings'
   };
 
   handleChatWallpaperClick = _ => {
-    this.setState({ currentView: "chatWallpaper" });
+    this.setState({ currentView: 'chatWallpaper' });
   };
   handleNotificationsClick = _ => {
-    this.setState({ currentView: "notifications" });
+    this.setState({ currentView: 'notifications' });
   };
   handleBlockedContactsClick = _ => {
-    this.setState({ currentView: "blockedContacts" });
+    this.setState({ currentView: 'blockedContacts' });
   };
   handleHelpClick = _ => {
-    this.setState({ currentView: "help" });
+    this.setState({ currentView: 'help' });
   };
   handleProfileInfoBackClick = _ => {
-    this.setState({ currentView: "settings" });
+    this.setState({ currentView: 'settings' });
   };
 
   singleDeckContainerData = [
     {
       icon: MdNotifications,
-      text: "Notifications",
+      text: 'Notifications',
       onClick: this.handleNotificationsClick
     },
     {
       icon: MdNowWallpaper,
-      text: "Chat Wallpaper",
+      text: 'Chat Wallpaper',
       onClick: this.handleChatWallpaperClick
     },
     {
       icon: MdBlock,
-      text: "Blocked",
+      text: 'Blocked',
       onClick: this.handleBlockedContactsClick
     },
     {
       icon: MdHelp,
-      text: "Help",
+      text: 'Help',
       onClick: this.handleHelpClick
     }
   ];
 
   render() {
     switch (this.state.currentView) {
-      case "settings":
+      case 'settings':
         const {
           handlePictureNameClick,
           handleProfileInfoBackClick
@@ -130,12 +130,12 @@ export default class ProfileSettings extends Component {
         return (
           <Div
             css={{
-              height: "100%",
-              background: "#fff"
+              height: '100%',
+              background: '#fff'
             }}
           >
             <Header
-              title={"Settings"}
+              title={'Settings'}
               handleProfileInfoBackClick={handleProfileInfoBackClick}
             />
             <Subscriber channel="profile">
@@ -153,50 +153,50 @@ export default class ProfileSettings extends Component {
                 key={index}
                 onClick={data.onClick}
                 icon={data.icon}
-                iconStyle={{ size: "22", color: "rgba(0,0,0,0.4)" }}
+                iconStyle={{ size: '22', color: 'rgba(0,0,0,0.4)' }}
                 text={data.text}
                 style={{
-                  marginTop: "0",
-                  boxShadow: "0",
-                  borderBottom: "1px solid rgba(0, 0, 0, 0.06)"
+                  marginTop: '0',
+                  boxShadow: '0',
+                  borderBottom: '1px solid rgba(0, 0, 0, 0.06)'
                 }}
               />
             ))}
           </Div>
         );
 
-      case "notifications":
+      case 'notifications':
         return (
           <Notifications
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
           />
         );
 
-      case "blockedContacts":
+      case 'blockedContacts':
         return (
           <BlockedContacts
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
           />
         );
 
-      case "help":
+      case 'help':
         return (
           <Help handleProfileInfoBackClick={this.handleProfileInfoBackClick} />
         );
 
-      case "chatWallpaper":
+      case 'chatWallpaper':
         const {
           handleColorBoxHover,
           handleColorBoxClick,
           handleColorBoxHoverOut,
-          currentHovered,
-          currentSelected
+          colorHovered,
+          colorSelected
         } = this.props;
 
         return (
           <ChatWallpaper
-            currentHovered={currentHovered}
-            currentSelected={currentSelected}
+            colorHovered={colorHovered}
+            colorSelected={colorSelected}
             handleColorBoxHover={handleColorBoxHover}
             handleColorBoxClick={handleColorBoxClick}
             handleColorBoxHoverOut={handleColorBoxHoverOut}

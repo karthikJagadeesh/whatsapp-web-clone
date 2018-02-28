@@ -1,33 +1,35 @@
-import "babel-polyfill";
-import React, { Component } from "react";
-import { Broadcast } from "react-broadcast";
-import { Div } from "glamorous";
-import { format } from "date-fns";
+// FIXME This is not necessary.
+// I want to keep this ⤵️ for `now`, not willing to trade this for HMR! yet...
+import 'babel-polyfill';
+import React, { Component } from 'react';
+import { Broadcast } from 'react-broadcast';
+import { Div } from 'glamorous';
+import { format } from 'date-fns';
 
-import Profile from "./Profile";
-import ChatBox from "./ChatBox";
+import Profile from './Profile';
+import ChatBox from './ChatBox';
 import {
   profileDataUrl,
   friendDataUrl,
   allFriendsDataUrl,
   fetchData
-} from "../network";
+} from '../network';
 
-class ChatWallpaperChanger extends Component {
+class ChatWallpaperColor extends Component {
   state = {
-    currentHovered: {
+    colorHovered: {
       id: null,
-      color: "#E5DDD5"
+      color: '#E5DDD5'
     },
-    currentSelected: {
+    colorSelected: {
       id: null,
-      color: "#E5DDD5"
+      color: '#E5DDD5'
     }
   };
 
   handleColorBoxHover = ({ currentTarget }) => {
     this.setState({
-      currentHovered: {
+      colorHovered: {
         color: currentTarget.dataset.color,
         id: currentTarget.dataset.id
       }
@@ -37,13 +39,13 @@ class ChatWallpaperChanger extends Component {
   handleColorBoxHoverOut = _ => {
     this.setState(prevState => {
       return {
-        currentSelected: {
-          color: prevState.currentSelected.color,
-          id: prevState.currentSelected.id
+        colorSelected: {
+          color: prevState.colorSelected.color,
+          id: prevState.colorSelected.id
         },
-        currentHovered: {
+        colorHovered: {
           id: 100,
-          color: prevState.currentSelected.color
+          color: prevState.colorSelected.color
         }
       };
     });
@@ -51,7 +53,7 @@ class ChatWallpaperChanger extends Component {
 
   handleColorBoxClick = ({ currentTarget }) => {
     this.setState({
-      currentSelected: {
+      colorSelected: {
         id: currentTarget.dataset.id,
         color: currentTarget.dataset.color
       }
@@ -206,47 +208,47 @@ export default class App extends Component {
     /* ⬆️ Apart from Profile, I pass this to profile settings and profile info as well,
        which is 3-4 levels deep */
     return (
-      <ChatWallpaperChanger>
+      <ChatWallpaperColor>
         {({
-          currentHovered,
-          currentSelected,
+          colorHovered,
+          colorSelected,
           handleColorBoxClick,
           handleColorBoxHover,
           handleColorBoxHoverOut
         }) => (
           <Div
             css={{
-              display: "grid",
-              gridTemplateColumns: "3fr 7fr",
-              height: "100%",
-              boxShadow: "0px 0px 8px #c4c4c4"
+              display: 'grid',
+              gridTemplateColumns: '3fr 7fr',
+              height: '100%',
+              boxShadow: '0px 0px 8px #c4c4c4'
             }}
           >
-            <Div css={{ background: "#eee" }}>
+            <Div css={{ background: '#eee' }}>
               <Broadcast channel="profile" value={this.state}>
                 <Profile
-                  currentHovered={currentHovered}
-                  currentSelected={currentSelected}
+                  colorHovered={colorHovered}
+                  colorSelected={colorSelected}
                   handleListItemClick={this.handleListItemClick}
-                  selectedFriend={friendData ? friendData.id : "0"}
+                  selectedFriend={friendData ? friendData.id : '0'}
                   handleColorBoxClick={handleColorBoxClick}
                   handleColorBoxHover={handleColorBoxHover}
                   handleColorBoxHoverOut={handleColorBoxHoverOut}
                 />
               </Broadcast>
             </Div>
-            <Div css={{ background: "#F7F9FA" }}>
+            <Div css={{ background: '#F7F9FA' }}>
               <ChatBox
                 checkForLastChat={this.checkForLastChat}
                 currentFriend={this.handleListItemClick}
                 friendData={friendData}
                 handleSearchClick={this.handleSearchClick}
-                backgroundColor={currentHovered.color}
+                backgroundColor={colorHovered.color}
               />
             </Div>
           </Div>
         )}
-      </ChatWallpaperChanger>
+      </ChatWallpaperColor>
     );
   }
 }

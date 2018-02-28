@@ -1,4 +1,3 @@
-import "babel-polyfill"
 import React, { Component, Fragment } from 'react';
 import { Div } from 'glamorous';
 
@@ -15,8 +14,7 @@ export default class ChatBox extends Component {
     messages: [],
 
     // FIXME Move This State Into it's own component and pass it as a render prop.
-    // FIXME `is` prefix probably uncessary. I will probably choose showContextBox
-    isContextBoxActive: false,
+    showContextBox: false,
     // FIXME Bad naming. Instead use type or something to represent contact info or search.
     isContactInfoContextBoxActive: false,
 
@@ -40,18 +38,18 @@ export default class ChatBox extends Component {
   handleFriendChatHeaderClick = _ => {
     this.setState({
       isContactInfoContextBoxActive: true,
-      isContextBoxActive: true
+      showContextBox: true
     });
   };
   handleSearchClick = _ => {
     this.setState({
-      isContextBoxActive: true,
+      showContextBox: true,
       isContactInfoContextBoxActive: false
     });
   };
   handleCancelClick = _ => {
     this.setState({
-      isContextBoxActive: false,
+      showContextBox: false,
       isContactInfoContextBoxActive: false
     });
   };
@@ -85,20 +83,19 @@ export default class ChatBox extends Component {
     const { friendData: nextChatBoxContext } = nextProps;
     if (currentChatBoxContext) {
       if (currentChatBoxContext.id !== nextChatBoxContext.id)
-        this.setState({ isContextBoxActive: false });
+        this.setState({ showContextBox: false });
     }
   }
 
   render() {
-    console.log("chatbox")
     const { friendData, checkForLastChat, backgroundColor } = this.props;
     const {
       messages,
-      isContextBoxActive,
+      showContextBox,
       isContactInfoContextBoxActive,
       modalDialog
     } = this.state;
-    const wrapperStyle = isContextBoxActive
+    const wrapperStyle = showContextBox
       ? this.wrapperStyleWithContextBox
       : this.wrapperStyleWithoutContextBox;
 
@@ -145,7 +142,7 @@ export default class ChatBox extends Component {
               )}
             </Div>
           </Div>
-          {isContextBoxActive ? (
+          {showContextBox ? (
             <Div>
               <ContextBox
                 isContactInfoContextBoxActive={isContactInfoContextBoxActive}

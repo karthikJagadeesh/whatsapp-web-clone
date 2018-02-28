@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { Subscriber } from "react-broadcast";
-import { Div } from "glamorous";
+import React, { Component } from 'react';
+import { Subscriber } from 'react-broadcast';
+import { Div } from 'glamorous';
 
-import { ProfileHeader } from "./ProfileHeader";
-import { SearchBar } from "./SearchBar";
-import { FriendsList } from "./FriendsList";
+import { ProfileHeader } from './ProfileHeader';
+import { SearchBar } from './SearchBar';
+import { FriendsList } from './FriendsList';
 
-import ProfileInfo from "./ProfileInfo";
-import ProfileSettings from "./Settings";
-import { ArchivedChats } from "./ArchivedChats";
-import { StarredMessages } from "./StarredMessages";
-import { NewGroup } from "./NewGroup";
-import ProfileNewChat from "./ProfileNewChat";
+import ProfileInfo from './ProfileInfo';
+import ProfileSettings from './Settings';
+import { ArchivedChats } from './ArchivedChats';
+import { StarredMessages } from './StarredMessages';
+import { NewGroup } from './NewGroup';
+import ProfileNewChat from './ProfileNewChat';
 
 export default class Profile extends Component {
   state = {
-    searchBarValue: "",
-    currentView: ["friendList"]
+    searchBarValue: '',
+    currentView: ['friendList']
   };
 
   handleInputChange = ({ target }) => {
@@ -29,19 +29,19 @@ export default class Profile extends Component {
       return { currentView: updatedCurrentView };
     });
 
-  handlePictureClick = _ => this.currentViewStateUpdater("profileInfo");
+  handlePictureClick = _ => this.currentViewStateUpdater('profileInfo');
 
   handleProfileSettingsClick = _ =>
-    this.currentViewStateUpdater("profileSettings");
+    this.currentViewStateUpdater('profileSettings');
 
-  handleArchivedChatsClick = _ => this.currentViewStateUpdater("archivedChats");
+  handleArchivedChatsClick = _ => this.currentViewStateUpdater('archivedChats');
 
   handleStarredMessagesClick = _ =>
-    this.currentViewStateUpdater("starredMessages");
+    this.currentViewStateUpdater('starredMessages');
 
-  handleNewGroupClick = _ => this.currentViewStateUpdater("newGroup");
+  handleNewGroupClick = _ => this.currentViewStateUpdater('newGroup');
 
-  handleNewChatClick = _ => this.currentViewStateUpdater("newChat");
+  handleNewChatClick = _ => this.currentViewStateUpdater('newChat');
 
   handleProfileInfoBackClick = _ => {
     this.setState(prevState => {
@@ -60,8 +60,8 @@ export default class Profile extends Component {
   render() {
     const { currentView, searchBarValue } = this.state;
     const {
-      currentSelected,
-      currentHovered,
+      colorSelected,
+      colorHovered,
       profileData,
       selectedFriend,
       handleListItemClick,
@@ -70,7 +70,7 @@ export default class Profile extends Component {
       handleColorBoxHoverOut
     } = this.props;
     switch (currentView[currentView.length - 1]) {
-      case "newChat":
+      case 'newChat':
         return (
           <ProfileNewChat
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
@@ -79,39 +79,39 @@ export default class Profile extends Component {
           />
         );
 
-      case "newGroup":
+      case 'newGroup':
         return (
           <NewGroup
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
           />
         );
 
-      case "starredMessages":
+      case 'starredMessages':
         return (
           <StarredMessages
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
           />
         );
 
-      case "archivedChats":
+      case 'archivedChats':
         return (
           <ArchivedChats
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
           />
         );
 
-      case "profileInfo":
+      case 'profileInfo':
         return (
           <ProfileInfo
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
           />
         );
 
-      case "profileSettings":
+      case 'profileSettings':
         return (
           <ProfileSettings
-            currentHovered={currentHovered}
-            currentSelected={currentSelected}
+            colorHovered={colorHovered}
+            colorSelected={colorSelected}
             handleColorBoxClick={handleColorBoxClick}
             handleColorBoxHover={handleColorBoxHover}
             handleColorBoxHoverOut={handleColorBoxHoverOut}
@@ -120,17 +120,17 @@ export default class Profile extends Component {
           />
         );
 
-      case "friendList":
+      case 'friendList':
         return (
           <Div
             css={{
-              display: "grid",
-              gridTemplateRows: "10% 6% 84%",
-              height: "100vh",
-              borderRight: "1px solid rgba(0, 0, 0, 0.05)"
+              display: 'grid',
+              gridTemplateRows: '10% 6% 84%',
+              height: '100vh',
+              borderRight: '1px solid rgba(0, 0, 0, 0.05)'
             }}
           >
-            <Div css={{ borderBottom: "1px solid rgba(0, 0, 0, 0.05)" }}>
+            <Div css={{ borderBottom: '1px solid rgba(0, 0, 0, 0.05)' }}>
               <ProfileHeader
                 handlePictureClick={this.handlePictureClick}
                 handleStarredMessagesClick={this.handleStarredMessagesClick}
@@ -140,7 +140,7 @@ export default class Profile extends Component {
                 handleNewChatClick={this.handleNewChatClick}
               />
             </Div>
-            <Div css={{ borderBottom: "1px solid rgba(0, 0, 0, 0.05)" }}>
+            <Div css={{ borderBottom: '1px solid rgba(0, 0, 0, 0.05)' }}>
               <SearchBar
                 handleInputChange={this.handleInputChange}
                 searchBarValue={searchBarValue}
