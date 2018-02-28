@@ -1,36 +1,86 @@
-// FIXME This is not necessary.
-import 'babel-polyfill';
-import React, { Component } from 'react';
-import { Div } from 'glamorous';
-import { Broadcast } from 'react-broadcast';
-import { format } from 'date-fns';
+import "babel-polyfill";
+import React, { Component } from "react";
+import { Broadcast } from "react-broadcast";
+import { Div } from "glamorous";
+import { format } from "date-fns";
 
-import Profile from './Profile';
-import ChatBox from './ChatBox';
+import Profile from "./Profile";
+import ChatBox from "./ChatBox";
 import {
   profileDataUrl,
   friendDataUrl,
   allFriendsDataUrl,
   fetchData
-} from '../network';
+} from "../network";
+
+class ChatWallpaperChanger extends Component {
+  state = {
+    currentHovered: {
+      id: null,
+      color: "#E5DDD5"
+    },
+    currentSelected: {
+      id: null,
+      color: "#E5DDD5"
+    }
+  };
+
+  handleColorBoxHover = ({ currentTarget }) => {
+    this.setState({
+      currentHovered: {
+        color: currentTarget.dataset.color,
+        id: currentTarget.dataset.id
+      }
+    });
+  };
+
+  handleColorBoxHoverOut = _ => {
+    this.setState(prevState => {
+      return {
+        currentSelected: {
+          color: prevState.currentSelected.color,
+          id: prevState.currentSelected.id
+        },
+        currentHovered: {
+          id: 100,
+          color: prevState.currentSelected.color
+        }
+      };
+    });
+  };
+
+  handleColorBoxClick = ({ currentTarget }) => {
+    this.setState({
+      currentSelected: {
+        id: currentTarget.dataset.id,
+        color: currentTarget.dataset.color
+      }
+    });
+  };
+
+  render() {
+    const {
+      handleColorBoxClick,
+      handleColorBoxHover,
+      handleColorBoxHoverOut
+    } = this;
+
+    return this.props.children({
+      ...this.state,
+      handleColorBoxClick,
+      handleColorBoxHover,
+      handleColorBoxHoverOut
+    });
+  }
+}
 
 export default class App extends Component {
   state = {
     profileData: {},
-    // FIXME chatBoxContext is bad name. Doesn't tell much about what it contains
-    chatBoxContext: null,
+    friendData: null,
     recentChat: {
       id: null,
       changed: true
-    },
-    // FIXME Move these both into a seperate component And pass them via render props
-    currentHovered: {
-      id: null,
-      color: '#E5DDD5'
-    },
-    currentSelected: {
-      id: null,
-      color: '#E5DDD5'
     }
   };
 
@@ -45,14 +95,14 @@ export default class App extends Component {
 
   // decides who in the active chat list - friend's list should be at the top
   checkForLastChat = (lastChat, timestamp) => {
-    const { recentChat, chatBoxContext, profileData } = this.state;
+    const { recentChat, friendData, profileData } = this.state;
     const mostRecentIndex = profileData.friends.findIndex(
-      friend => friend.id === chatBoxContext.id
+      friend => friend.id === friendData.id
     );
     /* If someone down the list(other than the first person) had the last
        interaction, then pull him to the top of the active chat list OR
        if the friend is not in the active list, add him to the top */
-    if (recentChat.id !== chatBoxContext.id) {
+    if (recentChat.id !== friendData.id) {
       /* If the recent interaction was with someone not already in the current
          active list i.e with someone from new chat/all friends list */
       if (mostRecentIndex === -1) {
@@ -62,7 +112,7 @@ export default class App extends Component {
           try {
             const allFriends = await fetchData(allFriendsDataUrl);
             const mostRecent = allFriends.find(
-              friend => friend.id === chatBoxContext.id
+              friend => friend.id === friendData.id
             );
             mostRecent.lastChat = lastChat;
             mostRecent.latest_timestamp = timestamp;
@@ -101,7 +151,7 @@ export default class App extends Component {
          on the top, leave as is, just update {last message} in the active
          friends list */
       const updatedProfileDataFriends = profileData.friends.map(friend => {
-        if (friend.id === chatBoxContext.id) {
+        if (friend.id === friendData.id) {
           return {
             ...friend,
             lastChat: lastChat,
@@ -121,44 +171,13 @@ export default class App extends Component {
     }
   };
 
-  handleColorBoxClick = ({ currentTarget }) => {
-    this.setState({
-      currentSelected: {
-        id: currentTarget.dataset.id,
-        color: currentTarget.dataset.color
-      }
-    });
-  };
-  handleColorBoxHover = ({ currentTarget }) => {
-    this.setState({
-      currentHovered: {
-        color: currentTarget.dataset.color,
-        id: currentTarget.dataset.id
-      }
-    });
-  };
-  handleColorBoxHoverOut = _ => {
-    this.setState(prevState => {
-      return {
-        currentSelected: {
-          color: prevState.currentSelected.color,
-          id: prevState.currentSelected.id
-        },
-        currentHovered: {
-          id: 100,
-          color: prevState.currentSelected.color
-        }
-      };
-    });
-  };
-
   handleListItemClick = ({ currentTarget }) => {
     (async _ => {
       const id = currentTarget.dataset.id;
       const url = friendDataUrl + id;
       try {
-        const chatBoxContext = await fetchData(url);
-        this.setState({ chatBoxContext });
+        const friendData = await fetchData(url);
+        this.setState({ friendData });
       } catch (error) {
         console.error(error);
       }
@@ -181,39 +200,53 @@ export default class App extends Component {
   }
 
   render() {
-    const { chatBoxContext, currentHovered, modalDialog } = this.state;
+    const { friendData, modalDialog } = this.state;
 
     // FIXME The Usage of Broadcast here seems bad. You are only skipping one level deep.
+    /* ⬆️ Apart from Profile, I pass this to profile settings and profile info as well,
+       which is 3-4 levels deep */
     return (
-      <Div
-        css={{
-          display: 'grid',
-          gridTemplateColumns: '3fr 7fr',
-          height: '100%',
-          boxShadow: '0px 0px 8px #c4c4c4'
-        }}
-      >
-        <Div css={{ background: '#eee' }}>
-          <Broadcast channel="profile" value={this.state}>
-            <Profile
-              handleListItemClick={this.handleListItemClick}
-              selectedFriend={chatBoxContext ? chatBoxContext.id : '0'}
-              handleColorBoxClick={this.handleColorBoxClick}
-              handleColorBoxHover={this.handleColorBoxHover}
-              handleColorBoxHoverOut={this.handleColorBoxHoverOut}
-            />
-          </Broadcast>
-        </Div>
-        <Div css={{ background: '#F7F9FA' }}>
-          <ChatBox
-            checkForLastChat={this.checkForLastChat}
-            currentFriend={this.handleListItemClick}
-            chatBoxContext={chatBoxContext}
-            handleSearchClick={this.handleSearchClick}
-            backgroundColor={currentHovered.color}
-          />
-        </Div>
-      </Div>
+      <ChatWallpaperChanger>
+        {({
+          currentHovered,
+          currentSelected,
+          handleColorBoxClick,
+          handleColorBoxHover,
+          handleColorBoxHoverOut
+        }) => (
+          <Div
+            css={{
+              display: "grid",
+              gridTemplateColumns: "3fr 7fr",
+              height: "100%",
+              boxShadow: "0px 0px 8px #c4c4c4"
+            }}
+          >
+            <Div css={{ background: "#eee" }}>
+              <Broadcast channel="profile" value={this.state}>
+                <Profile
+                  currentHovered={currentHovered}
+                  currentSelected={currentSelected}
+                  handleListItemClick={this.handleListItemClick}
+                  selectedFriend={friendData ? friendData.id : "0"}
+                  handleColorBoxClick={handleColorBoxClick}
+                  handleColorBoxHover={handleColorBoxHover}
+                  handleColorBoxHoverOut={handleColorBoxHoverOut}
+                />
+              </Broadcast>
+            </Div>
+            <Div css={{ background: "#F7F9FA" }}>
+              <ChatBox
+                checkForLastChat={this.checkForLastChat}
+                currentFriend={this.handleListItemClick}
+                friendData={friendData}
+                handleSearchClick={this.handleSearchClick}
+                backgroundColor={currentHovered.color}
+              />
+            </Div>
+          </Div>
+        )}
+      </ChatWallpaperChanger>
     );
   }
 }

@@ -188,11 +188,15 @@ export default class ProfileSettings extends Component {
         const {
           handleColorBoxHover,
           handleColorBoxClick,
-          handleColorBoxHoverOut
+          handleColorBoxHoverOut,
+          currentHovered,
+          currentSelected
         } = this.props;
 
         return (
           <ChatWallpaper
+            currentHovered={currentHovered}
+            currentSelected={currentSelected}
             handleColorBoxHover={handleColorBoxHover}
             handleColorBoxClick={handleColorBoxClick}
             handleColorBoxHoverOut={handleColorBoxHoverOut}

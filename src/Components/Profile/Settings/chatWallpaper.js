@@ -44,6 +44,8 @@ const ColorBox = ({
 };
 
 const ColorList = ({
+  currentHovered,
+  currentSelected,
   handleColorBoxClick,
   handleColorBoxHover,
   handleColorBoxHoverOut
@@ -62,7 +64,7 @@ const ColorList = ({
     >
       {colors.map((color, index) => (
         <Subscriber channel="profile" key={index}>
-          {({ currentSelected, currentHovered }) => (
+          {() => (
             <ColorBox
               color={color}
               index={index}
@@ -80,6 +82,8 @@ const ColorList = ({
 };
 
 export const ChatWallpaper = ({
+  currentHovered,
+  currentSelected,
   handleProfileInfoBackClick,
   handleColorBoxClick,
   handleColorBoxHover,
@@ -97,6 +101,8 @@ export const ChatWallpaper = ({
         handleProfileInfoBackClick={handleProfileInfoBackClick}
       />
       <ColorList
+        currentHovered={currentHovered}
+        currentSelected={currentSelected}
         handleColorBoxClick={handleColorBoxClick}
         handleColorBoxHover={handleColorBoxHover}
         handleColorBoxHoverOut={handleColorBoxHoverOut}

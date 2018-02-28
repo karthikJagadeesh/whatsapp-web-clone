@@ -1,3 +1,4 @@
+import "babel-polyfill"
 import React, { Component, Fragment } from 'react';
 import { Div } from 'glamorous';
 
@@ -80,8 +81,8 @@ export default class ChatBox extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    const { chatBoxContext: currentChatBoxContext } = this.props;
-    const { chatBoxContext: nextChatBoxContext } = nextProps;
+    const { friendData: currentChatBoxContext } = this.props;
+    const { friendData: nextChatBoxContext } = nextProps;
     if (currentChatBoxContext) {
       if (currentChatBoxContext.id !== nextChatBoxContext.id)
         this.setState({ isContextBoxActive: false });
@@ -89,7 +90,8 @@ export default class ChatBox extends Component {
   }
 
   render() {
-    const { chatBoxContext, checkForLastChat, backgroundColor } = this.props;
+    console.log("chatbox")
+    const { friendData, checkForLastChat, backgroundColor } = this.props;
     const {
       messages,
       isContextBoxActive,
@@ -111,9 +113,9 @@ export default class ChatBox extends Component {
             }}
           >
             <Div>
-              {chatBoxContext ? (
+              {friendData ? (
                 <ChatBoxHeader
-                  chatBoxContext={chatBoxContext}
+                  friendData={friendData}
                   handleSearchClick={this.handleSearchClick}
                   handleFriendChatHeaderClick={this.handleFriendChatHeaderClick}
                   handleDeleteChatClick={this.handleDeleteChatClick}
@@ -123,16 +125,16 @@ export default class ChatBox extends Component {
               ) : null}
             </Div>
             <Div>
-              {chatBoxContext ? (
+              {friendData ? (
                 <ChatBoxDisplay
-                  chatlog={chatBoxContext.chatlog}
+                  chatlog={friendData.chatlog}
                   messages={messages}
                   backgroundColor={backgroundColor}
                 />
               ) : null}
             </Div>
             <Div>
-              {chatBoxContext ? (
+              {friendData ? (
                 <ChatBoxFooter
                   isInitialScreen={false}
                   handleChatSend={this.handleChatSend}
@@ -147,9 +149,9 @@ export default class ChatBox extends Component {
             <Div>
               <ContextBox
                 isContactInfoContextBoxActive={isContactInfoContextBoxActive}
-                name={chatBoxContext.name}
-                messagesLog={chatBoxContext.chatlog}
-                picturePath={chatBoxContext.picture}
+                name={friendData.name}
+                messagesLog={friendData.chatlog}
+                picturePath={friendData.picture}
                 handleCancelClick={this.handleCancelClick}
                 handleDeleteChatClick={this.handleDeleteChatClick}
                 handleReportSpamClick={this.handleReportSpamClick}
@@ -162,7 +164,7 @@ export default class ChatBox extends Component {
           <ModalDialog
             type={modalDialog.view}
             handleModalCancel={this.handleModalCancel}
-            name={chatBoxContext.name}
+            name={friendData.name}
           />
         ) : null}
       </Fragment>

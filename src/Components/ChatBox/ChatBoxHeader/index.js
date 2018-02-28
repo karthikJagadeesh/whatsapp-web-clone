@@ -33,7 +33,7 @@ const Name = ({ name }) => {
 
 export const ChatBoxHeader = ({
   currentFriend,
-  chatBoxContext,
+  friendData,
   handleSearchClick,
   handleFriendChatHeaderClick,
   handleDeleteChatClick,
@@ -74,8 +74,8 @@ export const ChatBoxHeader = ({
         }}
         onClick={handleFriendChatHeaderClick}
       >
-        <Picture currentFriend={chatBoxContext.picture} />
-        <Name name={chatBoxContext.name} />
+        <Picture currentFriend={friendData.picture} />
+        <Name name={friendData.name} />
       </Div>
       <Div
         css={{
