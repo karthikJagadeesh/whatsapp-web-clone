@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { Div } from "glamorous";
+import React, { Component } from 'react';
+import { Div } from 'glamorous';
 
-import { Header } from "./header";
-import { SearchBar } from "../../Profile/SearchBar";
-import SearchResults from "./searchResults";
-import { ContactInfo } from "./contactInfo";
+import { Header } from './header';
+import { SearchBar } from '../../Profile/SearchBar';
+import SearchResults from './searchResults';
+import { ContactInfo } from './contactInfo';
 
 export default class ContextBox extends Component {
   render() {
     const {
-      isContactInfoContextBoxActive,
+      type,
       handleCancelClick,
       handleDeleteChatClick,
       handleReportSpamClick,
@@ -19,21 +19,27 @@ export default class ContextBox extends Component {
       picturePath
     } = this.props;
 
-    return isContactInfoContextBoxActive ? (
-      <ContactInfo
-        handleReportSpamClick={handleReportSpamClick}
-        handleDeleteChatClick={handleDeleteChatClick}
-        handleBlockContactClick={handleBlockContactClick}
-        handleCancelClick={handleCancelClick}
-        picturePath={picturePath}
-        name={name}
-      />
-    ) : (
-      <SearchResults
-        name={name}
-        messagesLog={messagesLog}
-        handleCancelClick={handleCancelClick}
-      />
-    );
+    switch (type) {
+      case 'friendInfo':
+        return (
+          <ContactInfo
+            handleReportSpamClick={handleReportSpamClick}
+            handleDeleteChatClick={handleDeleteChatClick}
+            handleBlockContactClick={handleBlockContactClick}
+            handleCancelClick={handleCancelClick}
+            picturePath={picturePath}
+            name={name}
+          />
+        );
+
+      case 'search':
+        return (
+          <SearchResults
+            name={name}
+            messagesLog={messagesLog}
+            handleCancelClick={handleCancelClick}
+          />
+        );
+    }
   }
 }
