@@ -60,7 +60,12 @@ export const FriendsListItem = ({ picture: picture = '', ...props }) => {
   // FIXME Break this down into smaller components and give them meaningful names.
   // This is just a wall of text (Line 63 -153) that's ust hard to read.
   return (
-    <FriendsListItemBox data-id={props.id} onClick={props.handleListItemClick}>
+    <FriendsListItemBox
+      data-id={props.id}
+      onClick={({ currentTarget }) =>
+        props.handleFriendsListClick(currentTarget.dataset.id)
+      }
+    >
       <Div
         css={{
           display: 'grid',

@@ -6,7 +6,7 @@ import { FriendsListItem } from "./friendsListItem";
 import { filteredList } from "../utils";
 
 export const FriendsList = ({
-  handleListItemClick,
+  handleFriendsListClick,
   searchBarValue,
   selectedFriend,
   friendsList: friendsList = []
@@ -20,7 +20,7 @@ export const FriendsList = ({
         timestamp: format(new Date(friend.latest_timestamp), "h:mm A"),
         picture: friend.picture,
         lastChat: friend.lastChat,
-        handleListItemClick,
+        handleFriendsListClick,
         selectedFriend
       };
       return <FriendsListItem {...props} />;

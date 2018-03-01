@@ -11,6 +11,7 @@ export default class ChatBox extends Component {
   state = {
     // FIXME chatlog and messages represent the same thing yet they live seperated
     // There should only be one representation. Ideally these messages should be reflected in the
+    // ↗️ This will be fixed once I start saving the messages somewhere, this is just temporary
     messages: [],
 
     // FIXME Move This State Into it's own component and pass it as a render prop.
@@ -35,43 +36,41 @@ export default class ChatBox extends Component {
     gridTemplateColumns: '5.7fr 4.3fr'
   };
 
-  handleFriendChatHeaderClick = _ => {
+  handleFriendChatHeaderClick = _ =>
     this.setState({
       isContactInfoContextBoxActive: true,
       showContextBox: true
     });
-  };
-  handleSearchClick = _ => {
+
+  handleSearchClick = _ =>
     this.setState({
       showContextBox: true,
       isContactInfoContextBoxActive: false
     });
-  };
-  handleCancelClick = _ => {
+
+  handleCancelClick = _ =>
     this.setState({
       showContextBox: false,
       isContactInfoContextBoxActive: false
     });
-  };
 
-  handleDeleteChatClick = _ => {
+  handleDeleteChatClick = _ =>
     this.setState({ modalDialog: { show: true, view: 'deleteChat' } });
-  };
-  handleClearChatClick = _ => {
+
+  handleClearChatClick = _ =>
     this.setState({ modalDialog: { show: true, view: 'clearChat' } });
-  };
-  handleMuteClick = _ => {
+
+  handleMuteClick = _ =>
     this.setState({ modalDialog: { show: true, view: 'mute' } });
-  };
-  handleReportSpamClick = _ => {
+
+  handleReportSpamClick = _ =>
     this.setState({ modalDialog: { show: true, view: 'reportSpam' } });
-  };
-  handleBlockContactClick = _ => {
+
+  handleBlockContactClick = _ =>
     this.setState({ modalDialog: { show: true, view: 'blockContact' } });
-  };
-  handleModalCancel = _ => {
+
+  handleModalCancel = _ =>
     this.setState({ modalDialog: { show: false, view: '' } });
-  };
 
   handleChatSend = message => {
     const freshMessages = [message, ...this.state.messages];

@@ -8,11 +8,11 @@ import { colors } from '../../../utils';
 const ColorBox = ({
   color,
   index,
-  colorSelected,
+  selectedColor,
   handleColorBoxClick,
   handleColorBoxHover,
   handleColorBoxHoverOut,
-  colorHovered
+  hoveredColor
 }) => {
   const boxStyle = {
     width: '80px',
@@ -25,16 +25,26 @@ const ColorBox = ({
     }
   };
   // black inset shadow for selected color and white for currently hovered
-  if (colorSelected === index) boxStyle.boxShadow = 'inset 0 0 0px 3px #000000';
-  else if (colorHovered === index && colorHovered !== colorSelected)
+  if (selectedColor === index) boxStyle.boxShadow = 'inset 0 0 0px 3px #000000';
+  else if (hoveredColor === index && hoveredColor !== selectedColor)
     boxStyle.boxShadow = 'inset 0 0 0px 4px #ffffff';
   else boxStyle.boxShadow = 'none';
 
   return (
     <Div
       css={boxStyle}
-      onClick={handleColorBoxClick}
-      onMouseEnter={handleColorBoxHover}
+      onClick={({ currentTarget }) =>
+        handleColorBoxClick(
+          currentTarget.dataset.id,
+          currentTarget.dataset.color
+        )
+      }
+      onMouseEnter={({ currentTarget }) =>
+        handleColorBoxHover(
+          currentTarget.dataset.id,
+          currentTarget.dataset.color
+        )
+      }
       onMouseLeave={handleColorBoxHoverOut}
       data-id={index}
       data-color={color}
@@ -43,8 +53,8 @@ const ColorBox = ({
 };
 
 const ColorList = ({
-  colorHovered,
-  colorSelected,
+  hoveredColor,
+  selectedColor,
   handleColorBoxClick,
   handleColorBoxHover,
   handleColorBoxHoverOut
@@ -63,12 +73,12 @@ const ColorList = ({
     >
       {colors.map((color, index) => (
         <Subscriber channel="profile" key={index}>
-          {() => (
+          {_ => (
             <ColorBox
               color={color}
               index={index}
-              colorSelected={Number(colorSelected.id)}
-              colorHovered={Number(colorHovered.id)}
+              selectedColor={Number(selectedColor.id)}
+              hoveredColor={Number(hoveredColor.id)}
               handleColorBoxClick={handleColorBoxClick}
               handleColorBoxHover={handleColorBoxHover}
               handleColorBoxHoverOut={handleColorBoxHoverOut}
@@ -81,8 +91,8 @@ const ColorList = ({
 };
 
 export const ChatWallpaper = ({
-  colorHovered,
-  colorSelected,
+  hoveredColor,
+  selectedColor,
   handleProfileInfoBackClick,
   handleColorBoxClick,
   handleColorBoxHover,
@@ -100,8 +110,8 @@ export const ChatWallpaper = ({
         handleProfileInfoBackClick={handleProfileInfoBackClick}
       />
       <ColorList
-        colorHovered={colorHovered}
-        colorSelected={colorSelected}
+        hoveredColor={hoveredColor}
+        selectedColor={selectedColor}
         handleColorBoxClick={handleColorBoxClick}
         handleColorBoxHover={handleColorBoxHover}
         handleColorBoxHoverOut={handleColorBoxHoverOut}

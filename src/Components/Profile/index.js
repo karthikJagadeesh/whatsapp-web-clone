@@ -23,25 +23,11 @@ export default class Profile extends Component {
     this.setState({ searchBarValue: target.value });
   };
 
-  currentViewStateUpdater = view =>
+  changeCurrentView = view =>
     this.setState(prevState => {
       const updatedCurrentView = [...prevState.currentView, view];
       return { currentView: updatedCurrentView };
     });
-
-  handlePictureClick = _ => this.currentViewStateUpdater('profileInfo');
-
-  handleProfileSettingsClick = _ =>
-    this.currentViewStateUpdater('profileSettings');
-
-  handleArchivedChatsClick = _ => this.currentViewStateUpdater('archivedChats');
-
-  handleStarredMessagesClick = _ =>
-    this.currentViewStateUpdater('starredMessages');
-
-  handleNewGroupClick = _ => this.currentViewStateUpdater('newGroup');
-
-  handleNewChatClick = _ => this.currentViewStateUpdater('newChat');
 
   handleProfileInfoBackClick = _ => {
     this.setState(prevState => {
@@ -52,19 +38,19 @@ export default class Profile extends Component {
   };
   // FIXME Don't pass events. Pass just enough info for other handlers. Don't surface implementation details all
   // the way till the top of the app like this.
-  handleNewChatListItemClick = event => {
-    this.props.handleListItemClick(event);
+  handleNewChatListItemClick = id => {
+    this.props.handleFriendsListClick(id);
     this.handleProfileInfoBackClick();
   };
 
   render() {
     const { currentView, searchBarValue } = this.state;
     const {
-      colorSelected,
-      colorHovered,
+      selectedColor,
+      hoveredColor,
       profileData,
       selectedFriend,
-      handleListItemClick,
+      handleFriendsListClick,
       handleColorBoxClick,
       handleColorBoxHover,
       handleColorBoxHoverOut
@@ -75,7 +61,7 @@ export default class Profile extends Component {
           <ProfileNewChat
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
             handleNewGroupClick={this.handleNewGroupClick}
-            handleListItemClick={this.handleNewChatListItemClick}
+            handleFriendsListClick={this.handleNewChatListItemClick}
           />
         );
 
@@ -110,8 +96,8 @@ export default class Profile extends Component {
       case 'profileSettings':
         return (
           <ProfileSettings
-            colorHovered={colorHovered}
-            colorSelected={colorSelected}
+            hoveredColor={hoveredColor}
+            selectedColor={selectedColor}
             handleColorBoxClick={handleColorBoxClick}
             handleColorBoxHover={handleColorBoxHover}
             handleColorBoxHoverOut={handleColorBoxHoverOut}
@@ -132,12 +118,18 @@ export default class Profile extends Component {
           >
             <Div css={{ borderBottom: '1px solid rgba(0, 0, 0, 0.05)' }}>
               <ProfileHeader
-                handlePictureClick={this.handlePictureClick}
-                handleStarredMessagesClick={this.handleStarredMessagesClick}
-                handleProfileSettingsClick={this.handleProfileSettingsClick}
-                handleArchivedChatsClick={this.handleArchivedChatsClick}
-                handleNewGroupClick={this.handleNewGroupClick}
-                handleNewChatClick={this.handleNewChatClick}
+                handlePictureClick={_ => this.changeCurrentView('profileInfo')}
+                handleStarredMessagesClick={_ =>
+                  this.changeCurrentView('starredMessages')
+                }
+                handleProfileSettingsClick={_ =>
+                  this.changeCurrentView('profileSettings')
+                }
+                handleArchivedChatsClick={_ =>
+                  this.changeCurrentView('archivedChats')
+                }
+                handleNewGroupClick={_ => this.changeCurrentView('newGroup')}
+                handleNewChatClick={_ => this.changeCurrentView('newChat')}
               />
             </Div>
             <Div css={{ borderBottom: '1px solid rgba(0, 0, 0, 0.05)' }}>
@@ -153,7 +145,7 @@ export default class Profile extends Component {
                     selectedFriend={selectedFriend}
                     searchBarValue={searchBarValue}
                     friendsList={profileData.friends}
-                    handleListItemClick={handleListItemClick}
+                    handleFriendsListClick={handleFriendsListClick}
                   />
                 )}
               </Subscriber>

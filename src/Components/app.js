@@ -17,48 +17,33 @@ import {
 
 class ChatWallpaperColor extends Component {
   state = {
-    colorHovered: {
+    hoveredColor: {
       id: null,
       color: '#E5DDD5'
     },
-    colorSelected: {
+    selectedColor: {
       id: null,
       color: '#E5DDD5'
     }
   };
 
-  handleColorBoxHover = ({ currentTarget }) => {
-    this.setState({
-      colorHovered: {
-        color: currentTarget.dataset.color,
-        id: currentTarget.dataset.id
-      }
-    });
-  };
+  handleColorBoxHover = (id, color) =>
+    this.setState({ hoveredColor: { color, id } });
 
-  handleColorBoxHoverOut = _ => {
-    this.setState(prevState => {
-      return {
-        colorSelected: {
-          color: prevState.colorSelected.color,
-          id: prevState.colorSelected.id
-        },
-        colorHovered: {
-          id: 100,
-          color: prevState.colorSelected.color
-        }
-      };
-    });
-  };
-
-  handleColorBoxClick = ({ currentTarget }) => {
-    this.setState({
-      colorSelected: {
-        id: currentTarget.dataset.id,
-        color: currentTarget.dataset.color
+  handleColorBoxHoverOut = _ =>
+    this.setState(prevState => ({
+      selectedColor: {
+        color: prevState.selectedColor.color,
+        id: prevState.selectedColor.id
+      },
+      hoveredColor: {
+        id: 100,
+        color: prevState.selectedColor.color
       }
-    });
-  };
+    }));
+
+  handleColorBoxClick = (id, color) =>
+    this.setState({ selectedColor: { id, color } });
 
   render() {
     const {
@@ -86,7 +71,7 @@ export default class App extends Component {
     }
   };
 
-  recentActiveFriendsListOrderUpdater = ({ changed, updatedProfileData }) =>
+  friendsListOrderUpdater = ({ changed, updatedProfileData }) =>
     this.setState({
       profileData: updatedProfileData,
       recentChat: {
@@ -122,7 +107,7 @@ export default class App extends Component {
             const updatedProfileData = { ...profileData };
             updatedProfileData.friends = updatedList;
 
-            this.recentActiveFriendsListOrderUpdater({
+            this.friendsListOrderUpdater({
               changed: true,
               updatedProfileData
             });
@@ -143,7 +128,7 @@ export default class App extends Component {
         const updatedProfileData = { ...profileData };
         updatedProfileData.friends = updatedList;
 
-        this.recentActiveFriendsListOrderUpdater({
+        this.friendsListOrderUpdater({
           changed: true,
           updatedProfileData
         });
@@ -166,17 +151,16 @@ export default class App extends Component {
         ...profileData,
         friends: updatedProfileDataFriends
       };
-      this.recentActiveFriendsListOrderUpdater({
+      this.friendsListOrderUpdater({
         changed: false,
         updatedProfileData
       });
     }
   };
 
-  handleListItemClick = ({ currentTarget }) => {
+  handleFriendsListClick = id => {
     (async _ => {
-      const id = currentTarget.dataset.id;
-      const url = friendDataUrl + id;
+      const url = `${friendDataUrl}/${id}`;
       try {
         const friendData = await fetchData(url);
         this.setState({ friendData });
@@ -210,8 +194,8 @@ export default class App extends Component {
     return (
       <ChatWallpaperColor>
         {({
-          colorHovered,
-          colorSelected,
+          hoveredColor,
+          selectedColor,
           handleColorBoxClick,
           handleColorBoxHover,
           handleColorBoxHoverOut
@@ -227,9 +211,9 @@ export default class App extends Component {
             <Div css={{ background: '#eee' }}>
               <Broadcast channel="profile" value={this.state}>
                 <Profile
-                  colorHovered={colorHovered}
-                  colorSelected={colorSelected}
-                  handleListItemClick={this.handleListItemClick}
+                  hoveredColor={hoveredColor}
+                  selectedColor={selectedColor}
+                  handleFriendsListClick={this.handleFriendsListClick}
                   selectedFriend={friendData ? friendData.id : '0'}
                   handleColorBoxClick={handleColorBoxClick}
                   handleColorBoxHover={handleColorBoxHover}
@@ -240,10 +224,10 @@ export default class App extends Component {
             <Div css={{ background: '#F7F9FA' }}>
               <ChatBox
                 checkForLastChat={this.checkForLastChat}
-                currentFriend={this.handleListItemClick}
+                currentFriend={this.handleFriendsListClick}
                 friendData={friendData}
                 handleSearchClick={this.handleSearchClick}
-                backgroundColor={colorHovered.color}
+                backgroundColor={hoveredColor.color}
               />
             </Div>
           </Div>
