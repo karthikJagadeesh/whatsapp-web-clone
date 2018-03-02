@@ -186,11 +186,8 @@ export default class App extends Component {
   }
 
   render() {
-    const { friendData, modalDialog } = this.state;
+    const { friendData } = this.state;
 
-    // FIXME The Usage of Broadcast here seems bad. You are only skipping one level deep.
-    /* ⬆️ Apart from Profile, I pass this to profile settings and profile info as well,
-       which is 3-4 levels deep */
     return (
       <ChatWallpaperColor>
         {({

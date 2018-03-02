@@ -19,95 +19,68 @@ const Template = ({ type, name }) => {
   }
 };
 
+const DecoratedMessagesLog = ({ msg, searchValue }) => {
+  const HighlightWord = glamorous.span({
+    color: '#339686',
+    fontSize: '1.1em',
+    fontWeight: '700'
+  });
+  const HighlightSentence = glamorous.p({
+    borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+    padding: '1em 0',
+    color: 'rgba(0, 0, 0, 0.6)',
+    fontSize: '0.9em'
+  });
+
+  const afterSplit = msg.text.toLowerCase().split(searchValue.toLowerCase());
+
+  const highlightedResult = afterSplit.reduce((acc, curr, index) => {
+    if (index % 2 === 0 && index) {
+      acc.push(
+        <HighlightWord key={index}>{searchValue}</HighlightWord>
+      );
+    } else if (index === 1) {
+      acc.push(
+        <HighlightWord key={index}>{searchValue}</HighlightWord>
+      );
+    }
+    return [...acc, curr]
+  }, [])
+
+  return <HighlightSentence>{highlightedResult}</HighlightSentence>;
+};
+
 const Results = ({ messagesLog, searchValue }) => {
   const resultMessagesLog = messagesLog
     .filter(({ text }) =>
       text.toLowerCase().includes(searchValue.toLowerCase().trim())
     )
-    .map(msg => {
-      // FIXME Probably should be moved into it's own component and rest of logic should be
-      // folded into SearchResults
-      const afterSplit = msg.text
-        .toLowerCase()
-        .split(searchValue.toLowerCase());
+    .map(msg => (
+      <DecoratedMessagesLog
+        key={msg.message_id}
+        msg={msg}
+        searchValue={searchValue}
+      />
+    ));
 
-      // FIXME Rewrite using map or loop.
-      const highlightedResult = [];
-      afterSplit.forEach((text, index) => {
-        if (index % 2 === 0 && index) {
-          highlightedResult.push(
-            <Span
-              key={index}
-              css={{
-                color: '#339686',
-                fontSize: '1.1em',
-                fontWeight: '700'
-              }}
-            >
-              {searchValue}
-            </Span>
-          );
-        } else if (index === 1) {
-          highlightedResult.push(
-            <Span
-              key={index}
-              css={{
-                color: '#339686',
-                fontSize: '1.1em',
-                fontWeight: '700'
-              }}
-            >
-              {searchValue}
-            </Span>
-          );
-        }
-        highlightedResult.push(text);
-      });
-
-      return (
-        <P
-          key={msg.message_id}
-          css={{
-            borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
-            padding: '1em 0',
-            color: 'rgba(0, 0, 0, 0.6)',
-            fontSize: '0.9em'
-          }}
-        >
-          {highlightedResult}
-        </P>
-      );
-    });
-
-  if (resultMessagesLog.length > 0) {
+  if (resultMessagesLog.length > 0)
     return (
-      <Div
-        css={{
-          padding: '20px',
-          textAlign: 'center'
-        }}
-      >
+      <Div padding="20px" textAlign="center">
         {resultMessagesLog}
       </Div>
     );
-  } else {
-    return <Template type="noResultsDisplay" />;
-  }
+  else return <Template type="noResultsDisplay" />;
 };
 
 export default class SearchResults extends Component {
-  state = {
-    value: ''
-  };
+  state = { value: '' };
 
-  handleInputChange = ({ target }) => {
-    this.setState({ value: target.value });
-  };
+  handleInputChange = ({ target }) => this.setState({ value: target.value });
 
   render() {
     const { name, messagesLog, handleCancelClick } = this.props;
     const { value } = this.state;
-    // FIXME Why does everyplace require 100% width and height? Seems fishy.
+
     return (
       <Div
         css={{
@@ -118,38 +91,20 @@ export default class SearchResults extends Component {
           background: '#FFF'
         }}
       >
-        <Div
-          css={{
-            height: '100%',
-            width: '100%',
-            borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
-          }}
-        >
+        <Div borderBottom="1px solid rgba(0, 0, 0, 0.1)">
           <Header
             text={'Search Messages'}
             handleCancelClick={handleCancelClick}
           />
         </Div>
-        <Div
-          css={{
-            height: '100%',
-            width: '100%',
-            borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
-          }}
-        >
+        <Div borderBottom="1px solid rgba(0, 0, 0, 0.1)">
           <SearchBar
             placeholder={'Search...'}
             handleInputChange={this.handleInputChange}
             searchBarValue={value}
           />
         </Div>
-        <Div
-          css={{
-            height: '100%',
-            width: '100%',
-            borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
-          }}
-        >
+        <Div>
           {value ? (
             <Results messagesLog={messagesLog} searchValue={value} />
           ) : (
