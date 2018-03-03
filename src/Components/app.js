@@ -78,20 +78,29 @@ class ProfileAndFriendsList extends Component {
       }
     });
 
+  // FIXME Why reorder the name? It doesn't tell anything about how you are reordering. Think of better name
+  // FIXME This doesn't need to be call method.
   reOrderFriendsList = ({
+    // FIXME You are only using profileData.friends. So Why are you passing the rest.
     profileData,
+    // FIXME mostRecentIndex doesn't make a good name. You want to update the list at particular index. Just call it index or friendIndex
     mostRecentIndex,
     lastChat,
     timestamp
   }) => {
+    // FIXME Do you need to iterate over the entire array to just update on thing? Just take that element by index and created the updated record
+    // FIXME This name is utterly useless. You don't even need to use it.
     const updatedProfileDataFriends = profileData.friends.map(
       (friend, index) => {
         if (index === mostRecentIndex)
+          // FIXME Why do you have the name latest_timestamp. You will only save latest_timestamp and you don't have anything called previous timestamps.
+          // So it should only be called timestamp.
           return { ...friend, lastChat, latest_timestamp: timestamp };
         return friend;
       }
     );
     return [
+      // FIXME This is single element. Just use a[i] form.
       ...updatedProfileDataFriends.slice(mostRecentIndex, mostRecentIndex + 1),
       ...updatedProfileDataFriends.slice(0, mostRecentIndex),
       ...updatedProfileDataFriends.slice(mostRecentIndex + 1)
@@ -119,6 +128,7 @@ class ProfileAndFriendsList extends Component {
     })();
 
   // decides who in the active chat list - friend's list should be at the top
+  // FIXME This function still looks like garbage
   checkForLastChat = (lastChat, timestamp) => {
     const { recentChat, profileData } = this.state;
     const { friendData } = this.props;
@@ -148,6 +158,7 @@ class ProfileAndFriendsList extends Component {
         })();
       } else {
         // rearrange the list to put the person on the top
+        // FIXME Just inline this object ing to the function, it's not used elsewhere
         const paramsForReOrdering = {
           profileData,
           mostRecentIndex,
@@ -219,6 +230,7 @@ class ProfileAndFriendsList extends Component {
 export default class App extends Component {
   state = { friendData: null };
 
+  // FIXME The name here still feels bad. FriendsList represent mutliple items, but the click only happens on single item.
   handleFriendsListClick = id => {
     (async _ => {
       const url = `${friendDataUrl}/${id}`;

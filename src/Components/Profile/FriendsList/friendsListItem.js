@@ -59,6 +59,8 @@ export const FriendsListItem = ({ picture: picture = '', ...props }) => {
 
   // FIXME Break this down into smaller components and give them meaningful names.
   // This is just a wall of text (Line 63 -153) that's ust hard to read.
+
+  // FIXME You can simple pass props.id directly to handler why do you need the data-id indirection??
   return (
     <FriendsListItemBox
       data-id={props.id}
