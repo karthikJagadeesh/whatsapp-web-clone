@@ -1,4 +1,3 @@
-// FIXME This is not necessary.
 // I want to keep this ⤵️ for `now`, not willing to trade this for HMR! yet...
 import 'babel-polyfill';
 import React, { Component } from 'react';
@@ -28,7 +27,7 @@ class ChatWallpaperColor extends Component {
   };
 
   handleColorBoxHover = (id, color) =>
-    this.setState({ hoveredColor: { color, id } });
+    this.setState({ hoveredColor: { id, color } });
 
   handleColorBoxHoverOut = _ =>
     this.setState(prevState => ({
@@ -61,10 +60,9 @@ class ChatWallpaperColor extends Component {
   }
 }
 
-export default class App extends Component {
+class ProfileAndFriendsList extends Component {
   state = {
     profileData: {},
-    friendData: null,
     recentChat: {
       id: null,
       changed: true
@@ -80,33 +78,66 @@ export default class App extends Component {
       }
     });
 
+  reOrderFriendsList = ({
+    profileData,
+    mostRecentIndex,
+    lastChat,
+    timestamp
+  }) => {
+    const updatedProfileDataFriends = profileData.friends.map(
+      (friend, index) => {
+        if (index === mostRecentIndex)
+          return { ...friend, lastChat, latest_timestamp: timestamp };
+        return friend;
+      }
+    );
+    return [
+      ...updatedProfileDataFriends.slice(mostRecentIndex, mostRecentIndex + 1),
+      ...updatedProfileDataFriends.slice(0, mostRecentIndex),
+      ...updatedProfileDataFriends.slice(mostRecentIndex + 1)
+    ];
+  };
+
+  listWithNewlyAddedFriend = (lastChat, timestamp) =>
+    (async _ => {
+      const { profileData } = this.state;
+      const { friendData } = this.props;
+      try {
+        const allFriends = await fetchData(allFriendsDataUrl);
+        const mostRecent = {
+          ...allFriends.find(friend => friend.id === friendData.id),
+          lastChat,
+          latest_timestamp: timestamp
+        };
+        return {
+          ...profileData,
+          friends: [mostRecent, ...profileData.friends]
+        };
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+
   // decides who in the active chat list - friend's list should be at the top
   checkForLastChat = (lastChat, timestamp) => {
-    const { recentChat, friendData, profileData } = this.state;
+    const { recentChat, profileData } = this.state;
+    const { friendData } = this.props;
     const mostRecentIndex = profileData.friends.findIndex(
       friend => friend.id === friendData.id
     );
     /* If someone down the list(other than the first person) had the last
-       interaction, then pull him to the top of the active chat list OR
-       if the friend is not in the active list, add him to the top */
+         interaction, then pull him to the top of the active chat list OR
+         if the friend is not in the active list, add him to the top */
     if (recentChat.id !== friendData.id) {
       /* If the recent interaction was with someone not already in the current
-         active list i.e with someone from new chat/all friends list */
+           active list i.e with someone from new chat/all friends list */
       if (mostRecentIndex === -1) {
-        // FIXME Move the fetch calls and logic into a seperate function.
-        //
         (async _ => {
           try {
-            const allFriends = await fetchData(allFriendsDataUrl);
-            const mostRecent = allFriends.find(
-              friend => friend.id === friendData.id
+            const updatedProfileData = await this.listWithNewlyAddedFriend(
+              lastChat,
+              timestamp
             );
-            mostRecent.lastChat = lastChat;
-            mostRecent.latest_timestamp = timestamp;
-            const updatedList = [mostRecent, ...profileData.friends];
-            const updatedProfileData = { ...profileData };
-            updatedProfileData.friends = updatedList;
-
             this.friendsListOrderUpdater({
               changed: true,
               updatedProfileData
@@ -116,17 +147,20 @@ export default class App extends Component {
           }
         })();
       } else {
-        // FIXME Move this sorting loginc into a function.
         // rearrange the list to put the person on the top
-        const mostRecent = profileData.friends[mostRecentIndex];
-        mostRecent.lastChat = lastChat;
-        mostRecent.latest_timestamp = timestamp;
-        // FIXME Write using contact, slice and spread
-        const updatedList = [...profileData.friends];
-        updatedList.splice(mostRecentIndex, 1);
-        updatedList.unshift(mostRecent);
-        const updatedProfileData = { ...profileData };
-        updatedProfileData.friends = updatedList;
+        const paramsForReOrdering = {
+          profileData,
+          mostRecentIndex,
+          lastChat,
+          timestamp
+        };
+        const rearrangedFriendsList = this.reOrderFriendsList(
+          paramsForReOrdering
+        );
+        const updatedProfileData = {
+          ...profileData,
+          friends: rearrangedFriendsList
+        };
 
         this.friendsListOrderUpdater({
           changed: true,
@@ -135,16 +169,16 @@ export default class App extends Component {
       }
     } else {
       /* If the recent interation was with the same person who is currenty
-         on the top, leave as is, just update {last message} in the active
-         friends list */
+           on the top, leave as is, just update {last message} in the active
+           friends list */
       const updatedProfileDataFriends = profileData.friends.map(friend => {
-        if (friend.id === friendData.id) {
+        if (friend.id === friendData.id)
           return {
             ...friend,
             lastChat: lastChat,
             latest_timestamp: timestamp
           };
-        }
+
         return friend;
       });
       const updatedProfileData = {
@@ -156,18 +190,6 @@ export default class App extends Component {
         updatedProfileData
       });
     }
-  };
-
-  handleFriendsListClick = id => {
-    (async _ => {
-      const url = `${friendDataUrl}/${id}`;
-      try {
-        const friendData = await fetchData(url);
-        this.setState({ friendData });
-      } catch (error) {
-        console.error(error);
-      }
-    })();
   };
 
   async componentDidMount() {
@@ -186,50 +208,80 @@ export default class App extends Component {
   }
 
   render() {
+    const { checkForLastChat } = this;
+    return this.props.children({
+      ...this.state,
+      checkForLastChat
+    });
+  }
+}
+
+export default class App extends Component {
+  state = { friendData: null };
+
+  handleFriendsListClick = id => {
+    (async _ => {
+      const url = `${friendDataUrl}/${id}`;
+      try {
+        const friendData = await fetchData(url);
+        this.setState({ friendData });
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  };
+
+  render() {
     const { friendData } = this.state;
 
     return (
-      <ChatWallpaperColor>
-        {({
-          hoveredColor,
-          selectedColor,
-          handleColorBoxClick,
-          handleColorBoxHover,
-          handleColorBoxHoverOut
-        }) => (
-          <Div
-            css={{
-              display: 'grid',
-              gridTemplateColumns: '3fr 7fr',
-              height: '100%',
-              boxShadow: '0px 0px 8px #c4c4c4'
-            }}
-          >
-            <Div css={{ background: '#eee' }}>
-              <Broadcast channel="profile" value={this.state}>
-                <Profile
-                  hoveredColor={hoveredColor}
-                  selectedColor={selectedColor}
-                  handleFriendsListClick={this.handleFriendsListClick}
-                  selectedFriend={friendData ? friendData.id : '0'}
-                  handleColorBoxClick={handleColorBoxClick}
-                  handleColorBoxHover={handleColorBoxHover}
-                  handleColorBoxHoverOut={handleColorBoxHoverOut}
-                />
-              </Broadcast>
-            </Div>
-            <Div css={{ background: '#F7F9FA' }}>
-              <ChatBox
-                checkForLastChat={this.checkForLastChat}
-                currentFriend={this.handleFriendsListClick}
-                friendData={friendData}
-                handleSearchClick={this.handleSearchClick}
-                backgroundColor={hoveredColor.color}
-              />
-            </Div>
-          </Div>
+      <ProfileAndFriendsList friendData={friendData}>
+        {({ checkForLastChat, profileData, recentChat }) => (
+          <ChatWallpaperColor>
+            {({
+              hoveredColor,
+              selectedColor,
+              handleColorBoxClick,
+              handleColorBoxHover,
+              handleColorBoxHoverOut
+            }) => (
+              <Div
+                css={{
+                  display: 'grid',
+                  gridTemplateColumns: '3fr 7fr',
+                  height: '100%',
+                  boxShadow: '0px 0px 8px #c4c4c4'
+                }}
+              >
+                <Div background="#eee">
+                  <Broadcast
+                    channel="profile"
+                    value={{ ...this.state, profileData, recentChat }}
+                  >
+                    <Profile
+                      hoveredColor={hoveredColor}
+                      selectedColor={selectedColor}
+                      handleFriendsListClick={this.handleFriendsListClick}
+                      selectedFriend={friendData ? friendData.id : '0'}
+                      handleColorBoxClick={handleColorBoxClick}
+                      handleColorBoxHover={handleColorBoxHover}
+                      handleColorBoxHoverOut={handleColorBoxHoverOut}
+                    />
+                  </Broadcast>
+                </Div>
+                <Div background="#F7F9FA">
+                  <ChatBox
+                    checkForLastChat={checkForLastChat}
+                    currentFriend={this.handleFriendsListClick}
+                    friendData={friendData}
+                    backgroundColor={hoveredColor.color}
+                  />
+                </Div>
+              </Div>
+            )}
+          </ChatWallpaperColor>
         )}
-      </ChatWallpaperColor>
+      </ProfileAndFriendsList>
     );
   }
 }

@@ -35,17 +35,13 @@ const DecoratedMessagesLog = ({ msg, searchValue }) => {
   const afterSplit = msg.text.toLowerCase().split(searchValue.toLowerCase());
 
   const highlightedResult = afterSplit.reduce((acc, curr, index) => {
-    if (index % 2 === 0 && index) {
-      acc.push(
-        <HighlightWord key={index}>{searchValue}</HighlightWord>
-      );
-    } else if (index === 1) {
-      acc.push(
-        <HighlightWord key={index}>{searchValue}</HighlightWord>
-      );
-    }
-    return [...acc, curr]
-  }, [])
+    if (index % 2 === 0 && index)
+      acc.push(<HighlightWord key={index}>{searchValue}</HighlightWord>);
+    else if (index === 1)
+      acc.push(<HighlightWord key={index}>{searchValue}</HighlightWord>);
+
+    return [...acc, curr];
+  }, []);
 
   return <HighlightSentence>{highlightedResult}</HighlightSentence>;
 };
@@ -93,13 +89,13 @@ export default class SearchResults extends Component {
       >
         <Div borderBottom="1px solid rgba(0, 0, 0, 0.1)">
           <Header
-            text={'Search Messages'}
+            text="Search Messages"
             handleCancelClick={handleCancelClick}
           />
         </Div>
         <Div borderBottom="1px solid rgba(0, 0, 0, 0.1)">
           <SearchBar
-            placeholder={'Search...'}
+            placeholder="Search..."
             handleInputChange={this.handleInputChange}
             searchBarValue={value}
           />
