@@ -83,15 +83,19 @@ export default class ProfileSettings extends Component {
   handleChatWallpaperClick = _ => {
     this.setState({ currentView: 'chatWallpaper' });
   };
+
   handleNotificationsClick = _ => {
     this.setState({ currentView: 'notifications' });
   };
+
   handleBlockedContactsClick = _ => {
     this.setState({ currentView: 'blockedContacts' });
   };
+
   handleHelpClick = _ => {
     this.setState({ currentView: 'help' });
   };
+
   handleProfileInfoBackClick = _ => {
     this.setState({ currentView: 'settings' });
   };
@@ -120,6 +124,7 @@ export default class ProfileSettings extends Component {
   ];
 
   render() {
+    // FIXME Split Each Case into a different component
     switch (this.state.currentView) {
       case 'settings':
         const {

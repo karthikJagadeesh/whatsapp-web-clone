@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Div } from "glamorous";
-import { format } from "date-fns";
+import React, { Component } from 'react';
+import { Div } from 'glamorous';
+import { format } from 'date-fns';
 
-import { FriendsListItem } from "./friendsListItem";
-import { filteredList } from "../utils";
+import { FriendsListItem } from './friendsListItem';
+import { filteredList } from '../utils';
 
 export const FriendsList = ({
   handleFriendClickInList,
@@ -17,7 +17,7 @@ export const FriendsList = ({
         key: friend.id,
         id: friend.id,
         name: friend.name,
-        timestamp: format(new Date(friend.latest_timestamp), "h:mm A"),
+        timestamp: format(new Date(friend.timestamp), 'h:mm A'),
         picture: friend.picture,
         lastChat: friend.lastChat,
         handleFriendClickInList,
@@ -33,8 +33,8 @@ export const FriendsList = ({
   return (
     <Div
       css={{
-        overflowY: "scroll",
-        height: "100%"
+        overflowY: 'scroll',
+        height: '100%'
       }}
     >
       {searchBarValue ? <FilteredListOfFriends /> : <ListOfFriends />}

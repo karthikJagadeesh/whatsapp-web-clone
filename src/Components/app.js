@@ -1,6 +1,5 @@
-// I want to keep this ⤵️ for `now`, not willing to trade this for HMR! yet...
 import 'babel-polyfill';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Broadcast } from 'react-broadcast';
 import glamorous, { Div } from 'glamorous';
 import { format } from 'date-fns';
@@ -26,36 +25,29 @@ class ChatWallpaperColor extends Component {
     }
   };
 
-  handleColorBoxHover = (id, color) =>
+  handleColorBoxHover = (id, color) => {
     this.setState({ hoveredColor: { id, color } });
+  };
 
-  handleColorBoxHoverOut = _ =>
-    this.setState(prevState => ({
-      selectedColor: {
-        color: prevState.selectedColor.color,
-        id: prevState.selectedColor.id
-      },
+  handleColorBoxHoverOut = _ => {
+    this.setState({
       hoveredColor: {
-        id: 100,
-        color: prevState.selectedColor.color
+        id: null,
+        color: this.state.selectedColor.color
       }
-    }));
+    });
+  };
 
-  handleColorBoxClick = (id, color) =>
+  handleColorBoxClick = (id, color) => {
     this.setState({ selectedColor: { id, color } });
+  };
 
   render() {
-    const {
-      handleColorBoxClick,
-      handleColorBoxHover,
-      handleColorBoxHoverOut
-    } = this;
-
     return this.props.children({
       ...this.state,
-      handleColorBoxClick,
-      handleColorBoxHover,
-      handleColorBoxHoverOut
+      handleColorBoxClick: this.handleColorBoxClick,
+      handleColorBoxHover: this.handleColorBoxHover,
+      handleColorBoxHoverOut: this.handleColorBoxHoverOut
     });
   }
 }
@@ -69,7 +61,7 @@ class ProfileAndFriendsList extends Component {
     }
   };
 
-  friendsListOrderUpdater = ({ changed, updatedProfileData }) =>
+  friendsListOrderUpdater = ({ changed, updatedProfileData }) => {
     this.setState({
       profileData: updatedProfileData,
       recentChat: {
@@ -77,29 +69,18 @@ class ProfileAndFriendsList extends Component {
         changed
       }
     });
-
-  reOrderFriendsList = ({
-    profileData,
-    mostRecentIndex,
-    lastChat,
-    timestamp
-  }) => {
-    const updatedProfileDataFriends = profileData.friends.map(
-      (friend, index) => {
-        if (index === mostRecentIndex)
-          return { ...friend, lastChat, latest_timestamp: timestamp };
-        return friend;
-      }
-    );
-    return [
-      ...updatedProfileDataFriends.slice(mostRecentIndex, mostRecentIndex + 1),
-      ...updatedProfileDataFriends.slice(0, mostRecentIndex),
-      ...updatedProfileDataFriends.slice(mostRecentIndex + 1)
-    ];
   };
 
-  listWithNewlyAddedFriend = (lastChat, timestamp) =>
-    (async _ => {
+  // decides who in the active chat list - friend's list should be at the top
+  // FIXME This function still looks like garbage
+  checkForLastChat = (lastChat, timestamp) => {
+    const { recentChat, profileData } = this.state;
+    const { friendData } = this.props;
+    const friendIndex = profileData.friends.findIndex(
+      friend => friend.id === friendData.id
+    );
+
+    const listWithNewlyAddedFriend = async (lastChat, timestamp) => {
       const { profileData } = this.state;
       const { friendData } = this.props;
       try {
@@ -107,7 +88,7 @@ class ProfileAndFriendsList extends Component {
         const mostRecent = {
           ...allFriends.find(friend => friend.id === friendData.id),
           lastChat,
-          latest_timestamp: timestamp
+          timestamp: timestamp
         };
         return {
           ...profileData,
@@ -116,25 +97,42 @@ class ProfileAndFriendsList extends Component {
       } catch (error) {
         console.error(error);
       }
-    })();
+    };
 
-  // decides who in the active chat list - friend's list should be at the top
-  checkForLastChat = (lastChat, timestamp) => {
-    const { recentChat, profileData } = this.state;
-    const { friendData } = this.props;
-    const mostRecentIndex = profileData.friends.findIndex(
-      friend => friend.id === friendData.id
-    );
+    const moveTheFriendToTheTopOfList = (
+      profileDatafriends,
+      friendIndex,
+      lastChat,
+      timestamp
+    ) => {
+      // FIXME Do you need to iterate over the entire array to just update on thing? Just take that element by index and created the updated record
+      // FIXME This name is utterly useless. You don't even need to use it.
+      const updatedProfileDataFriends = profileDatafriends.map(
+        (friend, index) => {
+          if (index === friendIndex)
+            // FIXME Why do you have the name timestamp. You will only save timestamp and you don't have anything called previous timestamps.
+            // So it should only be called timestamp.
+            return { ...friend, lastChat, timestamp: timestamp };
+          return friend;
+        }
+      );
+      return [
+        updatedProfileDataFriends[friendIndex],
+        ...updatedProfileDataFriends.slice(0, friendIndex),
+        ...updatedProfileDataFriends.slice(friendIndex + 1)
+      ];
+    };
+
     /* If someone down the list(other than the first person) had the last
          interaction, then pull him to the top of the active chat list OR
          if the friend is not in the active list, add him to the top */
     if (recentChat.id !== friendData.id) {
       /* If the recent interaction was with someone not already in the current
            active list i.e with someone from new chat/all friends list */
-      if (mostRecentIndex === -1) {
+      if (friendIndex === -1) {
         (async _ => {
           try {
-            const updatedProfileData = await this.listWithNewlyAddedFriend(
+            const updatedProfileData = await listWithNewlyAddedFriend(
               lastChat,
               timestamp
             );
@@ -148,47 +146,34 @@ class ProfileAndFriendsList extends Component {
         })();
       } else {
         // rearrange the list to put the person on the top
-        const paramsForReOrdering = {
-          profileData,
-          mostRecentIndex,
+        const rearrangedFriendsList = moveTheFriendToTheTopOfList(
+          profileData.friends,
+          friendIndex,
           lastChat,
           timestamp
-        };
-        const rearrangedFriendsList = this.reOrderFriendsList(
-          paramsForReOrdering
         );
         const updatedProfileData = {
           ...profileData,
           friends: rearrangedFriendsList
         };
 
-        this.friendsListOrderUpdater({
-          changed: true,
-          updatedProfileData
-        });
+        this.friendsListOrderUpdater({ changed: true, updatedProfileData });
       }
     } else {
       /* If the recent interation was with the same person who is currenty
            on the top, leave as is, just update {last message} in the active
            friends list */
+      // Will FIX this
       const updatedProfileDataFriends = profileData.friends.map(friend => {
-        if (friend.id === friendData.id)
-          return {
-            ...friend,
-            lastChat: lastChat,
-            latest_timestamp: timestamp
-          };
-
-        return friend;
+        return friend.id === friendData.id
+          ? { ...friend, lastChat, timestamp }
+          : friend;
       });
       const updatedProfileData = {
         ...profileData,
         friends: updatedProfileDataFriends
       };
-      this.friendsListOrderUpdater({
-        changed: false,
-        updatedProfileData
-      });
+      this.friendsListOrderUpdater({ changed: false, updatedProfileData });
     }
   };
 
@@ -208,10 +193,9 @@ class ProfileAndFriendsList extends Component {
   }
 
   render() {
-    const { checkForLastChat } = this;
     return this.props.children({
       ...this.state,
-      checkForLastChat
+      checkForLastChat: this.checkForLastChat
     });
   }
 }
@@ -232,59 +216,63 @@ class FriendData extends Component {
   };
 
   render() {
-    const { handleFriendClickInList } = this;
-    return this.props.children({ ...this.state, handleFriendClickInList });
+    return this.props.children({
+      ...this.state,
+      handleFriendClickInList: this.handleFriendClickInList
+    });
   }
 }
 
 const App = _ => {
-  const AppWrapper = glamorous.div({
+  const AppLayout = glamorous.div({
     display: 'grid',
     gridTemplateColumns: '3fr 7fr',
-    height: '100%',
     boxShadow: '0px 0px 8px #c4c4c4'
   });
+
   return (
-    <FriendData>
-      {({ friendData, handleFriendClickInList }) => (
-        <ProfileAndFriendsList friendData={friendData}>
-          {({ checkForLastChat, profileData, recentChat }) => (
-            <ChatWallpaperColor>
-              {({
-                hoveredColor,
-                selectedColor,
-                handleColorBoxClick,
-                handleColorBoxHover,
-                handleColorBoxHoverOut
-              }) => (
-                <AppWrapper>
-                  <Broadcast
-                    channel="profile"
-                    value={{ friendData, profileData, recentChat }}
-                  >
-                    <Profile
-                      hoveredColor={hoveredColor}
-                      selectedColor={selectedColor}
-                      handleFriendClickInList={handleFriendClickInList}
-                      selectedFriend={friendData ? friendData.id : '0'}
-                      handleColorBoxClick={handleColorBoxClick}
-                      handleColorBoxHover={handleColorBoxHover}
-                      handleColorBoxHoverOut={handleColorBoxHoverOut}
+    <AppLayout>
+      <FriendData>
+        {({ friendData, handleFriendClickInList }) => (
+          <ProfileAndFriendsList friendData={friendData}>
+            {({ checkForLastChat, profileData, recentChat }) => (
+              <ChatWallpaperColor>
+                {({
+                  hoveredColor,
+                  selectedColor,
+                  handleColorBoxClick,
+                  handleColorBoxHover,
+                  handleColorBoxHoverOut
+                }) => (
+                  <Fragment>
+                    <Broadcast
+                      channel="profile"
+                      value={{ friendData, profileData, recentChat }}
+                    >
+                      <Profile
+                        hoveredColor={hoveredColor}
+                        selectedColor={selectedColor}
+                        handleFriendClickInList={handleFriendClickInList}
+                        selectedFriend={friendData ? friendData.id : '0'}
+                        handleColorBoxClick={handleColorBoxClick}
+                        handleColorBoxHover={handleColorBoxHover}
+                        handleColorBoxHoverOut={handleColorBoxHoverOut}
+                      />
+                    </Broadcast>
+                    <ChatBox
+                      checkForLastChat={checkForLastChat}
+                      currentFriend={handleFriendClickInList}
+                      friendData={friendData}
+                      backgroundColor={hoveredColor.color}
                     />
-                  </Broadcast>
-                  <ChatBox
-                    checkForLastChat={checkForLastChat}
-                    currentFriend={handleFriendClickInList}
-                    friendData={friendData}
-                    backgroundColor={hoveredColor.color}
-                  />
-                </AppWrapper>
-              )}
-            </ChatWallpaperColor>
-          )}
-        </ProfileAndFriendsList>
-      )}
-    </FriendData>
+                  </Fragment>
+                )}
+              </ChatWallpaperColor>
+            )}
+          </ProfileAndFriendsList>
+        )}
+      </FriendData>
+    </AppLayout>
   );
 };
 

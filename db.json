@@ -9,7 +9,7 @@
         "id": 2,
         "name": "Alex",
         "picture": "https://image.ibb.co/cA2oOb/alex_1.jpg",
-        "latest_timestamp": "2018-02-21T07:54:18.290Z",
+        "timestamp": "2018-02-21T07:54:18.290Z",
         "lastChat":
           "Or maybe not, let me check logistics and call you. Give me sometime"
       },
@@ -17,91 +17,91 @@
         "id": 3,
         "name": "Bob",
         "picture": "https://image.ibb.co/gSyTOb/bob_1.jpg",
-        "latest_timestamp": "2018-02-21T07:55:01.951Z",
+        "timestamp": "2018-02-21T07:55:01.951Z",
         "lastChat": "Alright"
       },
       {
         "id": 4,
         "name": "Luke",
         "picture": "https://image.ibb.co/jOzeUG/luke_1.jpg",
-        "latest_timestamp": "2018-02-21T07:55:15.238Z",
+        "timestamp": "2018-02-21T07:55:15.238Z",
         "lastChat": "I will look into it"
       },
       {
         "id": 5,
         "name": "Bane",
         "picture": "https://image.ibb.co/cBZPww/bane_1.jpg",
-        "latest_timestamp": "2018-02-21T07:55:26.445Z",
+        "timestamp": "2018-02-21T07:55:26.445Z",
         "lastChat": "Exactly my point!"
       },
       {
         "id": 6,
         "name": "Darth Vader",
         "picture": "https://image.ibb.co/j4Ov3b/darth_vader_1.png",
-        "latest_timestamp": "2018-02-21T07:55:41.949Z",
+        "timestamp": "2018-02-21T07:55:41.949Z",
         "lastChat": "Not quite the same."
       },
       {
         "id": 7,
         "name": "Zach",
         "picture": "https://image.ibb.co/b4kxGw/zach_1.jpg",
-        "latest_timestamp": "2018-02-21T08:14:00.565Z",
+        "timestamp": "2018-02-21T08:14:00.565Z",
         "lastChat": "I thought that the event was over long ago"
       },
       {
         "id": 8,
         "name": "Katie",
         "picture": "https://image.ibb.co/eLVWbw/katie_1.jpg",
-        "latest_timestamp": "2018-02-21T08:14:22.864Z",
+        "timestamp": "2018-02-21T08:14:22.864Z",
         "lastChat": "nothing"
       },
       {
         "id": 9,
         "name": "Chloe",
         "picture": "https://image.ibb.co/ncAa3b/chloe_1.jpg",
-        "latest_timestamp": "2018-02-21T08:14:32.871Z",
+        "timestamp": "2018-02-21T08:14:32.871Z",
         "lastChat": "sure i'll take it from you"
       },
       {
         "id": 10,
         "name": "Kennith",
         "picture": "https://image.ibb.co/fQKPww/kennith_1.jpg",
-        "latest_timestamp": "2018-02-21T08:14:42.340Z",
+        "timestamp": "2018-02-21T08:14:42.340Z",
         "lastChat": "Take care, bye"
       },
       {
         "id": 11,
         "name": "Tara",
         "picture": "https://image.ibb.co/dM6hib/tara_1.jpg",
-        "latest_timestamp": "2018-02-21T08:14:51.596Z",
+        "timestamp": "2018-02-21T08:14:51.596Z",
         "lastChat": "Not today"
       },
       {
         "id": 12,
         "name": "Gary",
         "picture": "https://image.ibb.co/gsF8Ob/gary_1.jpg",
-        "latest_timestamp": "2018-02-21T08:15:04.656Z",
+        "timestamp": "2018-02-21T08:15:04.656Z",
         "lastChat": "Whatever works for you!"
       },
       {
         "id": 13,
         "name": "Zoey",
         "picture": "https://image.ibb.co/nd0Wbw/zoey_1.jpg",
-        "latest_timestamp": "2017-12-21T07:56:10.627Z",
+        "timestamp": "2017-12-21T07:56:10.627Z",
         "lastChat": "Will get in touch"
       },
       {
         "id": 14,
         "name": "Ash",
         "picture": "https://image.ibb.co/iasYpG/ash_1.jpg",
-        "latest_timestamp": "2017-12-06T07:56:41.556Z",
+        "timestamp": "2017-12-06T07:56:41.556Z",
         "lastChat": "Ok"
       },
       {
         "id": 15,
         "name": "Zen",
         "picture": "https://image.ibb.co/eeqWbw/zen_1.jpg",
-        "latest_timestamp": "2018-11-19T07:57:34.716Z",
+        "timestamp": "2018-11-19T07:57:34.716Z",
         "lastChat": "Lol"
       }
     ]
