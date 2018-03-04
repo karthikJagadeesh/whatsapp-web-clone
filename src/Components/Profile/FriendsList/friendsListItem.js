@@ -63,7 +63,7 @@ export const FriendsListItem = ({ picture: picture = '', ...props }) => {
     <FriendsListItemBox
       data-id={props.id}
       onClick={({ currentTarget }) =>
-        props.handleFriendsListClick(currentTarget.dataset.id)
+        props.handleFriendClickInList(currentTarget.dataset.id)
       }
     >
       <Div

@@ -39,7 +39,7 @@ export default class Profile extends Component {
   // FIXME Don't pass events. Pass just enough info for other handlers. Don't surface implementation details all
   // the way till the top of the app like this.
   handleNewChatListItemClick = id => {
-    this.props.handleFriendsListClick(id);
+    this.props.handleFriendClickInList(id);
     this.handleProfileInfoBackClick();
   };
 
@@ -50,7 +50,7 @@ export default class Profile extends Component {
       hoveredColor,
       profileData,
       selectedFriend,
-      handleFriendsListClick,
+      handleFriendClickInList,
       handleColorBoxClick,
       handleColorBoxHover,
       handleColorBoxHoverOut
@@ -61,7 +61,7 @@ export default class Profile extends Component {
           <ProfileNewChat
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
             handleNewGroupClick={this.handleNewGroupClick}
-            handleFriendsListClick={this.handleNewChatListItemClick}
+            handleFriendClickInList={this.handleNewChatListItemClick}
           />
         );
 
@@ -101,7 +101,7 @@ export default class Profile extends Component {
             handleColorBoxClick={handleColorBoxClick}
             handleColorBoxHover={handleColorBoxHover}
             handleColorBoxHoverOut={handleColorBoxHoverOut}
-            handlePictureNameClick={this.handlePictureClick}
+            handlePictureNameClick={_ => this.changeCurrentView('profileInfo')}
             handleProfileInfoBackClick={this.handleProfileInfoBackClick}
           />
         );
@@ -145,7 +145,7 @@ export default class Profile extends Component {
                     selectedFriend={selectedFriend}
                     searchBarValue={searchBarValue}
                     friendsList={profileData.friends}
-                    handleFriendsListClick={handleFriendsListClick}
+                    handleFriendClickInList={handleFriendClickInList}
                   />
                 )}
               </Subscriber>

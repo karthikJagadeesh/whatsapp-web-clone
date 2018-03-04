@@ -2,7 +2,7 @@
 import 'babel-polyfill';
 import React, { Component } from 'react';
 import { Broadcast } from 'react-broadcast';
-import { Div } from 'glamorous';
+import glamorous, { Div } from 'glamorous';
 import { format } from 'date-fns';
 
 import Profile from './Profile';
@@ -216,10 +216,10 @@ class ProfileAndFriendsList extends Component {
   }
 }
 
-export default class App extends Component {
+class FriendData extends Component {
   state = { friendData: null };
 
-  handleFriendsListClick = id => {
+  handleFriendClickInList = id => {
     (async _ => {
       const url = `${friendDataUrl}/${id}`;
       try {
@@ -232,56 +232,60 @@ export default class App extends Component {
   };
 
   render() {
-    const { friendData } = this.state;
+    const { handleFriendClickInList } = this;
+    return this.props.children({ ...this.state, handleFriendClickInList });
+  }
+}
 
-    return (
-      <ProfileAndFriendsList friendData={friendData}>
-        {({ checkForLastChat, profileData, recentChat }) => (
-          <ChatWallpaperColor>
-            {({
-              hoveredColor,
-              selectedColor,
-              handleColorBoxClick,
-              handleColorBoxHover,
-              handleColorBoxHoverOut
-            }) => (
-              <Div
-                css={{
-                  display: 'grid',
-                  gridTemplateColumns: '3fr 7fr',
-                  height: '100%',
-                  boxShadow: '0px 0px 8px #c4c4c4'
-                }}
-              >
-                <Div background="#eee">
+const App = _ => {
+  const AppWrapper = glamorous.div({
+    display: 'grid',
+    gridTemplateColumns: '3fr 7fr',
+    height: '100%',
+    boxShadow: '0px 0px 8px #c4c4c4'
+  });
+  return (
+    <FriendData>
+      {({ friendData, handleFriendClickInList }) => (
+        <ProfileAndFriendsList friendData={friendData}>
+          {({ checkForLastChat, profileData, recentChat }) => (
+            <ChatWallpaperColor>
+              {({
+                hoveredColor,
+                selectedColor,
+                handleColorBoxClick,
+                handleColorBoxHover,
+                handleColorBoxHoverOut
+              }) => (
+                <AppWrapper>
                   <Broadcast
                     channel="profile"
-                    value={{ ...this.state, profileData, recentChat }}
+                    value={{ friendData, profileData, recentChat }}
                   >
                     <Profile
                       hoveredColor={hoveredColor}
                       selectedColor={selectedColor}
-                      handleFriendsListClick={this.handleFriendsListClick}
+                      handleFriendClickInList={handleFriendClickInList}
                       selectedFriend={friendData ? friendData.id : '0'}
                       handleColorBoxClick={handleColorBoxClick}
                       handleColorBoxHover={handleColorBoxHover}
                       handleColorBoxHoverOut={handleColorBoxHoverOut}
                     />
                   </Broadcast>
-                </Div>
-                <Div background="#F7F9FA">
                   <ChatBox
                     checkForLastChat={checkForLastChat}
-                    currentFriend={this.handleFriendsListClick}
+                    currentFriend={handleFriendClickInList}
                     friendData={friendData}
                     backgroundColor={hoveredColor.color}
                   />
-                </Div>
-              </Div>
-            )}
-          </ChatWallpaperColor>
-        )}
-      </ProfileAndFriendsList>
-    );
-  }
-}
+                </AppWrapper>
+              )}
+            </ChatWallpaperColor>
+          )}
+        </ProfileAndFriendsList>
+      )}
+    </FriendData>
+  );
+};
+
+export default App;

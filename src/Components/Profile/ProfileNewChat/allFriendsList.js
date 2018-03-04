@@ -7,7 +7,7 @@ import { filteredList, sortedList } from "../utils";
 
 export const AllFriendsList = ({
   handleNewGroupClick,
-  handleFriendsListClick,
+  handleFriendClickInList,
   searchBarValue,
   selectedFriend,
   allFriendsList = []
@@ -15,7 +15,7 @@ export const AllFriendsList = ({
   const listOfAllFriendsRaw = allFriendsList.map(friend => {
     const extra = {
       key: friend.id,
-      handleFriendsListClick,
+      handleFriendClickInList,
       type: "allFriendsList"
     };
     return { ...friend, ...extra };
@@ -33,7 +33,7 @@ export const AllFriendsList = ({
         name: "New group",
         type: "newGroup",
         icon: MdGroupAdd,
-        handleFriendsListClick: handleNewGroupClick
+        handleFriendClickInList: handleNewGroupClick
       });
     } else {
       const name = friend.name[0].toUpperCase();

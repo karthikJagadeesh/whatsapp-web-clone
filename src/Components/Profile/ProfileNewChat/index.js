@@ -33,7 +33,7 @@ export default class ProfileNewChat extends Component {
     const {
       handleProfileInfoBackClick,
       handleNewGroupClick,
-      handleFriendsListClick
+      handleFriendClickInList
     } = this.props;
     const { allFriendsList, searchBarValue } = this.state;
     return (
@@ -64,7 +64,7 @@ export default class ProfileNewChat extends Component {
             allFriendsList={allFriendsList}
             searchBarValue={searchBarValue}
             handleNewGroupClick={handleNewGroupClick}
-            handleFriendsListClick={handleFriendsListClick}
+            handleFriendClickInList={handleFriendClickInList}
           />
         </Div>
       </Div>
