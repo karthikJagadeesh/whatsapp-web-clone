@@ -259,6 +259,8 @@ export default class App extends Component {
         {({ checkForLastChat, profileData, recentChat }) => (
           <ChatWallpaperColor>
             {({
+              // FIXME Do you need to destructure them here at all?? Just keep it as single object and pass
+              // hoveredColor as obj.hoveredColor.color to ChatBox
               hoveredColor,
               selectedColor,
               handleColorBoxClick,
