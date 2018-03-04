@@ -30,12 +30,15 @@ class ChatWallpaperColor extends Component {
     this.setState({ hoveredColor: { id, color } });
 
   handleColorBoxHoverOut = _ =>
+    // FIXME state is good enough. Because it's the only state that exists. You don't have access two states.
     this.setState(prevState => ({
+      // FIXME Why do you need to do this at all? You are simply over-riding with same values.
       selectedColor: {
         color: prevState.selectedColor.color,
         id: prevState.selectedColor.id
       },
       hoveredColor: {
+        // FIXME Why 100? Shouldn't it be null?
         id: 100,
         color: prevState.selectedColor.color
       }
@@ -45,6 +48,7 @@ class ChatWallpaperColor extends Component {
     this.setState({ selectedColor: { id, color } });
 
   render() {
+    // FIXME Remove these unnecessary destructuring assignments. They doesn't bring any new clartity to code.
     const {
       handleColorBoxClick,
       handleColorBoxHover,
@@ -69,6 +73,7 @@ class ProfileAndFriendsList extends Component {
     }
   };
 
+  // FIXME Add paranthesis everywhere around class field intializers
   friendsListOrderUpdater = ({ changed, updatedProfileData }) =>
     this.setState({
       profileData: updatedProfileData,
@@ -79,7 +84,7 @@ class ProfileAndFriendsList extends Component {
     });
 
   // FIXME Why reorder the name? It doesn't tell anything about how you are reordering. Think of better name
-  // FIXME This doesn't need to be call method.
+  // FIXME This doesn't need to be method.
   reOrderFriendsList = ({
     // FIXME You are only using profileData.friends. So Why are you passing the rest.
     profileData,
@@ -92,6 +97,7 @@ class ProfileAndFriendsList extends Component {
     // FIXME This name is utterly useless. You don't even need to use it.
     const updatedProfileDataFriends = profileData.friends.map(
       (friend, index) => {
+        // FIXME You should usually write this as a ternary operator
         if (index === mostRecentIndex)
           // FIXME Why do you have the name latest_timestamp. You will only save latest_timestamp and you don't have anything called previous timestamps.
           // So it should only be called timestamp.
@@ -107,6 +113,8 @@ class ProfileAndFriendsList extends Component {
     ];
   };
 
+  // FIXME WHY are you using IIFE here?
+  // Why is this `listWithNewlyAddedFriend = async (lastChat, timestamp) => {}` not enough
   listWithNewlyAddedFriend = (lastChat, timestamp) =>
     (async _ => {
       const { profileData } = this.state;
