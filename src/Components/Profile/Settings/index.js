@@ -80,6 +80,7 @@ export default class ProfileSettings extends Component {
     currentView: 'settings'
   };
 
+  // FIXME Leave a line between methods.
   handleChatWallpaperClick = _ => {
     this.setState({ currentView: 'chatWallpaper' });
   };
@@ -120,6 +121,7 @@ export default class ProfileSettings extends Component {
   ];
 
   render() {
+    // FIXME Split Each Case into a different component
     switch (this.state.currentView) {
       case 'settings':
         const {
