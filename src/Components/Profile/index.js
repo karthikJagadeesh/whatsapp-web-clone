@@ -36,8 +36,7 @@ export default class Profile extends Component {
       return { currentView: updatedCurrentView };
     });
   };
-  // FIXME Don't pass events. Pass just enough info for other handlers. Don't surface implementation details all
-  // the way till the top of the app like this.
+
   handleNewChatListItemClick = id => {
     this.props.handleFriendClickInList(id);
     this.handleProfileInfoBackClick();

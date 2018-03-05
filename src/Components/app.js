@@ -237,33 +237,33 @@ const App = _ => {
           <ProfileAndFriendsList friendData={friendData}>
             {({ checkForLastChat, profileData, recentChat }) => (
               <ChatWallpaperColor>
-                {({
-                  hoveredColor,
-                  selectedColor,
-                  handleColorBoxClick,
-                  handleColorBoxHover,
-                  handleColorBoxHoverOut
-                }) => (
+                {chatWallpaperProps => (
                   <Fragment>
                     <Broadcast
                       channel="profile"
                       value={{ friendData, profileData, recentChat }}
                     >
                       <Profile
-                        hoveredColor={hoveredColor}
-                        selectedColor={selectedColor}
+                        hoveredColor={chatWallpaperProps.hoveredColor}
+                        selectedColor={chatWallpaperProps.selectedColor}
                         handleFriendClickInList={handleFriendClickInList}
                         selectedFriend={friendData ? friendData.id : '0'}
-                        handleColorBoxClick={handleColorBoxClick}
-                        handleColorBoxHover={handleColorBoxHover}
-                        handleColorBoxHoverOut={handleColorBoxHoverOut}
+                        handleColorBoxClick={
+                          chatWallpaperProps.handleColorBoxClick
+                        }
+                        handleColorBoxHover={
+                          chatWallpaperProps.handleColorBoxHover
+                        }
+                        handleColorBoxHoverOut={
+                          chatWallpaperProps.handleColorBoxHoverOut
+                        }
                       />
                     </Broadcast>
                     <ChatBox
                       checkForLastChat={checkForLastChat}
                       currentFriend={handleFriendClickInList}
                       friendData={friendData}
-                      backgroundColor={hoveredColor.color}
+                      backgroundColor={chatWallpaperProps.hoveredColor.color}
                     />
                   </Fragment>
                 )}

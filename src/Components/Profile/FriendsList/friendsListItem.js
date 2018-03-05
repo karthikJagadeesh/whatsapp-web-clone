@@ -26,36 +26,37 @@ const NameAndLastChat = ({ name, lastChat }) => {
   );
 };
 
-export const FriendsListItem = ({ picture: picture = '', ...props }) => {
-  // FIXME Move this outside and glamorous offers a way to change style based on props.
-  // Lookup that API
-  const FriendsListItemBox = glamorous.div(
-    {
-      borderBottom: '1px solid rgba(0, 0, 0, 0.05)',
-      background: '#fff',
-      wordWrap: 'break-word',
-      display: 'grid',
-      height: '80px',
-      zIndex: '10',
-      gridTemplateColumns: '20% 55% 25%',
-      ':hover': {
-        background: '#F4F5F5',
-        cursor: 'pointer'
-      }
-    },
-    _ => {
-      if (props.type === 'nameGroup') return { pointerEvents: 'none' };
-      if (props.selectedFriend === props.id)
-        return {
-          background: '#e9ebeb',
-          ':hover': {
-            cursor: 'pointer'
-          }
-        };
-    }
-  );
 
-  // FIXME Do you need onClickCapture? If so explain. Also Read about label html element
+
+export const FriendsListItem = ({ picture: picture = '', ...props }) => {
+  // FIXME label html element
+  // FIXME glamorous offers a way to change style based on props.
+// Lookup that API
+const FriendsListItemBox = glamorous.div(
+  {
+    borderBottom: '1px solid rgba(0, 0, 0, 0.05)',
+    background: '#fff',
+    wordWrap: 'break-word',
+    display: 'grid',
+    height: '80px',
+    zIndex: '10',
+    gridTemplateColumns: '20% 55% 25%',
+    ':hover': {
+      background: '#F4F5F5',
+      cursor: 'pointer'
+    }
+  },
+  _ => {
+    if (props.type === 'nameGroup') return { pointerEvents: 'none' };
+    if (props.selectedFriend === props.id)
+      return {
+        background: '#e9ebeb',
+        ':hover': {
+          cursor: 'pointer'
+        }
+      };
+  }
+);
 
   // FIXME Break this down into smaller components and give them meaningful names.
   // This is just a wall of text (Line 63 -153) that's ust hard to read.
@@ -63,10 +64,8 @@ export const FriendsListItem = ({ picture: picture = '', ...props }) => {
   // FIXME You can simple pass props.id directly to handler why do you need the data-id indirection??
   return (
     <FriendsListItemBox
-      data-id={props.id}
-      onClick={({ currentTarget }) =>
-        props.handleFriendClickInList(currentTarget.dataset.id)
-      }
+      // data-id={props.id}
+      onClick={({ currentTarget }) => props.handleFriendClickInList(props.id)}
     >
       <Div
         css={{
