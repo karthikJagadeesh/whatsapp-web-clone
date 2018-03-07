@@ -7,7 +7,9 @@
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.2",
     "date-fns": "^1.29.0",
+    "express": "^4.16.2",
     "glamor": "^2.20.40",
     "glamorous": "^4.11.2",
     "prop-types": "^15.6.0",
@@ -36,9 +38,9 @@
     "webpack-stylish": "^0.1.5"
   },
   "scripts": {
-    "start":
-      "concurrently --kill-others \"yarn start-server\" \"webpack-dev-server --inline --hot\"",
-    "start-server": "json-server --watch db.json --port 7070",
+    "start": "concurrently --kill-others \"yarn start-dev-server\" \"webpack-dev-server --inline --hot\"",
+    "start-dev-server": "json-server --watch db.json --port 7070",
+    "start-server": "node server.js",
     "build": "webpack -p"
   }
 }
