@@ -2,61 +2,56 @@ import React, { Component } from 'react';
 import glamorous, { Div, Label, Img, P, Span } from 'glamorous';
 
 const NameAndLastChat = ({ name, lastChat }) => {
+  const LastChat = glamorous.p({
+    width: '260px',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    color: 'rgba(0, 0, 0, 0.6)',
+    fontSize: '0.9em',
+    margin: '0px'
+  });
   return (
     <Div css={{ paddingLeft: '10px' }}>
       <Div>
         <Label>{name}</Label>
       </Div>
       <Div>
-        <P
-          css={{
-            width: '260px',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            color: 'rgba(0, 0, 0, 0.6)',
-            fontSize: '0.9em',
-            margin: '0px'
-          }}
-        >
-          {lastChat}
-        </P>
+        <LastChat>{lastChat}</LastChat>
       </Div>
     </Div>
   );
 };
 
-
-
 export const FriendsListItem = ({ picture: picture = '', ...props }) => {
   // FIXME label html element
   // FIXME glamorous offers a way to change style based on props.
-// Lookup that API
-const FriendsListItemBox = glamorous.div(
-  {
-    borderBottom: '1px solid rgba(0, 0, 0, 0.05)',
-    background: '#fff',
-    wordWrap: 'break-word',
-    display: 'grid',
-    height: '80px',
-    zIndex: '10',
-    gridTemplateColumns: '20% 55% 25%',
-    ':hover': {
-      background: '#F4F5F5',
-      cursor: 'pointer'
+  // Lookup that API
+  const FriendsListItemBox = glamorous.div(
+    {
+      borderBottom: '1px solid rgba(0, 0, 0, 0.05)',
+      background: '#fff',
+      wordWrap: 'break-word',
+      display: 'grid',
+      height: '80px',
+      zIndex: '10',
+      gridTemplateColumns: '20% 55% 25%',
+      ':hover': {
+        background: '#F4F5F5',
+        cursor: 'pointer'
+      }
+    },
+    _ => {
+      if (props.type === 'nameGroup') return { pointerEvents: 'none' };
+      if (props.selectedFriend === props.id)
+        return {
+          background: '#e9ebeb',
+          ':hover': {
+            cursor: 'pointer'
+          }
+        };
     }
-  },
-  _ => {
-    if (props.type === 'nameGroup') return { pointerEvents: 'none' };
-    if (props.selectedFriend === props.id)
-      return {
-        background: '#e9ebeb',
-        ':hover': {
-          cursor: 'pointer'
-        }
-      };
-  }
-);
+  );
 
   // FIXME Break this down into smaller components and give them meaningful names.
   // This is just a wall of text (Line 63 -153) that's ust hard to read.
@@ -105,8 +100,8 @@ const FriendsListItemBox = glamorous.div(
           <Img
             css={{
               borderRadius: '50%',
-              width: '70%',
-              height: '70%',
+              width: '50px',
+              height: '50px',
               alignSelf: 'center',
               justifySelf: 'center'
             }}

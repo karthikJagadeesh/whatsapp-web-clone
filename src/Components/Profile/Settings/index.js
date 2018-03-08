@@ -46,8 +46,8 @@ const PictureAndName = ({
           css={{
             justifySelf: 'center',
             alignSelf: 'center',
-            height: '60%',
-            width: '60%',
+            height: '80px',
+            width: '80px',
             borderRadius: '50%'
           }}
           src={picturePath}

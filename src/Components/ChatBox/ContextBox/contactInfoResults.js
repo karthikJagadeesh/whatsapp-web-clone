@@ -1,32 +1,32 @@
-import React, { Component } from "react";
-import { Div, Img, Label, Span, Input } from "glamorous";
+import React, { Component } from 'react';
+import { Div, Img, Label, Span, Input } from 'glamorous';
 
-import FaAngleRight from "react-icons/lib/fa/angle-right";
-import MdBlock from "react-icons/lib/md/block";
-import MdThumbDown from "react-icons/lib/md/thumb-down";
-import MdDelete from "react-icons/lib/md/delete";
+import FaAngleRight from 'react-icons/lib/fa/angle-right';
+import MdBlock from 'react-icons/lib/md/block';
+import MdThumbDown from 'react-icons/lib/md/thumb-down';
+import MdDelete from 'react-icons/lib/md/delete';
 
 const Picture = ({ picturePath, name, style }) => {
   const imageStyleWithName = {
-    justifySelf: "center",
-    alignSelf: "center",
-    width: "50%",
-    height: "80%",
-    borderRadius: "50%",
-    ":hover": {
-      cursor: "pointer"
+    justifySelf: 'center',
+    alignSelf: 'center',
+    width: '200px',
+    height: '200px',
+    borderRadius: '50%',
+    ':hover': {
+      cursor: 'pointer'
     }
   };
   const imageStyleWithoutName = {
-    ...imageStyleWithName,
-    width: "55%"
+    ...imageStyleWithName
+    // width: '55%'
   };
 
   return (
     <Div
       css={{
-        display: "grid",
-        gridTemplateRows: "1fr",
+        display: 'grid',
+        gridTemplateRows: '1fr',
         ...style
       }}
     >
@@ -42,16 +42,16 @@ const Name = ({ name }) => {
   return (
     <Div
       css={{
-        display: "grid",
-        gridTemplateRows: "1fr",
-        width: "40%"
+        display: 'grid',
+        gridTemplateRows: '1fr',
+        width: '40%'
       }}
     >
       <Label
         css={{
-          justifySelf: "center",
-          alignSelf: "start",
-          fontSize: "1.2em"
+          justifySelf: 'center',
+          alignSelf: 'start',
+          fontSize: '1.2em'
         }}
       >
         {name}
@@ -62,17 +62,17 @@ const Name = ({ name }) => {
 
 export const ProfilePictureCard = ({ picturePath, name, style = {} }) => {
   const wrapperStyleWithName = {
-    height: "320px",
-    textAlign: "center",
-    background: "#FFF",
-    display: "grid",
-    gridTemplateRows: "8fr 2fr",
-    boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.1)"
+    height: '320px',
+    textAlign: 'center',
+    background: '#FFF',
+    display: 'grid',
+    gridTemplateRows: '8fr 2fr',
+    boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.1)'
   };
   const wrapperStyleWithoutName = {
     ...wrapperStyleWithName,
-    gridTemplateRows: "1fr",
-    height: "260px"
+    gridTemplateRows: '1fr',
+    height: '260px'
   };
 
   return (
@@ -87,30 +87,30 @@ const Title = _ => {
   return (
     <Div
       css={{
-        display: "grid",
-        width: "100%",
-        gridTemplateColumns: "8fr 2fr",
-        ":hover": {
-          cursor: "pointer"
+        display: 'grid',
+        width: '100%',
+        gridTemplateColumns: '8fr 2fr',
+        ':hover': {
+          cursor: 'pointer'
         }
       }}
     >
       <Div
         css={{
-          alignSelf: "center",
-          justifySelf: "center",
-          width: "80%",
-          color: "#128C7E",
-          fontSize: "0.9em",
-          fontWeight: "100"
+          alignSelf: 'center',
+          justifySelf: 'center',
+          width: '80%',
+          color: '#128C7E',
+          fontSize: '0.9em',
+          fontWeight: '100'
         }}
       >
         <Span>Media, Links and Docs</Span>
       </Div>
       <Div
         css={{
-          alignSelf: "center",
-          justifySelf: "center"
+          alignSelf: 'center',
+          justifySelf: 'center'
         }}
       >
         <FaAngleRight size={25} color="#666" />
@@ -123,12 +123,12 @@ const MediaLinksDocs = _ => {
   return (
     <Div
       css={{
-        height: "180px",
-        background: "#FFF",
-        display: "grid",
-        gridTemplateRows: "3fr 7fr",
-        marginTop: "1em",
-        boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.1)"
+        height: '180px',
+        background: '#FFF',
+        display: 'grid',
+        gridTemplateRows: '3fr 7fr',
+        marginTop: '1em',
+        boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.1)'
       }}
     >
       <Title />
@@ -141,21 +141,21 @@ const Mute = _ => {
   return (
     <Div
       css={{
-        display: "grid",
-        gridTemplateColumns: "8fr 2fr",
-        width: "100%",
-        ":hover": {
-          cursor: "pointer"
+        display: 'grid',
+        gridTemplateColumns: '8fr 2fr',
+        width: '100%',
+        ':hover': {
+          cursor: 'pointer'
         },
-        borderBottom: "1px solid rgba(0, 0, 0, 0.06)"
+        borderBottom: '1px solid rgba(0, 0, 0, 0.06)'
       }}
     >
-      <Span css={{ alignSelf: "center", width: "80%", justifySelf: "center" }}>
+      <Span css={{ alignSelf: 'center', width: '80%', justifySelf: 'center' }}>
         Mute
       </Span>
       <Input
         type="checkbox"
-        css={{ alignSelf: "center", justifySelf: "center" }}
+        css={{ alignSelf: 'center', justifySelf: 'center' }}
       />
     </Div>
   );
@@ -165,19 +165,19 @@ const Starred = _ => {
   return (
     <Div
       css={{
-        display: "grid",
-        gridTemplateColumns: "8fr 2fr",
-        width: "100%",
-        ":hover": {
-          cursor: "pointer"
+        display: 'grid',
+        gridTemplateColumns: '8fr 2fr',
+        width: '100%',
+        ':hover': {
+          cursor: 'pointer'
         }
       }}
     >
-      <Span css={{ alignSelf: "center", width: "80%", justifySelf: "center" }}>
+      <Span css={{ alignSelf: 'center', width: '80%', justifySelf: 'center' }}>
         Starred Messages
       </Span>
       <FaAngleRight
-        style={{ alignSelf: "center", justifySelf: "center" }}
+        style={{ alignSelf: 'center', justifySelf: 'center' }}
         size={25}
         color="#666"
       />
@@ -189,12 +189,12 @@ const MuteAndStarred = _ => {
   return (
     <Div
       css={{
-        height: "120px",
-        background: "#FFF",
-        display: "grid",
-        gridTemplateRows: "5fr 5fr",
-        marginTop: "1em",
-        boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.1)"
+        height: '120px',
+        background: '#FFF',
+        display: 'grid',
+        gridTemplateRows: '5fr 5fr',
+        marginTop: '1em',
+        boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.1)'
       }}
     >
       <Mute />
@@ -207,49 +207,49 @@ const AboutTitle = _ => {
   return (
     <Div
       css={{
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        width: "100%",
-        fontSize: "0.9em",
-        color: "#128C7E",
-        fontSize: "0.9em",
-        fontWeight: "100"
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        width: '100%',
+        fontSize: '0.9em',
+        color: '#128C7E',
+        fontSize: '0.9em',
+        fontWeight: '100'
       }}
     >
-      <Span css={{ alignSelf: "center", width: "80%", justifySelf: "center" }}>
+      <Span css={{ alignSelf: 'center', width: '80%', justifySelf: 'center' }}>
         About and phone number
       </Span>
     </Div>
   );
 };
 
-const Status = ({ status: status = "Available" }) => {
+const Status = ({ status: status = 'Available' }) => {
   return (
     <Div
       css={{
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        width: "100%",
-        borderBottom: "1px solid rgba(0, 0, 0, 0.06)"
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        width: '100%',
+        borderBottom: '1px solid rgba(0, 0, 0, 0.06)'
       }}
     >
-      <Span css={{ alignSelf: "center", width: "80%", justifySelf: "center" }}>
+      <Span css={{ alignSelf: 'center', width: '80%', justifySelf: 'center' }}>
         {status}
       </Span>
     </Div>
   );
 };
 
-const PhoneNumber = ({ phoneNumber: phoneNumber = "99999 10101" }) => {
+const PhoneNumber = ({ phoneNumber: phoneNumber = '99999 10101' }) => {
   return (
     <Div
       css={{
-        display: "grid",
-        gridTemplateColumns: "1fr",
-        width: "100%"
+        display: 'grid',
+        gridTemplateColumns: '1fr',
+        width: '100%'
       }}
     >
-      <Span css={{ alignSelf: "center", width: "80%", justifySelf: "center" }}>
+      <Span css={{ alignSelf: 'center', width: '80%', justifySelf: 'center' }}>
         {phoneNumber}
       </Span>
     </Div>
@@ -260,12 +260,12 @@ const AboutAndPhoneNumber = _ => {
   return (
     <Div
       css={{
-        height: "160px",
-        background: "#FFF",
-        display: "grid",
-        gridTemplateRows: "3fr 3.5fr 3.5fr",
-        marginTop: "1em",
-        boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.1)"
+        height: '160px',
+        background: '#FFF',
+        display: 'grid',
+        gridTemplateRows: '3fr 3.5fr 3.5fr',
+        marginTop: '1em',
+        boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.1)'
       }}
     >
       <AboutTitle />
@@ -282,15 +282,15 @@ export const SingleDeckContainer = props => {
   return (
     <Div
       css={{
-        height: "60px",
-        background: "#FFF",
-        display: "grid",
-        gridTemplateColumns: "2fr 8fr",
-        marginTop: "1em",
-        boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.1)",
-        ":hover": {
-          cursor: "pointer",
-          background: "#F4F5F5"
+        height: '60px',
+        background: '#FFF',
+        display: 'grid',
+        gridTemplateColumns: '2fr 8fr',
+        marginTop: '1em',
+        boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.1)',
+        ':hover': {
+          cursor: 'pointer',
+          background: '#F4F5F5'
         },
         ...props.style
       }}
@@ -298,15 +298,15 @@ export const SingleDeckContainer = props => {
     >
       <Div
         css={{
-          alignSelf: "center",
-          justifySelf: "center"
+          alignSelf: 'center',
+          justifySelf: 'center'
         }}
       >
         <Icon {...iconStyle} />
       </Div>
       <Div
         css={{
-          alignSelf: "center"
+          alignSelf: 'center'
         }}
       >
         <Span css={textStyle}>{text}</Span>
@@ -325,9 +325,9 @@ export const ContactInfoResults = ({
   return (
     <Div
       css={{
-        height: "100%",
-        overflowY: "scroll",
-        background: "#F7F7F7"
+        height: '100%',
+        overflowY: 'scroll',
+        background: '#F7F7F7'
       }}
     >
       <Div>
@@ -337,21 +337,21 @@ export const ContactInfoResults = ({
         <AboutAndPhoneNumber />
         <SingleDeckContainer
           icon={MdBlock}
-          iconStyle={{ size: "25", color: "#666" }}
-          text={"Block Contact"}
+          iconStyle={{ size: '25', color: '#666' }}
+          text={'Block Contact'}
           onClick={handleBlockContactClick}
         />
         <SingleDeckContainer
           icon={MdThumbDown}
-          iconStyle={{ size: "25", color: "#DF3333" }}
-          text={"Report spam"}
+          iconStyle={{ size: '25', color: '#DF3333' }}
+          text={'Report spam'}
           onClick={handleReportSpamClick}
         />
         <SingleDeckContainer
-          style={{ marginBottom: "2em" }}
+          style={{ marginBottom: '2em' }}
           icon={MdDelete}
-          iconStyle={{ size: "25", color: "#DF3333" }}
-          text={"Delete chat"}
+          iconStyle={{ size: '25', color: '#DF3333' }}
+          text={'Delete chat'}
           onClick={handleDeleteChatClick}
         />
       </Div>
