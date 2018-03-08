@@ -61,6 +61,8 @@ class ProfileAndFriendsList extends Component {
     }
   };
 
+  isComponentMounted = true;
+
   friendsListOrderUpdater = ({ changed, updatedProfileData }) => {
     this.setState({
       profileData: updatedProfileData,
@@ -136,10 +138,12 @@ class ProfileAndFriendsList extends Component {
               lastChat,
               timestamp
             );
-            this.friendsListOrderUpdater({
-              changed: true,
-              updatedProfileData
-            });
+            if (this.isComponentMounted) {
+              this.friendsListOrderUpdater({
+                changed: true,
+                updatedProfileData
+              });
+            }
           } catch (error) {
             console.error(error);
           }
@@ -156,8 +160,8 @@ class ProfileAndFriendsList extends Component {
           ...profileData,
           friends: rearrangedFriendsList
         };
-
-        this.friendsListOrderUpdater({ changed: true, updatedProfileData });
+        if (this.isComponentMounted)
+          this.friendsListOrderUpdater({ changed: true, updatedProfileData });
       }
     } else {
       /* If the recent interation was with the same person who is currenty
@@ -173,23 +177,30 @@ class ProfileAndFriendsList extends Component {
         ...profileData,
         friends: updatedProfileDataFriends
       };
-      this.friendsListOrderUpdater({ changed: false, updatedProfileData });
+      if (this.isComponentMounted)
+        this.friendsListOrderUpdater({ changed: false, updatedProfileData });
     }
   };
 
   async componentDidMount() {
     try {
       const profileData = await fetchData(profileDataUrl);
-      this.setState({
-        profileData,
-        recentChat: {
-          id: profileData.friends[0].id,
-          changed: false
-        }
-      });
+      if (this.isComponentMounted) {
+        this.setState({
+          profileData,
+          recentChat: {
+            id: profileData.friends[0].id,
+            changed: false
+          }
+        });
+      }
     } catch (error) {
       console.error(error);
     }
+  }
+
+  componentWillUnmount() {
+    this.isComponentMounted = false;
   }
 
   render() {
@@ -203,17 +214,23 @@ class ProfileAndFriendsList extends Component {
 class FriendData extends Component {
   state = { friendData: null };
 
+  isComponentMounted = true;
+
   handleFriendClickInList = id => {
     (async _ => {
       const url = `${friendDataUrl}/${id}`;
       try {
         const friendData = await fetchData(url);
-        this.setState({ friendData });
+        if (this.isComponentMounted) this.setState({ friendData });
       } catch (error) {
         console.error(error);
       }
     })();
   };
+
+  componentWillUnmount() {
+    this.isComponentMounted = false;
+  }
 
   render() {
     return this.props.children({
