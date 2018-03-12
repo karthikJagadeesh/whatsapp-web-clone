@@ -1,7 +1,7 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import fs from 'fs';
-import path from 'path';
+const express = require('express');
+const bodyParser = require('body-parser');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 app.use(express.static(__dirname + '/dist'));
@@ -15,4 +15,6 @@ app.get('/profile', (request, response) => response.ok(data.profile));
 app.get('/recentChats', (request, response) => response.ok(data.recentChats));
 app.get('/allFriends', (request, response) => response.ok(data.allFriends));
 
-const server = app.listen(process.env.PORT || 8080);
+const server = app.listen(process.env.PORT || 8080, () => {
+  console.log('Server started');
+});
