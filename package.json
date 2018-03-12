@@ -40,7 +40,6 @@
   "scripts": {
     "start": "concurrently --kill-others \"yarn start-dev-server\" \"webpack-dev-server --inline --hot\"",
     "start-dev-server": "json-server --watch db.json --port 7070",
-    "start-server": "node server.js",
     "build": "webpack -p"
   }
 }
