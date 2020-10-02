@@ -1,4 +1,4 @@
-# whatsapp-web-clone
-Whatsapp web clone 
+# whatsApp-web-clone
+WhatsApp web clone 
 
 
